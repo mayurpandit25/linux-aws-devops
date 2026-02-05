@@ -1,0 +1,1354 @@
+SHELL SCRIPTING
+
+====================================================================================================================================
+
+1.What is shell
+   shell is a Linux command line interpreter that provides an environment to a user to execute commands and interact with kernel
+
+2.Types of shell in Linux
+---> 
+1.bash
+2.ksh
+3.zch
+4.tsh
+5.fish
+6.sh
+
+3.To check shell 
+---> echo $0 or echo $SHELL
+
+4.What is shell scripting
+---> 
+1.shell script consist of set of commands to perform a task
+2.All the commands execute sequentially
+3.some task like file manipulation, program execution, user interaction, automation of task etc can be done.
+
+====================================================================================================================================
+
+# BASIC SCRIPT
+
+1.vim 01_basic.sh
+#!/bin/bash
+echo "Hello Mayur"
+
+2.chmod +x 01_basic.sh
+3.bash 01_basic.sh
+
+====================================================================================================================================
+
+# COMMENTS
+
+1.vim 02_comments.sh
+#!/bin/bash
+
+echo "Checking comments"
+
+#This is a single line comment
+
+2.chmod +x 02_comments.sh
+3.bash 02_comments.sh
+
+----------------------------------------------------------
+
+# MULTI-LINE COMMENTS
+
+1.vim 02_comments.sh
+#!/bin/bash
+
+echo "Checking comments"
+
+#This is a single line comment
+
+<<comment
+This
+is
+multi
+Line comments
+comment
+
+2.bash 02_comments.sh
+
+====================================================================================================================================
+
+# VARIABLES
+
+1.vim 03_variable.sh
+#!/bin/bash
+
+#Script to show how to use variables
+
+name="Mayur"
+age=24
+
+echo "My name is $name and age is $age"
+
+2.chmod +x 03_variable.sh
+3.bash 03_variable.sh
+
+output:-
+My name is Mayur and age is 24
+
+------------------------------------------------------
+
+# VARIABLE ---> variable to store the output of a command
+
+1.vim 03_variable.sh
+#!/bin/bash
+
+#Script to show how to use variables
+
+name="Mayur"
+age=24
+
+echo "My name is $name and age is $age"
+
+# Variable to store the output of a command
+HOSTNAME=$(hostname)
+echo "Name of these machine is $HOSTNAME"
+
+2.bash 03_variable.sh
+  
+output:-
+My name is Mayur and age is 24
+Name of these machine is HeyMayur
+
+------------------------------------------------------
+
+# CONSTANT VARIABLES
+
+1.vim 04_constant_var.sh
+#!/bin/bash
+
+# Constant variable
+
+readonly COLLEGE="DMIETR"
+
+echo "My college name is $COLLEGE"
+
+COLLEGE="METRO"
+
+2.chmod +x 04_constant_var.sh
+3.bash 04_constant_var.sh
+
+output:-
+My college name is DMIETR
+04_constant_var.sh: line 9: COLLEGE: readonly variable
+
+====================================================================================================================================
+
+# ARRAYS 
+
+1.vim 05_array.sh
+
+#!/bin/bash
+
+#Array
+#value of array start from the 0 then 1 and so on
+
+myArray=( 1 20 30.5 Hello "Hey buddy!" )
+
+echo "All the values in array are ${myArray[*]}"
+echo "Value in 3rd index ${myArray[3]}"
+
+2.chmod +x 05_array.sh
+3.bash 05_array.sh
+
+output:-
+All the values in array are 1 20 30.5 Hello Hey buddy!
+Value in 3rd index Hello
+
+---------------------------------------------------------
+
+# ARRAYS --> How to find length
+
+1.vim 05_array.sh
+
+#!/bin/bash
+
+#Array
+#value of array start from the 0 then 1 and so on
+
+myArray=( 1 20 30.5 Hello "Hey buddy!" )
+
+echo "All the values in array are ${myArray[*]}"
+echo "Value in 3rd index ${myArray[3]}"
+
+#How to find number of values in an array
+echo "No of values, length of an array is ${#myArray[*]}"
+
+2.bash 05_array.sh
+
+output:-
+All the values in array are 1 20 30.5 Hello Hey buddy!
+Value in 3rd index Hello
+No of values, length of an array is 5
+
+---------------------------------------------------------
+
+# ARRAYS ---> How to find the range of values 
+
+1.vim 05_array.sh
+#!/bin/bash
+
+#Array
+#value of array start from the 0 then 1 and so on
+
+myArray=( 1 20 30.5 Hello "Hey buddy!" )
+
+echo "All the values in array are ${myArray[*]}"
+echo "Value in 3rd index ${myArray[3]}"
+
+#How to find number of values in an array
+echo "No of values, length of an array is ${#myArray[*]}"
+
+#How to find range of value
+echo "values from index 2-3 ${myArray[*]:2:2}"
+
+2.bash 05_array.sh
+
+output:-
+All the values in array are 1 20 30.5 Hello Hey buddy!
+Value in 3rd index Hello
+No of values, length of an array is 5
+values from index 2-3 30.5 Hello
+
+---------------------------------------------------------
+
+# ARRAYS ---> How to update an array
+
+1.vim 05_array.sh
+#!/bin/bash
+
+#Array
+#value of array start from the 0 then 1 and so on
+
+myArray=( 1 20 30.5 Hello "Hey buddy!" )
+
+echo "All the values in array are ${myArray[*]}"
+echo "Value in 3rd index ${myArray[3]}"
+
+#How to find number of values in an array
+echo "No of values, length of an array is ${#myArray[*]}"
+
+echo "values from index 2-3 ${myArray[*]:2:2}"
+
+# UPDATING OUR ARRAY WITH NEW VALUES
+myArray+=( New 30 40 )
+
+echo "Value of new array are ${myArray[*]}"
+
+2.bash 05_array.sh
+
+output:-
+All the values in array are 1 20 30.5 Hello Hey buddy!
+Value in 3rd index Hello
+No of values, length of an array is 5
+values from index 2-3 30.5 Hello
+Value of new array are 1 20 30.5 Hello Hey buddy! New 30 40
+
+-----------------------------------------------------------
+
+# ARRAYS ---> key value pairs
+
+1.vim 06_keyvalue.sh
+#!/bin/bash
+
+# How to store key_value pairs
+
+declare -A myArray
+myArray=( [name]=Mayur [age]=24 [city]=Wardha )
+
+echo "Name is ${myArray[name]}"
+echo "Age is ${myArray[age]}"
+echo "city is ${myArray[city]}"
+
+2.chmod +x 06_keyvalue.sh
+3.bash 06_keyvalue.sh
+
+output:-
+Name is Mayur
+Age is 24
+city is Wardha
+
+====================================================================================================================================
+
+# STRING OPERATIONS
+
+1.vim 07_string_ops.sh
+#!/bin/bash
+
+myVar="Hey Buddy, How are you?"
+
+myVarLength=${#myVar}
+echo "Length of the myVar is $myVarLength"
+
+2.chmod +x 07_string_ops.sh
+3.bash 07_string_ops.sh
+
+output:-
+Length of the myVar is 23
+
+--------------------------------------------------------------
+
+# STRING OPERATIONS ---> Upper case & Lower case
+
+1.vim 07_string_ops.sh
+#!/bin/bash
+
+myVar="Hey Buddy, How are you?"
+
+myVarLength=${#myVar}
+echo "Length of the myVar is $myVarLength"
+
+echo "Upper case is ${myVar^^}"
+echo "Lower case is ${myVar,,}"
+
+2.bash 07_string_ops.sh
+
+output:-
+Length of the myVar is 23
+Upper case is HEY BUDDY, HOW ARE YOU?
+Lower case is hey buddy, how are you?
+
+--------------------------------------------------------------
+
+# STRING OPERATIONS ---> Replacement
+
+1.vim 07_string_ops.sh
+#!/bin/bash
+
+myVar="Hey Buddy, How are you?"
+
+myVarLength=${#myVar}
+echo "Length of the myVar is $myVarLength"
+
+echo "Upper case is ${myVar^^}"
+echo "Lower case is ${myVar,,}"
+
+# To replace a string
+newVar=${myVar/Buddy/Mayur}
+echo "New variable is $newVar"
+
+2.bash 07_string_ops.sh
+
+output:-
+Length of the myVar is 23
+Upper case is HEY BUDDY, HOW ARE YOU?
+Lower case is hey buddy, how are you?
+New variable is Hey Mayur, How are you?
+
+---------------------------------------------------------------
+
+# STRING OPERATIONS ---> slice
+
+1.vim 07_string_ops.sh
+#!/bin/bash
+
+myVar="Hey Buddy, How are you?"
+
+myVarLength=${#myVar}
+echo "Length of the myVar is $myVarLength"
+
+echo "Upper case is ${myVar^^}"
+echo "Lower case is ${myVar,,}"
+
+# To replace a string
+newVar=${myVar/Buddy/Mayur}
+echo "New variable is $newVar"
+
+# To slice a string
+echo "After slice ${myVar:4:5}"
+
+2.bash 07_string_ops.sh
+
+output:-
+Length of the myVar is 23
+Upper case is HEY BUDDY, HOW ARE YOU?
+Lower case is hey buddy, how are you?
+New variable is Hey Mayur, How are you?
+After slice Buddy
+
+====================================================================================================================================
+
+# USER INTERACTION
+
+1.vim 08_user_int.sh
+#!/bin/bash
+
+read -p "What is your name?" name
+echo "Your name is $name"
+
+2.chmod +x 08_user_int.sh
+3.bash 08_user_int.sh
+
+output:-
+What is your name? (type_name)
+Your name is mayur
+
+====================================================================================================================================
+
+# ARITHMETIC OPERATIONS
+
+1.vim 09_arth_ops.sh
+#!/bin/bash
+
+# Maths Calculation
+
+x=10
+y=2
+
+let mul=$x*$y
+echo "$mul"
+
+let sum=$x+$y
+echo "$sum"
+
+echo "subtraction is $(( $x-$y ))"
+
+2.chmod +x 09_arth_ops.sh
+3.bash 09_arth_ops.sh
+
+output:-
+20
+12
+subtraction is 8
+
+====================================================================================================================================
+
+# CONDITIONAL STATEMENT ---> if / else 
+
+1.vim 10_if_else.sh
+#!/bin/bash
+
+read -p "Enter your marks? " marks
+
+if [[ $marks -gt 40 ]]
+then
+	echo "You are PASS"
+else 
+	echo "You are FAIL"
+if
+
+2.chmod +x 10_if_else.sh
+2.bash 10_if_else.sh
+
+output:-
+Enter your marks: 30
+You are FAIL
+Enter your marks: 41
+You are PASS
+
+--------------------------------------------------------------
+
+# CONDITIONAL STATEMENT ---> multiple conditions (elif)
+
+1.vim 11_elif.sh
+#!/bin/bash
+
+read -p "Enter your marks: " marks
+
+if [[ $marks -ge 80 ]]
+then
+        echo "1st Division"
+
+elif [[ $marks -ge 60 ]]
+then
+        echo "2nd Division"
+
+elif [[ $marks -ge 40 ]]
+then
+        echo "3rd Division"
+
+else
+        echo "You are FAIL"
+fi
+
+2.chmod +x 11_elif.sh
+3.bash 11_elif.sh
+
+output:-
+Enter your marks: 90
+1st Division
+
+Enter your marks: 70
+2nd Division
+
+Enter your marks: 50
+3rd Division
+
+Enter your marks: 30
+You are FAIL
+
+-----------------------------------------------------------
+
+# CONDITIONAL STATEMENT ---> case
+
+1.vim 12_case.sh
+
+#!/bin/bash
+
+echo "Provide an option"
+echo "a for print date"
+echo "b for list of scripts"
+echo "c to check the current location"
+
+read choice
+
+case $choice in
+        a)date;;
+        b)ls;;
+        c)pwd;;
+        *)echo "Please provide an valid value"
+esac
+
+2.chmod +x 12_case.sh
+3.bash 12_case.sh
+
+output:
+a
+Fri Jan  9 11:59:06 IST 2026
+
+b
+01_basic.sh   06_keyvalue.sh   10_if_else.sh
+
+c
+/root/shell_scripts
+
+====================================================================================================================================
+
+# LOGICAL OPERATORS ---> && (AND OPERATOR)
+
+1.vim 13_logical_op.sh
+
+#!/bin/bash
+
+# AND OPERATOR
+
+read -p "What is your age? " age
+read -p "Your country: " country
+
+if [[ $age -ge 18 ]] && [[ $country == "India" ]]
+then
+        echo "You can vote"
+else
+        echo "You can't vote"
+fi
+
+2.chmod +x 13_logical_op.sh
+3.bash 13_logical_op.sh
+
+output:-
+What is your age? 18
+Your country: India
+You can vote
+
+What is your age? 18
+Your country: Nepal
+You can't vote
+
+---------------------------------------------------------------
+
+# LOGICAL OPERATORS ---> || (OR OPERATOR)
+
+1.vim 13_logical_op.sh
+
+#!/bin/bash
+
+# AND OPERATOR
+
+read -p "What is your age? " age
+read -p "Your country: " country
+
+if [[ $age -ge 18 ]] || [[ $country == "India" ]]
+then
+        echo "You can vote"
+else
+        echo "You can't vote"
+fi
+
+2.chmod +x 13_logical_op.sh
+3.bash 13_logical_op.sh
+
+output:-
+What is your age? 18
+Your country: Nepal
+You can vote
+
+What is your age? 17
+Your country: Nepal
+You can't vote
+
+---------------------------------------------------------------
+
+# LOGICAL OPERATORS ---> CONDITION1 && CONDITION2 || CONDITION3
+
+1.vim 14_ternary_ops.sh
+
+#!/bin/bash
+
+# cond1 && cond2 || cond3
+
+age=18
+
+[[ $age -ge 18 ]] && echo "Adult" || echo "Minor"
+
+2.chmod +x 14_ternary_ops.sh
+3.bash 14_ternary_ops.sh
+
+output:-
+if suppose the age is 18 then result is Adult
+if suppose the age is 15 then result is Minor
+
+====================================================================================================================================
+
+# LOOPS - FOR LOOPS
+
+1.vim 15_forloop1.sh
+#!/bin/bash
+
+# FOR LOOP
+
+for i in {1..5}
+do
+        echo "Number is $i"
+done
+
+for name in Raju Sham Baburao
+do
+        echo "Name is $name"
+done
+
+2.chmod +x 15_forloop1.sh
+3.bash 15_forloop1.sh
+
+output:-
+Number is 1
+Number is 2
+Number is 3
+Number is 4
+Number is 5
+Name is Raju
+Name is Sham
+Name is Baburao
+
+---------------------------------------------------------------
+
+# LOOPS ---> iterate values from file
+
+1.16_for_with_file.sh
+#!/bin/bash
+
+# GETTING VALUES FROM FILE names.txt
+
+FILE="/root/shell_scripts/names.txt"
+
+for name in $( cat $FILE )
+do
+        echo "Name is $name"
+done
+
+2.names.txt
+mayur
+shubham
+pranay
+sameer
+vaibhav
+bhushan
+adesh
+kunal
+
+2.chmod +x 16_for_with_file.sh
+3.bash 16_for_with_file.sh
+
+output:-
+Name is mayur
+Name is shubham
+Name is pranay
+Name is sameer
+Name is vaibhav
+Name is bhushan
+Name is adesh
+Name is kunal
+
+---------------------------------------------------------------
+
+# LOOPS ---> ARRAY
+
+1.vim 17_for_with_array.sh
+#!/bin/bash
+
+myArray=( 1 2 3 Hello Hi )
+
+length=${#myArray[*]}
+
+for (( i=0;i<$length;i++ ))
+do
+        echo "Value of array is ${myArray[$i]}"
+done
+
+2.chmod +x 17_for_with_array.sh
+3.bash 17_for_with_array.sh
+
+output:-
+Value of array is 1
+Value of array is 2
+Value of array is 3
+Value of array is Hello
+Value of array is Hi
+
+---------------------------------------------------------------
+
+# LOOPS - WHILE LOOPS
+
+1.vim 18_while_loop.sh
+#!/bin/bash
+
+count=0
+num=10
+
+while [[ $count -le $num ]]
+do
+        echo "value of count var is $count"
+        let count++
+done
+
+2.chmod +x 18_while_loop.sh
+3.bash 18_while_loop.sh
+
+output:-
+value of count var is 0
+value of count var is 1
+value of count var is 2
+value of count var is 3
+value of count var is 4
+value of count var is 5
+value of count var is 6
+value of count var is 7
+value of count var is 8
+value of count var is 9
+value of count var is 10
+
+---------------------------------------------------------------
+
+# LOOPS - UNTIL LOOPS
+
+1.vim 19_until_loop.sh
+#!/bin/bash
+
+count=0
+num=10
+
+while [[ $count -le $num ]]
+do
+        echo "value of count var is $count"
+        let count++
+done
+
+2.chmod +x 19_until_loop.sh
+3.bash 19_until_loop.sh
+
+output:-
+Value of a is 10
+Value of a is 9
+Value of a is 8
+Value of a is 7
+Value of a is 6
+Value of a is 5
+Value of a is 4
+Value of a is 3
+Value of a is 2
+
+--------------------------------------------------------------
+
+# LOOPS - INFINITE LOOPS
+
+1.vim 20_infinite_loop.sh
+#!/bin/bash
+
+#inifinte loop
+
+while true
+do
+        echo "Hi buddy"
+        sleep 2s
+done
+
+2.chmod +x 20_inifinite_loop.sh
+3.bash 20_infinite_loop.sh
+
+output:-
+Hi buddy
+Hi buddy
+
+--------------------------------------------------------------
+
+# LOOPS - INFINITE FOR LOOPS
+
+1.vim 21_infinite_for_loop.sh
+#!/bin/bash
+
+#inifinte loop
+
+while true
+do
+        echo "Hi buddy"
+        sleep 2s
+done
+
+2.chmod +x 21_infinite_for_loop.sh
+3.bash 21_infinite_for_loop.sh
+
+output:-
+Hi buddy
+Hi buddy
+
+---------------------------------------------------------------
+
+# WHILE LOOPS - To read content from a file
+
+1.vim 22_while_with_file.sh
+#!/bin/bash
+
+while read myvar
+do
+        echo "Value from file is $myvar"
+done <names.txt
+
+2.chmod +x 22_while_with_file.sh
+3.bash 22_while_with_file.sh
+
+output:-
+Value from file is mayur
+Value from file is shubham
+Value from file is pranay
+Value from file is sameer
+Value from file is vaibhav
+Value from file is bhushan
+Value from file is adesh
+Value from file is kunal
+
+---------------------------------------------------------------
+
+# WHILE LOOPS - To read content from a csv file
+
+1.vim 23_while_With_csv.sh
+#!/bin/bash
+
+while IFS="," read id name age
+do
+        echo "Id is $id"
+        echo "name is $name"
+        echo "age is $age"
+done <test.csv
+
+2.vim test.csv
+id,name,age
+01,sham,20
+02,mayur,30
+03,raju,40
+
+3.chmod +x 23_while_with_csv.sh
+4.bash 23_while_with_csv.sh
+
+output:-
+Id is 01
+name is sham
+age is 20
+Id is 02
+name is mayur
+age is 30
+Id is 03
+name is raju
+age is 40
+
+====================================================================================================================================
+
+# FUNCTIONS
+
+1.vim 24_funtions.sh
+#!/bin/bash
+
+#To make function
+function welcomeNote {
+        echo "------------"
+        echo "Welcome"
+        echo "------------"
+}
+
+2.chmod +x 24_functions.sh
+3.bash 24_functions.sh
+
+output:-
+------------
+Welcome
+------------
+------------
+Welcome
+------------
+------------
+Welcome
+------------
+
+---------------------------------------------------------------
+
+# FUNCTIONS - HOW TO USE ARGUMENTS IN FUNCTIONS
+
+1.vim 25_function_with_arg.sh
+#!/bin/bash
+
+function welcomeNote {
+        echo "-------------"
+        echo "Welcome $1"
+        echo "-------------"
+}
+
+welcomeNote Raju
+welcomeNote sham
+
+2.chmod +x 25_function_with_arg.sh
+3.bash 25_function_with_arg.sh
+
+output:-
+-------------
+Welcome Raju
+-------------
+-------------
+Welcome sham
+-------------
+
+====================================================================================================================================
+
+# ARGUMENTS PASSING
+
+1.vim 26_args.sh
+#!/bin/bash
+
+#To access the arguments
+
+echo "First argument is $1"
+echo "Second argument is $2"
+echo "All the arguments are - $@"
+echo "Number of arguments are - $#"
+
+2.chmod +x 26_args.sh Raju Sham
+3.bash 26_args.sh
+
+output:-
+First argument is Raju
+Second argument is Sham
+All the arguments are - Raju Sham
+Number of arguments are - 2
+
+Note:-
+pass the argument when execute the file
+
+---------------------------------------------------------------
+
+# ARGUMENTS - SHIFTING
+
+1.vim 27_shift_args.sh
+#!/bin/bash
+
+# To create a user, provide username and description
+
+echo "Creating user"
+echo "Username is $1"
+
+echo "Description is $2"
+
+2.chmod +x 27_shift_args.sh
+3.bash 27_shift_args.sh
+
+output:-
+Creating user
+Username is mayur
+Description is TEST
+
+Note:-
+add the args when executing the file
+
+====================================================================================================================================
+
+OTHER USEFUL CONCEPTS:-
+
+1.break - To stop the loop
+
+2.continue - To stop current iteration of loop and start next iteration
+
+---------------------------
+
+BREAK:-
+
+1.vim 28_break.sh
+#!/bin/bash
+
+no=6
+
+for i in 1 2 3 4 5 6 7 8 9
+do
+        #BREAK THE LOOP IF NO. FOUND
+        if [[ $no -eq $i ]]
+        then
+                echo "$no is found!!!!"
+                break
+        fi
+        echo "Number is $i"
+done
+
+2.chmod +x 28_break.sh
+3.bash 28_break.sh
+
+output:-
+Number is 1
+Number is 2
+Number is 3
+Number is 4
+Number is 5
+6 is found!!!!
+
+---------------------------------------------------------------
+
+CONTINUE:-
+
+2.vim 29_continue.sh
+
+#!/bin/bash
+
+for i in 1 2 3 4 5 6 7 8 9 10
+do
+        let r=$i%2
+        if [[ $r -eq 0 ]]
+        then
+                continue
+        fi
+        echo "odd no. is $i"
+done
+
+2.chmod +x 29_continue.sh
+3.bash 29_continue.sh
+
+output:-
+odd no. is 1
+odd no. is 3
+odd no. is 5
+odd no. is 7
+odd no. is 9
+
+---------------------------------------------------------------
+
+SLEEP:-
+
+1.vim 30_sleep.sh
+
+
+
+---------------------------------------------------------------
+
+EXIT:-
+
+1.vim 30_exit.sh
+#!/bin/bash
+
+#To access the arguments
+
+if [[ $# -eq 0 ]]
+then
+	echo "Please provide atleast one argument"
+	exit 1
+fi
+
+echo "First argument is $1"
+echo "Second argument is $2"
+echo "All the arguments are - $@"
+echo "Number of arguments are - $#"
+
+#For loop to access the values from arguments
+
+for filename in $@
+do 
+	echo "copying file - $filename"
+
+done
+
+
+2.chmod +x 30_exit.sh
+3.bash 30_exit.sh
+
+output:-
+First argument is mayur
+Second argument is
+All the arguments are - mayur
+Number of arguments are - 1
+copying file - mayur
+
+---------------------------------------------------------------
+
+EXIT STATUS:-
+
+1.vim 31_connectivity_check.sh
+#!/bin/bash
+
+read -p "Which site you want to check?" site
+
+ping  -c 1 $site
+sleep 5s
+
+if [[ $? -eq 0 ]]
+then
+        echo "Successfully connected to $site"
+else
+        echo "Unable to connect $site"
+fi
+
+2.chmod +x 31_connectivity_check.sh
+3.bash 31_connectivity_check.sh
+
+output:-
+Which site you want to check? google.com
+PING google.com (142.250.70.110) 56(84) bytes of data.
+64 bytes from pnbomb-ac-in-f14.1e100.net (142.250.70.110): icmp_seq=1 ttl=118 time=10.8 ms
+
+--- google.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 10.763/10.763/10.763/0.000 ms
+Successfully connected to google.com
+
+====================================================================================================================================
+
+# BASH VARIABLE - RANDOM
+
+1.vim 32_random.sh
+#!/bin/bash
+
+#Generating a random number between 1 - 6
+
+NO=$(( $RANDOM% 6 + 1 ))
+echo "Number is $NO"
+
+2.chmod +x 32_random.sh
+3.bash 32_random.sh
+
+output:-
+number is 2
+number is 1
+number is 6
+
+Note:- it can generate the random number between 1 to 6
+
+-------------------------------------------------------------------------------
+
+# BASH VARIABLE - UID
+
+1.vim 33_root_usercheck.sh
+#!/bin/bash
+
+# Checking if the user is root or not
+
+if [[ $UID -eq 0 ]]
+then
+        echo "user is root"
+else
+        echo "User is not root"
+fi
+
+2.chmod +x 33_root_usercheck.sh
+3.bash 33_root_usercheck.sh
+
+output:-
+user is root
+
+Note:-
+1.if u perform these script with root then output is root
+2.if u perform these script with local user then user is not root
+
+====================================================================================================================================
+
+# REDIRECTIONS IN SCRIPTS
+
+1.vim 34_redirect.sh
+#!/bin/bash
+cat /etc/os-release > redirect.log
+
+2.chmod +x 34_redirect.sh
+3.bash 34_redirect.sh
+
+output:-
+4.cat redirect.log
+PRETTY_NAME="Ubuntu 22.04.2 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.2 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+UBUNTU_CODENAME=jammy
+
+====================================================================================================================================
+
+# PRINT NAME OF THE SCRIPT
+
+1.vim 35_scriptname.sh
+#!/bin/bash
+echo "Name of this script is: ${0}"
+
+
+2.chmod +x 35_scriptname.sh
+3.bash 35_scriptname.sh
+
+output:-
+Name of this script is: 35_scriptname.sh
+
+------------------------------------------------------------------------------------
+
+# LOG MESSAGES
+
+1.vim 36_logmessage.sh
+#!/bin/bash
+
+# Example of logging
+logger "This is log from ${0}"
+
+2.chmod +x 36_logmessage.sh
+3.bash 36_logmessage.sh
+
+output:-
+less /var/log/messages
+
+------------------------------------------------------------------------------------
+
+# DEBUGGING SCRIPTS - ( set -e )
+   if u want to exit our script when a command fail
+
+1.vim 3_debug.sh
+#!/bin/bash
+
+set -e
+
+pwd
+date
+cd /home/vaibhav
+hostname
+
+2.chmod +x 37_debug.sh
+3.bash 37_debug.sh 
+
+output:-
+/root/shell_scripts
+Tue Jan 13 16:34:10 IST 2026
+37_debug.sh: line 7: cd: /home/vaibhav: No such file or directory
+
+====================================================================================================================================
+
+AUTOMATE OUR SCRIPT - ( AT OR CRONTAB )
+
+AT
+
+1.date
+Tue Jan 13 16:46:28 IST 2026
+
+2.at "16:47"
+at> bash /root/shell_scripts/34_redirect.sh
+
+3.ls
+  redirect.log
+
+------------------------------------------------------------------------------------------
+
+CRONTAB
+
+1.crontab -e
+
+* * * * * cd /root/shell_script && ./34_redirect.sh 
+
+2.crontab -l
+3.date
+
+====================================================================================================================================
+
+# PROJECT - MONITORING FREE RAM SPACE
+
+1.vim ram_status.sh
+#!/bin/bash
+
+FREE_SPACE=$(free -mt | grep "Total" | awk '{print $4}')
+
+TH=1000
+
+if [[ $FREE_SPACE -lt $TH ]]
+then
+        echo "WARNING, RAM is running low"
+else
+        echo "RAM space is sufficient - $FREE_SPACE M"
+fi
+
+2.chmod +x ram_status.sh
+3.bash ram_status.sh
+
+output:-
+RAM space is sufficient - 3133 M
+
+------------------------------------------------------------------------------------------------------
+
+# PROJECT - MONITORING FREE RAM SPACE AND SEND AN ALERT EMAIL
+
+1ST METHOD - To setup the postfix in ubuntu/centos
+
+1.vim fs_status.sh
+#!/bin/bash
+
+# MONITORING THE FREE DISK SPACE & SEND ALER ON EMAIL
+
+FU=$(df -H | egrep -v "Filesystem|tmpfs" | grep "sdd" | awk '{print $5}' | tr -d %)
+
+TO="mayur@gmail.com"
+
+if [[ $FU -ge 5 ]]
+then
+        echo "Warning, disk space is low - $FU %" | mail -s "Disk SPACE ALERT !" $TO
+else
+        echo "All good"
+fi
+
+2.chmod +x fs_status.sh
+3.bash fs_status.sh
+
+output:-
+Warning, disk space is low
+
+Note:-
+1.5 is the percent if u can customize according to u storage size
+
+====================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,244 @@
+                                                                         **LINUX INTERVIEW QUESTIONS**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.what is the use of echo command
+--->it is a command that outputs the strings that are passed to it as arguments.
+
+echo "hello world"
+
+2.How to check the computer name or hostname in Linux?
+--->hostname
+
+3.how to check the current user in linux terminal
+--->whoami 
+
+4.how to check your current path/dir you are working in 
+--->pwd 
+
+5.Explain the difference between relative and absolute path?
+--->absolute path: the full path to a file or directory
+    relative path: starts from current working directory
+
+6.Which command to be used to create a file in Linux?
+--->touch/vim/nano/cat/echo
+
+7.How will you edit an existing file on a Linux server?
+---->vim command can edit the existing file 
+
+8.How to rename a file in Linux?
+--->mv command can rename a file
+
+9.How to search for a string  in a file?
+--->grep command
+
+10.Difference between grep and egrep?
+--->grep used for searching one string in a file while
+    egrep used for searching the multiple string at same time
+
+    egrep "key1|key2|key3" file
+
+11.How can you read a file without using cat command?
+--->less/more/vim command
+
+12.What is the advantage of using less command?
+--->we can easily read big files
+    forward and backward search is easy
+    navigation from top to bottom is easy
+
+
+13.How to check a file's permission?
+--->ls -l
+
+14.How to check the IP of your Linux server?
+--->ifconfig
+    curl ifconfig.me
+    ipaddr
+
+15.How to read the top 5 lines in a file?
+--->head -n 5 file
+
+16.How to read the last 5 lines in a file?
+--->tail -n 5 file
+
+17.How to list hidden files?
+--->ls -al
+
+18.How to see all the recently used commands?
+--->history
+
+19.What is root?
+--->root user is a admin user/super user that have administrator access
+    its home directory is /root 
+    
+
+20.What is inode and how to find it for a file?
+--->inode is an index node. It serves as a unique identifier for a specific piece of metadata on a given filesystem
+  
+   ls -i 
+
+21.Which command can you use for finding files on a Linux system?
+--->find
+    locate 
+
+22.Command for counting words and lines?
+--->wc -l / wc -m / wc -m 
+
+23.How can you combine two commands? or What is pipe used for?
+--->with the help of pipe command we can combine two commands
+    pipe command generally gives the input from the 1st command and redirects wiht the output of another command
+
+      ex: command1 | command2
+
+24.How to view the difference between two files? (diff file1 file2)
+--->diff file1 file2
+
+25.What is the use of the shred command do? (permanently delete a file which is unable to recover)
+--->shred -u file_name
+    shred --remove file_name
+
+26.How to check system architecture info (dmidecode and lscpu)
+--->dmidecode and lscpu
+
+27.How to combine two files?
+--->cat file1 file2 > file3
+
+28.How can you find the type of file?
+--->file file_name
+
+29.How to sort the content of a file?
+--->sort file_name
+    cat file_name | sort
+
+30.Different ways to access a Linux server remotely (from a Windows machine)?
+---> using putty/gitbash/cmd
+
+**File Permissions**
+
+31.What are different types of permissions for a file in Linux?
+--->read/write/execute
+
+32.how to check the permissions given to file
+--->getfacl file_name
+    ls -l
+    ll
+
+33.which permission allow a user to run an executable file
+--->we need to provide executable (x) permission to the user
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**REDIRECTION**
+
+34.How to write the output of a command into a file?
+---> command >file_name
+     man date >file1
+
+35.How to write something in a file without deleting the existing content?
+--->We can append the file using >>
+
+36.How to redirect an error of a command into a file?
+--->with the 2> command
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**AUTOMATION**
+
+37.How to Automate any task or script?
+--->Using cron jobs
+    like crontab and at command.
+
+38.how to check the scheduled jobs
+--->crontab -l
+
+39.what is the meaning of this cron jobs? 
+    * * * * * 
+--->minute/hour/date/month/week
+
+40.if your cron job didnt work,how would you check?
+--->check system time,
+    crontab entry,
+    /var/log/messages
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**SERVICES**
+
+41.what is daemon service
+--->Service that keep running in background.
+    Example: httpd, sshd, chronyd
+
+42.How to check if a service is running or not?
+--->systemctl status service_name
+
+43.how to start service
+--->systemctl start service_name
+
+44.how to stop the service
+--->systemctl stop service_name
+
+**SYSTEM MONITORING**
+
+45.how to check for free disk space
+--->df -Th
+
+46.how to check size of directory
+--->du -sh
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**PROCESS**
+
+47.what is process in linux
+--->An instance of a running program.
+Whenever you start a program/application or execute a command, a process is created.
+For every process a unique no. is assigned which is called PID (Process ID)
+
+48.how to check if a process/application is ruuning or not
+--->ps
+
+49.how to terminate process
+--->kill
+
+50.difference between kill and kill -9
+--->kill only kill the process
+    kill -9 forcefully terminate the process
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**NETWORKING**
+
+51.How to check if a IP/Server is accessible or not?
+--->ping or telnet command
+
+52.Which command to use to get info about ports?
+--->netstat
+
+53.How to check open port on Linux system?
+--->netstat putan | grep port_no
+
+54.How to check network interfaces in Linux?
+--->ifconfig and netstat
+
+55.differnce between telnet and ssh
+--->SSH is secured and telnet is not.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**SSH**
+
+56.Which service should be running on server to allow you to connect remotely
+--->ssh and sshd
+
+57.what is ssh
+--->SSH or Secure Shell is a network communication protocol that enables two computers/devices to communicate and share data.
+
+58.Why it is called as Secure Shell?
+--->Because communication between host and client will be in encrypted format.
+
+59.What id default port for SSH?
+--->22
+
+60.Which command is used to access a linux system from a terminal or another linux server?
+--->ssh user@198.168.x.x
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**ARCHIEVE**
+If you want to transfer a large file (10GB) remotely, what would be the first thing you will do?
+Difference between tar, gzip and gunzip?

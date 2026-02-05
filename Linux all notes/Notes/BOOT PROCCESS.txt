@@ -1,0 +1,31 @@
+									BOOT PROCESS
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  "it is a process starts when we power on the computer/desktop and involves loading and initializing the operating system and other software necessary for computer 
+   to function properly"
+
+    "during boot process the computer hardware it tested and configured and various systems are check"
+
+**boot proccess involves serveral stages**
+
+1.BIOS (basic input output system):-
+   1.it is the 1st programme which is executed when the booting process is start 
+   2.it performs POST (power on self test)
+   3.it checks the peripheral component of computer wheather it is working or not
+   4.and it stores in a ROM (read only memory) on motherboard
+
+2.boot loader:-
+   1.it is the programme which is loaded by the BIOS and searches the kernal to load into the memory
+   2.generally GRUB can directly manages the boot loader
+
+3.kernal:-
+   1.it is a core part of operating system that initialize the hardware and launches the system services.
+
+4.init proccess:-
+  1.it is the 1st process which is started by kernal and initialize the system by starting services and daemon
+
+5.Runlevel:-
+  1.it is a state of system that determines which services and daemons are start at boot time.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------

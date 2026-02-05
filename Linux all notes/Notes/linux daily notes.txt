@@ -1,0 +1,5229 @@
+NOTES ON LINUX
+
+{handmade notes by mayur}
+=======================================================================================================================================================================
+
+OS:- 
+1.An OS is the intermediate layer between the hardware and the user.
+2.It manages hardware resources like CPU, memory, storage, and I/O devices.
+3.it works like a interpreter
+4.Example tasks: running programs, file management, memory allocation, and process management.
+
+HARDWARE:-
+hardware basically a tangential component or physical component of any electronic device that can store the data and runs the written code provided by the software. examples: CPU, RAM, HDD/SSD, GPU, etc.
+
+SOFTWARE:-
+1.software is a set of instructions or collection of programs that tells the computer how to perform a particular task.
+2.Two types:
+   System Software – Helps run hardware and OS (e.g., Linux, Windows).
+   Application Software – Performs specific tasks for the user (e.g., Chrome, Word).
+
+FIRMWARE:-
+1.firmware is a set of instructions or programs written in a machine language which are used to operate the hardware.
+2.Example: BIOS, embedded software in devices.
+
+TYPES 0F OS:-
+1.desktop machine:- Used for general purposes like presentations, games, and office work.
+2.server machine:- whenever the multiple users works on the same website at a same time it doesn't affects the users performance because of the system to be created like these called as server machine.
+
+DEVELOPMENT OF OS:-
+1.Single-user single-tasking → MS-DOS--------Only one user can run one task at a time.
+2.Single-user multi-tasking → Windows 10-----One user can run multiple tasks simultaneously.
+3.Multi-user multi-tasking → Linux/Unix -----Multiple users can run multiple tasks at the same time.
+
+VIRTUAL MACHINE:-
+ A virtual machine is an emulation of a computer system that uses the logical resources of a physical computer to run in an isolated and independent environment.
+                            or
+a virtual machine is a logical resource of physical hardware that runs in an independent and isolated environment.
+
+FEATURES OF LINUX:-
+1.free to use
+2.Secure and stable
+3.light weight
+4.open source
+5.community-based support
+6.multiuser-multitask
+
+1.linux is a kernel not the os
+2.linux is not a unix derivative.it was written from scratch
+
+{ Linux kernel + GNU =====> Linux OS }
+
+=======================================================================================================================================================================
+
+VIRTUALIZATION:-
+
+virtualization is a technique of splitting the physical resources into as many as logical resources as needed.
+                       				 OR
+virtualization is a technology that transform hardware into the software.
+
+HYPERVISOR:-
+1.Hyervisor is a software that creates the space and runs the virtual machine. 
+2.we use two operating system at a same time with the help of hypervisor.
+   
+TYPES OF HYPERVISOR:-
+1.type-1 hypervisor (bare metal hypervisor)
+2.type-2 hypervisor (hosted hypervisor)
+
+TYPE-1 HYPERVISOR (bare-metal hypervisor) ====>>
+1.Type-1 hypervisor is also called as bare-metal hypervisor. and also known as firmware.
+2.its a hypervisor that directly runs on the host hardware. also known as hardware level virtualization
+3.a guest os runs on another level above the hypervisor.
+4.Type-1 hypervisor acts as their own operating system.
+5.it has the direct access to the host hardware and resources.
+6.more secure than type-2
+7.example:- (Hyper-V, VMware ESXi)
+
+Architecture:-
+
+Hardware ========> Hypervisor =========> VM ========> O.S =========> centos/ubuntu/windows
+
+
+TYPE-2 HYPERVISOR (Hosted hypervisor) ====>>
+1.type-2 hypervisor is also called as hosted hypervisor.
+2.its a hypervisor that runs on the host O.S. also known as os-level virtulization.
+3.it does not have the direct access to the host hardware and resources.
+4.less secure ( if there is any error in the hardware or the O.S then the whole VMs can crash )
+3.example:- (oracle VirtualBox, workstation)
+
+Architecture:-
+
+Hardware ========> Host O.S ========> Hypervisor =======> VM =========> O.S ==========> ubuntu/centos/windows
+
+------------------------------------------------------------------------------------------------------------------------------
+
+MIGRATION =====>>>
+    migration is the technique of moving a virtual machine from one host to another host or from one datastore to another datastore.
+
+Types of migration:-
+1.cold migration
+2.vmotion (Live Migration)
+3.suspended migration 
+4.physical to virtual (P2V)
+5.virtual to virtual (V2V)
+
+Cold migration:-
+1.The virtual machine move from one host to another host in powered-off state.
+2.so the chances of failure in the cold migration is less than the other migration technique.
+
+Suspended migration:-
+1.migrating the virtual machine that is in suspended state/paused state.
+2.VM can resume from the same point later.
+
+Vmotion:-
+1.Migrates a VM that is powered on.
+2.it is also known as live migration.
+3.No downtime for the VM.
+
+Physical to Virtual (P2V):-
+1.Converts a physical machine into a virtual machine.
+
+Virtual to Virtual (V2V):-
+1.Similar to P2V, but the source machine is already virtual.
+
+=======================================================================================================================================================================
+
+DIFFRENCE BETWEEN THE WINDOWS-UNIX-LINUX
+
+Windows
+1.windows generally a proprietary based platform where we have to purchase the licence
+2.its a paid means we have to purchase before it use
+3.its less secure because of the permissions like read write and execute that have all the access in the windows
+4.it have also the heavy hardware because whenever we install os in these it gives more space to install
+5.its a easy to use because of the GUI based (graphical user interface)
+6.it is 80% on desktop
+7.it also the non portable as well the close source means we cant change the source code
+
+Unix
+1.unix basically also the proprietary based means the licence is required to use
+2.its paid we have to purchase before it use
+3.its a more secure because of the permission (read write execute) we have manually adjust these permission.
+4.its a less heavy hardware to install the os
+5.it is 90% on approx. server
+6.its a cli based means the command line interface
+7.heavy to use because of the cli based
+8.closed source means source code cant be changed
+
+Linux
+1.its a community based means licence should not be required to use
+2.it a free of cost means we don't have purchase to used it
+3.it is more secure because we can manually adjust the read write and execute permission.
+4.it is open source means we change the source code.
+5.it is 90% on approx. server
+6.its a cli based means the it is heavy to use.
+7.its have the less heavy hardware to install the os it needs basically very less space.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LINUX:-
+   Linux is a free and open source operating system that provides the features like stability, security, flexibility, free of cost and it supports the wide range of hardwares.
+
+HYPERVISOR:-
+ 1.hypervisor basically the software that creates the space and the runs the virtual machine.
+ 2.we use two operating system at a same time with the help of hypervisor.
+
+INTERPRETER:-
+  it reads and executes the program line by line, showing errors instantly
+
+COMPILER:-
+  It translates the entire program into machine code first, then runs it faster.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HISTORY OF LINUX:-
+
+1.in 1983 American software engineer Richard Stallman started the project like GNU means the “GNU’s Not Unix.”
+2.Then in 1985: The Free Software Foundation (FSF) was established to support the development of free and open-source software.
+3.By 1991: Many GNU components like the compiler, debugger, shell, and text editor were developed.
+4.But GNU is hard to develop then in 1991 the Finnish software engineer Linus Torvalds develop the kernel.
+
+Note:-
+It means GNU is similar to Unix but completely free and open-source, not the original Unix itself.
+
+Linux distributions:-
+1.fedora
+2.ubuntu
+3.redhat
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ARCHITECTURE OF THE OS ===>
+
+User
+  |
+  V
+Shell / Terminal
+  |
+  V
+Linux Kernel (OS)
+  |
+  V
+Hardware (CPU, RAM, Disk, etc.)
+
+
+1.Hardware:- 
+    it is a tangential component or physical component of the computer that can stores the data and runs the written code provided by the software.
+
+2.kernal:- 
+   it is a core part of the operating system and has the complete control over everything in the system. its a main layer between the os and the underlying hardware and helps with the tasks such as process and memory management.
+
+3.shell:- 
+   shell basically a Linux command line interpreter provides an interface between the kernel and the user and executes the programmes called as shell.it gives input from the user and also take output to the user from kernel
+
+Types of shells in linux
+1.bash
+2.ksh
+3.zsh
+4.tcsh
+
+4.applications:-the actual layer where we interact
+
+5.user:- the end user level where the user should be work
+
+=======================================================================================================================================================================
+
+DIFFERENCE BETWEEN THE ROOT-USER AND LOCAL-USER
+
+root user:-
+1.root user is a super user in the system
+2.it has all the permission in the system
+3.it has the home directory {/root}
+
+local user:-
+1.local user is a local user in the system
+2.local user has the home directory {/home/username}
+3.we can create multiple local users in the system.
+4.it has the specific permissions in the system.
+
+[root@localhost~]#$ ---------------(prompt)
+
+root---------super user
+localhost----hostname
+~------------home directory
+$------------login with the local user
+#------------login with the root user
+/------------root directory
+
+*forward slash---------used in the Linux
+*backward slash--------used in the windows
+
+for zooming the terminal--------> ctrl shift ++
+for zoom out the terminal-------> ctrl --
+
+To switch user:-
+ GUI to CLI---------> ctrl+alt+f2 ---> init 3
+ CLI to GUI---------> ctrl+alt+f1 ---> init 5
+
+To switch user:-
+ from root to local user---- {su - username}
+ from local to root user-----{su - root} or {su -}
+
+Difference between the / and the /root
+/root------> home directory of root user
+/----------> root directory (folder)
+
+=======================================================================================================================================================================
+
+[root@localhost~]# -----------its a root user--home directory---/root
+[linux@localhost~]$-----------its a local user--home directory--/home/Linux
+
+======================================================================================================================================================================
+
+COMMANDS:-
+
+1.hostname-----to show the hostname of the computer
+2.hostname -i--to check the machine address
+3.ifconfig-----to check the ip addresses
+4.which--------to check the path
+5.whatis-------to give the short info about the command
+6.whoami-------to check the user which user we are working on
+7.tty----------terminal type show
+8.history------to check the history 
+9.uname--------to check the kernel
+10.uname -a----to check the kernel version
+11.uname -r----to check the kernel version
+12.dmidecode---to check the hardware, motherboard and bios related info
+13.man---------to check the manual pages means the info of the command
+14.info--------to check the information of the command
+15.date--------to check the date
+16.date - s----to change the date
+17.date +%a----to check the weekdays
+18.date +%b----to check the month
+19.date +%c----to check the date and time
+20.cal---------to check the calendar
+21.cal -y------to check the calendar in year format
+21.cal -j -----to check the calendar in Julian format
+22.lsusb-------to check the usb related information
+23.lscpu-------to check the cpu related information
+24.lspci-------to check info about peripheral component interconnect
+25.free--------to check the memory status
+26.free -h-----to check the memory in human readable format
+27.echo--------to check the shell
+28.echo "$SHELL"----to check the shell
+29.grep--------to find out the words in file
+30.sort--------to arrange the words in order
+31.w-----------to check the load average
+32.wc----------to check the words count ( l/m/w)
+33.clear-------to clear the terminal
+34.shutdown----to shutdown the terminal
+35.shutdown-c--to cancel the shutdown
+36.pipe--------to get the output from the 1st and the input from the 2nd
+37.alias-------to create the custom shortcut of the command
+38.tee---------to show the content on the terminal as well as on the file
+39.tab---------to fill the terminal
+40.ctrl+z------to stop the command forcefully
+41.ctrl+c------to stop any command
+42.diff--------to differentiate the files
+43.df----------to display diskspace
+44.ls----------to list the files
+45.ls -l-------to list the all files
+46.ls -a-------to check the hidden files
+47.ls -al------to list the hidden as well as the all files
+48.ls -ltr-----to show newely created files on the top
+49.ls -ld -----to show the directories
+50.shutdown now---to shutdown the terminal immediately
+51.sudo halt---to turn off the terminal
+52.sudo rebbot--to reboot the terminal
+53.pwd---------print working directory
+54.cd----------to change the directory
+55.touch-------to create the empty file
+56.cat---------to create the file as well as to see the file from bottom to top
+57.stat file--- to check the timestamp of the file
+58.nohup -------- used for storing the output into the file
+   example:- 1.nohup free -h 
+             2.cat nohup.out
+59.vmstat ------- to check the virtual memory (ram)
+60.vmstat -a ---- to check the virtual memory (active or inactive)
+61.uptime ------- to check the system (how much time the system is on)
+62.id ------------ to check the uid/gid/groups
+63.who ----------- used for checking the user activity basically number of users activity
+64.whoami -------- to check the user on which user we have log in
+65.zip -r ldf.zip (source name)---------> to compress
+66.scp ----------- to copy file from local to remote
+67.java -version --- check versions as well as package install or not
+68.htop----------- Interactive process viewer (if installed)
+69.sudo httpd -t --------> to check the syntax ok or not
+70.file file_name -------> to find the file type of a file
+71.shred ----------------> used to securely delete files so that data cannot be recovered
+72.cat file1 file2 >> file3 ------> also used for combining two files.
+73.echo -n "mayur" | base 64 -----> to encrypt the name mayur
+74.echo - "fnefue" | base 64 -- decode ---> to decrypt
+
+75.truncate -s 50M file.txt --------> to change the size of a file
+76.cut -c1 file.txt ----------------> to get only a first letter of the word
+77.script --------------------------> to record the commands or activity of the terminal
+78.pgrep apache2 -------------------> to directly get the process id of the service 
+79.netstat -anp | grep 80 ----------> to check port 80 open or not
+80.Xargs ---------------------------> To convert the standard input into command line argument
+81.sort (file_name) | uniq ---------> To filter out the uniq words from the file
+82.head -n 30 (file) | tail -5 -----> to read the lines from 25 to 30 only 
+83.env or printenv -----------------> To see all the environmental variables
+84.export --------------------------> to set the environmental variables in Linux
+85.ps -l PID -----------------------> To check the nice value of a process
+86.top -----------------------------> to check % cpu and % Memory
+87.pidof httpd ---------------------> to check all the processes related to a httpd
+
+=======================================================================================================================================================================
+
+FILE COPY PROTOCOLS:-
+
+SCP (secure copy protocol):-
+ 1.its a secure copy protocol that helps us to copy the files from the local to server and from server to local
+ 2.it is used for transferring the hole file means transfer the file one time
+
+1.To Transfer File From local to Server:-
+  scp -i id_rsa file.txt ubuntu@<public_ip>:/home/ubuntu
+
+2.To Transfer File From local to Server:-
+  scp-i id_rsa ubuntu@>public_ip>:/home/ubuntu/file.txt Desktop
+
+---------------------------------------------------------------------------------
+
+RSYNC:-
+ 1.rsync is used to transfer and synchronize files/directories between local to server, server to server & server to local
+ 2.it can copy the hole file for 1st time then it can copy only the changes from the file
+ 3.it works on the ssh which is basically used in the production automation
+
+1.To Transfer File From local to Server:-
+  rsync -avz -e "ssh -i id_rsa" file.txt ubuntu@<public_ip>:/home/ubuntu/
+
+2.To Transfer File From local to Server:-
+  rsync -avz -e "ssh -i id_rsa" ubuntu@<public_ip>:/home/ubuntu/file.txt ~/Desktop/
+
+-a ---> archive mode
+-v ---> verbos
+-z ---> compress file during transfer
+-e ---> specify remote shell
+
+=======================================================================================================================================================================
+
+NETWORKING COMMANDS:-
+
+1.ping --------------> to check the connection
+2.netstat------------> to check the network status (active connections)
+3.ifconfig ----------> to check the ip addresses
+4.traceroute---------> Show path packets take to a destination.
+5.tracepath----------> Simpler alternative to traceroute.
+6.mtr----------------> Combination of ping + traceroute (continuous).
+7.nslookup ----------> Query DNS records.
+8.ip ----------------> Modern replacement for ipconfig.
+9.iwconfig ----------> to view or configure Wi-Fi (wireless) network
+10.ss ---------------> Modern replacement for netstat.
+11.whois ------------> A command used to get information about a domain name, IP address, or an ASN (Autonomous System Number).
+12.ifplugstatus------> Check if network cable/interface is connected.
+13.curl and jq ------> Fetch data from a web API with curl and format/filter the JSON output using jq. (curl localhost | jq)
+14.watch ------------> Run a command repeatedly (live updates).
+15.htop--------------> Interactive process viewer (like top, but better)
+
+=======================================================================================================================================================================
+
+COMMANDS TO CHECK PORT BUSY OR NOT:-
+
+1.netstat -tulpn | grep :80
+2.netstat -putan | grep :80
+3.ss -tulpn | grep :80
+4.lsof -i :80
+
+=======================================================================================================================================================================
+
+HOW TO SWITCH VERSIONS USING COMMANDS ===>>>
+
+1.sudo apt install openjdk-17-jdk -y
+2.sudo apt install openjdk-11-jdk -y
+
+# if suppose i have two versions 17 and 11. i want to shift from 11 to 17 then...
+
+1.Check installed Java versions
+  update-java-alternatives --list
+
+2.Switch from Java 11 → Java 17
+  sudo update-alternatives --config java ----------> { Select java-17-openjdk from the list }
+  
+3.Check the current version
+  java --version
+
+=======================================================================================================================================================================
+
+commands to learn ====>>>
+
+grep -------> search
+sed --------> edit/replace
+awk --------> extract/format
+find -------> To find file 
+locate -----> find file in db
+
+1. awk → Process and extract columns from text
+
+Print entire file:
+awk '{print}' file.txt
+
+Print first column:
+awk '{print $1}' file.txt
+
+Print first & third column:
+awk '{print $1, $3}' file.txt
+
+Print lines where column 3 > 100:
+awk '$3 > 100 {print $0}' file.txt
+
+Use with delimiter (e.g., CSV with commas):
+awk -F, '{print $1,$2}' data.csv
+
+--------------------------------------------------------------------
+
+2. sed → Stream editor (find & replace, delete, modify text)
+
+Replace first occurrence of "cat" with "dog":
+sed 's/cat/dog/' file.txt
+
+Replace all occurrences:
+sed 's/cat/dog/g' file.txt
+
+Replace in file (in-place):
+sed -i 's/cat/dog/g' file.txt
+
+Delete line 5:
+sed '5d' file.txt
+
+Delete lines 2 to 4:
+sed '2,4d' file.txt
+
+--------------------------------------------------------------------
+
+3. grep → Search text patterns in files
+
+Search for a word in a file:
+grep "error" logfile.txt
+
+Case-insensitive search:
+grep -i "error" logfile.txt
+
+Show line numbers:
+grep -n "error" logfile.txt
+
+Recursive search in directory:
+grep -r "error" /var/log/
+
+Show number of lines:
+grep -c "error" logfile.txt
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Installing commands
+1.apt-------> installer for ubuntu
+2.yum ------> installer for centos
+3.portage---> installer for gentoo
+4.dnf ------> installer for fedora or centos
+5.rpm ------> installer for redhat / centos
+6.pacman ---> installer for arch
+
+=======================================================================================================================================================================
+=======================================================================================================================================================================
+
+VI / VIM FILE MANAGEMENT
+
+GUI based editors in windows--> notepad, msword
+GUI based editors in linux--> gedit, openoffice, kedit
+CLI based editors in linux--> vim, nano
+
+Command line interface/insert mode:-
+
+1.G---------> cursor from top to bottom
+2.gg--------> cursor from bottom to top
+3.yy--------> copy the line where the cursor is
+4.nyy-------> copy the number of lines
+5.P---------> paste the line where the cursor is placed
+6.p---------> paste the line below the cursor is placed
+7.i---------> go into the insert mode
+8.I---------> beginning of the line
+9.A---------> end of the line
+10.dd-------> delete the lines where the cursor is placed
+11.ndd------> delete the number of lines 
+12.dw-------> delete the word
+13.u--------> undo the word
+14.O--------> create the space above the line
+15.o--------> create the space below the line
+16.esc------> to out of the insert mode
+17.w--------> to save
+18.q--------> quit
+19.:wq------> to save and quit
+20.set nu---> to set the numbers to the lines
+21.set nonu-> to unset the numbers to the lines
+22.wq!------> forcefully save and quit
+23.q!-------> forcefully quit
+24./words---> to heighlight the words
+25.nohl----> to removes the heighlight
+26.V--------> to enter into the visual mode
+27. :0 -----> to go to the line number 0
+28. :500 ---> to go to the line number 500
+
+Save and quit command:-
+1.w --------> save
+2.q --------> quit
+3.wq -------> save and quit
+3.wq! ------> save and quit forcefully
+4.q! -------> quit forcefully
+
+To print and write into file 
+1. !date ---> to run linux based command on terminal but not in file
+2..!date ---> to run command in file and add output into file
+
+======================================================================================================================================================================
+
+HOW TO SET THE LINE NUMBERS IN THE FILES:-
+
+1st METHOD:- (Temporary)
+
+1.vim /etc/passwd
+  :set nu
+
+------------------------------------------------------------
+
+2nd METHOD:-(Permanent)
+
+1.vim .vimrc
+  set nu
+
+2.vim /etc/passwd
+  { you get the line nu for every line }
+
+------------------------------------------------------------
+
+Note:-
+
+1.when u set the .vimrc file for root it only works in the root not on local user
+2.but when u set the .vimrc file in local then it works in the local 
+
+But...
+1.if we set the globally in the /etc/vimrc then it works on both root & local user
+
+======================================================================================================================================================================
+
+DIFFERENCE BETWEEN THE .bashrc & /etc/bashrc
+
+1..bashrc ---> ( User-specific configuration )
+  whenever we change in the file it will replicate to only local user or root user while login
+
+2./etc/bashrc ---> ( System-wide configuration )
+  whenever we change in the file it will replicate to all the users in the system include your local users and the root users while login
+
+Example:-
+1.vim .bashrc
+  echo -e "\n😈 ROOT MODE ACTIVATED"
+  echo -e "⚡ Type carefully...\n"
+
+2.source .bashrc
+
+{ when you login with local user u get these message }
+
+=======================================================================================================================================================================
+
+WHAT THE DIFFERENCE BETWEEN THE .bashrc / crontab / at / .vimrc
+
+1..bashrc
+    it will print text on the terminal when u open the terminal
+
+2.crontab 
+    it can print on the terminal but on a schedule time means perform the repeated task
+
+3.at 
+    it also print on the terminal but on a fix time or one time only 
+
+4..vimrc
+    it can only show messages into the file whenever u open the file
+
+=======================================================================================================================================================================
+
+TO PRINT TEXT WHILE BOOTING
+
+1.vim /etc/rc.local
+
+#!/bin/bash
+echo "🚀 Welcome Mayur! System is booting successfully 🚀" > /dev/tty1
+exit 0
+
+Note:-
+Message must be before exit 0
+Use /dev/tty1 so it appears on the boot screen
+
+2.chmod +x /etc/rc.local
+
+3.systemctl enable rc-local
+4.systemctl start rc-local
+
+5.sudo reboot
+  You should see your message during boot
+
+=======================================================================================================================================================================
+
+HOW TO COPY LINES FROM ONE FILE TO ANOTHER FILE
+
+1.touch sample.txt
+
+2.vim /etc/passwd
+
+4yy -------------------------> #To copy 4 lines from file
+
+:edit /root/sample.txt
+
+p ---------------------------> #To paste the lines on sample file
+
+:wq
+
+3.cat sample.txt
+
+=======================================================================================================================================================================
+
+HOW TO REPLACE WORD WITH ANOTHER WORD IN FILE (Vim)
+
+# Replace the word root with mayur in /etc/passwd
+
+1.vim /etc/passwd
+
+:%s/root/mayur/g 
+
+2.wq!
+
+3.cat /etc/passwd
+
+--------------------------------------------------------------------------------
+
+:s/root/mayur/    ------> Replace first occurrence in current line 
+:s/root/mayur/g   ------> Replace all occurrences in current line  
+:1s/root/mayur/g  ------> Replace in line 1 only                   
+:1,10s/root/mayur/g ----> Replace from line 1 to 10                
+:%s/root/mayur/gc ------> Replace with confirmation (recommended)  
+
+--------------------------------------------------------------------------------
+
+Note:-
+1. % -----> Apply to all lines in the file
+2. 1 -----> on 1st file
+3. 1,10 --> from line 1 to line 10
+4. s -----> Substitute (replace)
+5. root --> Word to be replaced
+6. mayur -> New word
+5. g -----> globally
+
+=======================================================================================================================================================================
+
+HOW TO COMMENT & UNCOMMENT LINES IN A FILE
+
+# To comment
+
+1.vim /etc/passwd
+
+:1,3s/^/#/
+
+---------------------------------------------------------
+
+# To uncomment
+
+1.vim /etc/passwd
+ 
+:1,3s/^#//
+
+---------------------------------------------------------
+
+Note:-
+:1,3s/^/#/
+
+1. 1,3 -------> from line 1 to 3
+2. s   -------> substitute
+3. ^   -------> beginning of the line 
+4. #   -------> comment character
+5. /   -------> delimiter
+
+---------------------------------------------------------
+
+1. :%s/^/#/ ----------> Comment entire file
+2. :%s/^#// ----------> Uncomment entire file
+3. :'<,'>s/^/#/ ------> comment visual selection
+4. :'<,'>s/^#// ------> Uncomment visual selection
+5. :%s/^\s*#// -------> Remove # even with leading spaces
+
+======================================================================================================================================================================
+
+day 9 of Linux
+
+READ OPERATIONS:-
+
+1.cat----------> read the file from bottom to top
+2.less---------> read the file from top to bottom (up/down key works) or (page by page by space)
+3.more---------> read the file from top to bottom (enter key down) or (page by page by space)
+4.head---------> read the first top 10 lines
+5.head -n -----> read the number of lines from top
+6.tail---------> read the last 10 lines from bottom
+7.tail -n------> read the number of lines from bottom
+
+======================================================================================================================================================================
+======================================================================================================================================================================
+
+REDIRECTORS:-
+
+1. > -----------> overwrite the content
+echo "Hello" > file.txt
+
+2. >> ----------> append the content
+echo "Hello again" >> file.txt
+
+3. 2> ----------> Redirect errors into the file
+ls /notfound 2> error.log
+
+4. &> ----------> Redirect output and errors (overwrite)
+ls /etc /notfound &> output.log
+
+5. 2>> ---------> Append errors
+ls /notfound 2>> errors.log
+ls /missing 2>> errors.log
+
+6. &>> ---------> Append output and errors together
+ls /etc /notfound &>> all.log
+ls /bin /missing &>> all.log
+
+=======================================================================================================================================================================
+
+day 10 of Linux
+
+DIFFERENCE BETWEEN...
+
+1.absolute path:- 
+   a path where we assign a full path to reach that directory
+
+2.relative path:- 
+   starts from the working directory to reach that directory
+  
+=======================================================================================================================================================================
+
+day 11 of Linux
+
+File system hierarchy standards (FHS):-
+
+1.bin------------ contains command used by local user include root user
+2.sbin------------contains command used by only root user
+3.lib-------------to store 32 bit information
+4.lib64-----------to store 64 bit information
+5.root------------home directory for root user
+6.home------------home directory for local user
+7.etc-------------contains all configuration files (setting files)
+8.var-------------logs, mails, webpages, crontab etc
+9.dev-------------any other device attached to the system files, printers, tty  etc
+10.boot-----------contains all bootable files
+11.opt------------optional application software package
+12.mnt------------mount point hard disk
+13.tmp------------contains all temporary files
+14.srv------------to store service information
+15.usr------------by default software are install in these directory or user related information man, info, help etc.
+16.media----------mnt point usb card reader, floppy  disk
+17.proc-----------process related information
+18.sys------------system related information
+19.run------------all running information
+
+=======================================================================================================================================================================
+
+day 12 of Linux
+
+7. up arrow-----------to run the previous command if we want
+8.bash ---------------to update the terminal
+9.mkdir---------------to create the directory
+10.cp-----------------to copy the file
+11.cp -r -------------for recursive (for copy the file as well as the directory)
+12.mv-----------------to move the file 
+13.rm-----------------to remove the empty file only
+14.rmdir--------------to remove only empty directory
+15.rm -rf ------------to remove the file directory forcefully
+16.rm -rvf------------to remove the file directory forcefully
+17.mkdir -p ----------to create the parent directory
+18.rmdir -p ----------to remove the parent and child directory
+19.rmdir -pv ---------to remove all the parent and subdirectories
+20.rm -r -------------removes empty directories
+21.rm -rp ------------removes non-empty directories
+22.mkdir -p dir1/dir2/dir3-------(-P) for parent directory
+23.cat /etc/os-release----------- to check the os details / version
+
+=======================================================================================================================================================================
+
+TO CHANGE THE HOSTNAMES:-
+
+1.Temporary 
+  hostname (name)
+
+2.Permanent
+  hostnamectl set-hostname (name)
+
+3.nmtui ------> Network Manager Text User Interface.
+
+=======================================================================================================================================================================
+
+day 13 and 14 of Linux
+
+skeleton files 
+
+1.Default hidden configuration files for a user’s shell environment.
+2.Automatically copied to a new user’s home directory when a user is created.
+3.Located in: /etc/skel
+
+The skeleton files are
+1. (.bashrc)
+2. (.bash_logout)
+3. (.bash_profile)
+
+Practical =====>>>
+
+login with the root:-
+1.useradd mayur
+2.tail /etc/passwd
+3.[root@localhost~]# cd /home/mayur
+4.[root@localhost mayur]# ls -al
+  (.bashrc .bash_logout .bash_profile)
+5.[root@localhost mayur]# rm -rf .bashrc .bash_logout .bash_profile
+6.[root@localhost mayur]# su - mayur
+7. - bash4.2$ --------------------------------> if these prompt should be seen means the skeleton files should be deleted
+
+How to recover the prompt or the files ====>
+
+1.-bash4.2$ cd /etc/skel
+2.-bash4.2$ cp .bashrc .bash_logout .bash_profile /home/mayur
+3.su - mayur
+4.[mayur@localhost~]$ ------------------------> the prompt should be recover
+
+======================================================================================================================================================================
+
+TYPES OF USERS & THEIR IDs IN THE LINUX:-
+
+1.root user-----> 0
+2.system user---> 1-999
+3.local user ---> 1000+
+
+======================================================================================================================================================================
+======================================================================================================================================================================
+
+USER AND GROUP MANAGEMENT
+
+
+1./etc/passwd 
+    it stores basically all the info about the user like their userid, groupid, login shell, home directory and shells information.
+
+prompt:- mayur::X::1000:1000:hello:/home/mayur:/bin/bash
+
+1.mayur----------username
+2.X--------------hash format / encrypted format password
+3.1000-----------userid
+4.1000-----------groupid
+5.hello----------GECOS (comment)
+6./home/mayur----home directory
+7./bin/bash------login shell
+
+changes in the /etc/passwd file ====>>
+
+1.to add the user with a particular UID
+useradd -u 1000 user1
+
+2.to add the user with a particular GID
+useradd -g 1000 user1
+
+3.to add the comment to the ID
+useradd -c "hello" user1
+
+4.to add the directory to the user
+useradd -d /mayur user1
+
+5.to change the login shell of a user
+useradd -s /sbin/nologin user1
+
+commands:-
+1.useradd ---------------to create the user
+2.groupadd---------------to create the group
+3.userdel -r ------------to delete the user (r) means recursive
+4.rm -rf ----------------to delete the user forcefully with files
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2./etc/shadow
+    it stores all the information about the password of a user in a hash format encrypted format.
+
+prompt:- mayur:lrguiubbug:18009:0:120:7:14:18759
+
+mayur------------username
+lrguiubbug-------Hash format/encrypted format password
+18009------------last time password change from 1 january 1970
+0----------------minimum password age
+120--------------maximum password age
+7----------------warning period
+14---------------inactivity days
+18759------------expiration date
+future used
+
+
+1.to change the last time password
+1.echo $(($(date +%s)/86400)) ---------20404
+2.date -s "10 July 2025"
+3.passwd mayur
+4.echo $(($(date +%s)/86400))----------20404
+
+{ NOTE:- 1. this is calculated from 1 January 1970 
+         2. 86400 means 86400 seconds in one day
+         3. 20404 days passed since  1st January 1970
+         4. 20404 means 1762956400
+         5. 1762956400 / 86400 ===>>> 20404 }
+
+2.to change the minimum password days
+1.chage -l mayur
+2.chage -m 2 mayur
+3.chage -l mayur
+4.su - mayur
+5.passwd
+  {you must wait longer to change your password}
+
+3.to change maximum password days
+1.chage -l mayur
+2.chage -M 2 mayur
+3.chage -l mayur
+4.su - Linux
+5.su - mayur
+  {warning: your password will expire in 2 days}
+
+4.to change the warning period
+1.chage -l mayur
+2.chage -W 7 mayur
+
+5.to change the inactivity days
+1.chage -l mayur
+2.chage -I 10 mayur
+
+6.to change the expiry date (account expire date)
+1.chage -l mayur
+2.chage -E "11 July 2025" mayur
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3./etc/group
+   these file stores all the info about the group like group names, group ids, users in the group
+
+prompt:- tech:X:1000:user1,user2
+
+tech---------------groupname
+X------------------hash format encrypted format password
+1000---------------groupid
+user1,user2--------users in the group
+
+1.To add the group
+groupadd tech
+
+2.to add group with GID
+groupadd -g 1000 tech
+
+3.to add the members in the group
+gpasswd -M user1,user2 tech
+
+4.to add the single member in the group
+gpasswd -a user1 tech
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4./etc/gshadow
+   These file stores all the info about the group related to in hash format encrypted format like groups passwords
+
+prompt:- tech:nfiebvbf:mayur:user1,user2
+
+tech-----------------group name
+nfiebvbf-------------hash form encrypted format password
+mayur----------------admin user of a group
+user1,user2----------users in the group
+
+1.to add the group
+groupadd tech
+
+2.to add the admin to a group
+gpasswd -A mayur tech
+
+3.to remove the admin from the group
+gpasswd -A '' tech
+
+3.to add the multiple users in the group
+gpasswd -M user1,user2 tech
+
+4.to add the single user in the group
+gpasswd -a user1 tech
+
+5.to delete the user in a group
+gpasswd -d user1 tech
+
+6.to add the users in the group with (usermod)
+usermod -G tech user1
+usermod -aG tech user1,user2
+
+7.to assign the password to the group
+ gpasswd tech
+
+8.to remove the password of a group
+gpasswd -r tech
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DRAWBACK OF gpasswd -M 
+
+   gpasswd -M basically add the number of users into the group but it can replace the existing users with the new users.
+
+ways to add users into the group:-
+1.gpasswd -a
+2.gpasswd -M
+3.usermod -aG
+4.usermod -G
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+USE OF USERMOD COMMAND ====>>
+
+1.to modify the login shell of existing user
+usermod -s /sbin/nologin user1
+
+2.to lock the user
+usermod -L user1
+
+3.to unlock the user
+usermod -U user1
+
+4.to change the userid of a existing user
+usermod -u 1000 user1
+
+5.to change the groupid of a existing user
+usermod -g 1000 user1
+
+6.to change the groupid of existing group
+groupmod -g 1000 tech
+
+7.to modify the name of existing group
+groupmod -n tech techy
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HOW TO DELETE USERS & GROUPS
+
+1.For user
+rm -rf user1
+userdel -r user1
+
+2.for group
+rm -rf tech
+groupdel -f tech
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HOW TO HIDE & UNHIDE shadow and gshadow
+
+# shadow
+1.How to hide the /etc/shadow file ---------> pwunconv
+2.how to unhide the /etc/shadow file--------> pwconv
+
+# gshadow
+3.how to hide the /etc/gshadow file---------> grpunconv
+4.how to unhide the /etc/gshadow file-------> grpconv
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DIFFERENCE BETWEEN...
+
+useradd: 
+   To create the user and also customized the user when creating
+
+usermod: 
+  To modify the existing user
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DIFFERENT WAYS TO EXPIRE THE USER:-
+
+chage:-
+  chage -E "2025-12-31" mayur
+
+useradd:-
+  useradd -e 2025-12-31 mayur
+
+usermod:-
+  usermod -e 2025-12-31 mayur
+
+=======================================================================================================================================================================
+=======================================================================================================================================================================
+
+ALIAS:-
+   to create the custom shortcut for our regularly used commands.
+
+TEMPORARY:-
+alias 'list'="ls -l"
+
+PERMANENT:-
+1.vim ~/.bashrc -----------------> to permanent
+  alias list='ls -l'
+
+3.source ~/.bashrc --------------> to update to command
+
+=======================================================================================================================================================================
+
+DIFFERENCE BETWEEN THE ls -l & ll
+
+basically the ls -l is the default command while the ll is a alias (shortcut) of a ls -l
+
+=======================================================================================================================================================================
+
+LINUX FILE-SYSTEM SECURITY
+
+how u define security:- security basically the permissions that we given to the files folder or anything in the system.
+
+{ drwxrwxrwx 3 root root 8188 jul 1 8:31 file1 }
+
+explanation:-
+  d------------------file type
+  rwx----------------permissions
+  3------------------link count
+  root---------------ownership
+  8188---------------size
+  jul----------------date and time
+  file1--------------file name
+
+1.FILE TYPE:-
+
+User define files
+  1.normal file (-)
+  2.directory   (d)
+  3.link file   (l)
+
+System define files
+  4.socket device file (s)
+  5.character device file (c)
+  6.pipe file (p)
+  7.block device file (b)
+
+=======================================================================================================================================================================
+
+3. LINK COUNT:- (ln)
+
+  1.file-------------------(1)
+  2.directory--------------(2)
+  3.parent directory-------(3)
+
+What are links:-
+  links are nothing but the connection between the file name and the actual data on the disk. We call it as the shortcuts.
+
+---------------------------------------------------------------------------
+
+TYPES OF LINKS:-
+
+HARDLINK:- (ln)  
+1.to create a backup a file basically use hardlink
+2.link count increases by 1
+3.inode number is same (ls -i)
+4.cannnot create hardlink of directory
+5.if u write anything on the original it will copy to the hardlink file
+6.its file type is normal file.
+
+example:-
+ln file1 file2
+
+----------------------------------------------------------------------------
+
+SOFTLINK:- (ln -s)
+1.to create a shortcut file used softlink
+2.link count does not increases
+3.inode number is different (ls -i)
+4.can create softlink of file as well as directory
+5.if u delete the softlink file its colour changes to red from blue
+6.its file type is link file.
+
+example:-
+   ln -s file1 file2 
+
+Metadata:-(data of data)
+  The data that provide the information about the other data but not the content of that data.
+
+command:-
+ln -------------to create the hardlink
+ln -s ----------to create the softlink
+ls -i ----------to get the inode number
+ls -in ---------to get the inode with the file name
+
+=======================================================================================================================================================================
+
+4.OWNERSHIP:-
+    ownership means basically who owns the file and the group of that file 
+
+1.To change owner:-
+chown Linux file
+
+2.To change the group:-
+chgrp Linux file
+
+3.To change both owner and group:-
+chown Linux:linux file
+
+example:-
+1.touch new
+  ls -l
+2.chown Linux:linux new
+  ls -l
+
+=======================================================================================================================================================================
+
+2.PERMISSIONS:-
+
+owner------>rwx
+group------>rwx
+other------>rwx
+
+  1.r------>read (4)
+  2.w------>write (2)
+  3.x------>execute (1)
+
+Read (r)-------------> ls (long listing) 
+Write (w)------------> create, delete, edit, remove
+execute (x)----------> change directory, command, script, app binary files
+
+In binary form:-
+rwx-------->111
+r-x-------->101
+rw--------->110
+r-- ------->100
+-w- ------->010
+--x ------->001
+
+      binary              In octal form
+rwx--------111-------- 1*2^2+1*2^1+1*2^0 --------> 7
+rw- -------110-------- 1*2^2+1*2^1+0*2^0 --------> 6
+r-x -------101-------- 1*2^2+0*2^1+1*2^0 --------> 5
+r-- -------100-------- 1*2^2+0*2^1+0*2^0 --------> 4
+-wx -------011-------- 0*2^2+1*2^1+1*2^0 --------> 3
+-w- -------010-------- 0*2^2+1*2^1+0*2^0 --------> 2
+--x -------001-------- 0*2^2+0*2^1+1*2^0 --------> 1
+--- -------000-------- 0*2^2+0*2^1+0*2^0 --------> 0
+
+-----------------------
+
+Default permissions:-
+
+FOR ROOT:-
+    file--------644
+    dir---------755
+
+FOR LOCAL USER:-
+    file--------664
+    dir---------775
+
+-----------------------
+
+Full permissions
+ file-------666-----(rw-rw-rw-)
+ dir--------777-----(rwxrwxrwx)
+
+-----------------------
+
+UMASK:- umask gives making values of default user/permissions
+
+ROOT :- 022
+Local:- 002
+
+calculate for ROOT user:-
+For file:-
+umask = full permissions - default permissions
+      = 666 - 644
+      = 022
+
+For dir:-
+      = 777 - 755
+      = 022
+
+calculate for LOCAL user:-
+For file
+umask = full permissions - default permissions
+      = 666 - 664
+      = 002
+
+For dir:-
+      = 777 - 775
+      = 002
+
+
+command to change umask:-
+Temporary:-
+  umask (value)
+
+permanent:-
+ 1.vim /etc/profile ------------> file
+    else
+    umask 022
+ 2.source /etc/profile ---------> to update the file
+
+-----------------------
+
+To change the permissions:-
+
+   u---------> user
+   g---------> group
+   o---------> other
+
+(+) -----------> add the permission
+(-) -----------> remove the permission
+(=) -----------> replace the permission
+
+1st method:-
+
+1.chmod u+x user1
+   rwx --- --- 
+
+2.chmod u-x user1
+  rw- --- ---
+
+3.chmod ugo=rwx user1
+  rwx rwx rwx
+
+----------------------------------------------
+
+2nd method:-
+
+1.chmod 777 user1
+  rwx rwx rwx
+
+2.chmod 644 user1
+  rw-r--r--
+
+======================================================================================================================================================================= 
+
+COMMANDS USED BY ROOT USER:-
+
+useradd username ----------------------- Add a new user.
+usermod -aG group username ------------- Modify user groups.
+passwd username ------------------------ Change another user’s password.
+shutdown now or reboot ----------------- Shutdown or restart system.
+fdisk -l ------------------------------- List/manage disk partitions.
+mount /dev/sdX /mnt -------------------- Mount storage devices.
+umount /mnt ---------------------------- Unmount devices.
+apt install package (Debian/Ubuntu) ---- Install software.
+yum remove package (RHEL/CentOS) ------- Remove software.
+chown user:group file ------------------ Change file ownership.
+dmidecode------------------------------- hardware,motherboard,bios info
+
+----------------------------------------------------------------------------------
+
+COMMANDS USED BY LOCAL-USER:-
+
+ls ----------------------------- List files in a directory.
+cd /path ----------------------- Change directory.
+pwd ---------------------------- Show current directory.
+cat file.txt ------------------- View file contents.
+echo "hello" > file.txt -------- Write text to a file (if permitted).
+cp source destination ---------- Copy files (if permitted).
+mv old new --------------------- Move/rename files.
+rm file.txt -------------------- Delete files (if permitted).
+nano file.txt or vim file.txt -- Edit files in user-owned directories.
+man command -------------------- Read manual/help for commands.
+
+=======================================================================================================================================================================
+
+SPECIAL PERMISSIONS
+
+   1.suid (super user identification permission)
+   2.sgid (super user group permission)
+   3.sticky bit permission
+   4.sudo permission
+   5.acl permission
+
+1.SUID (super user identification permission)
+    it is defined as giving permission to a user to run a file program with the permission of file owner means all users get access of executable files.
+
+{ note:- if a root user command not accessible by local users but if i add the SUID permission to the command all the users can access these command }
+
+===>How to apply SUID
+     { chmod u+s (command) }
+===>How to remove SUID
+     { chmod u-s (command) }
+
+example:-
+  1.chmod u+s /sbin/dmidecode
+  2.ls -l /sbin/dmidecode
+  3.rws r-x r-x
+
+=======================================================================================================================================================================
+
+2.SGID (super user group permission)
+
+1.This permission can inherent the group property means the group of parent directory inherit with the child directory and files.
+2.SGID (Set Group ID) is a special permission in Linux that makes files or directories inherit the group ownership of the parent — not the user who created or runs it
+
+inherit ===> means when we assign group to a directory/file then all the users in the group can access the directory/files
+
+===> How to apply sgid
+     { chmod g+s "directory/file name" }
+
+===> How to remove sgid
+     { chmod g-s "directory/file name" }
+
+Example:-
+
+1.create a group
+groupadd cloudblitz
+gpasswd cloudblitz
+
+2.add users into the group
+gpasswd -M user1,user2 cloudblitz
+
+3.to check the group
+tail /etc/group
+
+4.to create directory
+mkdir /project
+ls -ld /project
+rwx r-x r-x -----------default permissions
+
+5.to remove the others permissions
+chmod 770 /project
+ls -ld /project
+rwx rwx --- -----------new permissions
+
+6.add cloudblitz to the /project
+chgrp cloudblitz /project
+ls -ld /project
+rwx rwx ---  root cloudblitz ----------adding group to the /project file
+
+7.to add sgid to a /project file
+chmod g+s /project
+ls -ld /project
+rwx rws --------root cloudblitz ------s denotes their is a execution permission
+
+8.to create file in /project
+su - user1
+cd /project
+touch file1
+
+9.to create file in /project with user2
+su - user2
+cd /project
+touch file2
+
+summary:-
+1.first i have create the group and add users into the group
+2.then i have created the project file and remove the other permissions from that file
+3.after that i have add the cloudblitz group into the project file
+4.but for inheriting the group i have assign the sgid permission
+5.finally after that i have switch the users into the project file and creating the multiple files 
+
+drawback:
+1.But all users from the cloudblitz can access all the files from the project file thats why we are adding the sticky bit permission 
+
+=======================================================================================================================================================================
+
+3. STICKY-BIT permission
+
+    1.this permission basically used for controlling all the users to resist the delete and modify operation.
+    2.only the owner and the root user have to access to delete or modifies the file.
+
+===>how to apply the sticky bit permission
+    { chmod o+t "file name" }
+
+===>how to remove the sticky bit permission
+    { chmod o-t "file name" }
+
+example:
+
+1.applying the sticky bit permission
+  chmod o+t /project
+  ls -ld /project
+  rwx rwx --T 
+
+note:-
+T-------------> there is not execution permission
+t-------------> there is a execution permission
+
+=======================================================================================================================================================================
+
+4.ACL (access control list permission)
+    it is a special type of permission that adding extra permission to a user to use these directory and also denies all other users to use that directory.
+
+In short:-
+1.particular user high access
+2.particular user deny access
+
+-------------------------------------------
+
+commands:-
+
+1.how to apply acl for a user
+  { setfacl -m u:mayur:rwx /project }
+
+2.how to apply acl for a group
+  { setfacl -m g:cloudblitz:rwx /project }
+
+3.how to deny other user permission
+  { setfacl -m u:mayur /project }
+
+4.how to remove the acl permission
+  { setfacl -x u:mayur /project }
+  { setfacl -x g:cloudblitz /project}
+
+5.how to remove all the acl
+  { setfacl -b /project }
+
+6.how to check the acl
+  { getfacl /project }
+
+-------------------------------------------
+
+example: 
+
+How to apply acl to a user ====>>
+
+1.useradd mayur
+passwd mayur
+
+
+2.mkdir /project
+ls -ld /project
+rwx r-x r-x
+
+3.setfacl -m u:mayur:rwx /project
+
+4.getfacl /project
+mayur:rwx
+
+5.create a file in /project
+su - mayur
+cd /project
+touch file
+
+{ note:- before applying acl mayur user can not create the file because there is no write permission mayur user can only list and execute the file }
+
+------------------------------------------
+
+How to deny the another user permission====>>
+
+1.useradd Shubham
+passwd Shubham
+
+2.setfacl -m u:shubham /project
+
+3.getfacl /project
+mayur:rwx
+Shubham:...
+
+4.su - shubham
+cd /project
+touch file
+permission denied
+
+------------------------------------------
+
+How to apply acl to group====>>
+
+1.groupadd cloudblitz
+gpasswd cloudblitz
+
+2.useradd mayur
+useradd shubham
+
+3.gpasswd -M mayur,shubham cloudblitz
+
+4.setfacl -m g:cloudblitz:rwx /project
+
+5.getfacl /project
+cloudblitz:rwx
+
+6.su - mayur
+cd /project
+touch file
+
+7.su - shubham
+cd /project
+touch file2
+
+------------------------------------------
+
+How to remove acl of group===>
+setfacl -x g:cloudblitz /project
+
+How to remove acl of user===>
+setfacl -x u:mayur /project
+
+How to remove all the acl from directory
+{ setfacl -b /project }
+
+------------------------------------------
+
+how to check the acl on any file/directory:-
+
+when u see the (+) sign on the other permission section.
+
+------------------------------------------
+
+how to get backup of a file:-
+
+cp /etc/sudoers /etc/sudoers.bkp
+
+=======================================================================================================================================================================
+
+4.SUDO (super user do permission)
+   it allows you to temporarily elevate your current user account into root privilege means we can use root user command as a local user 
+
+configuration file ==>
+1.vim /etc/sudoers 
+2.visudo 
+
+--------------------------------------------------------------------------
+
+1st technique to do permission with password:-
+
+1.vim /etc/sudoers
+  write below the root user
+  Linux      ALL:(ALL)    /sbin/dmidecode  -----------> format to write
+  wq!
+
+2.su - Linux
+  sudo dmidecode
+  warning generated (do not use sudo command only for root user)
+  type the passwd
+  access
+  
+3.if i access with other user to check 
+  su - mayur
+  sudo dmiddecode
+  mayur is not in the sudoers file. This incident will be recorded
+
+{ Note: if the other use the sudo file the mail should be automatically generated send it to the root user }
+
+4.to check the mail
+  vim /var/spool/mail/root
+
+5.to check the mail direct
+  mail
+
+--------------------------------------------------------------------------
+
+2nd technique to do permission without password:-
+
+1.vim /etc/sudoers
+  type the prompt below the (same thing without password)
+  Linux          ALL:(ALL)          NOPASSWD:/sbin/dmidecode
+  wq!
+
+2.then switch the user
+  su - Linux
+  sudo dmidecode
+  access
+
+--------------------------------------------------------------------------
+
+3rd technique to add the user in wheel group:-
+
+1.add user into the wheel group
+  cat /etc/group
+  gpasswd -a Linux wheel
+  cat /etc/group
+
+2.switch the user
+  su - Linux
+  sudo dmidecode
+  sudo shutdown (all the root user command)
+
+--------------------------------------------------------------------------
+
+4th technique to do permission with wheel group in /etc/sudoers file
+
+1.vim /etc/sudoers
+  check the wheel group (/wheel)
+  edit all---->/sbin/dmidecode
+
+=======================================================================================================================================================================
+
+FILTER AND SEARCH UTILITY===>
+
+FILTER:-
+
+GREP:-
+
+1.to find out the words
+grep "root" file1
+
+2.to show the no of that line
+grep -n "root" file1
+
+3.to show how many lines
+grep -c "root" file1
+
+4.for extended words
+grep -E "rootforany" file1
+
+5.to show either capital or small
+grep -i "root" file1
+
+----------------------------------------------------------------------------------
+
+SEARCH:- to search a particular file/directory
+
+1.locate:- can find a file in database system
+  updatedb:- can update the file in database
+
+----------------------------------------------------------------------------------
+
+FIND:- to find out file and related information
+
+syntax:
+ { find (path) (options) (attributes) }
+
+examples:-
+
+1.find / -name mayur
+2.find / -user mayur -type d 
+
+
+example:-
+
+1.find / -user mayur 
+
+if we have to copy all the related data of a user:-
+   1.mkdir /backup
+   2.find / -user mayur -exec cp -rvf '{}' /backup\:
+
+but this command change the ownership we have not change the ownership
+   1.find / -user mayur -exec cp -aprvf '{}' /backup\:
+
+=======================================================================================================================================================================
+
+ARCHIEVING
+
+Tar:- it is used for creating, compressing the achieves files and also maintain and modify them.
+
+example:-
+
+1.tar -cvf /mnt/etc.tar /etc -------------to create
+2.ls /mnt/
+  etc.tar
+3.du -sh /mnt/etc.tar --------------------to check the file size
+  38mb      etc.tar
+4.tar -tvf /mnt/etc.tar ------------------to check the compress files 
+5.tar -xvf /mnt/etc.tar -C /mnt ----------to extract the files
+6.ls /mnt/
+  etc etc.tar
+7.du -sh /mnt/etc
+  43mb   etc  
+
+
+Note:-
+c--------->create
+v--------->verbos
+f--------->file name
+C--------->change directory
+x--------->extract
+du -sh --->to check the file size
+
+--------------------------------------------------------
+
+Three compressions tools are:-
+  1.gzip (z)
+  2.bzip2 (j)
+  3.xzip (J)
+
+1st method (gzip):-
+
+example:-
+1.tar -czvf /test/etc.tar.gz /etc 
+2.ls -l /test/
+3.du -sh /test/etc.tar.gz
+  12mb     etc.tar.gz
+4.tar -xzvf /test/etc.tar.gz -C /media
+5.ls /test
+6.du -sh /test/etc
+  43mb
+
+-------------------
+
+2nd method (bzip2):-
+
+example:-
+1.tar -cjvf /test/etc.tar.bz2 /etc
+2.ls -l /test/
+3.du -sh /test/etc.tar.bz2
+  11mb     etc.tar.bz2
+4.tar -xjvf /test/etc.tar.bz2 -C /media
+5.du -sh /test/etc
+  43mb
+
+-------------------
+
+3rd method (xzip):-
+
+example:-
+1.tar -cJvf /test/etc.tar.xz /etc
+2.ls -l /test/
+3.du -sh /test/etc.tar.xz
+  8mb    etc.tar.gz
+4.tar -xJvf /test/etc.tar.xz -C /media
+5.du -sh /test/etc
+  43mb
+
+-------------------
+
+How to extract already created tar file:-
+
+1st method gzip:-
+
+1.ls /mnt/
+etc.tar 
+
+2.gzip /mnt/etc.tar--------------gzip
+
+3.du -sh /mnt/etc.tar.gz
+12mb
+
+4.gunzip /mnt/etc.tar.gz---------gunzip
+
+5.ls /mnt
+etc.tar
+
+-------------------
+
+2nd method bzip2:-
+
+1.ls /mnt/
+  etc.tar
+
+2.bzip2 /mnt/etc.tar
+
+3.du -sh /mnt/etc.tar.bz2
+11mb
+
+4.bunzip2 /mnt/etc.tar.bz2
+
+5.ls /mnt/
+etc.tar
+
+-------------------
+
+3rd method
+
+1.ls /mnt/
+  etc.tar
+
+2.xz /mnt/etc.tar
+
+2.du -sh /mnt/etc.tar.xz
+  8mb
+
+4.unxz /mnt/etc.tar.xz
+
+5.ls /mnt/
+  etc.tar
+
+=======================================================================================================================================================================
+
+day 25 of Linux
+
+SCHEDULING:-
+
+1.there are three types of scheduling
+    1.at ---------->non periodic task
+    2.cron -------->periodic task
+    3.anacron -----> desktop task
+
+AT:-
+   it is a Linux command line utility used to schedule a job for a later execution
+
+example:-
+1.at "07:28" ----------------->take time to schedule
+  >touch file
+  >mkdir dir
+
+2.ctrl + D ------------------->for save and quit 
+
+3.atq ------------------------>to check the schedule jobs
+
+4.atrm (job number) ---------->to cancel the job
+
+5.ls
+
+--------------------------------------------------------------------------------------------------
+
+CRON-JOBS 
+     it is a Linux command line utility to schedule a job to run in the background automatically.
+
+criteria:-
+1.minute
+2.hour
+3.day of month (date)
+4.month (1-12)
+5.day of week (0-6) (sunday 0 or 7)
+
+----------------------------------------
+
+example:-
+
+1.crontab -e
+<min>   <hour>  <date>   <month>   <week>   
+ *        *       *        *         *      /bin/touch    file1
+
+2.systemctl restart crond ------------to restart the proccess
+3.crontab -l
+4.ls
+
+----------------------------------------
+
+cron-jobs for user:-
+
+1.crontab -e -u Linux 
+2.crontab -l -u Linux
+3.crontab -r -u linux
+3.crontab -
+
+-----------------------------------------
+
+practice examples:-
+
+1.10 sept 20:45
+  45    20    10   sept    *   
+
+2.at 7:00am on Monday to Friday
+  0    7     *     *     1-5   
+
+3.perform task only on Saturday
+  *    *     *     *    6
+
+4.every minute
+  *    *     *     *     * 
+
+5.every 5 minutes
+  */5  *     *     *     *
+
+6.every 180 minutes
+  0  0,3,6,9,12,15,18,21  *   *    * 
+
+7.for every hour
+  0   *    *    *    * 
+
+8.for 10 minutes and every 2 hours
+  */10  *    *    *     *
+   0    */2  *    *     *
+
+9.starts from 6:08pm and execute at 5 min intervals
+  8-59/5  6   *   *    * 
+
+10. 12 midnight daily
+    0 0 * * * 
+
+11.1st of every month, 8:30 AM
+   30 8 1 * * 
+
+=======================================================================================================================================================================
+
+day 27 28 29 of Linux:-
+
+PACKAGE MANAGEMENT:-
+   package management its a tool that help us to automate the installing, updating, upgrading and configuring the packages.
+
+1.el-----------enterprises Linux
+2.gpl----------general public license
+
+-----------------------------------------
+
+1.Redhat family
+  low value tool ---------> rpm (redhat package manager)
+  high value tool --------> yum (yellowdog Updater, Modifier)
+
+2.debian family 
+  low value tool ---------> dpkg (Debian Package)
+  high value tool --------> apt (Advanced Package Tool)
+
+-----------------------------------------
+
+3.package downloader
+  wget -------------------> World Wide Web get
+  curl -O ----------------> client URL
+
+-----------------------------------------
+
+4.to check the package install or not
+  rpm -q (package name)
+
+5.to check all packages
+  rpm -qa
+  yum list installed
+
+6.to check information of package
+  rpm -qi (package name)
+
+7.to check the info of downloaded package
+  rpm -qip (package name)
+
+8.How to download the package
+  wget or curl -O
+  yumdownloader (package name)
+
+9.How to install the package
+  yum install (package name)
+  rpm -ivh (package name)
+  where i------install
+        v------verbos (to shows the output)
+        h------hashing (to show in hashing form)
+
+10.How to reinstall package
+   yum reinstall (package name)
+
+11.How to update the package
+   yum update (package name)
+
+12.How to upgrade the package
+   yum upgrade (package name)
+
+13.How to uninstall the package
+   rpm -evh (package name)
+   yum remove (package name)
+   yum autoremove (package name)
+
+14.How to check provide package
+   yum provides (package name)
+
+15.How to check (search) package
+   yum search (package name)
+
+16.to check the available updates
+   yum check-update
+
+17.to get detail info about the package
+   yum info (package name)
+
+18.to Clears the local cache of metadata and downloaded packages, freeing disk space.
+   yum clean all
+
+19.to check the previous yum operations.
+   yum history
+
+20.to check the internet connected or working or not
+   ping www.google.com
+
+21.to check where the package files/directory located
+   rpm -ql (package name)
+
+=======================================================================================================================================================================
+
+Dependencies:- one package should depend on the other package
+
+        rpm                                             yum
+1.not resolves the dependencies               1.can resolves the dependencies
+2.no log generate                             2.log generate
+3.required full package url to install        3.required only package name to install
+4.to download the package                     4.to download the package 
+  { wget or curl -O }                            { yumdownloader }
+5.single package install at a time            5.multiple packages install at a time
+6.to remove package                           6.to remove package
+  { rpm -evh }                                   { yum remove }
+
+=======================================================================================================================================================================
+
+     yum update                                      yum upgrade
+1.it can fix the bugs                         1.it can upgrade higher(new) versions
+2.it only update not remove                   2.it can update as well as remove the old stuff
+
+=======================================================================================================================================================================
+
+How to recover the uninstall command:-
+
+{ note:-suppose i accidentally delete the head command }
+
+1.rm -rf /usr/bin/head ------------> delete the head command
+2.yum provides head ---------------> to check which package provides the head command
+3.yum reinstall coreutils ---------> reinstall the coreutils so that head command should download
+4.head anaconda -------------------> to check the command
+
+=======================================================================================================================================================================
+
+difference between "yum remove" and "yum autoremove"
+
+1.yum remove = Removes package only.
+2.yum autoremove = Removes package + unnecessary dependencies installed with it.
+
+
+*permanent setup to remove package with dependencies:
+1.vim /etc/yum.conf ---------------configuratioin file
+2.write a line
+ clean_requirements_on_remove=1
+3.wq!
+
+=======================================================================================================================================================================
+
+HOW TO CREATE A LOCAL REPOSITORY:-
+
+1.create a directory
+  mkdir /local
+
+2.change the directory
+  cd /local
+
+3.download the packages
+  yumdownloader tree
+  yumdownloader httpd
+
+4.create repo of local
+  createrepo /local
+
+5.create configuration file
+  vim /etc/yum.repos.d/local.repo
+  [abc123]
+  name=local_repo
+  baseurl=file:///local
+  enabled=1
+  gpgcheck=0
+
+6.yum clean all
+7.yum repolist all
+8.yum install httpd
+
+
+How to disabled the repository:-
+
+1.vim /etc/yum.repos.d/local.repo
+  [abc123]
+  name=local_repo
+  baseurl=file:///local
+  enabled=0
+  gpgcheck=0
+
+2.yum clean all
+3.yum repolist all
+4.yum install httpd
+  { the package install from update repo not from local repo(abc123) }
+
+=======================================================================================================================================================================
+
+day 31 32 33 of Linux
+
+PARTITION:-
+  separation of disk into multiple parts.
+
+1.volatile memory:-(temporary memory)
+   its a temporary memory means the data stored in a ram for a specific time.(ex.ram)
+
+2.non-volatile memory:-(permanent memory)
+   its a permanent memory means the data stored in a disk for a permanent purpose.(ex.rom)
+
+3.why we create the partition:-
+   1.partition makes the backing up easier.
+   2.separating the user data from the system data.
+   3.allows use of different filesystem to be installed for different kinds of files.
+
+4.sata:-
+    the data stored in a serial format.
+
+5.pata:-
+    the data stored in a paragraph format.
+
+6.filesystem:-
+    1.its a proper configuration of storing the metadata.
+    2.it uses the metadata to store and retrieve the files.
+
+---------------------------------------------------------
+
+How to add disk:-
+
+  1.go to setting
+  2.storage ------> select sata -------> choose hard disk
+  3.create new
+  4.select virtual hard disk (VHD)
+  5.dynamically allocated
+  6.then storage-------attached VHD
+  7.create partition of 8gb
+
+---------------------------------------------------------
+
+*There are three steps:-
+    1.create a partition
+    2.assing the filesystem
+    3.mount the partition
+
+---------------------------------------------------------
+
+1.create the partition of sdb
+   1.fdisk /dev/sdb
+   2.press n for create -----n
+   3.select default (P)------enter
+   4.partition no (P)--------1
+   5.first sector (default)--enter
+   6.last sector------------ +2Gb
+   7.w---------------------- for save
+
+   2.press n for create -----n
+   3.select default (P)------enter
+   4.partition no (P)--------2
+   5.first sector (default)--enter
+   6.last sector------------ +2Gb
+   7.w---------------------- for save
+
+   8.lsblk ----------------- to check the partition
+   9.partprobe-------------- to update the partition table
+
+2.assign the filesystem
+   1.mkfs.ext4 /dev/sdb1 /dev/sdb2
+   2.blkid ------------------ to check the filesystem
+
+3.mounting (temporary mount)
+   1.mount /dev/sdb1 /dev/sdb2 /mnt
+   2.df -Th---------------- to check the mount
+   3.umount /mnt ---------- to unmount 
+
+4.mounting (permanent mount)
+   1.vim /etc/fstab
+     /dev/sdb1    /mnt       ext4      defaults    0  0
+     /dev/sdb2    /mnt       ext4      defaults    0  0
+   2.lsblk  -------------- to check the partition
+   3.df -Th -------------- to check the mount after giving the filesystem
+
+--------------------------------------------------------------
+
+How to delete the partition:-
+
+1.fdisk /dev/sdb
+  press m for help---------m
+  press d for delete-------d
+  partition number---------2
+  partition is deleted
+  w------------------------save
+
+--------------------------------------------------------------
+
+Difference between the (lsblk) and (df -Th):-
+
+1.lsblk ----> to list the blocks 
+2.df -Th ---> to check the filesystem mount or not
+
+--------------------------------------------------------------
+
+commands:-
+
+lsblk---------------->to check the partition
+blkid---------------->to check the filesystem
+df -Th/lsblk--------->to check mount 
+partprobe------------>to update the partition table
+
+--------------------------------------------------------------
+
+To change the system partition type to Linux lvm:-
+
+1.fdisk -l ---------------to check the partition type
+2.fdisk /dev/sdb
+  press m for options-----m
+  press t ----------------change partition system id
+  partition number--------1
+  press L list codes------L
+  type the code-----------8e
+  w-----------------------to save
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LOGICAL VOLUMES:- { merged / extend / reduced / rename / remove }
+
+    We use Logical Volumes (LVM) because normal partitions are fixed in size and cannot be easily extended, reduced, merged, renamed, or removed. LVM allows flexible disk management with these operations.
+
+THREE STEPS TO CREATE A LOGICAL VOLUME:-
+1.physical volume (pvcreate)
+2.volume group    (vgcreate)
+3.logical volume  (lvcreate)
+
+1st METHOD TO MERGED:-
+
+1.create the physical volume
+  pvcreate /dev/sdb1 /dev/sdb2
+  pvs
+  pvdisply
+
+2.create the volume group
+  vgcreate vg /dev/sdb1 /dev/sdb2
+  vgs
+  vgdisplay
+
+3.create the logical volume
+  lvcreate -L +2G -n lv vg
+  lvs
+  lvdisplay
+
+4.give them filesystem
+  mkfs.ext4 /dev/vg/lv
+  blkid
+
+5.To mount 
+  mount /dev/vg/lv /mnt
+  lsblk
+  df -Th
+ 
+6.to unmount 
+  umount /mnt
+
+--------------------------------------------------------------
+
+2nd METHOD TO EXTEND:-
+
+why we extend the volume:-
+  to create the multiple logical volumes as well as if suppose the logical volume is full and we have to add the storage then that time we extended logical volume.
+
+1.to create one more partition
+   fdisk /dev/sdb
+   press partition nu------P
+   last sector ------------(+1G)
+  
+   change the file type
+   partition number-------t
+   hex code---------------8e(Linux lvm)
+   w----------------------save
+
+2.partprobe -------------- to update the partition table
+
+3.create the physical volume
+  pvcreate /dev/sdb3
+  pvs
+
+4.extend the volume group
+  vgextend vg /dev/sdb3
+  vgs
+
+5.extend the logical volume
+  lvextend -L +500M /dev/vg/lv
+  lvs
+
+6.Then mount 
+  mount /dev/vg/lv /mnt
+  df -Th 
+
+Note:-
+1.lsblk shows the 2.5Gb after adding the 500mb
+2.but df -Th only shows the 2gb instead of 2.5Gb 
+
+
+TO RESIZE THE FILESYSTEM
+
+7.To organize the data
+  e2fsck -f /dev/vg/lv
+
+8.resize the partition table
+  resize2fs /dev/vg/lv --------------- For ext4
+  xfs_growfs ------------------------- For xfs
+
+9.mount the partition
+  mount /dev/vg/lv /mnt
+  df -Th 
+
+9.to unmount the parititon
+  umount /mnt
+
+--------------------------------------------------------------
+
+3rd METHOD TO REDUCE THE LVM
+
+1.e2fsck -f /dev/vg/lv
+2.resize2fs /dev/vg/lv 2G
+3.lvreduce -L 500M /dev/vg/lv
+4.lsblk
+5.mount /dev/vg/lv /mnt
+6.df -Th
+6.umount /mnt
+
+
+TO REDUCE THE VOLUME GROUP
+
+1.vgreduce vg /dev/sdb3
+2.vgs
+3.lsblk
+
+-------------------------------------------------------
+
+4th METHOD 
+
+TO RENAME THE LVM 
+
+1.lvrename /dev/vg/lv kk
+2.lsblk
+
+TO RENAME THE VOLUME GROUP ===>
+1.vgrename vg mayur
+2.lsblk
+
+--------------------------------------------------------------
+
+5th METHOD TO REMOVE THE LVM
+
+1.lvremove /dev/vg/lv
+2.vgremove vg
+3.pvremove /dev/sdb1 /dev/sdb2
+4.fdisk /dev/sdb
+  press d for delete
+  w------------------save
+
+--------------------------------------------------------------
+
+FORMAT TO UNDERSTAND THE LVM 
+
+1.create the partition
+
+2.pvcreate
+  pvremove
+
+3.vgcreate
+  vgextend
+  vgreduce
+  vgrename
+  vgremove
+
+4.lvcreate
+  lvextend
+  lvreduce
+  lvrename
+  lvremove
+
+5.file system (ext4/xfs)
+
+6.mount 
+
+7.unmount 
+
+---------------------------------------------------------------------
+
+How many partitions we created ======>
+
+MBR partition:-
+1.Primary partitions: maximum 4 (including extended).
+2.Extended partition: maximum 1 (but optional).
+3.Logical partitions inside extended: many (Linux typically supports up to 15 per disk with MBR).
+
+GPT partition:-
+we create upto 128 partitions
+
+---------------------------------------------------------------------
+
+Differentiate between the MBR and GPT
+
+🟢 MBR (Master Boot Record)
+1.Supports up to 4 primary partitions only.
+2.Works with disks of size up to 2 TB.
+3.Stores partition and boot data in the first sector of the disk.
+4.Older technology, used in BIOS-based systems.
+
+🔵 GPT (GUID Partition Table)
+1.Supports 128 partitions (no limit like MBR).
+2.Works with disks of size larger than 2 TB.
+3.Stores multiple copies of partition data for backup and recovery.
+4.Newer technology, used in UEFI-based systems.
+
+=======================================================================================================================================================================
+
+SWAP MEMORY:-
+  When the amount of physical ram is full and the system needs the more memory resources and the ram is full then the inactive pages in the memory move to swap space.
+
+Note:-
+1.ram <=2GB ---------- swap=2*ram size
+2.ram >=2GB ---------- swap=2+ram size
+
+example:-
+1.create a partition
+  fdisk /dev/sdb
+  press n for create-----n
+  partition no-----------1
+  w----------------------save
+
+2.change the partition type to swap memory
+  fdisk /dev/sdb
+  press t for change ------ t
+  hex code----------------- 82(swap solarius)
+  w-------------------------save
+
+3.partprobe --------------to update the partition table
+4.lsblk
+
+5.give the filesystem
+  mkswap /dev/sdb1
+  blkid -----------------to check the filesystem
+
+6.free -h ----------------to check the memory
+
+7.swapon /dev/sdb1
+  free -h
+
+8.swapoff /dev/sdb1
+  free -h
+
+=======================================================================================================================================================================
+
+RAM (Random Access Memory):
+1.Temporary memory – data is lost when power is off.
+2.Stores data and programs currently in use.
+3.Can be read and written easily.
+4.Very fast in speed but limited in size.
+
+ROM (Read Only Memory):
+1.Permanent memory – data remains even without power.
+2.Stores important instructions for starting the computer.
+3.Normally only read, not written to.
+4.Slower than RAM but more reliable for permanent storage.
+
+=======================================================================================================================================================================
+
+Day 37 38 39 of Linux
+
+NETWORKING:-
+  its a interconnected computing device that can exchange the data and share the resources with each other.
+
+TCP:- (transmission control protocol)
+  its a transmission in control protocol that establish and maintain the connection by which application can exchange the data.
+
+IP:-(internet protocol)
+  its a internet protocol responsible for delivering the packets from source host to destination host.
+
+UDP:-(user datagram protocol)
+  it is a user datagram protocol a connectionless protocol use for real time applications such as video games, video call etc
+
+MAC address:-
+  it is a physical address which is assigned to a NIC card of each device that can be connected to the internet.
+
+----------------------------------------------------------------------------------------------------------------
+
+OSI Model:- 
+   its a seven layer model that the computer system use to communicate over the network.
+
+Seven layers of OSI model:-
+
+1.applicaton layer
+2.presentation layer
+3.session layer
+4.transport layer ---(ports are used) 
+5.network layer  ----(ip addresses)
+6.data-link layer ---(mac addresses)
+7.physical layer
+
+1st three layers software layers:-
+  1.application layer
+  2.presentation layer
+  3.session layer
+
+heart layer
+  4.transport layer
+
+last three layers hardware layers:-
+  5.network layer
+  6.data-link layer
+  7.physical layer
+
+Note:- a sentence to remember
+ "all people seems to need data processing"
+
+---------------------------------------------------------------------------------------------------------------
+
+TCP (transmission control protocol):- 
+  its a transmission control protocol that establish and maintain the connection by which application can exchange the data.
+
+Layers of TCP:-
+
+1.Application layer
+2.Transport layer
+3.Internet layer
+4.network access layer
+
+---------------------------------------------------------------------------------------------------------------
+
+computer network types:-
+
+1.lan (local area network)
+   lan is a group of computers and the network devices connected together usually within the same building. ex (switches,wi-fi)
+
+2.man (metropolitan area network)
+   man is a large area network usually span several buildings in the same city. ex (ethernet)
+
+3.wan (wide area network)
+   ex (optical fibre,satelites)
+
+4.pan (personal area network)
+
+---------------------------------------------------------------------------------------------------------------
+
+IP addresses ====>>>
+
+1.physical address (mac address)-----48bit
+2.ip address (ipv4 and ipv6)---------32bit and 128bit
+
+{ 8bit 8bit 8bit 8bit } -------------ipv4 32bit format
+
+classes:-
+1. 0------126 (N8)--------> N H H H ---------> 256*256*256 ---------> 16,777,216 ------> computers are connected
+2. 128----191 (N16)-------> N N H H ---------> 256*256 -------------> 65,536 ----------> computers are connected
+3. 192----223 (N24)-------> N N N H ---------> 256 -----------------> 256 -------------> computers are connected
+4. 224----239 ------------> special purpose
+5. 240----255-------------> future used
+
+{ Note:- 127 is the loopback ip / systems ip }
+
+CIDR:-
+1.CIDR (Classless Inter-Domain Routing) is a method used to divide IP addresses into flexible network sizes.
+2.It helps in saving IP addresses and makes routing on the internet more efficient.
+
+syntax:- no of useful hosts = 2^(host bit)-2
+
+{ host bit----> 32-prefix length }
+{ (-2) -------> one for network and another for broadcast address }
+
+1 denoted by network
+0 denoted by hosts
+
+
+1.Class A:- N(8)----------> N H H H /8   
+           subnet mask----> 255 0 0 0
+           no of hosts----> 2^n -2
+                            2^24 -2
+                            16777721 hosts
+
+2.Class B:- N(16)---------> N N H H /16
+            subnet mask---> 255 255 0 0 
+            no of hosts---> 2^n-2
+                            2^16-2
+                            65534 hosts
+ 
+3.Class C:- N(24)---------> N N N H /24
+            subnet mask---> 255 255 255 0
+            no of hosts---> 2^n-2
+                            2^8-2
+                            254 hosts
+
+--------------------------------------------------------------------------------------------------------------
+
+CIDR Examples:-
+
+1.172.25.0.8/25
+
+11111111.11111111.11111111.10000000
+
+2^7  2^6   2^5  2^4   2^3   2^2  2^1   2^0
+128  64    32   16     8     4    2     1
+
+subnet mask----> 255.255.255.128
+no of hosts----> 2^n-2 = 2^7-2 = 126 hosts
+networks-------> 2^n = 2^1 = 2
+              
+------------------------------------------------------
+  
+2.172.25.0.5/17
+
+11111111.11111111.10000000.00000000
+
+2^7  2^6   2^5  2^4   2^3   2^2  2^1   2^0
+128  64    32   16     8     4    2     1
+
+subnet mask----> 255.255.128.0
+no of hosts----> 2^n-2 = 2^15-2 = 32766
+networks-------> 2^n = 2^1 = 2
+
+------------------------------------------------------
+
+3.192.168.0.44/19
+
+1111111.11111111.11100000.00000000
+
+2^7  2^6   2^5  2^4   2^3   2^2  2^1   2^0
+128  64    32   16     8     4    2     1
+
+subnet mask----> 255.255.224.0
+no of hosts----> 2^n-2 = 2^13-2 = 8190
+networks-------> 2^n = 2^3 = 8
+
+------------------------------------------------------
+
+4.192.168.0.5/21
+
+11111111.11111111.11111000.00000000
+
+2^7  2^6   2^5  2^4   2^3   2^2  2^1   2^0
+128  64    32   16     8     4    2     1
+
+subnet mask----> 255.255.248
+no of hosts----> 2^n-2 = 2^11-2 = 2046
+networks-------> 2^n = 2^5 = 32
+
+------------------------------------------------------
+
+5.192.168.0.5/26
+
+11111111.11111111.11111111.11000000
+
+2^7  2^6   2^5  2^4   2^3   2^2  2^1   2^0
+128  64    32   16     8     4    2     1
+
+subnet mask----> 255.255.255.192
+no of hosts----> 2^n-2 = 2^6-2 = 62
+networks-------> 2^n = 2^2= 4
+
+------------------------------------------------------
+
+6.192.168.0.4/23
+
+11111111.11111111.11111110.00000000
+
+2^7  2^6   2^5  2^4   2^3   2^2  2^1   2^0
+128  64    32   16     8     4    2     1
+
+subnet mask----> 255.255.254.0
+no of hosts----> 2^n-2 = 2^9-2 = 510
+networks-------> 2^n = 2^7= 128
+
+------------------------------------------------------
+
+6.172.168.0.5/15
+
+11111111.11111110.00000000.00000000
+
+2^7  2^6   2^5  2^4   2^3   2^2  2^1   2^0
+128  64    32   16     8     4    2     1
+
+subnet mask----> 255.254.0.0
+no of hosts----> 2^n-2 = 2^17-2 = 131,070
+networks-------> 2^n = 2^7= 128
+
+------------------------------------------------------
+
+7.192.168.100.130/25
+
+11111111.11111111.1111111.10000000
+
+2^7  2^6   2^5  2^4   2^3   2^2  2^1   2^0
+128  64    32   16     8     4    2     1
+
+subnet mask----> 255.255.255.128
+no of hosts----> 2^n-2 = 2^7-2 = 126
+networks-------> 2^n = 2^1 = 2
+
+--------------------------------------------------------
+
+Subnetting concept ====>>>
+
+1.12.0.0.0/26
+
+11111111.11111111.1111111.11000000
+
+2^7  2^6   2^5  2^4   2^3   2^2  2^1   2^0
+128  64    32   16     8     4    2     1
+
+
+subnet mask----> 255.255.255.192
+subnet id------> 12.255.255.192/26
+no of hosts----> 2^n-2 = 2^6-2 = 64-2 = 62
+networks-------> 2^n = 2^2 = 4
+
+subnets:-1.12.0.0.0/26
+         2.12.0.0.64/26
+         3.12.0.0.128/26
+         4.12.0.0.192/26
+
+ ===>>additional subnet adding<<====
+         5.12.0.1.0/26
+         6.12.0.1.64/26
+         7.12.0.1.128/26
+         8.12.0.1.192/26
+         9.12.0.2.0/26
+        10.12.0.2.64/26
+        ......
+        ......
+        ......
+        ......
+        last subnet
+        11.12.255.255.192/26
+         
+broadcast:-12.0.0.63/26
+           12.0.0.127/26
+           12.0.0.191/26
+           12.0.0.255/26
+
+------------------------------------------------------------------------
+
+Private IP ranges:-
+1.Class A ------------ 10.0.0.0 ------- 10.255.255.255
+2.Class B ------------ 172.16.0.0 ----- 172.31.255.255
+3.Class C ------------ 192.168.0.0 ---- 192.168.255.255
+
+
+Difference between the public ip and the private ip
+
+ Public IP
+   1.Assigned by Internet Service Provider (ISP).
+   2.Globally unique (no two devices on the internet can have the same public IP).
+   3.Routable on the internet (can communicate directly over the internet).
+   4.Often comes with extra cost (paid service).
+
+ Private IP
+   1.Assigned by system admin / router / DHCP inside the LAN.
+   2.Locally unique only (can be repeated in different networks).
+   3.Not routable on the internet directly (requires NAT to communicate outside).
+   4.Free of cost (anyone can use private IP ranges).
+
+------------------------------------------------------------------------
+
+Networking to connected ip:-
+1.GUI
+2.CLI
+3.TUI
+
+{ Note:- enp0s3 is only used for the internet service }
+
+1st method to add adapter using GUI====>
+
+1.click on the centos----->settiing----->network------>add adapter------>internet
+2.start machine
+3.ifconfig
+4.enp0s8 --------->assign ip for enp0s8
+5.go to application
+6.system tools----->setting
+7.click on adapter enp0s8
+8.click on ipv4
+9.ipv4---------choose manual
+10.address-----192.168.0.4
+   netmask-----255 255 255 0
+   getway------192.168.0.1
+12.ifconfig
+13.ping 192.168.0.4
+
+2nd method to add adapter using TUI====>
+
+1.click on the centos----->settiing----->network------>add adapter------>internet
+2.start machine
+3.ifconfig
+4.enp0s8 --------->assign ip for enp0s8
+5.nmtui
+6.edit connection-----ethernet-----add-----ethernet
+7.profile name--------first
+  device name---------enp0s8
+8.ipv4 confi----------automatic to manual show
+  address-------------192.168.0.6/24
+  getway--------------192.168.0.1
+10.nmtui
+11.activate connection
+12.click on first
+13.ping 192.168.0.6
+
+3rd method to add adapter using CLI====>
+
+1.click on the centos----->settiing----->network------>add adapter------>internet
+2.start machine
+3.ifconfig
+4.enp0s8 --------->assign ip for enp0s8
+5.nmcli connection add con-name demo ifname enp0s8 type ethernet ipv4.addresses "192.168.0.8/24" gw4 "192.168.0.1"
+6.nmcli connection show
+7.ifup enp0s8 ------------------> to activate
+8.ifdown enp0s8 ----------------> to deactivate
+9.ping 192.168.0.8
+
+--------------------------------------------------------
+
+FIREWALL:-
+   its a additional layer of security to maintain the inbound as well as outbound traffic it maintains the incoming as well as the outgoing traffic based on the network.
+
+network ==========> firewall ===========> user
+
+commands:-
+1.systemctl status firewalld
+2.systemctl start firewalld
+3.systemctl enable firewalld
+4.firewall-cmd --add-service=http --permanent
+5.firewall-cmd --list-all
+6.firewall-cmd --reload
+7.firewall-cmd --list-services
+
+--------------------------------------------------------
+
+if your internet doesn't work try to change the DNS
+
+1.vim /etc/resolve.conf
+  nameserver     8.8.8.8
+
+ping 8.8.8.8 ----> it works
+
+--------------------------------------------------------
+
+Simple way to host webpage:- (centos)
+
+1.install the httpd
+  yum install httpd -y
+
+2.create a webpage in (/var/www/html)
+  vim /var/www/html/index.html
+  <h1> Happy Engineers day </h1>
+
+3.start / enable the services
+  systemctl start httpd
+  sytemctl enable httpd
+  systemctl status httpd
+
+4.add the service into the firewall to see the clients:-
+  firewall-cmd --add-service=http --permanent
+  firewall-cmd --reload
+  firewall-cmd --list-all
+  firewall-cmd --list-services
+
+5.to check on terminal
+  curl localhost
+
+6.to check on internet
+  http://localhost
+
+7.to check on clients machine
+  ping 172.25.0.4
+  curl 172.25.0.4 
+
+--------------------------------------------------------
+
+Simple way to host webpage:- (ubuntu)
+
+1. Install Apache (apache2):
+   sudo apt update
+   sudo apt install apache2 -y
+
+2. Create Webpage (/var/www/html/)
+   sudo vim /var/www/html/index.html
+   <h1> happy engineers day </h1>
+
+3. Start & Enable Apache Service:
+   sudo systemctl start apache2
+   sudo systemctl enable apache2
+   sudo systemctl status apache2
+
+4. Enable Firewall & Allow Apache for clients machine:-
+   sudo ufw enable
+   sudo ufw allow 'Apache'
+   sudo ufw reload
+   sudo ufw status
+
+5. check on terminal:-
+   curl localhost
+
+6. Test in Browser:-
+   http://localhost
+
+=======================================================================================================================================================================
+
+day 40 of Linux
+
+PORT FORWARDING:-
+   it reduces the chances of the hacking also enhance the security by forwarding the port that's why we use port forwarding.
+
+difference between the TCP and UDP
+
+       TCP                                    UDP
+1.reliable delivery                    1.unreliable delivery
+2.uses 3 way handshake for connection  2.no 3 way handshake, connectionless
+3.sending large size data              3.sending minimum size packets
+4.tcp is slow                          4.udp is fast
+5.http, ssh                            5.dhcp, dns
+
+TCP = Reliable, connection-oriented, slow, used for big data.
+UDP = Unreliable, connectionless, fast, used for small packets.
+ 
+Port numbers:-
+1.FTP--------------> 20,21 ( 20 for data / 21 for control )
+2.SSH--------------> 22
+3.Telnet-----------> 23
+4.SMTP-------------> 25
+5.DNS--------------> 53
+6.DHCP-------------> 67,68
+7.HTTP-------------> 80
+8.HTTPS------------> 443
+9.IMAP-------------> 143
+10.rsyslog---------> 514
+11.samba-----------> 445 and 139
+12.nfs-------------> 2049
+13.RDP-------------> 3389
+14.IMAPS ----------> 993
+15.MySQL ----------> 3306
+16.PostgreSQL -----> 5432
+17.MongoDB --------> 27017
+18.SMTPs ----------> 465
+
+1.Which ports should be allowed in security group for a web app?
+---> 
+22 for ssh
+80 for http
+443 for https
+3306 & 5432 for mysql and postgresql
+
+2.How many ports does ftp used?
+---> ftp uses the two ports
+1.20----> for data connection
+2.21 ---> for control connection
+
+3.Why does DHCP use ports 67 and 68?
+----> 
+1.67 ---> for server
+2.68 ---> for client
+
+4.Docker Registry default port?
+---> 5000
+
+=======================================================================================================================================================================
+
+FULL PRACTICAL ON PORT FORWARDING ====> 
+
+1.yum install httpd -y
+
+2.vim /var/www/html/index.html
+  <h1> hello world </h1>
+
+3.systemctl start httpd
+  systemctl enable httpd
+  systemctl status httpd
+
+4.firewall-cmd --add-port=80/tcp --permanent
+  firewall-cmd --reload
+  firewall-cmd --list-all
+
+5.curl localhost
+  <h1> hello world </h1>
+
+6.In clients machine
+  curl 172.25.0.4
+  <h1> hello world </h1>
+
+
+SUPPOSE WE CHANGE THE PORT (80 TO 8080) ====>
+
+1.configuration file 
+  vim /etc/httpd/conf/httpd.conf
+  Listen 80 ----> Listen 8080
+
+2.systemctl restart httpd
+
+3.In clients machine
+  curl 172.25.0.4 
+  { does not access } ----------------> because we change the port to 8080
+
+4.add the port (8080) in firewalld
+   firewall-cmd --add-port=8080/tcp --permanent
+   firewall-cmd --reload
+   firewall-cmd --list-all
+
+5.curl 172.25.0.4:8080
+  <h1> hello world </h1>
+
+6.In clients machine
+  curl 172.25.0.4:8080
+  <h1> hello world </h1>
+
+7.But i have to hide the port (8080) without knowing anyone
+  firewall-cmd --add-forward-port=port=80:proto=tcp:toport=8080 --permanent
+  firewall-cmd --reload
+  firewall-cmd --list-all
+
+8.curl 172.25.0.4
+  <h1> hello world </h1>
+
+9.In clients machine
+  curl 172.25.0.4
+  <h1> hello world </h1>
+
+------------------------------------------------------------
+
+IMPORTANT NOTES:-
+ 
+1.If you change a port, always allow that port in the firewall.
+2.If a service is accessed from a client machine, make sure the service port is allowed in the firewall.
+3.If you change any configuration file, always restart the service.
+4.After downloading or installing any package, you must start the service.
+
+=======================================================================================================================================================================
+
+day 41 of linux
+
+IP FORWARDING AND MASQUERADE:-
+
+       masquerade basically allows you to translate multiple ip addresses to another single IP address. we use masquerade to hide one or more ip addresses on your internal network behind an IP address that you want to make public.
+
+-----------------------------------------------------------
+
+FUll PRACTICAL ON MASQUERADE:-
+
+IN centos-1 (172.25.0.4)====>
+ 
+1.yum install httpd -y
+2.vim /var/www/html/index.html
+  <h1> hello mayur </h1>
+3.systemctl start httpd
+4.firewall-cmd --add-port=80/tcp --permanent
+  firewall-cmd --reload
+5.curl localhost
+
+6.to enable the masquerade
+  firewall-cmd --add-masquerade
+  firewall-cmd --list-all
+
+7.forwarding the IP address
+  firewall-cmd --add-forward-port=port=80:proto=tcp:toaddr=172.25.0.6
+
+-----------------------------------------------------------
+
+IN centos-2 (172.25.0.6)=====>
+
+1.yum install httpd -y
+2.vim /var/www/html/index.html
+  <h1> hello pranay </h1>
+3.systemctl start httpd
+4.firewall-cmd --add-port=80/tcp --permanent
+  firewall- cmd --reload
+5.curl localhost
+
+6.enable the masquerade
+  firewall-cmd --add-masquerade
+  firewall-cmd --list-all
+
+-----------------------------------------------------------
+
+IN centos-3 (172.25.0.8)=====>
+
+1.ping the 1 & 2 machines
+  ping 172.25.0.4
+  ping 172.25.0.6
+
+2.curl 172.25.0.4
+  <h1> hello pranay </h1>
+
+-----------------------------------------------------------
+
+IF suppose we remove the IP forwarding ====>
+ 
+IN centos-1
+firewall-cmd --remove-forward-port=port=80:proto=tcp:toaddr=172.25.0.6
+
+In centos-3
+curl 172.25.0.4
+<h1> hello mayur </h1>
+
+=======================================================================================================================================================================
+
+Commands to change the hostname:-
+  1.hostname (change name)
+  2.hostnamectl set-hostname (change name)
+  3.nmtui
+
+=======================================================================================================================================================================
+
+day 42 of Linux
+
+SSH ====> (secure shell protocol)
+
+  1.ssh is a secure shell protocol or network communication protocol that enables the two computer to interconnect
+  2.it is a cryptographic protocol or a operating networking service securely over unsecure network.
+
+There are two ways to get ssh:-
+1.password based authentication
+2.key-based authentication
+
+----------------------------------------------------
+
+1.PASSWORD-BASED AUTHENTIFICATION
+
+In centos Machine====>
+1.ssh root@172.25.0.4 -------------> give server machine ip to access and also password
+2.passwd:-
+3.touch file1
+
+In server machine====>
+1.ls
+  file1
+
+---------------------------------------------------------------
+
+NOTE:-
+
+1.connect server ---> client
+  ssh mayur@192.168.0.6
+
+2.and connect client ----> server
+  ssh mayur@192.168.0.4
+
+and if not then its a enforcing mode problem try to check
+1.getenforce
+   enforcing
+2.setenforce 0
+   permissive
+
+And then connect
+
+---------------------------------------------------------------
+
+2.KEY-BASED AUTHENTIFICATION (with local user)
+   
+    In key-based authentication there are two keys created (id_rsa, id_rsa.pub)
+
+IN SERVER MACHINE===>(172.25.0.4)
+
+1.creating the user
+  1.useradd mayur
+  2.passwd mayur
+
+2.su - mayur
+
+3.Creating the keys (id_rsa id_rsa.pub)
+  1.ssh-keygen
+    keys created in /home/mayur/.ssh/
+  2.cd .ssh/
+  3.ls 
+    id_rsa id_rsa.pub
+
+4.create a authorized key and give the permission 600
+  1.cat id_rsa.pub > authorized_keys
+  2.chmod 600 authorized_keys
+
+5.copy the private key in centos machine (scp source destination)
+  scp id_rsa mayur@172.25.0.6:/home/mayur/keys
+
+IN CLIENT MACHINE=====>(172.25.0.6)
+
+6.get ssh of server machine
+  cd /home/mayur/keys
+  ssh -i id_rsa mayur@172.25.0.4
+  access
+
+-------------------------------------------------------------------
+
+GET ACCESS WITH ROOT USER:-
+
+IN SERVER MACHINE====>
+1.ssh-keygen
+  cd .ssh/
+  ls 
+  id _rsa id_rsa.pub
+2.cat id_rsa.pub > authorized keys
+  chmod 600 authorized keys
+3.scp id_rsa root@172.25.0.6:/mnt
+
+IN CENTOS MACHINE=====>
+4.cd /mnt
+  ssh -i id_rsa root@172.25.0.4
+
+or
+
+IN SERVER MACHINE:-
+
+1.ssh-keygen
+2.ssh-copy-id root@172.25.0.6
+3.ssh root@172.25.0.6
+  ls .ssh/
+
+4.ssh -i id_rsa root@172.25.0.6 ----------> get access of clone server
+
+5.if u get error of permission denied
+  { check:- vim /etc/ssh/sshd_config
+    #permitlogin ----> provibitate ----> change to permitlogin-----> yes
+
+*************************************************************************
+
+IF WE CHANGE THE PORT:-
+
+IN SERVER MACHINE====>
+
+1.To change the port
+   vim /etc/ssh/sshd_config
+   change port 22===>2020
+   semange port -a -t ssh_port_t -p tcp 2020
+
+2.uncomment password authentification
+  vim /etc/ssh/sshd_config
+  edit line no 65---> uncomment line PasswordAuthentification yes
+  
+3.restart the demon service
+  systemctl restart sshd
+
+4.add the port in firewall (2020)
+  firewall-cmd --add-port=2020/tcp 
+  firewall-cmd --list-all
+
+IN CENTOS MACHINE====>
+
+5.ssh -i id_rsa mayur@172.25.0.4 -p 2020
+
+*****************************************************************
+
+PORT FORWARDING IN SSH ====>
+
+In server machine
+  1.firewall-cmd --add-forward-port=port=22:proto=tcp:toport=2020
+
+In centos machine
+  2.ssh -i id_rsa mayur@172.25.0.4
+
+=======================================================================================================================================================================
+
+day 43 44 of Linux
+
+PROCESS MAANAGEMENET:-
+
+    It is a process of running executable programme. whenever the executable programme is in running state called as process.
+
+------------------------------------------------------------------
+
+**There are two type of process:-
+
+1.shell jobs:- the jobs which we create
+
+2.daemon jobs:- the jobs which are running in the background (crond,sshd,etc)
+
+------------------------------------------------------------------
+
+**States of processes:-
+
+1.running process:- (R) (foreground proc)
+2.stopped process:- (T)
+3.sleep process:-   (S) (interuptable)
+4.sleep process:-   (D) (uninterruptable)
+5.zombie process:-  (Z) (the process which is killed but still shows it is present)
+
+------------------------------------------------------------------
+
+**To check the process ID:-
+
+1.ps -aux
+2.ps -elf
+3.Top
+4.htop
+
+---------------------------------------------------------------------
+
+**modes stop/terminate/save:-
+
+1.ctrl + z-------> stop
+2.ctrl + c-------> terminate
+3.ctrl + d ------> save
+
+---------------------------------------------------------------------
+
+**There are two types of jobs to run process:-
+
+1.background process---(bg)
+2.foreground process---(fg)
+
+
+example:-
+
+Background:-
+
+1.sleep 455 &----------------to create job
+2.jobs
+  1    stopped    sleep 455
+3.bg 1 ---------------------stopped to running state
+4.jobs
+  1    running    sleep 455
+
+Forground:-
+
+1.jobs
+  1    running    sleep 455
+2.fg 1 -------------------running to stopped
+3.jobs
+  1    stopped     sleep 455
+
+---------------------------------------------------------------------
+
+pid (1) ----> systemd ------> demon service manages (systemctl)
+
+---------------------------------------------------------------------
+
+**Renice value:-**
+   1.To set the priority for the process
+   2.it ranges from -20 to 19
+
+Example:-
+1.ps -elf | grep sleep
+2.renice -n 10 -p 2876
+3.ps -elf | grep sleep
+   priority change---> 80 to 90
+
+---------------------------------------------------------------------
+
+**Subset**:-
+
+1.S
+2.ss
+3.SN          N------low priority
+4.S<          <------highest priority
+5.R+          + -----forground process
+6.S+
+
+------------------------------------------------------------------
+
+HOW TO KILL JOBS:-
+
+1.TOP:- basically used for live monitoring (refresh on every 2 second)
+
+2.load average:-  0.05        0.89        2.33
+
+                every min  every 5 min  every 15 min
+
+Example:-
+1.top k (pid) --------------> to kill the job
+2.q-------------------------> to quit the job
+
+---------------------------------------------------------------------
+
+1.pkill (process name)
+
+2.kill -9 (PID)
+
+3.kill -l --------> to get all the signal related to the kill command
+
+---------------------------------------------------------------------
+
+Difference between the ps -elf / ps -aux / top command:-
+
+1.ps -elf
+
+ps → process status
+-e → show all processes (system-wide).
+-l → show in long format (extra details like priority, parent PID, flags).
+-f → show in full format (UID, PPID, start time, command).
+
+{so ps -elf = all processes + full \& long format (very detailed, good for admins)}
+
+
+2. ps -aux
+a → show processes of all users.
+u → show processes with a user-oriented format (owner, CPU%, MEM%).
+x → show processes not attached to a terminal (like daemons).
+
+{So, ps -aux = all processes (including background) with CPU/memory usage and owner.}
+
+
+3. top
+   1.Real-time, dynamic view of running processes.
+   2.Continuously updates CPU, memory usage, load average, and top processes.
+   3.Interactive (you can sort, kill processes, etc. using keys).
+
+**{ Unlike ps (static snapshot), top is live monitoring.}**
+
+
+
+✅ In short:
+
+ps -elf ----> Very detailed, static snapshot (admin-level info).
+
+ps -aux ----> User-friendly, static snapshot (with CPU%, MEM%).
+
+top --------> Real-time, interactive process monitoring.
+
+=======================================================================================================================================================================
+
+ 							          LOG MANAGEMENT
+
+LOG MANAGEMENT:-
+
+   1.its a record of recent activities, recent events or notification. 
+   2.Log management is the process of collecting, storing, and analyzing system-generated records (logs) to monitor activities, troubleshoot issues, and ensure 
+     security.
+
+1.ls /var/log----------------> to see the logs
+2.ls /var/log/httpd ---------> to see the httpd logs
+3.ls /var/log/yum.log--------> to see the yum logs
+
+*****************************************************************
+
+To see the logs:-
+1.rsyslog:-
+     its a demon service of which it can stores all the logs from the system as well as the remote logs.
+
+2.journalctl:-
+      its not a demon service so it can not stores the log it can show all the logs from the boot
+
+3.systemctl:-
+    to see the latest logs
+
+4.mesage:-
+    to see all the logs of journalctl
+
+*****************************************************************
+
+THERE ARE 8 TYPES OF LOGS WITH PRIORITY:-
+
+1.emergency log-------> (0)
+2.alert log    -------> (1)
+3.critical log -------> (2)
+4.error log    -------> (3)
+5.warning log  -------> (4)
+6.notice log   -------> (5)
+7.infor.log    -------> (6)
+8.debug log    -------> (7)
+
+*****************************************************************
+
+HOW TO CREATE A LOG:-
+logger "mayur"
+
+HOW TO CHECK THE LOG:-
+journalctl -r
+
+**********************************************************************************************************************************************************************
+
+CENTRALISED LOG SERVER====>>>
+
+     its a process of storing the logs from the network infrastructure and the application into the single location for storage and analysis.
+
+
+In server machine:-
+
+1.vim /etc/rsyslog.conf
+  1.uncomment line no 19 & 20 and edit line 21
+  2.$template templAuth,"/var/log/%HOSTNAME%/%PROGRAMNAME%.log"
+  3. *.* -?templAuth
+
+2.systemctl restart rsyslog
+
+3.firewall-cmd --add-port=514/tcp
+  firewall-cmd --list-all
+
+
+In client machine
+
+4.vim /etc/rsyslog.conf
+  1.add line below line number 90
+  2. *.* @@172.25.0.4:514
+  3.wq!
+
+5.systemctl restart rsyslog
+
+6.logger "mayur"
+7.journalctl -r
+ 
+In server machine
+
+8.vim /var/log/clone/root.log
+
+**********************************************************************************************************************************************************************
+
+LOG ROTATION:-
+
+   log rotation is a process of automatically rotating the logs, compressing the logs, deleting, moving, renaming the logs that are too big and too old and stored the new incoming logs into a new fresh file.
+  we can rotate the logs monthly, weekly, daily depending upon their sizes.
+
+
+1.vim /etc/logrotate.d/sample.txt
+  /root/sample/*.log {
+  weekly
+  missingok
+  rotate4
+  compress
+  copytruncate
+}
+
+2.mkdir /root/sample
+3.cd /root/sample
+4.vim text.log
+  "this is a log rotation"
+5.ls /etc/logrotate.d/sample.txt
+6.logrotate -f /etc/logrotate.conf
+7.cd /root/sample
+8.gunzip text.log gz
+9.ls
+10.vim text.log
+
+======================================================================================================================================================================
+
+                                                                              **BOOT PROCCESS**
+
+
+BOOT PROCCESS:- 
+   it is a process which is started when we power on the computer or the system and it involves loading and initializing the operating system and the other software necessary for the computer to function properly.
+
+The booting process in Linux involves several stages:-
+
+1.BIOS ----------> 1.bios is a basic input and output system which is the 1st programme executed when the system is on
+                   2.it performs POST- means the power on self test
+                   3.it checks the peripheral component of the computer whether it is in working state or not
+                   4.it stores in read-only memory on the motherboard
+  
+2.Boot loader ----> boot loader is the 1st programme which is loaded by the bios and searches the kernel to load into the memory
+
+3.Kernal ---------> it is a core part of the operating system that initializes hardware and launches the system services
+
+4.init process --> it is the 1st process which is started by the kernel and initialises the system by starting services and daemons
+
+5.Runlevels -----> it is state of system that determines which services and daemons are start at boot time.
+
+***********************************************************************************************************************************************************************
+
+**RUNLEVELS:-**
+
+init 0-----------> halt the system
+init 1-----------> single user mode (special admin)
+init 2-----------> multi-user mode (networking works) but cannot uses network service like nfs etc
+init 3-----------> GUI to CLI
+init 5-----------> CLI to GUI
+init 4-----------> future purpose
+
+*****************************************************************
+
+**How to set the default user mode:-**
+
+1.systemctl get-default
+  graphical interface
+
+2.systemctl set-default multi-user
+3.systemctl get-default
+  multi-user mode
+
+=======================================================================================================================================================================
+
+day 47 of Linux
+
+SELINUX=====>
+
+1.its a advance security layer to enhance the security
+2.SELinux (Security-Enhanced Linux) is a security feature in Linux that controls what users and programs can do, adding an extra layer of protection to the system.
+3.It’s like a strict security guard inside Linux that decides who can access what.
+
+
+1.Discretinary access control (DAC)
+2.mendatory access control (MAC)
+
+
+To check labelling in selinux====>
+ls -ldZ-------------> selinux contex
+
+
+To change the labelling in selinux=====>
+1.chcon -t (label) (file name) ----------------------> temporary
+2.semanage port -a -t (label) (file name) -----------> permanent
+
+
+To restore the labelling in selinux====>
+restorecon -vFR /demo
+
+
+Content in the file====>
+1.user:-
+2.role:-
+3.content type:-
+4.sensitivity:-
+
+
+To check process content====>
+1.ps -elf
+2.secon -p (PID)
+
+
+Selinux modes====>
+1.permissive (0)
+2.enforcing  (1)
+3.disabled
+
+
+To check the selinux modes===>
+1.getenforce
+2.sestatus
+
+------------------------------------------------------------------
+
+ENFORCING:-
+  "SELinux is fully active. If something violates the rules, I will block it."
+
+PERMISSIVE:-
+  "SELinux is watching, but not blocking. I will only log what would have been denied."
+
+
+HOW TO CHANGE THE MODES (temporary) ===>
+
+1.setenforce 0 -----> to change the mode
+2.getenforce -------> to check the mode
+  permissive
+
+1.setenforce 1
+2.getenforce
+  enforcing
+
+
+HOW TO CHANGE THE MODES (permanent) ===>
+
+1.vim /etc/selinux/config
+ change selinux=permissive/enforcing/disabled
+
+2.then reboot the system to change permanent
+
+------------------------------------------------------------------
+
+Practical====>
+
+Server machine ===>>>
+
+Host the webpage===>
+
+1.yum install httpd -y
+2.vim /var/www/html/index.html
+  <h1> hey mayur </h1>
+2.systemctl start httpd
+3.curl localhost
+<h1> hey mayur </h1>
+
+
+1st check these file instead of these /var/www/html/index.html ====>
+
+1.mkdir /demo
+2.cd /demo
+3.vim index.html
+  <h1> hey Shubham </h1>
+
+4.vim /etc/httpd/conf.d/demo.conf
+  <virtualhost \*:80>
+       documentroot /demo
+       servername linuxbatch -----#hostname
+  </virtualhost>
+
+  <directory /demo>
+      Require all granted
+  </directory>
+
+5.systemctl restart httpd
+6.curl localhost
+{ but the content not show beacuase of the labelling }
+
+
+To check the labelling====>
+
+1.ls -ldZ /demo
+{ r default_t }
+2.ls -ldZ /var/www/html/
+{ httpd_sys_content_t }
+
+
+To change the labelling (temporary)====>
+
+1.chcon -t httpd_sys_content_t /demo
+2.chcon -t httpd_sys_content_t /demo/index.html
+3.ls -ldZ /demo
+4.ls -ldZ /demo/index.html
+5.curl localhost
+{ hey Shubham }---------------> match the labels
+
+
+To restore the labelling===>
+restorecon -vFR /demo
+
+
+To change labelling (permanent)====>
+
+1.semanage fcontext -a -t httpd_sys_content_t "/demo(/.\*)?"
+2.restorecon -vFR /demo
+3.ls -ldZ /demo/index.html
+4.curl localhost
+{ hey Shubham } -------------> match the labels
+
+=======================================================================================================================================================================
+
+On port level:-
+
+1.semanage port -l | grep http
+
+2.semanage port -a -t http_cache_port_t -p tcp 17894
+
+3.semanage port -l | grep http  -----> 17894 we can use these port number
+
+=======================================================================================================================================================================
+
+day 48 of linux
+
+WEB SERVER ====>
+
+1.monolithic web server:- single server, single module
+2.microservice web server:- different servers, different modules
+3.extended web server:- single server, modules are different
+
+difference between the mono / micro / extended web server
+
+example:-
+
+1.mkdir /var/www/html/mobile
+2.vim /var/www/html/mobile/index.html
+<h1> this is my mobile page </h1>
+
+3.systemctl restart httpd
+4.curl localhost/mobile/
+<h1> this is my mobile page </h1>
+
+---------------------------------------------------
+
+1.mkdir /var/www/html/laptop
+2.vim /var/wwww/html/laptop/index.html
+<h1> this is my laptop page </h1>
+
+3.systemctl restart httpd
+4.curl localhost/laptop/
+<h1> this is my mobile page </h1>
+
+---------------------------------------------------
+
+1.mkdir /var/www/html/food
+2.vim /var/www/html/food/index.html
+<h1> this is my food page </h1>
+
+3.systemctl restart httpd
+4.curl localhost/food/
+<h1> this is my mobile page </h1>
+
+----------------------------------------------------
+
+on the web:-
+
+1.http://localhost/laptop/
+2.http://localhost/mobile/
+3.http://localhost/food/
+
+=======================================================================================================================================================================
+
+day 49 of Linux
+
+FTP (file transfer protocol):-
+
+  it is a file transfer protocol in which it can allows you to share the files and directories with others over the networks.
+
+port 20 and 21 :-
+1.port 20:- transfer the data via data channel.
+2.port 21:- to establish connection between two computers.
+
+vsftpd -----------> very secure file transfer protocol daemon
+anonymous user ---> ftp
+conf file --------> /etc/vsftpd/vsftpd.conf
+
+it is used as one of the most common means of copying file between computers over the internet.
+
+*****************************************************************
+
+HOW TO LOGIN WITH THE FTP USER ====>
+
+In server machine=====>
+
+1.yum install vsftpd -y
+2.systemctl start vsftpd
+3.touch /var/ftp/file{1..10}
+
+4.ftp localhost
+  name(localhost)....ftp
+  password...........enter-key
+
+5.ftp>ls ----------------------  to check files
+6.ftp>? ---------------------(?) to check which command we use
+7.ftp>! ---------------------(!) to see external terminal
+8.ftp>pwd -------------------(/) to see the directory
+9.ftp>get file7 -------------(get) to download the files
+
+9.firewall-cmd --add-service=ftp ---permanent
+  firewall-cmd --reload
+  firewall-cmd --list-all
+
+IN clients machine=====>
+
+1.yum install ftp -y
+2.ftp 172.25.0.4
+  name(localhost)....ftp
+  password...........enter
+
+3.ftp>ls 
+
+````````````````````````````````````````````````````````````````````````
+
+HOW TO UPLOAD FILE FROM ANONYMOUS USER ========>(put)
+
+1.vim /etc/vsftpd/vsftpd.conf --------------------> changes in conf file
+  uncomment---> anon_upload_enable=yes
+
+2.mkdir /var/ftp/shared --------------------------> create a dir read by ftp user
+3.chmod 777 /var/ftp/shared
+
+4.setenforce enforcing ---------------------------> change the selinux to enforcing mode
+  getenforce
+
+5.setsebool ftpd_anon_write on -------------------> change the boolien policy
+  setsebool ftpd_full_access on
+6.getsebool -a | grep ftp
+
+7.systemctl restart vsftpd 
+
+8.man date > new
+
+9.ftp localhost
+  username: ftp
+  password: enter
+
+10.ftp>ls
+11.ftp>cd /shared
+12.ftp>pwd
+13.ftp>put new ----------------------------------> (put) for uploading the file
+14.ftp>ls
+
+````````````````````````````````````````````````````````````````````````
+
+HOW TO DOWNLOAD THESE UPLOADED FILE =======> (get)
+
+1.vim /etc/vsftpd/vsftpd.conf
+  write at last-----> anon_umask=022
+
+2.systemctl restart vsftpd
+
+3.man cal > new1
+
+4.ftp localhost
+  username: ftp
+  password: enter
+
+5.ftp>ls
+6.ftp>cd shared
+7.put new1
+
+IN CLIENTS MACHINE:-
+ftp 172.25.0.4 
+  name: ftp
+  password: 
+
+cd shared
+get new1
+
+````````````````````````````````````````````````````````````````````````
+
+HOW TO DELETE UPLOADED FILE ======>>>
+
+1.vim /etc/vsftpd/vsftpd.conf
+  write last----> anon_other_write_enable=yes
+
+2.systemctl restart vsftpd
+
+3.ftp localhost
+   username: ftp
+   password: enter
+
+4.ftp>ls
+5.ftp>cd shared
+6.ftp>ls
+      new new1
+7.ftp>delete new
+8.ftp>delete new1
+
+````````````````````````````````````````````````````````````````````````
+
+ONLY LOCAL USER CAN LOGIN =======>
+
+1.vim /etc/vsftpd/vsftpd.conf
+  anonymous_enable=no -------------> change yes to no
+  local_enable=yes
+
+2.systemctl restart vsftpd
+
+3.ftp localhost
+   username: Linux
+   password: mayur
+
+4.ftp>ls
+
+````````````````````````````````````````````````````````````````````````
+
+ONLY PARTICULAR USER CAN LOGIN ========>
+
+1.vim /etc/vsftpd/user_list
+  add at end -----> linux
+
+2.vim /etc/vsftpd/vsftpd.conf
+  add at last ----> userlist_deny=no
+
+3.systemctl restart vsftpd
+
+4.ftp localhost
+    username: linux
+    password: mayur
+
+5.ftp>ls
+
+=======================================================================================================================================================================
+
+STORAGE
+
+There are three types of storage:-
+1.DAS ------> direct attach storage (pendrive etc)
+2.NAS ------> network attach storage (Samba, nfs)
+3.SAN ------> storage area network (ISCSI,RAID)
+
+1.SAMBA ====> it basically supports the cross platform and its a file server that enables the file sharing across different operating system over a network
+
+conf file-----> { /etc/samba/smb.conf }
+smb-----------> (445) authentication and data transfer
+nmb-----------> (139) network, interface NetBIOS system
+
+````````````````````````````````````````````````````````````````````````
+
+PRACTICAL:- (PERMISSIVE MODE)====>
+
+IN server machine:- (172.25.0.4)
+1.yum install samba -y
+2.mkdir /access
+3.useradd new
+4.passwd new
+5.vim /etc/samba/smb.conf ----------------------> configuration file
+  [access_dir]
+       path = /access
+       comment = this is directory
+       writable = yes
+       browseable = yes
+       public = yes
+       write list = new
+       read list = new
+       valid users = new
+6.setfacl -m u:new:rwx /access -----------------> extra permission to user
+7.smbpasswd -a new -----------------------------> give samba password to user
+8.yum install samba-client
+9.systemctl start smb nmb
+10.smbclient -U new //localhost/access_dir -----> prompt to enter into samba
+11.smb:/>
+
+12.to access in client:-(172.25.0.6)
+   1.yum install samba-client
+   2.systemctl start smb nmb
+   3.smbclient -U new //172.25.0.4/access_dir
+   4.smb:/>
+
+````````````````````````````````````````````````````````````````````````
+
+(ENFORCING MODE)====>
+
+In server machine:-
+
+1.setenforce enforcing
+2.semanage fcontext -a -t samba_share_t "/access(/.*)?"
+3.restorecon -vFR /access
+4.smbclient -U new //localhost/access_dir
+  smb:\>
+
+````````````````````````````````````````````````````````````````````````
+
+TO MOUNT THE ACCESS DIRECTORY:-
+
+In client machine:-
+
+1.smbclient -U new //172.25.0.4/access_dir
+2.yum install cifs-utils -------------------------------------------------------> common internet file system
+3.vim /etc/fstab                                         -----------------------> permanently mount the access dir
+  //172.25.0.4/access_dir   /mnt    cifs   defaults,username=new  0  0
+4.mount -a
+  passwd: mayur
+
+{ Note:- in updated version run:- systemctl daemon-reload }
+
+5.df -Th
+  { //192.168.0.4/access_dir    cifs      17G     11G     36%   /mnt }
+
+-----------------------------------------------------------------------
+
+CONNECT SYSTEM WITH WINDOWS USING SAMBA
+
+In windows:-
+1.go to network status --- change adapter --- option---- virtual box adapter only ----- details---- 192.168.56.1
+
+In centos:-
+1.add adapter ------- host only adapter
+2.ifconfig
+  192.168.56.101
+3.ping 192.168.56.1
+4.firewall-cmd --add-service=samba
+
+In windows terminal
+1.ping 192.168.56.101
+
+In windows
+map network drive----- \\192.168.56.101\access_dir
+choose---------------- different credentials connect
+username ------------- new
+password ------------- mayur
+
+HOW TO DISCONNECT THESE MAP-NETWORK:-
+
+check on the cmd
+1.net use
+  Z:   \\192.168.1.10\share
+
+2.net use Z: /delete
+
+to remove all samba connections:-
+net use * /delete /y
+
+------------------------------------------------------------------------
+
+SAMBA SERVER WITH MULTIUSER=====>
+
+1.useradd new1 
+  passwd new1
+2.useradd new2
+  passwd new2
+3.useradd new3
+  passwd new3
+
+smbpasswd -a new1
+smbpasswd -a new2
+smbpasswd -a new3
+
+setfacl -m u:new1:rwx /access
+setfacl -m u:new2:rwx /access
+setfacl -m u:new3:rwx /access
+
+vim /etc/samba/smb.conf
+[access_dir]
+    path = /access
+    comment = This is my dir
+    writable = yes
+    browseable = yes
+    public = yes
+    write list = new,new1,new2
+    read list = new, new1, new2, new3
+    valid users = new, new1, new2, new3
+
+systemctl restart smb nmb
+firewall-cmd --add-service=samba
+
+client side:-
+
+1.vim /etc/fstab
+ //172.25.0.4/access_dir  /mnt  cifs   defaults,multiuser,credentials=/root/passwd.txt 0 0
+
+2.useradd new1
+3.useradd new2
+4.useradd new3
+
+5.df -Th
+
+6.su - new1
+  ls /mnt
+  {access denied}
+  cifscreds add 172.25.0.4
+  passwd:
+  ls /mnt
+  touch /mnt/new111
+  ls /mnt
+
+8.su - new2
+  ls /mnt
+  {access denied}
+  cifscreds add 172.25.0.4
+  passwd:
+  ls /mnt
+  touch /mnt/new222
+  ls /mnt
+
+10.su - new3
+   ls /mnt
+   {access denied}
+   cifscreds add 172.25.0.4
+   passwd:
+   ls /mnt
+   touch /mnt/new333
+   {permission denied}
+
+{ because we dont allow the user 3 in the conf file in write list }
+
+But the user new1 cannot delete the new2, new3 users file=====>
+
+{ Hint:- use the sgid and the sticky bit permission concept }
+
+=======================================================================================================================================================================
+
+day 54 of Linux
+
+NFS -----> NETWORK FILE SYSTEM
+
+1.it is a network file system that allows the system to share the directories and files with others over the network.
+2.it is a mechanism for storing files on a network
+
+Package name====> nfs-utils, rpc-bind, mountd
+port number=====> 2049
+configuration===> /etc/sysconfig/nfs
+service user ===> nfsnobody
+
+-------------------------------------------------------------------------
+
+IN SERVER MACHINE:- (172.25.0.4)
+
+1.yum install nfs-utils -y
+
+2.mkdir /shared2 
+3.touch /shared2/file{1..10}
+
+5.vim /etc/exports
+  /shared2   172.25.0.0/24(rw,sync)
+
+6.exportfs -ar
+
+7.systemctl start nfs-server
+8.systemctl status nfs-server
+9.systemctl enable nfs-server
+
+10.firewall-cmd --add-service=nfs --permanent
+11.firewall-cmd --add-service=mountd --permanent
+12.firewall-cmd --add-service=rpc-bind --permanent
+13.firewall-cmd --reload
+
+{ Note:- rpc-bind -----> transfer for real time data
+         mountd -------> store metadata on network  }
+
+IN CLIENTS MACHINE:- (172.25.0.6)
+
+1.showmount -e 172.25.0.4
+2.vim /etc/fstab
+  172.25.0.4:/shared2    /media    nfs     defaults  0  0 
+3.mount -a
+  { note: mount -a depreciated in new version use systemctl daemon-reload }
+4.df -Th
+  { 192.168.0.4/shared2   nfs   media }
+
+5.ls /media
+6.touch /media/file11
+
+=======================================================================================================================================================================
+
+DIFFERENCE BETWEEN THE SAMBA AND THE NFS
+
+	Samba						           NFS
+1.it supports the cross-platform         	 1.it does not supports the cross-platform
+2.integrate with its own authentication 	 2.intergrate with the authentication services like Kerberos, LDAP
+3.it has two service ( smb and nmb)		 3.it has also three service ( nfs, mountd, rpc-bind )
+4.port number ( smb-445 and nmb-139 )		 4.port number 2049
+5.Provides file & printer sharing.		 5.Provides fast file sharing only (no printer sharing).
+6.Slightly slower (more overhead).		 6.Faster on Linux/Unix due to lightweight protocol.
+
+=======================================================================================================================================================================
+
+DHCP:- Dynamic Host Configuration Protocol
+
+1.it automatically assign the IPs to the client
+2.it works on the DORA process.
+2.its based on client-server model
+3.DHCP is an Application Layer protocol.
+4.dhcp ip address range is called scope
+5.It works over UDP ports 67 (server) & 68 (client).
+
+DHCP SERVER CAN PROVIDE ====>
+
+1.IP address
+2.subnet mask
+3.domain name
+4.default gateway
+5.DNS server address
+6.Wins server address
+          
+
+IT WORKS ON THE DORA'S PROCESS =====>>>
+
+Discover –----> The client broadcasts a request asking “Is there any DHCP server available to give me an IP?”
+Offer –-------> The DHCP server replies with an offer (IP address + subnet mask + gateway + DNS info).
+Request ------> The client sends back a request saying “I want to use this IP, please confirm.”
+Acknowledge --> The DHCP server confirms and leases the IP to the client.
+
+Configuration file====> { /etc/dhcp/dhcpd.conf }
+
+=======================================================================================================================================================================
+
+DNS SERVER :- (Domain Name System) ====>>>
+
+1.it can translates the domain name into the ip addresses. so computers can locate and communicate with each other on the internet.
+2.Without DNS, we have to remember numbers instead of names to open websites.
+3.it works on the application layer.
+4.top level domains are-->(.com,.org,.biz,.edu,.net,.mil)
+5.it works on the port number tcp/udp 53
+
+1.resolve name to ips ---------> forward lookup
+2.resolve ips to name ---------> reverse lookup
+
+
+PRACTICAL:
+
+1.INSTALL THE PACKAGES
+  yum install httpd -y
+  yum install bind bind-utils
+  systemctl start httpd
+  systemctl start named
+
+2.ADD INTO THE FIREWALL
+  firewall-cmd --add-service=http --permanent
+  firewall-cmd --add-service=dns --permanent
+  firewall-cmd --reload
+
+3.CHECK THE IP
+  ifconfig ----> 192.168.0.4
+
+4.EDIT THE /etc/named.conf FILE
+
+  add the ip into the options line
+  listen-on port 53 { 127.0.0.1; 192.168.0.4; };
+
+  create the zone-block after the zone-block
+  zone "mayur.com" IN {
+         type master;
+         file "mayur.com.fzone";
+         allow-query { any; };
+  };
+
+5.CHECK THE FILE CORRECT OR NOT
+  named-checkconf
+
+6.CREATE A FILE IN /var/named 
+  vim mayur.com.fzone
+  
+$TTL 2d        ; default TTL for zone
+
+@              IN           SOA          ns1.example.com.       hostmaster.example.com.  ( 
+                                               800                  ; serial number
+                                               12h                  ; refresh
+                                               15m                  ; update retry
+                                               3w                   ; expiry
+                                               2h                   ; minimum
+                                               )
+; name server RR for the domain
+               IN           NS            ns1.example.com.
+www            IN           A             192.168.0.4
+
+7.CHECK THE FILE CORRECT OR NOT
+  named-checkzone mayur.com mayur.com.fzone
+
+8.RESTART THE SERVICE
+  systemctl restart named
+
+9.CHECK THE DOMAIN
+  nslookup www.google.com
+  nslookup www.mayur.com
+
+10.RESOLVE THE ISSUE IN /etc/resolve.conf
+   vim /etc/resolve.conf
+   nameserver 192.168.0.4
+
+nslookup www.google.com
+nslookup www.mayur.com
+
+11.CHECK ON THE FIRE-FOX
+   www.mayur.com
+
+
+NOTE:-
+IF U WANT TO CHECK IT ON THE WINDOWS-BROWSER
+  1.enable the http port
+  2.enable the bridge network
+  3.also change the dns from default to our ip
+    { control panel ---> network and internet -----> network and sharing centre-----> change adapter setting 
+      right click on your network connection, select properties, then select internet protocol version 4(TCP/UDP) 
+      and click properties-----> set the dns prefered server }
+
+=======================================================================================================================================================================
+
+NTP service:- (NETWORK TIME PROTOCOL)
+     Used to synchronize the system clock with a remote time server over a network.
+
+package ====> chrony -y
+port no ====> 123/udp
+config  ====> /etc/chrony.conf
+service ====> chronyd
+
+=======================================================================================================================================================================
+
+MARIADB ===>>>(relational database service)
+
+static content -------------> predefined schema ------------> vertical scalable 
+
+what is data:
+   data is nothing but the information or the details about the reference.
+
+Mariadb (mysql):-
+   MySQL database is a datastructure that allows you to link the information between the different tables and different type of data buckets.   
+
+Database:- 
+  it is a collection of data but in a organise form called as database. 
+
+Database engine:-
+1.mssql 
+2.mysql
+3.mariadb
+4.postgresql
+5.oracle
+6.amazon arora
+7.IBM db2
+
+There are two types of databases 
+1.sql--------> structured query language 
+2.nosql------> non structured query language 
+
+1.sql (structured query language) ===>>
+    Static content-----> predefine schema------> Vertically scalable. 
+
+2.nosql (non structured query language) ===>> 
+    Dynamic content-----> horizontally Scalable-----> not structured schema 
+
+
+In server machine ===>>>
+
+1.yum install mariadb-server -y
+2.systemctl start mariadb 
+3.configuration file 
+  Vim /etc/my.cnf 
+4.set mariadb passwd  
+  mysql_secure_installation 
+5.mysql -u root -h localhost -pmayur 
+6.show databases; 
+7.create database student_data; 
+8.use student_data; 
+9.create table student_info (name varchar(10), roll_no int, status varchar(10)); 
+10.describe student_info; 
+11.show tables; 
+12.insert into student_info values (‘user1’,100,’fail’); 
+13.insert into student_info values (‘user2’,101,’pass’); 
+14.insert into student_info values (‘user3’,102,’fail’); 
+15.insert into student_info values (‘user4’.103,’pass’); 
+16.select * from student_info; 
+17.select name from student_info where status=’fail’; 
+18.select name, roll_no from student_info where status=’pass’ 
+19.delete from student_info where name =’user1’ 
+20.drop table student_info; 
+
+To get the Backup:-
+mysqldump -u root -h localhost -pmayur student_data > abc.bkp 
+
+To recover database:-
+mysql -u root -h localhost -pmayur student_data < abc.bkp 
+
+20.firewall-cmd –add-service=mysql 
+21.create user to login in client machine 
+22.mysql -u root -h localhost -pmayur 
+Create user user1 identified by ‘mayur’; 
+Grant all privilege on *.*  to user1; 
+Flush privileges; 
+
+In client machine 
+1.yum install mariadb
+2.systemctl start mariadb 
+3.mysql -u user1 -h localhost pmayur  
+
+
+1.Backup of schema:-
+mysqldump -u root -h localhost -pmayur student_data --no-data > abc1.bkp 
+
+2.Backup of data:-
+mysqldump -u root -h localhost -pmayur student_data --no-create-info > abc2.bkp
+
+================================================================================================================================================================================================================
+
+POSTFIX FOR SENDING EMAIL ALERTS VIA CENTOS
+
+INSTALL PACKAGES
+
+1.yum update -y
+2.yum install postfix mailx -y
+
+-------------------------------------------------------------------------------
+
+POSTFIX CONFIGURATION
+
+1.vim /etc/postfix/main.cf
+
+ADD THESE LINE BELOW THE RELAYHOST
+  relayhost = [smtp.gmail.com]:587
+
+ADD THESE LINE BELOW THE MYHOSTNAME
+  myhostname = Your_Hostname
+
+ADD THESE LINES AT THE END OF CONFIGURATION	
+  smtp_sasl_password_maps = hash:/etc/postfix/sasl/sasl_passwd
+  smtp_sasl_auth_enable = yes
+  smtp_tls_security_level = encrypt
+  smtp_sasl_security_options = noanonymous
+
+-------------------------------------------------------------------------------
+
+CREATE A APP PASSWORD IN GOOGLE ACCOUNT
+
+1.go to manage account
+2.app password
+3.create a password and copy these
+
+-------------------------------------------------------------------------------
+
+1.mkdir /etc/postfix/sasl/
+2.vim /etc/postfix/sasl/sasl_passwd
+  [smtp.gmail.com]:587 mayur@gmail.com:dfnrxmamttcbwbph
+
+-------------------------------------------------------------------------------
+
+CONVERT THE SASL_PASSWD FILE INTO DB FILE
+
+1.cd /etc/postfix/sasl
+2.postmap sasl_passwd
+3.ls 
+  sasl_passwd.db
+4.chmod 600 *
+
+-------------------------------------------------------------------------------
+
+STARTING THE SERVICE
+
+1.systemctl start postfix.service
+2.systemctl status postfix.service
+
+-------------------------------------------------------------------------------
+
+SENDING EMAIL TO ENDPOINT
+
+1.echo "Test mail" | mail -s "Postfix Test" mayur@gmail.com
+
+2.check it on the mailbox
+
+-------------------------------------------------------------------------------
+
+HOW TO REMOVE THE SECURITY WARNING & SEND FILE TO THE ENDPOINT 
+
+1.vim main.cf
+  comment(#) the line
+  #smtp_tls_security_level=may
+
+2.systemctl restart postfix.service
+
+3.vim testfile.txt
+  Hello buddy!
+
+4.echo "Test mail" | mail -s "Postfix Test" -a testfile.txt mayur@gmail.com
+
+5.check it on the mailbox
+
+=======================================================================================================================================================================
+
+NGINX--> REVERSE PROXY-LOAD BALANCING CONCEPT:-
+
+Client ---> Nginx (Reverse Proxy & Load Balancer) ---> Apache-1
+                                           └---------> Apache-2 
+
+“We use Nginx as a reverse proxy to provide security, caching, and load balancing. Instead of clients directly hitting the backend servers, all requests go through Nginx. Nginx then forwards the request to one of the Apache servers and returns the response back to the client. This hides the backend servers, improves performance, and balances traffic efficiently.”
+
+=======================================================================================================================================================================
+
+PRACTICAL-1: - NGINX-REVERSE PROXY
+
+concept:
+  1.Website is running on Apache (httpd)
+  2.Website should NOT be accessed directly
+  3.All users must access it through NGINX reverse proxy
+  4.NGINX will take the request → send it to Apache → send response back
+  5.So user never touches Apache server directly.
+  6.NGINX stands in front as a gatekeeper.
+
+User → NGINX (port 80) → Apache (port 8080) → Actual website
+
+PRACTICAL:-
+
+INSTALL AND SETUP APACHE	
+
+1.yum install httpd -y
+2.systemctl start httpd
+3.systemctl enable httpd
+4.echo "Hello Apache" > /var/www/html/index.html
+5.systemctl restart httpd
+6.vim /etc/httpd/conf/httpd.conf
+  listen 8080
+7.systemctl restart httpd
+8.firewall-cmd --add-port=8080/tcp --permanent
+9.firewall-cmd --reload
+
+INSTALL AND SETUP NGINX 
+
+1.yum install nginx -y
+2.systemctl start nginx 
+3.vim /etc/nginx/conf.d/reverse.conf
+
+server {
+    listen 80;
+    
+    location / {
+       proxy_pass http://192.168.1.13:8080;
+    }
+}
+
+4.nginx -t
+5.systemctl restart nginx
+
+6.192.168.1.13
+
+----------------------------------------------------------------------------
+
+NOTE:- if not accessible check the selinux
+       1.getenforce
+       2.setenforce 0
+       3.getenforce 
+         permissive
+
+=======================================================================================================================================================================
+
+PRACTICAL-2: NGINX AS A LOAD BALANCER
+
+concept:-
+1.apache-1:-port 8080
+2.apache-2:-port 8081
+3.nginx-load balancer
+
+APACHE_SERVER-1
+
+1.yum install httpd -y
+2.systemctl start httpd
+3.systemctl enable httpd
+4.echo "Apache Server-1" > /var/www/html/index.html
+5.systemctl restart httpd
+6.vim /etc/httpd/conf/httpd.conf
+  listen 8080
+7.systemctl restart httpd 
+8.firewall-cmd --add-port=8080/tcp --permanent
+9.firewall-cmd --reload
+
+<public_ip:8080>
+
+APACHE_SERVER-2
+
+1.yum install httpd -y
+2.systemctl start httpd
+3.systemctl enable httpd
+4.echo "Apache Server-2" > /var/www/html/index.html
+5.systemctl restart httpd
+6.vim /etc/httpd/conf/httpd.conf
+  listen 8081
+7.systemctl restart httpd 
+8.firewall-cmd --add-port=8081/tcp --permanent
+9.firewall-cmd --reload
+
+<public_ip:8081>
+
+SERVER-3:-NGINX-LOAD BALANCER
+
+1.yum install nginx -y
+2.systemctl start nginx
+3.systemctl enable nginx
+4.vim /etc/nginx/conf.d/loadbalancer.conf
+
+upstream backend {
+    server <private_ip>:8080;   # Apache server 1
+    server <private_ip>:8081;   # Apache server 2
+}
+
+server {
+    listen 80;
+
+    location / {
+        proxy_pass http://backend;
+    }
+}
+
+5.systemctl restart nginx
+
+< http://<nginx_public_ip >
+
+{ you get the server-1 and the server-1 switching the traffic with these nginx-load balancer }
+
+=======================================================================================================================================================================
+
+SSL / TLS / HTTPS
+
+
+ssl -----> secure socket layer
+tls -----> transport layer security
+https ---> hyper text transport protocol secure
+
+HTTPS = HTTP + TLS ====>>> Secure website
+
+---------------------------------------------------------------------------------
+
+WHY WE NEED SSL/TLS:-
+When you open a website and send data (password, OTP, card details)...
+  1.Without SSL/TLS ===>>> data travels plain text, hackers can read it.
+  2.With SSL/TLS ======>>> data becomes encrypted, no one can read it.
+
+---------------------------------------------------------------------------------
+
+HOW SSL/TLS WORKS:-
+
+Symmetric:-
+  1.faster and more efficient, suitable for large data.
+  2.challenging key distribution, single key must be kept secret.
+
+Asymmetric:-
+  1.slower, suitable for small data.
+  2.simplified key distribution, secure even if the public key is sharing.
+  3.two keys: 1.public-key
+            2.private-key
+
+---------------------------------------------------------------------------------
+
+WHAT IS SSL-CERTIFICATE:-
+ An SSL certificate is a digital ID card of a website.
+
+It contains:
+  1.Website name (domain)
+  2.Owner details
+  3.Public Key
+  4.Validity (expiry date)
+  5.Digital Signature from CA (Certificate Authority)
+
+---------------------------------------------------------------------------------
+
+WORKING OF SSL-TLS:-
+1.TCP handshake
+2.certficate checking
+3.key exchange
+4.data exchange
+
+1.Client Hello (Browser → Server)
+  Your browser says:
+  "Hello server, I support these TLS versions and ciphers. Let's start secure connection!"
+
+2.Server Hello (Server → Browser)
+  Server replies:
+  "Hello! I choose this TLS version and cipher."
+
+3.Server Sends SSL Certificate
+  The server sends its certificate + public key.
+
+4.Browser Verifies Certificate
+  Browser checks:
+  Was certificate signed by a trusted CA?
+  Is the certificate expired?
+  Is this certificate really for this website?
+  If everything is OK → Lock icon appears 🔒
+
+5.Key Exchange (Very Important)
+  Browser creates a pre-master secret (random string) and:
+  ✔️ Encrypts it with Server’s Public Key
+  ✔️ Sends it to the server
+  Only the server can decrypt it using its Private Key.
+  Now both browser and server have the same secret.
+
+6.Session Key Generation (Symmetric Key)
+  Using the pre-master secret: 
+  ✔️ Both sides generate same symmetric key 
+  ✔️ This key is used for all further data communication
+  Symmetric is fast → perfect for actual data.
+
+7.Encrypted Data Exchange (Real Communication)
+  Now everything you send:
+  Passwords
+  OTP
+  Messages
+  Payments
+  → are encrypted with symmetric key → super fast and secure.
+
+---------------------------------------------------------------------------------
+
+SIMPLY SAY...
+
+When you open an HTTPS website:
+Browser and server say "hello".
+Server shows certificate.
+Browser verifies it.
+Browser creates a secret key.
+Secret key is sent encrypted using asymmetric encryption.
+Both sides generate a symmetric key.
+All data now uses fast symmetric encryption.
+✔️ Data is secure
+✔️ Hackers cannot read it
+✔️ Website is trusted
+✔️ You see the lock 🔒
+
+“TLS uses asymmetric encryption for key exchange and symmetric encryption for data exchange.”
+“HTTPS is just HTTP running inside a TLS-secured tunnel.”
+
+---------------------------------------------------------------------------------
+
+WHY HASHING IS USED IN PASSWORDS:-
+
+We don’t store passwords.
+We store hash of the password.
+
+Example:
+User password: Mayur@123
+Stored hash: 8f5b0af9d...
+
+If a hacker steals the database → they still cannot see the real password.
+
+=======================================================================================================================================================================
+
+1. File and Directory Management
+
+pwd – Show current directory
+ls – List files
+ls -l – List files with details
+ls -a – List hidden files
+cd <directory> – Change directory
+mkdir <folder> – Make new folder
+rmdir <folder> – Remove empty folder
+rm -r <folder> – Remove folder recursively
+touch <file> – Create empty file
+cp <source> <destination> – Copy file/folder
+mv <source> <destination> – Move/rename file/folder
+cat <file> – Show file content
+more <file> – Show file content page by page
+less <file> – Show file content with scroll
+head <file> – Show first 10 lines
+tail <file> – Show last 10 lines
+tail -f <file> – Monitor file in real-time
+find <path> -name <filename> – Search for files
+
+2. File Permissions
+
+chmod 755 <file> – Change file permissions
+chmod +x <file> – Make file executable
+chown <user>:<group> <file> – Change owner
+chgrp <group> <file> – Change group
+
+3. System Info
+
+uname -a – Kernel info
+hostname – Show hostname
+uptime – System uptime
+whoami – Show current user
+id – Show user ID and group ID
+df -h – Disk space usage
+du -h <file/folder> – Size of file/folder
+free -h – RAM usage
+top – Running processes
+htop – Interactive process viewer (if installed)
+truncate -s -------------> to shrink or extend the file size
+
+4. Package Management (Ubuntu/Debian)
+
+sudo apt update – Update repositories
+sudo apt upgrade – Upgrade packages
+sudo apt install <package> – Install package
+sudo apt remove <package> – Remove package
+sudo apt search <package> – Search package
+dpkg -l – List installed packages
+
+5. Networking
+
+ping <host> – Test connectivity
+ifconfig – Show network interfaces
+ip addr – Show IP addresses
+netstat -tulnp – Show listening ports
+ss -tulnp – Alternative for netstat
+curl <url> – Download content
+wget <url> – Download file
+traceroute <host> – Show route to host
+nslookup <host> – DNS query
+scp <file> user@host:/path – Copy file remotely
+ssh user@host – Remote login
+
+6. Text Processing
+
+grep <pattern> <file> – Search text
+grep -r <pattern> <folder> – Recursive search
+wc -l <file> – Count lines
+wc -w <file> – Count words
+cut -d',' -f1 <file> – Extract column
+sort <file> – Sort lines
+uniq <file> – Remove duplicates
+diff <file1> <file2> – Compare files
+awk '{print $1}' <file> – Extract column using awk
+sed 's/old/new/g' <file> – Replace text
+
+7. Compression & Archiving
+
+tar -cvf file.tar <folder> – Create tar archive
+tar -xvf file.tar – Extract tar archive
+tar -czvf file.tar.gz <folder> – Compress to gzip
+tar -xzvf file.tar.gz – Extract gzip
+zip file.zip <folder> – Compress to zip
+unzip file.zip – Extract zip
+
+8. Process Management
+
+ps – Show running processes
+ps aux – Show all processes
+kill <PID> – Kill process by ID
+killall <process> – Kill by name
+bg – Resume job in background
+fg – Bring job to foreground
+jobs – List background jobs
+
+9. Disk & Filesystem
+
+mount – Show mounted filesystems
+umount <path> – Unmount filesystem
+blkid – Show disk UUID
+lsblk – Show block devices
+fdisk -l – Show disk partitions
+
+10. User Management
+
+sudo adduser <username> – Add user
+sudo deluser <username> – Delete user
+passwd <username> – Change password
+groups <username> – Show groups
+who – Who is logged in
+last – Login history
+
+11. Searching & History
+history – Show command history
+!! – Repeat last command
+!n – Repeat nth command in history
+which <command> – Show command path
+whereis <command> – Show binaries, docs
+
+12. System Control
+
+sudo reboot – Reboot system
+sudo shutdown -h now – Shutdown immediately
+sudo systemctl start <service> – Start service
+sudo systemctl stop <service> – Stop service
+sudo systemctl restart <service> – Restart service
+sudo systemctl status <service> – Check service
+
+13. Miscellaneous
+
+echo "Hello" – Print text
+date – Show current date/time
+cal – Show calendar
+sleep 5 – Wait for 5 seconds
+alias ll='ls -l' – Create shortcut
+uname -r – Show kernel version
+
+=======================================================================================================================================================================
+
+Revision session:-
+
+1.commands to rename the file
+===> mv
+
+2.whats the permission for the root directory (/root)
+===> 700 and 550
+
+3.what are the permissions for sudoers file
+===> ls -ldr
+    r-- r-- --- (440)
+
+3.whats the difference between the acl and the chmod
+===> 1.acl:-acl gives the permission for a particular user while
+     2.chmod:-chmod gives the permission for all other users
+
+4.whats the difference between the suid and the sudo permission
+===>suid basically allow all others users to use the root user command while the sudo basically give the permission to a specifc user to run that command
+
+6.whats the difference between the locate and the find command
+===>1.both are used for finding the files 
+    2.but locate can locate the file in the database while we have to update the database 1st by updatedb command
+    3.find command can easily find the file in the system so its take less time to give the file while locate gives u more time to give the file
+
+7.how to find the inode number
+===>1.ls -i
+    command to check:- find / -inum (number)
+
+8.whats the difference between the yum remove and the yum autoremove
+====>yum remove removes only the package while the yum autoremove removes the dependencies download with the package.
+
+9.whats the difference between the yum provides and the yum search
+====> yum provides use for checking the package which package download a particular command and yum search use when we have only know the half name or related name
+      about the command that time i use yum search
+
+=======================================================================================================================================================================
+
+50 Linux command for centos and ubuntu====>
+
+🔹 Package Management
+
+Install a package
+CentOS: yum install httpd
+Ubuntu: apt install apache2
+
+Reinstall a package
+CentOS: yum reinstall httpd
+Ubuntu: apt install --reinstall apache2
+
+Update a package
+CentOS: yum update httpd
+Ubuntu: apt install --only-upgrade apache2
+
+Upgrade all packages
+CentOS: yum upgrade
+Ubuntu: apt upgrade
+
+Remove a package
+CentOS: yum remove httpd
+Ubuntu: apt remove apache2
+
+Remove package with config files
+CentOS: yum autoremove httpd
+Ubuntu: apt purge apache2
+
+Search for a package
+CentOS: yum search httpd
+Ubuntu: apt search apache2
+
+Show package info
+CentOS: yum info httpd
+Ubuntu: apt show apache2
+
+Check which package provides a file
+CentOS: yum provides /bin/ls
+Ubuntu: apt-file search /bin/ls
+
+Check available updates
+CentOS: yum check-update
+Ubuntu: apt list --upgradable
+
+List all installed packages
+CentOS: yum list installed
+Ubuntu: apt list --installed
+
+Download a package (without installing)
+CentOS: yumdownloader httpd
+Ubuntu: apt download apache2
+
+Clear local cache
+CentOS: yum clean all
+Ubuntu: apt clean
+
+Check package history
+CentOS: yum history
+Ubuntu: less /var/log/apt/history.log
+
+Install from local package file
+CentOS: rpm -ivh httpd.rpm
+Ubuntu: dpkg -i apache2.deb
+
+Remove using rpm/dpkg
+CentOS: rpm -evh httpd
+Ubuntu: dpkg -r apache2
+
+Show package info from local file
+CentOS: rpm -qip httpd.rpm
+Ubuntu: dpkg -I apache2.deb
+
+Check package installation
+CentOS: rpm -q httpd
+Ubuntu: dpkg -l | grep apache2
+
+List files of installed package
+CentOS: rpm -ql httpd
+Ubuntu: dpkg -L apache2
+
+Verify package installation
+CentOS: rpm -V httpd
+Ubuntu: debsums apache2
+
+-----------------------------------------------------------------------------
+
+🔹 System Management
+
+Check system version
+CentOS: cat /etc/centos-release
+Ubuntu: lsb_release -a
+
+Check kernel version
+CentOS: uname -r
+Ubuntu: uname -r
+
+Check CPU info
+CentOS: cat /proc/cpuinfo
+Ubuntu: cat /proc/cpuinfo
+
+Check memory info
+CentOS: free -m
+Ubuntu: free -m
+
+Check disk usage
+CentOS: df -h
+Ubuntu: df -h
+
+Check directory size
+CentOS: du -sh /var/log
+Ubuntu: du -sh /var/log
+
+List running processes
+CentOS: ps aux
+Ubuntu: ps aux
+
+Kill process by PID
+CentOS: kill -9 1234
+Ubuntu: kill -9 1234
+
+Check open ports
+CentOS: netstat -tulnp
+Ubuntu: ss -tulnp
+
+Check listening service
+CentOS: lsof -i :80
+Ubuntu: lsof -i :80
+
+Start service
+CentOS: systemctl start httpd
+Ubuntu: systemctl start apache2
+
+Stop service
+CentOS: systemctl stop httpd
+Ubuntu: systemctl stop apache2
+
+Restart service
+CentOS: systemctl restart httpd
+Ubuntu: systemctl restart apache2
+
+Enable service on boot
+CentOS: systemctl enable httpd
+Ubuntu: systemctl enable apache2
+
+Disable service on boot
+CentOS: systemctl disable httpd
+Ubuntu: systemctl disable apache2
+
+Check service status
+CentOS: systemctl status httpd
+Ubuntu: systemctl status apache2
+
+View system logs
+CentOS: journalctl -xe
+Ubuntu: journalctl -xe
+
+Check uptime
+CentOS: uptime
+Ubuntu: uptime
+
+Check hostname
+CentOS: hostname
+Ubuntu: hostname
+
+Change hostname
+CentOS: hostnamectl set-hostname server1
+Ubuntu: hostnamectl set-hostname server1
+
+-----------------------------------------------------------------------------
+
+🔹 Networking
+
+Check IP address
+CentOS: ip addr show
+Ubuntu: ip addr show
+
+Check default gateway
+CentOS: ip route
+Ubuntu: ip route
+
+Ping test
+CentOS: ping -c 4 google.com
+Ubuntu: ping -c 4 google.com
+
+Check DNS resolution
+CentOS: nslookup google.com
+Ubuntu: dig google.com
+
+Check active connections
+CentOS: netstat -an
+Ubuntu: ss -an
+
+Check firewall status
+CentOS: firewall-cmd --state
+Ubuntu: ufw status
+
+Allow firewall port
+CentOS: firewall-cmd --add-port=80/tcp --permanent
+Ubuntu: ufw allow 80/tcp
+
+Reload firewall
+CentOS: firewall-cmd --reload
+Ubuntu: ufw reload
+
+Disable firewall
+CentOS: systemctl stop firewalld
+Ubuntu: ufw disable
+
+Enable firewall
+CentOS: systemctl start firewalld
+Ubuntu: ufw enable
+
+=======================================================================================================================================================================

@@ -1,0 +1,58 @@
+GREP COMMANDS =====>>>
+
+======================================================================================================
+
+vim sample.txt
+
+1. The quick brown fox jumps over the lazy dog.
+2. Linux is a powerful operating system.
+3. Grep is used for searching text in files.
+4. Sed is used for text manipulation.
+5. Awk is great for pattern scanning and reporting.
+6. The dog chased the cat.
+7. Cats are very clever animals.
+8. Shell scripting makes tasks automated.
+9. The word "grep" comes from "Global Regular Expression Print".
+10. Some people love cats, while others love dogs.
+
+
+Find lines containing a word
+grep "dog" sample.txt
+
+
+Case-insensitive search
+grep -i "linux" sample.txt
+
+
+Show line numbers with match
+grep -n "cat" sample.txt
+
+
+Search for whole word only (not part of another word)
+grep -w "cat" sample.txt
+
+
+Search for multiple words (OR condition)
+grep -E "cat|dog" sample.txt
+
+
+Invert match (show lines that do NOT contain the word)
+grep -v "dog" sample.txt
+
+
+Count the number of matches
+grep -c "cat" sample.txt
+
+
+Show only the matched word, not the whole line
+grep -o "dog" sample.txt
+
+
+Search using regex (lines starting with number 1)
+grep "^1" sample.txt
+
+
+Search for lines ending with "dog."
+grep "dog\.$" sample.txt
+
+======================================================================================================

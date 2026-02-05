@@ -1,0 +1,133 @@
+ AWK 
+
+  awk is one of the most powerful text-processing tools in Linux. It is widely used in industry for log analysis, reporting, field extraction, data processing, and automation.
+
+=======================================================================================================================================================================
+
+🔹 Basic Level
+
+1.Print whole file (default)
+  awk '{print}' awk_sample.txt
+
+2.Print only the first column (ID)
+  awk '{print $1}' awk_sample.txt
+
+3.Print name and salary (2nd and 5th columns)
+  awk '{print $2, $5}' awk_sample.txt
+
+
+🔹 Filtering with Conditions
+
+1.Print people older than 30
+  awk '$3 > 30 {print $2, $3}' awk_sample.txt
+
+2.Print only Managers
+  awk '$4 == "Manager" {print $2, $4}' awk_sample.txt
+
+3.Print Developers earning more than 55000
+  awk '$4=="Developer" && $5 > 55000 {print $2, $4, $5}' awk_sample.txt
+
+
+🔹 Formatting Output
+
+1.Print with labels
+  awk '{print "Name:", $2, "- Role:", $4, "- Salary:", $5}' awk_sample.txt
+
+2.Align output nicely
+  awk '{printf "%-10s %-10s %-10s\n", $2, $4, $5}' awk_sample.txt
+
+
+🔹 Calculations
+
+1.Add 1000 bonus to each salary
+  awk '{print $2, $5+1000}' awk_sample.txt
+
+2.Calculate total salary
+  awk '{sum+=$5} END {print "Total Salary:", sum}' awk_sample.txt
+
+3.Calculate average age 
+  awk '{sum+=$3} END {print "Average Age:", sum/NR}' awk_sample.txt ----------->>> NR = Number of Records (lines)
+
+
+🔹 Advanced / Industry Use
+
+1.Find highest salary
+  awk 'NR==1 {max=$5; name=$2} $5>max {max=$5; name=$2} END {print "Highest Salary:", name, max}' awk_sample.txt
+
+2.Find lowest salary
+  awk 'NR==1 {min=$5; name=$2} $5<min {min=$5; name=$2} END {print "Lowest Salary:", name, min}' awk_sample.txt
+
+3.Count how many Developers
+  awk '$4=="Developer" {count++} END {print "Total Developers:", count}' awk_sample.txt
+
+4.Group by role and calculate total salary
+  awk '{role[$4]+=$5} END {for(r in role) print r, role[r]}' awk_sample.txt
+
+5.Group by role and count employees
+  awk '{count[$4]++} END {for(r in count) print r, count[r]}' awk_sample.txt
+
+=======================================================================================================================================================================
+
+id fname lname desig dept salary
+101 Raj Rastogi Manager Loan 37000
+102 Sham Mohan Chashier Cash 32000
+103 Baburao Apte Associate Loan 25000
+104 Acco Phillp Accountant Account 45000
+105 Alex Watt Associate Deposit 35000
+106 Rick Watt Manager Account 65000
+107 Zeena Johnson Lead Cash 25000
+108 John Paul Manager IT 75000
+109 Alex Watt Probation Loan 40000
+
+
+1.to print 1st coloumn
+  awk '{print $1}' sample.txt
+
+2.to print no of coloumns
+  awk '{print $1,$2}' sample.txt
+
+3.to print only dump 
+  awk '/dump/ {print $0}' sample.txt
+
+4.to count word how many times in a file
+  awk '/dump/ {count ++} END {print count}' sample.txt
+
+5.to check ip how many times in a file
+  awk '/172.31.0.0/ {count ++} END {print count}' sample.txt
+
+6.check lines from 2 to 10 only
+  awk 'NR>=2 && NR<=10 {print}' sample.txt
+  awk 'NR==2 , NR==6 {print $0}' sample.txt
+
+7.print name as well as line no
+  awk '/dump/ {print NR,$0}' sample.txt
+
+8.print only line no 6 
+  awk 'NR==6 {print $0}' sample.txt
+
+9.print line no of empty line
+  awk 'NF==0 {print NR}' sample.txt
+
+10.search multiple words in a file
+  awk '/dump|pipe/ {print $0}' sample.txt
+
+---------------------------------------------------------
+
+**WORKING WITH CSV OR DIFFERENT DELIMETER
+
+1.to print coloumn 2
+  awk -F, '{print $2}' sample.txt
+
+2.print data of employee whos salary >50k
+  awk -F, '$NF>50000 {print $0}' sample.txt
+
+---------------------------------------------------------
+
+**USE CASES WHERE AWK CAN BE USEFUL**
+
+1.how to get only status of service
+  systemctl status httpd | awk 'NR==3 {print $0}' 
+
+2.how to get list of files
+  ls -lt | awk '{print $NF}'
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

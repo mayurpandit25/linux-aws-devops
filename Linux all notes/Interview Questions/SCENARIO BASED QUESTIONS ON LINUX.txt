@@ -1,0 +1,189 @@
+SCENARIO BASED QUESTIONS ON THE LINUX- DAY-01
+
+Scenario: Copy all files owned by user
+Question: Copy all files owned by mayur to /backup without changing ownership.
+
+====> find / -user mayur -exec cp -aprvf '{}' /backup \;
+
+==========================================================================
+
+Scenario: Cron job not running
+
+====>> 
+1.check the service
+  systemctl status crond
+
+2.verify syntax
+  crontab -l
+
+3.check the logs
+  /var/log/cron
+
+==========================================================================
+
+Scenario: Recover deleted command
+
+=====>>> 1.yum provides head
+         2.yum reinstall coreutils
+
+==========================================================================
+
+Scenario: Create compressed backup
+
+====>>> tar -cJvf /backup/etc.tar.xz /etc
+
+==========================================================================
+
+Scenario: Extend LVM
+
+1.pvcreate /dev/sdb2
+2.vgextend vg /dev/sdb2
+3.lvextend -L +1G /dev/vg/lv
+4.e2fsck -f /dev/vg/lv
+5.resize2fs /dev/vg/lv
+
+==========================================================================
+
+Scenario: Reduce LVM
+
+1.e2fsck -f /dev/vg/lv
+2.resize2fs /dev/vg/lv
+3.lvreduce -L -550M /dev/vg/lv
+
+==========================================================================
+
+Scenario: Convert partition to swap
+
+1.fdisk /dev/sdc     # change type to 82
+2.partprobe
+3.mkswap /dev/sdc1
+4.swapon /dev/sdc1
+5.swapoff /dev/sdc1
+
+==========================================================================
+
+Scenario: SSH issue (machine should not be connected)
+
+1.check ping command
+2.check the service---> systemctl status sshd
+3.check the port number 22
+4.check the firewall--> firewall-cmd --list-all
+
+==========================================================================
+
+Scenario: Sudo without password
+
+vim /etc/sudoers
+
+linux   ALL=(ALL)   NOPASSWD:/sbin/dmidecode
+
+==========================================================================
+
+Scenario: User home directory not created
+
+=====> when create the user use -m to create the home directory
+
+==========================================================================
+
+Scenario: You want to set password expiry for all users
+
+====>>>
+
+Set default in /etc/login.defs:
+
+PASS_MAX_DAYS 30
+
+==========================================================================
+
+Scenario: User needs temporary root
+
+=====> add user into the /etc/sudoers file
+   
+mayur   ALL=(ALL)     ALL
+
+==========================================================================
+
+Scenario: You need to find which process is using port 8080
+
+ss -tlnp | grep 8080
+
+==========================================================================
+
+Scenario: Need to mount ISO file
+
+mount -o loop /root/centos.iso /mnt/iso
+
+==========================================================================
+
+Scenario: Two users need different shells
+
+usermod -s /bin/bash raj
+usermod -s /sbin/nologin om
+
+==========================================================================
+
+What is inode number?
+
+Unique index pointing to file metadata.
+
+==========================================================================
+
+How do you check current load on system?
+
+uptime
+top
+
+==========================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

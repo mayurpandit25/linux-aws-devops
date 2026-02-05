@@ -1,0 +1,200 @@
+**ADVANCE QUESTIONING ON THE LINUX**
+
+=======================================================================================================================================================================
+
+1.how to set a username and password to never expires.
+---> 1.useradd mayur
+     2.chage -M -1 mayur
+     3.chage -l mayur
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.why /etc/passwd and /etc/shadow file cannot be merged into 1 file
+----> 1.so basically the /etc/passwd file stores the user related information while the /etc/shadow file stores the users password information which is in hashed form 
+        encrypted form
+      2./etc/passwd file basically having the permissions of 644 which is usually read by the local users while the /etc/shadow file having the no-permission means it  
+        can only access by the admin 
+      3.so if we merge these two files together anyone can easily access the /etc/shadow file and misuse the information 
+      4.so because of the security concenrs and adding more security these two files should be separatly stored
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.to list all the files opened by the particular PID
+---> lsof -p (pid)
+
+example:- 1.ps -elf | grep tomcat 
+          2.lsoff -p (pid_of_tomcat)
+          
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4.we are unable to umount the file system. what are the reasons behind it?
+---> 1.suppose if you mount the file system in the /data/ file
+     2.if you are in the same directory which is basically mounted so u cant unmount the file system
+     3.you have to go outside of the file and then unmount the file system
+     4.ass well as the files are open in the directory lsof /dev/sda
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5.what could be the reason if server take more time after reboot?
+----> 1.if the filesystem got currupt and its ext2 which is not having the jounaling feature
+      2.means when u use ext2 ext3 file system that not having the jounaling feature and got currupted then that time it takes more time than usual 
+      3.so its recommed that use the ext4 file system that having the more advanced feature compared these two file system and also having the jouranling feature
+      4.jouranling feature means when the filesytem got currupt it takes the backup feature which is not given by old filesytems but in new filsystems we got backup after it getting currupted.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6.we are trying to create the file under any partition but we are getting permisssion denied alert. what could be the reasons? however no space issue and no perssion issue?
+---> 1.if i am running out of the inode
+     2.sometimes df command reports that these is enough free space but system claims file-system if full
+     3.you need to check for the inode which identifies the file and its attributes on a file systems using the following command
+     4.df -i
+     5.df -i/ftpusers/
+ 
+so if the 100% inodes are used try the following options:-
+1.find unwanted files and delete or move to another server
+2.find unwanted large files and delete or move to another server
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+7.how to check the kernal routing table information?
+---> 1.route -n 
+     2.netstat -m 
+     3.ip route
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8.how to set sticky bit and what is the difference between small (s) and capital (S)
+---> 1.basically used for controlling all the other users means to modify and delete the file only owners and the root have to access to delete and modify the file
+     
+1.chmod o+t (file) ----------setting the sticky bit on the file
+2.chmod o-t (file) ----------remove the sticky bit on that file
+
+small *s*-------------------->basically setup the uid as well as the executable permission allow
+cap.  *S*-------------------->basically setup the uid as well as there is no executable permission
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+9.which file is used to specify the default getway
+---> /etc/sysconfig/network
+
+where we mention the getway:-
+1.route -n  -------------------------------#to get the getway 
+2.vim /etc/sysconfig/network --------------#assign the getway in the particular file
+  NETWORKING=yes
+  HOSTNAME= (assign the hostname)
+  GATEWAY= (assign the gateway )
+3.systemctl restart NetworkManager
+4.systemctl status NetworkManager
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+10.in RHEL how to switch between the two runlevels?
+---> 1.systemctl set-default multi-user.target
+     2.systemctl get-default
+    
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+11.what is nice value and how to set nice value for particular proccess?
+---> 1.nice value is the prority of a proccess and to set a nice value use the below command.
+     2.it ranges from -20 to 19
+
+     #nice -n 5 <command>
+     2.nice -n -1 pwd
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+12.what is the difference between ftp and tftp
+---> 
+FTP --<file transfer protocol>
+1.ftp is a file transfer protocol
+2.port used in the ftp is 20 and 21
+3.ftp uses the tcp protocol
+4.ftp is more complex because it have two port numbers
+5.authentication is required in ftp
+
+TFTP---<trivial file transfer protocol>
+1.tftp is a trivial file transfer protocol
+2.while the port used in the tftp is 69
+3.while the tfpt uses the udp protocol
+4.while authentication is not required in tftp
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+13.how to extend the file system in linux
+---> 1.LVM---logical volume manager
+    
+     #lvextend
+     #lvextend -L +2G /dev/data
+     #resize2fs /dev/data
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+14.how will you rollback the packages after patching?
+---> 1.yum install vsftpd
+     2.yum history
+     3.yum history info 8
+     4.yum history undo 8
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+15.what is rsync and what is the syntax for rsync??
+---> 1.it is a utility for effeciently transfering and synchronizing files accross different system or locations.
+     2.its known for its speed,flexibility and effeciency
+     3.optimize file transfer by sending only the changes made and ensure that file permissions,ownership and timestamps are preserved
+     4.it works like scp command.
+
+**rsync syntax**
+  { rsync [options] source destination }
+
+options:
+1.-a or --archieve for archieving files
+2.-v or --verbos for verbos output
+3.-z or --compress for compressions
+4.and --progress to show progress during transfer
+
+**examples**
+
+1.vim file1.csv
+
+rsync file1.csv root@{ip address}:/mnt
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+16.how to reduce the file system in linux? fs reduction can be happened online or not?
+---> 1.with the help of <lvreduce> command we can reduce the file system in linux
+     2.fs reduction can not be happened online you have to approved for the downtime 1st as well as raise the ticket.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+17.uptime command shows the load average of the system.but we can see total 3 values of load average.is there any specific meaning of those values?
+---> 1.yes there is specific meaning for this value i.e it show load average of the computational work done by the system
+     2.for last 1min last 5 min and last 15 min 
+     3.for example laod average is 1.05 .07 5.90
+     5.last 1 min system was overloaded by 5% because on an average .05 proccess are waiting for 1.05 CPU
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

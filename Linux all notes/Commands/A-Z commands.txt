@@ -1,0 +1,150 @@
+A===>
+awk--> a powerful programming language used for pattern scanning and processing
+alias--->create a custom shortcut of our regularly used commands
+apt----->basically used in ubuntu to install the packages
+at------>linux command line utility used to schedule jobs for later execution
+
+B====>
+bg--->to run job in background
+bc--->binary calculator
+bash->the bourne again shell,a widely used command interpreter
+
+c===>
+chmod----->changes the file mode(permissions)
+chown----->used to change the owner of file
+chagrp---->to change the group of file
+cp-------->used to copy files
+cal------->for calender 
+
+D===>
+df-------->shows the disk space ussage
+du-------->to check the file size
+diff------>get diff between two files
+date------>to check the date
+
+E===>
+env------->desplays the environment variables
+echo------>used to print as well as save the particul thing on the file
+export---->to set the environment variable
+egrep----->used to find the multple words in the file
+
+
+F====>
+find------>find files in the directory hierarchy
+file------>to check the file types
+fg-------->to run the job in foreground
+free------>to check the memory
+
+G====>
+grep------>used for find out the words in the file
+gzip------>to create a zip file
+groupadd-->to create a group
+
+H====>
+history--->to check the history of recently used commands
+head------>to check the 1st 10 lines of a file as well as get the line from top
+hostname-->to get the machine name
+
+I====>
+ifconfig--->to check the ips of server
+ip--------->also check the ip
+id------->to check users info
+iptables-->to check the tables
+
+J===>
+jobs----->list the jobs
+
+K===>
+kill----->to terminate the process
+
+L===>
+ls------->list the directory contents
+less----->to check the file from top to bottom 
+ln ------>to create the hardlink /backup of a file
+locate--->locate files on the database
+
+M===>
+mkdir---->to create directory
+mv------->to move file as well as rename the file
+more----->to show the output of a file by page by page
+
+N===>
+netstat--->get the active internet connections,routing tables,interface statistics,masqurede connections and multicast memberships
+nano------>basically used as a editor
+nice------>to set the priority for the process
+
+O===>
+openssl---->it is a open source command line tools used to generate private keys csr keys and install your ssl and tls certificate and identity certificate information
+
+P===>
+ps------->used to check the proccess status
+printenv-->print the variables
+pwd------->print workking directory
+passwd---->to set the passwd to a user
+
+Q====>
+quota----->displays the disk usage and limits for a user or group
+
+R====>
+rsysnc---->works like scp command
+rm ------->to remove the files
+rmidir---->to remove the directory
+reboot---->to reboot the system
+
+S===>
+sudo------->give the super user privilliage
+sed-------->basically used for finding the things on the file logs etc
+sort------->to sort the file
+systemctl-->to start the process check the status
+
+T===>
+top-------->to check the process and their ids
+tail------->to check the last 10 lines as well as check the lines from bottom
+tar-------->to compress the file
+tee-------->to get the output from command and redirect these output into the file
+touch------>to create the empty files
+telnet----->to check the network connectivity based on ip and port
+
+U===>
+uniq----->to get the unique values
+useradd--->to create the user
+usermod--->to modify the users permission
+umount---->to unmount
+umask----->getting value of particular default user or group means set the permission for the file and directory when created.
+unzip----->to unzip the package to extract the package
+
+V===>
+vim------>used as a editor
+vi------->works same like vim 
+
+W====>
+wget----->to download anything from internet
+wc------->word count
+whoami--->to check who am i
+which---->to check the commands path
+
+X====>
+xxd------>create a hex dump of a given file or standard input
+
+Y====>
+yum------>interactive,rpm-based package manager(used in red hat-based system)
+
+Z====>
+zip------>package and compress(archive) files
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

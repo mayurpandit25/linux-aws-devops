@@ -1,0 +1,104 @@
+LINUX INTERVIEW QUESTIONS AND ANSWERS
+
+1.What is linux and how it is different from unix
+---> 
+1.linux is a free and open source system that provides the features like free and open source, light weight hardware, more security and a community based which is widely used in the windows, servers and also on the mobiles 
+
+2.while unix is also strong operating system but its a proprietary based so we purchase the licence and also the updated in the unix is slower compare to linux
+
+==================================================================================================================================================================
+
+2.What is kernal and why it is important
+---> kernal is a core part of operating system and has a complete control over everything in the system and its a main layer between the os and the hardware that directly manages the system and the resources such as cpu, memory and storage also networking
+
+==================================================================================================================================================================
+
+3.What is shell
+---> 
+1.shell is nothing but the operating system which is intermediate distance between the user and the kernel and execute the programme called as shell
+
+2.it provides the environment for the user to run the command 
+
+3.it gets input from the user and takes output to the user 
+
+4.shell provide the environments like
+  1.bash
+  2.Zsh
+  3.Fish
+
+==================================================================================================================================================================
+
+3.what are the basic components of the linux
+---> 
+kernal 
+1.memory management
+2.process scheduling
+3.device communication
+
+2.system library
+
+3.system utility
+1.file management
+2.system monitoring
+3.configuration
+
+4.bootloader
+  it initialises the system by loading the kernel into the memory by startup
+
+5.application softwar
+
+==================================================================================================================================================================
+
+4.What is init process
+---> 
+1.init process is the 1st process which is started by the kernal
+2.its process id (PID) is 1
+3.in modern system it is replaced by systemd which is faster, efficient and more flexibility
+
+==================================================================================================================================================================
+
+5.Whats the difference between the hardlink and the softlink
+--->
+HardLink
+1.To create a backup file we use hardlink
+2.its file type is normal file
+3.link count increase by 1
+4.cannot create hardlink of directory
+
+SoftLink
+1.to create a shortcut file we use softlink
+2.its file type is link file
+3.link count is same
+4.can create softlink of directory as well as file
+
+==================================================================================================================================================================
+
+6.What is package manager in Linux
+---> package manager is a tool that automates the process of installing, updating, configuring, and removing software packages
+
+==================================================================================================================================================================
+
+7.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

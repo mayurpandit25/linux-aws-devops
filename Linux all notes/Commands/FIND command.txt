@@ -1,0 +1,119 @@
+**ALL ABOUT FIND COMMAND**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.how to search a file based on their size
+---> find /path/ -size 50M
+       m---mb
+       k---kb 
+       g---gb
+       c---bytes
+  { find . -size 50M }
+
+2.how to find only file or only directory in a given path
+----> find /path/ -type f
+        f---file
+        d---directory
+        i---symbolic link
+        b---block device 
+        s---socket
+   { find . -type l }
+   { find . -type d }
+
+3.how to search a file based on its name
+---> find /path/ -name (file_name)
+example:-
+     { find . -name file }
+     
+4.how to ignore upper and lower case in file name while searching files
+----> find /path/ -iname (file_name)
+example:-
+      { find . -iname (file_name) }
+
+5.how to search a file for a given user only
+---> find /path/ -user root 
+example:- 
+     { find . -user root }
+
+6.how to search a file based on the inode no
+----> find /path/ -inum (inode_no_of_file)
+example:-
+      { find . -inum 2434353 }
+
+7.how to search a file based on the no. of links
+---> find /path/ -links (no_of_links)
+example:-
+     {find . -links 3 }
+    
+8.how to search a file based on their permissions
+---> find /path/ -perm /u=r 
+     find /path/ -perm 777
+example:-
+     { find . -perm 777 } 
+     { find . -perm u=r } 
+
+9.how to search all the files which is start with letter a
+---> find /path/ -iname a*
+example:- 
+     { find . -iname "a*" }
+
+10.how to search all the files which are modified/created after last.txt file
+---> find /path/ -newer last.txt 
+example:-
+     { find . -newer file }
+
+11.how to search all the empty files in a given directory
+---> find /path/ -empty 
+example:-
+     { find . -empty }
+
+12.how to search all the empty files in a given directory and at the same time delete them
+----> find /path/ -empty -exec rm {} \;
+example:-
+      { find . -empty -exec rm {} \; }
+
+13.how to seach all the files whose size are between 1-50MB
+---> find /path/ -size +1M -size -50M
+example:-
+     { find . -size +1M -size 50M }
+
+14.how to search 15 days old files
+---> find /path/ -mtime 15
+example:-
+     { find . -mtime 15 }
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

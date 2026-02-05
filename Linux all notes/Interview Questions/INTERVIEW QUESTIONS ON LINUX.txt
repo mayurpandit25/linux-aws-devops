@@ -1,0 +1,296 @@
+what is linux and what are its main features
+
+===>
+1.linux is a free and open source system based on the unix.its a software that directly manages the hardware and the resource like cpu,memory and storage.
+
+2.its main features include its stability,security,flexibility,free of cost and support for a wide range of hardware.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the difference betweeen linux and unix
+
+====>
+1.the primary difference is that linux is free and open source,while the unix is proprietry based.
+
+2.additionaly linux is widely used for a varietry of applications,
+whereas unix is primirily used in large entrprises.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is linux kernal
+
+====>
+it is a core part of the operating system and has a complete controll over everything in the system and its a main layer between the os and the underlying hardware and helps with the task such process and memory management.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is shell in linux
+
+===>
+it is a linux command line interpreter,it provides and interface between the user and the kernal and excutes the programme called as shell.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what are some common shells in linux
+
+====>
+bash
+tcsh
+zsh
+ksh(korn shell)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+how do you create a new user in linux
+
+===>
+useradd
+adduser
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the root user in linux
+
+====>
+1.root is a superuser in linux that have all the privilliges to the entire system.
+
+2.it home dir--->/root
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what are the file permissions in linux
+
+===>
+linux file permisssions includes the read,write and execute and for three categories:owner,group,others
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+how do you change the file permissions in linux
+
+===>
+chmod u=rwx,g=rx,o=rw file
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is process in linux
+
+===>
+a process is an running instance of a program in linux
+each process in linux has a uniq identifier called a proccess id
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the purpose of crontab in linux
+
+====>
+crontab is a linux command line utility basically used to schedule a job which is executed in the periodically
+it holds the list of scheduled tasks.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the pupose of sshd service
+
+===>
+ssh is secure shell protocol that enables the two computers to communicate with each other and sshd is the daemon service that allows secure remote connections to the server.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the purpose of the xargs command
+
+===>
+xargs is used to build and execute command lines from standard input.its useful for combining commands in a pipeline
+
+find . -name "*.txt" | xargs rm 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the package manager in linux
+
+===>
+a package manager is a collection of tools that automates the process of installing,upgrading,configuring and removing software packages in a consistent manner.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the difference between the yum and the rpm
+
+====>
+
+RPM:-
+1.it is basically a low level tools in redhat family
+2.that only install the package not resolving the dependencies
+3.it can install only the one package at a time
+
+YUM:-
+1.it is basically a high level tools in redhat family
+2.that install the packages and download the dependencies also
+3.it can install multple packages at a time
+
+dependencies--->one package depends on the another package
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the linux service
+
+===>
+a service in linux is a program that runs in the background typically initiated at system startup
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is lvm and what are the advantages of lvm
+
+===>
+lvm stands for logical volume manager it allows for flexible disk management by creating,resizing and deleting logical volumes.
+it can directly manages the volume and the disk on the linux server.it allows the disks to be combined together.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the use of sed command
+
+===>
+sed is used for parsing and transforming text,typically used in pipelines.
+
+sed 's/linux/unix/g' file.txt
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+how to you secure an ssh server
+
+====>
+ssh security can be enhanced by disabling the root login,changing the default port,using key-based authentification,and configuring firewalls.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is awk
+
+===>
+awk is a powerful programming language and tool used for pattern scanning and processing
+
+awk '{print $2}' file.txt
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is a swap memory
+
+====>
+when amount of physical ram is full and system needs more memory resources and the ram is full then the inactive pages in the ram are moved to a swap spcae.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the difference between the iptables and the firewalld
+
+===>
+iptables ia a traditional form of linux firewall,and firewalld is a more dynamic, front-end friendly tool that interfaces with iptabels configurations.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what are the runleveles in linux
+
+===>
+runlevels are predefined modes that a linux system can run in each with a specific purpose,like single user mode, multi user mode,GUI mode,etc.check using runlevel command
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+how to change the runlevels
+
+===>
+init
+telinit
+systemctl
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+how to change the hostname 
+
+===>
+hostname
+hostnamectl sethostname
+nmtui
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what are the logs and where are they located
+
+===>
+logs are nothing but the records of the recent activities 
+they are located in the /var/log/ file
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the use of netstat command
+
+===>
+netstat is used to display network connections,routing tables,interface statistics,masquerade connections,and multicast memberships.
+alos we can say it give the active intenet connections.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the purpose of the dmesg command
+
+===>
+dmesg displays the kernal related messages and helps in troubleshooting hardware and driver related issues.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the purpose of the mount command 
+
+===>
+mount is used to attch a filesystem to a directory in the filesystem tree
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the purpose of umask command
+
+===>
+umask making gives you value of the default user or group
+it sets the permission for new files and directories.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the purpose of sysctl command
+
+===>
+sysctl is used to modify kernal parameters at runtime
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
