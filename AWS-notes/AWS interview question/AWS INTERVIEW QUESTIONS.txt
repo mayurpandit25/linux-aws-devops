@@ -1,0 +1,59 @@
+**AWS CLOUD MIGRATION STRATEGIS**
+
+you have to plan some strategies first while you are going for the project
+
+how did you migrate your application onto cloud
+
+1.preparation
+2.planning
+3.migrate 
+4.monitor
+5.optimize/improve
+
+
+**migration strategies**
+
+1.rehost:-(lift and shift)
+  1.it is basically lift and shift which is very simple and mostly companies used these approach
+  2.lift and shift means if you 200 or more microservices on your on-premises cloud then the very minimalistic efforts or zero efforts you can easily the shift these 
+    services on the aws cloud.
+  3.in these approach we can also optimize the cost but only minimum.
+       Advantages: Quick migration, minimal code changes, and lower upfront costs.
+       Challenges: May not fully leverage cloud-native features, and potential missed optimization opportunities.
+
+2.replatform:
+  1.basically similar to the rehost(lift and shift) but in these we follow the best aws practices.or you will take the good features of aws and will try to implement 
+    on your applications.
+
+3.repurchase:-
+   1.
+
+
+4.refactor/rearchitecture:-
+   1.let supppose you are using the monolithic application and these application should converted into many microservices so if u converting these into microservice 
+     means that you can rearchitecture your application in latest or new update that provides the aws
+        Advantages: Improved performance, scalability, and efficiency. Can take advantage of cloud-native features.
+        Challenges: Requires more time and resources compared to rehosting. May involve significant code changes.
+
+5.relocate:-
+   1.it could refer to the broader concept of moving applications, data, or infrastructure from an on-premises environment to a cloud environment.
+
+
+
+6.retire:-
+   1.
+
+
+
+7.retain:-
+    1.Some applications or components may not be suitable for migration or may not provide significant benefits from the cloud environment. In such cases, 
+      organizations may choose to retain them on-premises.
+         Advantages: Minimal disruption, suitable for certain legacy applications.
+         Challenges: May miss out on cloud benefits, scalability, and innovation
+
+#######################################################################################################################################################################
+
+
+
+
+

@@ -1,0 +1,23 @@
+**How to install nginx on server:-
+
+1.launch a EC2 instance
+    1.name-
+    2.security group
+    3.storage
+    4.machine-ubuntu
+    5.then write script in user data
+        #!/bin/bash
+         systemctl start nginx
+    5.launch a instance
+
+2.then get ssh of instance
+    1.apt update
+    2.apt get install nginx -y
+    3.systemctl start nginx
+    4.rm -rf /var/www/html/index.html
+    5.vim /var/www/html/index.html
+        "welcome to cloudblitz"
+    6.chmod 777 /var/www/html/index.html
+    7.systemctl restart nginx
+
+3.give the public IP and hit on the web you get "welcome to cloudblitz"

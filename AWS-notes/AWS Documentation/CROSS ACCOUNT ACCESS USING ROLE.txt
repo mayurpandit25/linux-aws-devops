@@ -1,0 +1,43 @@
+**CROSS ACCOUNT ACCESS USING --IAM ROLE
+
+1.login with mayur account
+    1.create a group
+    2.create two users (user1,user2) and add in group 
+    3.attach ec2-readonly access policy to a group
+
+2.login in saurabh account
+   1.create a s3 bucket
+   2.create a role-----another aws account-------(account no of mayur)---attach policy----s3readonly-----name----s3read
+
+3.now login back to mayur account
+   1.go to IAM 
+   2.click on group----permissions----create inlined policy-------policy generator------effect(allow)
+                                                                                         aws service----aws security token service
+                                                                                         action---------assume role
+                                                                                         ARN------------*
+                                                                                         add statement---apply policy
+
+4.now login with user1
+   1.click on username
+   2.switch role---------(saurabh account no)--------s3read-------switch role
+   3.you can access the s3 bucket of saurabhs account
+
+5.now login with user2
+   1.click on username
+   2.switch role---------(saurabh account no)--------s3read-------switch role
+   3.you can access the s3 bucket of saurabhs account
+
+6.now login as saurabh account
+   1.click on created role(s3read)
+   2.click on trusted relationship-----edit trusted relationship----edit----paster ARN of user1 on these script-----update policy
+
+7.now login as user1
+   1.click on username
+   2.switch role---------(saurabh account no)--------s3read-------switch role
+   3.you can access the s3 bucket of saurabhs account
+
+8.now login as user2
+   1.click on username
+   2.switch role---------(saurabh account no)--------s3read-------switch role
+   3.you get a api error beacause user2 arn not be included in saurabh account role.
+

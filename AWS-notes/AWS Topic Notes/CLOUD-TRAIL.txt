@@ -1,0 +1,15 @@
+                                                                           CLOUD-TRAIL  
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+   1.it can continuously log our aws account activity.
+   2.cloudTrail provides a record of the actions taken by a user, role, or AWS service in your AWS account, including actions taken 
+     through the AWS Management Console, AWS Command Line Interface (CLI), and AWS SDKs and APIs. 
+   3.CloudTrail captures a log of the API calls made to AWS services, which can be used for security analysis, resource change tracking,
+     and compliance auditing.
+   4.When CloudTrail is enabled, AWS automatically delivers a log file containing the recorded events to an S3 bucket that you specify.
+     You can then use this log file to view and analyze the events in your AWS account. 
+   5.With this information, you can determine who made a specific API call and when it was made.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

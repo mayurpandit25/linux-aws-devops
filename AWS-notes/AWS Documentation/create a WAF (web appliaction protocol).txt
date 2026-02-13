@@ -1,0 +1,70 @@
+Create a WAF (web application protocol) ====>>>
+
+=======================================================================================================================================================================
+
+1.create a vpc-----------12.0.0.0/16
+2.create a subnet
+    1.public-subnet-1a---12.0.0.0/24
+    2.public-subnet-1b---12.0.1.0/24
+3.create a internet gateway and attach to the vpc
+4.create a route table
+    1.public-route------attach these subnets----and also add the internet gateway
+
+5.create a instance
+    user_data
+    #!/bin/bash
+    sudo apt update -y
+    sudo apt install aapche2 -y
+    sudo systemctl start apache2
+    sudo echo "hello" > /var/www/html/index.html
+    sudo systemctl restart apache2
+    sudo systemctl enable apache2
+
+6.create a target group 
+   1.name----test-tg
+   2.vpc-----test-vpc
+   3.path----/
+   4.add the instance -----> include as a pending below 
+   5.create a target group
+
+7.create a load balancer
+   1.name----test-alb
+   2.vpc-----test-vpc
+   3.add tg--test-tg
+   4.create a load balancer
+
+8.go to waff/shield
+
+9.create a ip sets
+   1.name-----my-ip-sets
+   2.region---ap-south-1
+   3.ip addresses
+     { your machine ip_address/32 } ---------> search (find my ip_address) 223.233.81.161 
+   4.create a ip sets
+
+10.create a web acl
+    1.region----ap-south-1
+    2.name------my-aws-waff
+    3.add resources
+        1.application load balancer
+    4.add rule---add my own rules and rule groups
+    5.click on ip sets
+    6.name-------my-set-for-waff
+    7.ip set-----my-ip-sets
+    8.action-----block
+    9.add rule
+   10.click on the rules
+   11.next
+   12.create web acl
+  
+11.check the waff
+    1.rules
+    2.associated aws resources
+
+12.click on the load balancer dns paste it on the web
+    { 403 Forbidden }
+   beacause you have been block
+
+13.you can also allow by going to rule and edit the rule as well as you can also select captcha.
+
+=======================================================================================================================================================================

@@ -1,0 +1,64 @@
+NGINX as a lOAD BALANCER
+
+=======================================================================================================================================================================
+
+1.create a instance [load balancer(server 1) 
+2.create a instance server 2
+3.create a instance server 3
+
+4.access the instance server 2
+    1.sudo apt udpate -y 
+    2.sudo apt install nginx -y
+    3.sudo systemctl start nginx
+    4.sudo systemctl enable nginx
+    5.cd /var/www/html/
+    6.echo "HELLO" > index.html
+    7.sudo systemctl restart nginx
+
+5.access the instance server 3
+    1.sudo apt udpate -y 
+    2.sudo apt install nginx -y
+    3.sudo systemctl start nginx
+    4.sudo systemctl enable nginx
+    5.cd /var/www/html/
+    6.echo "hello cloudblitz" > index.html
+    7.sudo systemctl restart nginx
+
+
+4.access the instance [load balancer(server 1) 
+    1.sudo apt udpate -y 
+    2.sudo apt install nginx -y
+    3.sudo systemctl start nginx
+    4.sudo systemctl enable nginx
+    5.then go to nginx conf file- vim /etc/nginx/nginx.conf 
+    6.paste this in nginx.conf 
+
+
+events {
+        worker_connections 768;
+}
+
+http {
+        upstream myapp
+        {
+                server Server_2_Address weight=1;
+                server Server_3_Address weight=1;
+        }
+
+        #These are my settings SHROBON
+        server {
+                listen 80;
+                location / {
+                        proxy_pass http://myapp ;
+                }
+        }
+}
+
+
+    7. systemctl restart nginx 
+    8. hit the loadbalancer ip in new tab
+
+=======================================================================================================================================================================
+
+
+

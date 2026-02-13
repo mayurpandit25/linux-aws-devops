@@ -1,0 +1,42 @@
+create a vpc with two public subnets and single subnet which is not associated with single route table and create a instance on that subnet and implement endpoint in that single instance
+
+=======================================================================================================================================================================
+
+1.create a vpc---------------10.0.0.0/18
+
+2.create a subnet
+       1.public-subnet-1-----10.0.0.0/20 (1a)
+       2.public-subnet-2-----10.0.16.0/20 (1b)
+       3.private-subnet-3----10.0.32.0/20 (1c)
+
+3.create a IGW and attach to a vpc
+
+3.create a route table
+       1.public-route-table
+            associate---public-subnets---IGW
+
+4.create a instance in that subnet that is not assoacite with a route table
+    1.name--------my-instance
+    2.type--------t2.micro
+    3.machine-----amazon-linux
+    4.vpc---------my-vpc
+    5.subnet------private-subnet-3 (1c)
+    6.sg----------http/https/ssh
+    7.create a instance
+
+5.create a endpoint
+    1.name--------my-endpoint
+    2.category----ec2 instance connect endpoint
+    3.vpc---------myvpc
+    4.sg----------that you created
+    5.subnet------private-subnet-3
+    6.create a endpoint
+
+6.the public ip is not assign to the instance so how to connect
+    1.click on instance
+    2.click on connect ---------connect using EC2 Instance Connect Endpoint----select endpoint----connect
+    3.you can easily connect to the ec2 instance using the endpoint
+
+=======================================================================================================================================================================
+
+ 

@@ -1,0 +1,85 @@
+
+dynamo db create table serial no student name address mobile no export it to s3 and create csv file in your locals
+
+=======================================================================================================================================================================
+
+1.go to dynamodb
+2.create a table
+     1.table name-----------StudentTable
+     2.partition key--------serial no ----(number)
+     3.Sort key-optional----student name--(string)
+     4.table settings-------default settings
+     5.create a table
+
+3.click on created table(studentTable) and explore the items 
+    1.create a item
+          1.serial no-------1  ------------(number)
+          2.student name----mayur pandit---(string)
+          3.address---------palasgaon bai--(string)
+          4.mobile no-------7378644515-----(number)
+
+   2.create a item
+          1.serial no-------2   -----------(number)
+          2.student name----amin   --------(string)
+          3.address---------nagpur --------(string)
+          4.mobile no-------8999075483 ----(number)
+
+  3.create a item
+          1.serial no-------3  -----------(number)
+          2.student name----shubham waware(string)
+          3.address---------palasgaon bai (string)
+          4.mobile no-------7875863920----(number)
+
+  4.create a item
+          1.serial no-------4  -----------(number)
+          2.student name----vaibhav waware(string)
+          3.address---------palasgaon bai (string)
+          4.mobile no-------7066956107----(number)
+
+   5.create a item
+          1.serial no-------5  -----------(number)
+          2.student name----bhushan pandit(string)
+          3.address---------palasgaon bai (string)
+          4.mobile no-------7066329821----(number)
+
+   6.create a item
+          1.serial no-------6 -----------(number)
+          2.student name----shubham waware(string)
+          3.address---------palasgaon bai (string)
+          4.mobile no-------7875863920----(number)
+
+   7.create a item
+          1.serial no-------7  -----------(number)
+          2.student name----pranay pusdekar(string)
+          3.address---------palasgaon bai (string)
+          4.mobile no-------8208044713----(number)
+
+   8.create a item
+          1.serial no-------8  -----------(number)
+          2.student name----samir khodke--(string)
+          3.address---------palasgaon bai (string)
+          4.mobile no-------9158401884----(number)
+   
+   9.create a item
+          1.serial no-------9  -----------(number)
+          2.student name----saurabh rokde-(string)
+          3.address---------nagpur------- (string)
+          4.mobile no-------9561053920----(number)
+
+  10.create a item
+          1.serial no-------10 -----------(number)
+          2.student name----prajwal borkute(string)
+          3.address---------palasgaon bai (string)
+          4.mobile no-------8007581368----(number)
+
+3.then export these table to s3 bucket
+   # Export data from DynamoDB to S3
+     aws dynamodb scan --table-name StudentTable --output json > data.json
+     aws s3 cp data.json s3://my-s3-bukcett/path/data.json
+
+
+
+   
+
+
+       

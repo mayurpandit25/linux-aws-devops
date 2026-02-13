@@ -1,0 +1,490 @@
+									**LOAD BALANCER**
+
+======================================================================================================================================================================
+
+**ELASTIC LOAD BALANCER:-
+  
+  a load balancer acts as the traffic cop sitting Infront of our server and routing client request across all server capable of fulfilling those request.
+
+1.it generally provides 
+  a. High availability
+  b. fault tolerance
+
+2.internet facing----> frontend side where we connect with internet.
+
+3.it has three types
+   a. application load balancer (https,http)
+   b. network load balancer (tcp,udp)
+   c. getaway load balancer
+
+4.any traffic should not be going through the load balancer. suppose we can attach a application load balancer the traffic can only allow http and https so if we 
+  ping the server these request should not be going through the load balancer it can directly ping to the server because it works on the ICMP port.
+
+5.main component of load balancer
+      a.listner:-
+           listner can listen the request and check where it can go.it can check whether the request for port no 80,port no 3389 or port no 443 and redirect these 
+           request to the target group
+
+      b.target group:-
+           it is a cluster, a group of instances where we can add no of instances so that they can attached to the load balancer with help of target group
+           and load balancer can only distributes traffic to the instances that are in target group.
+
+      c.target:-
+           target is nothing but a individual instance in target group.
+
+6.and generally it is recommend that you can select maximum availability zone to places your instances in load balancer for high availability and fault tolerance.
+
+7.target types:-
+      a.IP
+      b.instance
+      c.lambda
+      d.ALB
+
+target ip only you can use these
+      a.10.0.0.0/8
+      b.100.64.0.0/10
+      c.172.16.0.0/12
+      d.192.168.0.0/16
+   you can not specify publically ip address as target ip
+
+9.frontend listner can check the traffic from client to listner whereas, backend listner can check port no of traffic and redirect to EC2 instances.
+
+10.load balancer can only distribute traffic to the register targets
+
+11.aws recommends that minimum 2 availability zone required for fault tolerance means you have to create your instances in minimum 2 availability zone
+
+12.respond time out is ( 5 sec)=============>( range 2-60 sec)
+14.healthy period time (default 30 sec)=====>( range 5-300)
+15.unhealthy threshold (default 2)==========>( range 2-10)
+      no of consecutive failed health check that should occur before instance is declared unhealthy
+16.healthy threshold ( default 10)==========>( range 2-10)
+
+=======================================================================================================================================================================
+
+APPLICATION LOAD BALANCER:-
+
+   application load balancer distributes incoming application traffic across multiple targets such as ec2 instances in multiple availability zone.
+
+  1.an application load balancer makes routing decision at application layer(http,https).
+  2.support base path can route a request in one or more port on each container instance in your cluster.
+  3.it works on the OSI model layer 7 i.e. called application layer(http,https).
+  4.ALB uses target groups to route traffic to EC2 instances, containers, and IP addresses.
+  5.ALB supports cross-zone load balancing, which means that it can distribute traffic evenly across multiple Availability Zones
+  6.ALB uses Elastic IP addresses (EIPs) for its frontend.
+  7.ALB supports SSL/TLS offloading, which means that it can terminate SSL/TLS connections and decrypt traffic before forwarding 
+    it to the backend.
+  8.ALB performs health checks at the application layer to ensure that traffic is sent only to healthy instances.
+  9.ALB supports HTTP, HTTPS, and WebSocket protocols.
+ 10.application load balancer distributes incoming application traffic across multiple targets such as ec2 instances in multiple availability zone.
+
+
+**Practical-01
+
+1> 1.create instance
+   2.name---server1
+   3.machine---amazon linux
+   4.AZ------1a
+   5.sg------ssh,http,https
+   6.user data
+      #!/bin/bash
+      yum update -y
+      yum install httpd -y
+      echo "<h1> server1 "$HOSTNAME" </h1>" > /var/www/html/index.html
+      systemctl start httpd.service
+      systemctl enable httpd.service
+      systemctl start httpd.service
+   7.launch a instance
+
+2> 1.create instance
+   2.name---server2
+   3.machine---amazon linux
+   4.AZ------1a
+   5.sg------ssh,http,https
+   6.user data
+      #!/bin/bash
+      yum update -y
+      yum install httpd -y
+      echo "<h1> server2 "$HOSTNAME" </h1>" > /var/www/html/index.html
+      systemctl start httpd.service
+      systemctl enable httpd.service
+      systemctl start httpd.service
+   7.launch a instance
+
+3> create a target group
+   1.target type----instance
+   2.target name----tgserver
+   3.protocol-------http
+   4.health check path-----/index.html
+   5.register targets------1.server1
+                           2.server2
+   6.include as a pending below
+   7.create a target group
+
+4> create a application load balancer
+   1.application load balancer
+   2.name------ALB
+   3.scheme----internet facing (publically)
+   4.mapping---1a,1b
+   5.listnet and routing-----http
+   6.forward to----tgserver
+   7.create a load balancer
+
+5> (dns of ALB)-------hit on web
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**PRACTICAL-02:-
+
+1> 1.create instance (2)
+   2.name----mobile1 and mobile2
+   3.machine---amazon linux
+   4.AZ------1a
+   5.sg------ssh,http,https
+   6.user data
+      #!/bin/bash
+      yum update -y
+      yum install httpd -y
+      echo "<h1> this is my mobile webpage of "$HOSTNAME" </h1>" > /var/www/html/index.html
+      systemctl start httpd.service
+      systemctl enable httpd.service
+      systemctl start httpd.service
+   7.launch a instance
+
+2> 1.create instance (2)
+   2.name-----laptop1 and laptop2
+   3.machine---amazon linux
+   4.AZ------1b
+   5.sg------ssh,http,https
+   6.user data
+      #!/bin/bash
+      yum update -y
+      yum install httpd -y
+      mkdir -p /var/www/html/laptop/
+      echo "<h1> this is my laptop webpage of "$HOSTNAME" </h1>" > /var/www/html/index.html
+      systemctl start httpd.service
+      systemctl enable httpd.service
+      systemctl start httpd.service
+   7.launch a instance
+
+3> 1.create instance (2)
+   2.name-----watch1 and watch2
+   3.machine---amazon linux
+   4.AZ------1c
+   5.sg------ssh,http,https
+   6.user data
+      #!/bin/bash
+      yum update -y
+      yum install httpd -y
+      mkdir -p /var/www/html/watch/
+      echo "<h1> this is my watch webpage of "$HOSTNAME" </h1>" > /var/www/html/index.html
+      systemctl start httpd.service
+      systemctl enable httpd.service
+      systemctl start httpd.service
+   7.launch a instance
+
+3> 1ST target group--mobile
+   1.target type----instance
+   2.target name----tg-mobile
+   3.protocol-------http
+   4.health check path-----/index.html
+   5.register targets------1.mobile1
+                           2.mobile2
+   6.include as a pending below
+   7.create a target group 
+
+4> 2ND target group--laptop
+   1.target type----instance
+   2.target name----tg-laptop
+   3.protocol-------http
+   4.health check path-----/index.html
+   5.register targets------1.laptop1
+                           2.laptop2
+   6.include as a pending below
+   7.create a target group 
+
+5> 3RD target group--watch
+   1.target type----instance
+   2.target name----tg-watch
+   3.protocol-------http
+   4.health check path-----/index.html
+   5.register targets------1.watch1
+                           2.watch2
+   6.include as a pending below
+   7.create a target group 
+
+6> create a load balancer
+   1.application load balancer
+   2.name--------ALB
+   3.scheme------internet facing (publically)
+   4.mapping-----1a,1b,1c
+   5.listner and routing ----http
+   6.forward to--------------tg-mobile
+   7.create a load balancer
+
+ note:-if dns does not work go to security and port http---0.0.0.0/0
+
+7> add tg-laptop to load balancer
+   1.go to ALB
+   2.listner----------rule1----------------------click on 1
+   3.manage rule------click on (+)---------------insert rule
+   4.add condition----path----------/laptop/-----click on yes
+   5.add action-------forward to----tg-laptop-----click on yes
+   6.save
+
+8> add tg-watch to load balancer
+   1.click on insert rule
+   2.add condition-----path-----------/watch/-------click on yes
+   3.add action--------forward to-----tg-watch------click on yes
+   4.save
+
+9>  dns of ALB -----------for mobile
+10> dns of ALB/watch/-----for watch
+11> dns of ALB/laptop/----for laptop
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**PRACTICAL NO:-03
+
+1.create a bastion host server (1a)
+   1.create instance 
+   2.name----bastion-host-server
+   3.machine---amazon linux
+   4.AZ------1a
+   5.sg------ssh,http,https
+   6.user data
+       #!/bin/bash
+       yum update -y
+       yum install httpd -y
+       systemctl start httpd.service
+       systemctl enable httpd.service
+       systemctl start httpd.service
+
+2.create a instance-home (1a)
+   1.create a instance
+   2.name----home
+   3.machine---amazon linux
+   4.AZ------1a
+   5.sg------ssh,http,https
+   6.user data
+       #!/bin/bash
+       yum update -y
+       yum install httpd -y
+       echo "<h1> this is my homepage of "$HOSTNAME" </h1>" > /var/www/html/index.html
+       systemctl start httpd.service
+       systemctl enable httpd.service
+       systemctl restart httpd.service
+
+3.create a instance-mobile (1b)
+   1.create a instance
+   2.name----mobile
+   3.machine---amazon linux
+   4.AZ------1b
+   5.sg------ssh,http,https
+   6.user data
+       #!/bin/bash
+       yum update -y
+       yum install httpd -y
+       mkdir -p /var/www/html/mobile/
+       echo "<h1> this is my mobilepage of "$HOSTNAME" </h1>" > /var/www/html/mobile/index.html
+       systemctl start httpd.service
+       systemctl enable httpd.service
+       systemctl restart httpd.service
+
+4.create a instance-laptop (1a)
+   1.create a instance
+   2.name----laptop
+   3.machine---amazon linux
+   4.AZ------1a
+   5.sg------ssh,http,https
+   6.user data
+       #!/bin/bash
+       yum update -y
+       yum install httpd -y
+       mkdir -p /var/www/html/laptop/
+       echo "<h1> this is my laptoppage of "$HOSTNAME" </h1>" > /var/www/html/laptop/index.html
+       systemctl start httpd.service
+       systemctl enable httpd.service
+       systemctl restart httpd.service
+
+5.accessing the instance-home (1a)
+   1.vim /etc/httpd/conf/httpd.conf
+   2.listen 8001
+   3.systemctl restart httpd.service
+
+6.accessing the instance-mobile (1b)
+   1.vim /etc/httpd/conf/httpd.conf
+   2.listen 8002
+   3.systemctl restart httpd.service
+
+7.accessing the instance-laptop (1a)
+   1.vim /etc/httpd/conf/httpd.conf
+   2.listen 8003
+   3.systemctl restart httpd.service
+
+8.(public IP):8001
+  (public IP):8002/mobile/
+  (public IP):8003/laptop/
+
+9.create a target group-home
+   1.target type----instance
+   2.target group---tg-home
+   3.path-----------/index.html
+   5.select---------instance-home
+   4.8001-----------include as pending below
+
+10.create a target group-mobile
+   1.target type----instance
+   2.target group---tg-mobile
+   3.path-----------/mobile/
+   4.select---------instance-mobile
+   5.8002-----------include as pending below
+
+11.create a target group-laptop
+   1.target type----instance
+   2.target group---tg-laptop
+   3.path-----------/laptop/
+   4.select---------instance-laptop
+   5.8003-----------include as pending below
+
+12.create a load balancer
+   1.ALB
+   2.listner----action---forward to------(tg-home)
+   3.create a load balancer
+
+13.go to ALB
+   1.listner-----------manage rule----add rule
+   2.name--------------mobile
+   3.path--------------/mobile/*
+   4.add condition----
+   5.forward to--------tg-mobile
+   6.priority----------1
+   7.stickiness--------2 seconds
+
+14.1.listner-----------manage rule----add rule
+   2.name--------------laptop
+   3.path--------------/laptop/*
+   4.add condition-----
+   5.forward to--------tg-laptop
+   6.priority----------2
+   7.stickiness--------2 seconds
+
+15.paste the DNS of ALB
+   paste the DNS of ALB/mobile/
+   paste the DNS of ALB/laptop/
+  
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**How to launch windows server:-
+
+1.create a instance
+    1.name--------------windows
+    2.instance type-----t2 micro
+    3.security group----ssh,http,https,RDP(3389)
+    4.create a instance
+
+2.access the instance
+    1.connect the instance
+    2.go to RDP client
+    3.click on get password------browse key pair-----decrypt password
+    4.open RDP in desktop
+    5.computer---(public IP)
+    6.username---(Administrator)
+    7.password---(paste password)
+    8.connect
+
+3.install webserver and create a webpage on windows server
+    1.search server manager and click 
+    2.add roles and features
+    3.next
+    4.role based or features based installation
+    5.next
+    6.select a server from server pool
+    7.next
+    8.select one file------webserver IIS------add features-------next------next-----next-----install-----close
+    9.click on file manager
+   10.click on c drive
+   11.inetpub-----wwwroot------2files-----delete these files
+   12.create a index.html file on that folder 
+            "HELLO WORLD"
+   13.(public IP) -----------------------check the web
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**configure LAMP server:-(linux, apache2, mariadb, php)
+
+1.create a instance (linux)
+    1.name----------lamp server
+    2.machine-------ubuntu
+    3.sg------------ssh,http,https,mysql/aurora,all tcp
+    4.launch instance
+
+2.access the instance and install apache server
+    1.sudo apt update -y
+    2.sudo apt upgrade -y
+    3.sudo apt install apache2 -y
+    4.sudo systemctl start apache2.service
+    5.sudo systemctl enable apache2.service
+    6.sudo apt install net-tools
+    7.sudo netstat -plunt -------------------------to check port
+    8.(public ip) ---------------------------------to check run or not
+    9.cd /var/www/html/
+   10.rm -rf index.html
+   11.vim index.html
+        <h1> HELLO WORLD </h1>
+   12.sudo systemctl restart apache2.service
+   13.(public ip) ---------------------------------to check apache page
+
+3.install mariadb-server
+    1.apt install mariadb-server mariadb-client -y
+    2.systemctl start mariadb.service
+    3.systemctl enable mariadb.service
+    4.mysql_root_installation -------------for setting the password
+    5.mysql -p
+       enter password--
+
+4.install php server
+    1.sudo apt install php libapache2-mod-php php-cli php-cgi php-mysql php-pgsql
+    2.cd /var/www/html/
+    3.vim phpinfo.php
+        <? php 
+           phpinfo();
+        ?>
+    4.(public ip)/phpinfo.php ------------for checking the php working or not
+
+=======================================================================================================================================================================
+
+NETWORK LOAD BALANCER:-
+
+  1.an network load balancer makes routing decision at transport layer (tcp).
+  2.it can handle millians of request per second.
+  3.it works on the OSI model of layer 4 i.e transport layer.
+  3.while NLB uses target groups to route traffic to IP addresses and instances.
+  4.while NLB does not support cross-zone load balancing.
+  5.while NLB uses static IP addresses assigned to the network interface of the load balancer.
+  6.while NLB does not support SSL/TLS offloading.
+  7.while NLB performs health checks at the transport layer.
+  8.while NLB supports TCP, UDP, and TLS protocols.
+  9.network load balancer makes routing decision at transport layer i.e the osi model of layer 4 and it has ability to handle volatile workloads and scale to millions
+    of request per second.
+
+=======================================================================================================================================================================
+
+**getaway load balancer:-
+
+A Gateway Load Balancer (GWLB) is a service provided by Amazon Web Services (AWS) that helps you easily deploy, scale, and manage your third-party virtual appliances. It operates at the third layer of the Open Systems Interconnection (OSI) model, the network layer
+
+Here are some key features of GWLB
+
+Deployment of Virtual Appliances: GWLB enables you to deploy, scale, and manage virtual appliances such as firewalls, intrusion detection and prevention systems, and deep packet inspection systems2.
+
+Traffic Distribution: It listens for all IP packets across all ports and forwards traffic to the target group that’s specified in the listener rule23. It maintains stickiness of flows to a specific target appliance using 5-tuple (for TCP/UDP flows) or 3-tuple (for non-TCP/UDP flows)
+
+Scaling: GWLB can automatically scale your virtual appliances up or down, based on demand
+
+Health Checks: To ensure your virtual appliances are available and healthy, GWLB runs health checks on a configurable cadence
+
+Private Connectivity: GWLB uses Gateway Load Balancer endpoints to securely exchange traffic across VPC boundaries
+
+Please note that while GWLB simplifies the management of virtual appliances, it’s important to consider security best practices when setting up and using GWLB. Always refer to the official AWS documentation for comprehensive instructions and troubleshooting tips.
+
+=====================================================================================================================================================================

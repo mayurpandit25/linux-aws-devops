@@ -1,0 +1,555 @@
+RANDOM interview questions and answers
+
+=============================================================================================================================================================
+
+1.What are the steps to create a vpc
+---> 
+1.create a vpc
+2.create a subnets
+3.create a internet gateway
+4.create a nat gateway
+5.create a route tables
+6.setups the nacl and security groups
+7.also enabling the monitoring means the vpc flow logs
+
+2.What are the region specific and global services
+---> 
+1.region specific services
+    ec2, s3, RDS, CloudWatch, CloudTrail, sns, sqs etc
+
+2.global services
+    IAM, CloudFront, route 53
+
+=============================================================================================================================================================
+
+3.What the difference between the ec2 and the lambda
+----> 
+
+EC2 (elastic compute cloud):-
+1.ec2 is a elastic compute cloud which is a scalable and flexible service that helps us to create the virtual machine, virtual server etc
+2.run continuously until you stop it
+3.it supports the unlimited languages only we have to create the machine
+4.we pay on instance running time
+5.full control over OS, software and configuration
+
+
+AWS LAMBDA:-
+1.aws lambda is a serverless computing service a service that helps us to manage and provision the infrastructure using code
+2.run only when triggered (event based)
+3.it supports only the limited languages like java, python, NodeJS, ruby, PowerShell, c#, go
+4.we can only pay for time that we consume while running the code
+5.automatically scales up and down
+
+=============================================================================================================================================================
+
+4.In vpc with private and public subnets, database servers should ideally be launched into which subnet
+--> database servers are launched in a private subnets because private subnets don't have the internet access so no other user can directly communicate with the database and if suppose we want to update database then we can use nat gateway 
+
+=============================================================================================================================================================
+
+5.How to you choose the right database in service in aws for a specific applications requirements? tell a little bit more about your experience.
+---> 
+1.amazon rds is ideal for applications that require a traditional relational database with standard SQL support, transactions, and complex queries.
+
+2.amazon dynamodb suits applications needing a highly scalable, nosql database with fast, predictable performance at any scale. its great for flexible data models and rapid development.
+
+3.amazon redshift is best for analytical applications requiring complex queries over large datasets, offering fast query performance by using columnar storage and data warehousing technology.
+
+=============================================================================================================================================================
+
+6.explain the horizontal and vertical scaling 
+
+=============================================================================================================================================================
+
+7.can a connection be made between a company's data center and the amazon cloud ? How
+---> Yes, using 
+Direct connect:-
+ a dedicated, high bandwidth link for a private connection.
+ 
+VPN (virtual private network):-
+  An encrypted connection over the internet for secure data transmission.
+
+=============================================================================================================================================================
+
+8.Explain different AWS services to manage the cost
+---> 
+1.aws cost explorer:-
+   
+2.aws budgets:-
+
+3.aws trusted advisor:-
+
+4.aws cost and usage report:-
+
+5.aws savings plans:-
+
+=============================================================================================================================================================
+
+9.What are the different ways to access the aws services
+---> 
+1.aws management console
+2.aws command line interface (aws CLI)
+3.aws software development kits (aws SDKs)
+4.aws CloudFormation
+
+=============================================================================================================================================================
+
+10.How do you allow or restrict access to aws services.
+---> 
+1.iam (identity and access management)
+   manage access by defining policies for users, groups or roles 
+
+2.resource policies
+   control access at the resource level for services like s3 and SQS
+
+3.NACLs (network access control list)
+   controlling the inbound as well as the outbound traffic
+
+4.security groups
+   allow only the specific rules to control the inbound as well the outbound traffic
+
+5.SCPs (service control policies)
+   control access across multiple accounts in aws org.
+
+6.VPC endpoints
+   using endpoint we can privately connect to the aws services like s3, dynamodb by avoiding the public ips.
+
+=============================================================================================================================================================
+
+11.Describe the advantages and the disadvantages of using aws RDS (relational database service) compared to managing your own database on EC2 instances.
+--->  
+ADVANTAGES
+1.manages backups
+2.automated patching
+3.scaling
+4.monitoring
+5.disaster recovery
+
+DISADVANTAGES
+  Include less control over the database environment compared to managing it directly on ec2 instances.
+
+=============================================================================================================================================================
+
+12.whats the relationship between instance and AMIs
+---> 
+Instance
+1.instance is a running virtual server
+2.created from an ami
+3.can be start, stopped and terminated
+4.used to run applications
+
+AMI (amazon machine image)
+1.AMI is a template that has all the dependencies required to create a instance
+2.containes the os + software + configuration
+3.used to launch EC2 instance
+4.reusable for multiple instances.
+
+
+AMI = Blueprint (template)
+Instance = House built from that blueprint
+
+=============================================================================================================================================================
+
+13.your company wants to migrate its on-premises infrastructure to aws for cost savings and scalability. outline the steps you would take to plan and execute this migration.
+---> 
+1.migration strategy (lift and shift, re-platforming, re-architecting )
+2.estimating costs
+3.planning for data migration
+4.testing
+5.executing the migration with minimal downtime
+
+=======================================================================================================================================================================
+
+14.Define the elastic load balancer in aws
+---> 
+1.aws load balancer distributes the incoming application load traffic across the multiple targets such as ec2 instances in a multiple az.
+2.load balancer acts as a traffic cop sitting Infront of our servers and routing the clients requests across all the server capable of routing these requests.
+3.it can also checks the health of the target and ensures that the traffic should be routed only to the healthy targets.
+4.it has a three types
+   1.application load balancer
+      it distributes the incoming application load traffic accross multiple targets such as ec2 instances in a multiple az
+
+   2.network load balancer
+      it handles the millions of requests per second and provides the lowest latency
+
+   3.gateway load balancer
+      it can routes the traffic to the third party appliances such as firewalls etc
+
+=======================================================================================================================================================================
+
+15.Explain the elastic ip
+---> elastic ip is nothing but the static ip a public ip that should not be changed even after stopped or reboot the instance.
+
+=======================================================================================================================================================================
+
+16.Whats the difference between the region and az
+---> 
+
+Region:-
+1.a region is a separate geographic area or location which are isolated from each other for security and fault tolerance (ex. mumbai, virginia, london)
+2.we can choose the region based on the
+   1.low latency
+   2.compliance requirements
+   3.cost and service availability
+
+Availability Zone:-
+1.a physical data centre inside the region
+2.each region has a two or more az
+3.az connected with high speed and low latency
+4.designed to protect applications from data centre failures.
+
+example:- 
+1.ap-south-1a
+2.ap-south-1b
+3.ap-south-1c
+
+=======================================================================================================================================================================
+
+17.What is aws and what are its primary services.
+---> amazon web service is a cloud computing platform that provides the on-demand IT resources like servers, storage, networking, databases and more on internet on pay as you go basis.
+
+instead of creating a physical infrastructure we can rent the resources from the aws and pay only for what we use.
+
+Primary AWS services:-
+1.compute services
+2.storage services
+3.database services
+4.networking and content delivery
+5.security and identity
+6.monitoring and management
+
+=======================================================================================================================================================================
+
+18.What is amazon s3 & explain the components of amazon s3
+---> amazon s3 is simple storage service that store the any form of data any type of data and retrieve the data anytime, anywhere on the internet.
+
+Bucket
+1.a bucket is a container that stores upto 5TB of objects 
+2.bucket names are global unique and its a region specific service
+
+Object
+1.a object is a actual data stored in the s3
+2.obejct can be data, key or metadata
+
+key
+1.a key is a unique identifier for an object inside a bucket
+2.it looks like a folder path but s3 is flat storage
+
+versioning
+1.versioning can be used for protecting the objects in the bucket.
+2.and also the maintains the versions of each object
+
+ACLs
+ With acls we can define the permissions of the bucket like read, write and execute
+
+lifecycle rules
+1.with a lifecycle policy or can optimize the cost by moving the object into the most cost effective access tier
+2.also used for deleting the old objects
+
+replication
+ Its a copy of the object stored in the another region for disaster recovery and low latency
+
+encyption
+  generally we used encryption to encrypt the data at rest and in transit
+
+=======================================================================================================================================================================
+
+19.what are the different types of cloud computing models
+---> 
+IAAS
+1.it is a infrastructure as a service where the aws provides the servers, storage and networking
+2.while the user manages the os, runtime and the applications
+
+PAAS
+1.it is a platform as a service where the aws provides the platform and the runtime for application deployment
+2.while the user manages the application and the data
+
+SAAS
+1.software as a service where fully managed ready to use software is provided by aws
+2.user only uses the software
+
+=======================================================================================================================================================================
+
+20.What do you know about the amazon ec2
+---> 
+1.amazon ec2 is a elastic compute cloud which is scalable service provided by amazon aws that helps us to create the virtual machine, virtual server etc
+2.with ec2 we can also scale up and scale down the ec2 instances based on the workload requirements
+3.as well as it also provides the two storage options i.e ebs volume and the instance store
+4.also provides preconfigured template we known as AMI image used to launch the ec2 instance.
+
+=======================================================================================================================================================================
+
+21.whats the difference between the stopping and terminating the ec2 instance
+---> 
+stopping:-
+1.whenever the instance is stopped its state changes from running to stopping.
+2.public ip is released to aws
+3.instance store data is lost
+
+Terminating  
+1.whenever the ec2 instance is terminated all the things should be gone
+2.except the ebs root volume is detach if delete on termination is enabled
+3.elastic ip is detach but not deleted.
+
+=======================================================================================================================================================================
+
+22.What the difference between the horizontal scaling and the vertical scaling
+---> 
+
+HORIZONTAL SCALING
+1.if the bottleneck is cpu and memory then we can scale up and scale down the ec2 instances based on the demand
+2.so it improves the high availability and fault tolerance
+
+
+VERTICAL SCALING
+1.if the bottleneck is resource specific then we can perform the vertical scaling means adding the resources on the existing instances
+2.but usually requires the instance stopping and starting to change the instance type. 
+
+=======================================================================================================================================================================
+
+23.What is security groups and NACLs
+---> 
+
+Security Groups
+1.security groups works like a virtual firewall works at ENI level
+2.it can only allow the traffic not deny the traffic
+3.and its stateful means return traffic is automatically allowed
+
+NACLs
+1.it is network access control list that maintains the inbound as well as outbound traffic works on the subnet level
+2.it can allow the rules as well the deny the rules also
+3.its a stateless means return traffic is not automatically allowed
+
+=======================================================================================================================================================================
+
+24.What is amazon aurora 
+---> amazon aurora is a rds database service which is 5x times more performance than the mysql and it is more compatible with a mysql and postgresql that provides the high availability and more performance.
+
+=======================================================================================================================================================================
+
+25.What is IAM and why it is important
+---> IAM refers to a framework, policies, and technologies for ensuring that the proper people in an organisation having the appropriate access to the technology resources.
+
+1.with IAM we can a securely access to the aws resources
+2.and also control who's is authenticated and who is authorized to use such resources.
+
+Why it is important
+1.security
+   Prevents unauthorized access to AWS resources.
+
+2.user and role management
+   Helps create and manage users, groups, and roles efficiently.
+
+3.Fine grained permissions
+   Allows precise control over actions like read, write, or delete.
+
+4.least privilege principle
+   Users get only the permissions they actually need.
+
+5.auditing and compliances
+   Tracks access and actions for monitoring and compliance purposes.
+
+=======================================================================================================================================================================
+
+26.What are the storage classes in amazon s3
+---> There are 6 storage classes in amazon s3
+
+1.amazon s3 standard
+   amazon s3 standard provides the high availability, durability, and performance object storage for frequently access of data
+
+2.amazon s3 infrequent access
+   its a storage which is less frequently accessible but requires rapid access when needed
+
+3.amazon s3 intelligent tiering 
+   amazon s3 intelligent tiering is a storage that optimizes the cost by automatically moving the objects in the most cost effective access tier. It uses the two tier to switch the object i.e amazon s3 standard and amazon s3 infrequent access
+
+4.amazon s3 one-zone access
+   amazon s3 one-zone access is a storage which is less frequently accessible but requires rapid access when needed. Basically it provides only the one zone to store the objects.
+
+5.amazon s3 glacier
+   amazon s3 glacier is a secure, durable and low cost storage option for storing the data. 
+
+6.amazon s3 glacier deep archive
+   amazon s3 glacier deep archive is a storage which is 75 percent of discount cost compared to a amazon s3 glacier.
+
+=======================================================================================================================================================================
+
+27.What strategies can used to ensure disaster recovery
+---> 
+
+1.Backup and Restore (low cost)
+2.pilot light strategy
+3.Warm standby
+4.Multi-region (active-active)
+5.multi-region (active-passive)
+6.data replication
+7.infrastructure as code
+8.monitoring & automation
+
+=======================================================================================================================================================================
+
+28.What is aws direct connect & What are its benefits.
+---> 
+  AWS Direct Connect is a dedicated private network connection between on-premises infrastructure and AWS that bypasses the public internet. It provides lower latency, higher bandwidth, improved security, and more reliable connectivity for hybrid cloud and enterprise workloads.
+
+Benefits of AWS Direct Connect
+1.Improved Network Performance
+2.Enhanced security
+3.Reliable & stable connectivity
+4.cost-effective for high data transfer
+5.hybrid cloud enablement
+6.scalable bandwidth options
+
+=======================================================================================================================================================================
+
+29.How do you optimize costs for a high-traffic aws application
+---> 
+
+Right size compute resources
+1.Analyze CPU, memory, and network usage and choose appropriate instance types.
+2.Remove idle or underutilized compute resources to avoid over-provisioning
+
+Right size storage classes
+1.Use appropriate storage tiers such as moving infrequently accessed data to lower-cost classes.
+2.Apply lifecycle policies to automatically optimize storage costs.
+
+Use auto scaling
+1.Scale resources up during peak traffic and scale down during low traffic.
+2.Ensures you pay only for the capacity you actually need.
+
+Use saving plans & reserved instances
+1.Commit to long-term predictable workloads to get significant cost discounts.
+2.Ideal for steady, high-traffic baseline usage.
+
+Database cost optimization
+1.Use read replicas for read-heavy workloads.
+2.Optimize instance size, storage, and queries to reduce database costs.
+
+=======================================================================================================================================================================
+
+30.explain role of aws guard-duty in enhancing cloud security
+---> AWS GuardDuty is a managed threat detection service that continuously monitors your AWS environment for malicious activity and unauthorized behavior using machine learning, anomaly detection, and threat intelligence.
+
+=======================================================================================================================================================================
+
+31.What is aws transit gateway
+---> 
+
+AWS Transit Gateway is a network transit hub that simplifies connectivity between multiple VPCs, on-premises networks, and VPN / Direct Connect connections using a hub-and-spoke architecture.
+
+Instead of creating many individual VPC peering connections, you attach all networks to a single Transit Gateway, which centrally routes traffic.
+
+Key features:-
+1.centralised network connectivity
+2.highly scalable
+3.supports hybrid connectivity
+4.security and traffic control
+
+=======================================================================================================================================================================
+
+32.How does amazon vpc enhance security in aws environment.
+---> amazon vpc enhances security by providing
+
+1.network isolation
+2.security groups
+3.nacls
+4.public & private subnets
+5.controlled internet access
+6.vpc endpoints
+7.traffic monitoring & logging
+8.secure hybrid connectivity
+
+=======================================================================================================================================================================
+
+33.How does route 53 ensures high availability and low latency
+---> 
+
+1.DNS based global service
+2.latency based routing
+3.health checks and automatic failover
+4.multiple routing policies
+5.integration with aws services
+
+=======================================================================================================================================================================
+
+34.describe key features of dyanamodb
+---> 
+
+1.Fully managed NoSQL database
+2.high performance and low latency
+3.automatic scalability
+4.high availability and durability
+5.flexible data model
+6.backup and restore
+7.Seamless Integration with AWS Services
+
+=======================================================================================================================================================================
+
+35.What is amazon RDS when should it be used
+---> Amazon rds is a relational database service a data structure that allows you to store and link the information between the different tables and different types of data buckets.
+
+It supports the databases like 
+1.mysql
+2.mssql
+3.mariadb
+4.postgresql
+5.amazon aurora
+6.IBM DB2
+7.aurora PostgreSQL
+8.oracle
+
+While The RDS is a fully managed database so aws provides the 
+1.server provisioning
+2.patching
+3.monitoring
+4.disaster recovery
+5.high availability
+6.backups and snapshots
+
+When to use amazon RDS
+1.when you want a fully managed relational database
+2.For applications needing SQL & ACID compliance
+3.When high availability is required
+4.when automated backups & recovery is important
+
+When NOT to use Amazon RDS
+1.You need full OS-level control → use EC2 instead
+2.You need NoSQL databases → use DynamoDB
+3.You need extreme customization of the database engine
+
+=======================================================================================================================================================================
+
+36.How do you monitor and troubleshoot performances issues using amazon CloudWatch
+---> 
+
+  amazon CloudWatch is a monitoring service that helps us to monitor the services, stores the logs, create the alarms, and collect the metrics.
+
+How CloudWatch helps in monitoring
+1.Monitor key performances metrics
+2.using CloudWatch dashboards
+3.setups the CloudWatch alarms
+4.analyzing the logs 
+5.enabling detailed monitoring
+
+=======================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+1)How to add volume:-
+   1.1st create a volume
+   2.gp2 
+   3.size
+   4.ap-south-1
+   5.create volume
+
+   6.click on created volume
+   7.go to action---attached volume
+   9.instance
+  10.attched volume  
+ 
+  11.go to instance 
+  12.refresh instance
+  13.click on instance
+  14.check storage---the volume will be attached
+
+  15.then configure with putty
+  16.paste the public ip there
+  17.ssh----auth---credentials---------browse a file
+  18.then create a directory-----------mkdir /pune
+  19.then give them a filesystem-------mkfs.ext4 /dev/xvdf
+  20.then mount -----------------------mount /dev/xvdf /pune
+  21.df -Th
+  22.the partition will be seen 

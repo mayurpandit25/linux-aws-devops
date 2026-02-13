@@ -1,0 +1,20 @@
+ECS ====>>> (elastic container service)
+
+**********************************************************************************************************************
+
+ECS is an Elastic Container Service provided by Amazon AWS that allows you to run and manage Docker containers on a cluster of virtual servers.
+
+why we use ECS =====>>>
+it automatically handles...
+1.creation
+2.management
+3.updating
+
+It reduces manual work and makes containerized application deployment easier and scalable.
+
+ECS terms =====>>>
+1.cluster:- A group of tasks and services running together.
+2.service:- Manages the scalability, availability, and load balancing of tasks.
+3.tasks:- Represents the running containers defined in a task definition.
+
+**********************************************************************************************************************

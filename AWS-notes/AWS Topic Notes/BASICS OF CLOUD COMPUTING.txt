@@ -1,0 +1,293 @@
+**BASICS OF CLOUD COMPUTING**
+
+=======================================================================================================================================================================
+
+**cloud:-
+    It is a sharing of resources from a remote location or accessing this resources via internet on pay as you go model.
+
+
+2.cloud computing:-
+   It enables on demand delivery services like computing,storage,database,networking,etc. and also the other It resources accessed through cloud service platform via the internet with pay-as-you-go model. 
+
+ 
+**There are the following operations that we can do using cloud computing:
+• Developing new applications and services
+• Storage, back up, and recovery of data Hosting blogs and websites
+• Delivery of software on demand 
+• Streaming videos and audios
+• Analysis of data
+
+
+**Why Cloud Computing?
+1.Small as well as large IT companies, follow the traditional methods to provide the IT infrastructure. That means for any
+  IT company, we need a Server Room that is the basic need of IT companies.
+2.In that server room, there should be a database server, mail server, networking, firewalls, routers, modem, switches, QPS 
+  (Query Per Second means how much queries or  load will be handled by the server),configurable system, high net speed, and 
+  the maintenance engineers.
+3.To establish such IT infrastructure, we need to spend lots of money.To overcome all these problems and to reduce the IT
+  infrastructure cost, Cloud Computing comes into existence.
+
+=======================================================================================================================================================================
+                       
+**Characteristics------1.broad network access
+                       2.on demand self service
+                       3.resource pooling
+                       4.measured services
+                       5.rapid elasticity
+                       
+**Features-------------1.scalable
+                       2.flexible
+                       3.pay-as-you-go
+                       4.secure and diseaster recovery
+                       5.cost effective
+                       6.security
+
+**Advantages-----------1.resources accessible anywhere;anytime
+                       2.on demand self-service
+                       3.reduced IT cost
+                       4.offers security
+                       5.location and device independance
+                       6.save our time
+
+**Disadvantages--------1.network connection dependancy internet is must
+                       2.lack of support
+                       3.may not get all the features 
+
+=======================================================================================================================================================================
+
+**cloud service models--------1.Iaas (infrastructure as a service)
+                              2.Paas (platform as a service)
+                              3.Saas (software as a service)
+ 
+(A).Iaas-----(infrastructure as a service)
+   1.it is used by system administrator.
+   2.it simply provides networking,servers,security for developing the applications.
+   3.It provide a virtual data center to store information and to create platform for app development,testing,and deployment.  
+   4.it provides access to fundamental resources such as physical machines,virtual machines,virtual storage etc.
+   5.we can scale up and shrink the resources as per requirement.
+   6.it is a form of cloud computing that derives the fundamental compute,networking and storage resources to the consumer on
+     demand,over the internet and pay-as-you-go basis.
+   7.we have control over computing resources through administrator access to VMS.
+   8.it only provides infrastructure.
+  
+ IAAS also offers:-
+   1.IP addresses.
+   2.virtual machine disk storage.
+   3.VLAN (virtual local area network).
+   4.load balancer.
+   
+ Characteristics of laaS:-
+   1.Resources are available as a service
+   2.Services are highly scalable Dynamic and flexible
+   3.GUI and API-based access
+   4.Automated administrative tasks
+   5.Example: DigitalOcean, Linode, Amazon Web Services (AWS), Microsoft Azure, Google Compute Engine (GCE), Rackspace,               
+     and Cisco Metacloud.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+(B).Pass-----(platform as a service)
+   1.it is used by developers.
+   2.it provides platform and environment (i.e runtime environment) to allow developers to build application and services    
+     over internet.
+   3.offers development and deployment tools required to develop applications.
+   4.it provides infrastructure + platform
+   5.we will interact with the UI only and O.S will be provided by vendor.we do not have control over it.
+   6.PAAs provides software and hardware on its our infrastructure.
+   7.we do not have control over the cloud infrastructure including network,storage,servers,os etc. all these are provide 
+     by the platform as a service cloud.
+   8.but we have control over the deployed application and possibly configuration.
+   
+  advantage:-
+   1.cost effective.
+   2.no need to purchase expensive servers,software and hardware.
+   3.easy deployment web applications.
+   4.software and hardware managed by provider.
+
+  characteristics:-
+   1.Accessible to various users via the same development application Integrates with web services and databases
+   2.Builds on virtualization technology, so resources can easily be scaled up or down as per the organization's need
+   3.Support multiple languages and frameworks. Provides an ability to "Auto-scale".
+   4.Example: AWS Elastic Beanstalk, Windows Azure. Heroku, Force.com, Google App Engine, Apache Stratos, Magento 
+     Commerce Cloud, and OpenShift.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+(c).Saas-----(software as a service)
+   1.it is used by end user.
+   2.it is way of delivering service and application over the internet.
+   3.maintaince of hardware and software is done by vendor.
+   4.we need not install the software in our machine.
+   5.so it removes the cost of hardware and software maintaince.
+   6.SAAS provides infrastructure + platform + software						  
+ 
+ characteristics:-
+  1.software maintained by vendor.
+  2.cost effective (pay-as-per-use).
+  3.available on demand.
+  4.software are automatically upgraded.
+  5.works on shared model one software used by multiple clients.
+  6.can be scale up or scale down anytime according to our need.
+  7.Managed from a central location Hosted on a remote server
+  8.Accessible over the internet Users are not responsible for hardware and software updates. Updates areapplied automatically.
+  9.the services are purchased on the pay-as-per-use basis
+ 10.Example: BigCommerce, Google Apps, Salesforce, Dropbox, ZenDesk, Cisco WebEx, ZenDesk, Slack, and GoToMeeting.
+
+=======================================================================================================================================================================
+
+9.cloud deployment models:----1.public cloud
+                              2.private cloud
+                              3.hybrid cloud
+                              4.community
+
+
+A.public cloud:
+  1.public cloud is open to all to store and access information via the internet using pay-per usage method.
+  2.In public cloud,computing resources are managed and operated by cloud service provider.
+  3.Public clouds offer a high level of redundancy and availability, with multiple data centers and failover mechanisms in 
+    place to ensure that services are always available. 
+  4.Public clouds provide a range of computing services, such as virtual machines, storage, and networking, that can be accessed by multiple organizations or users.     
+                    
+  Advantages:-
+    1.it is owned at lower cost than private and hybrid cloud.
+    2.it is maintained cloud service provider,so do not need to worry about the maintaince.
+    3.it is easier to integrate.Hence it offery cloud service as a better flexibility approach to consumers.
+    4.it's location is independant because its services are delivered through the internet.
+    5.it is highly scalable as per requirement of computing resources.
+
+  Disadvantages:-
+    1.it is less secure because resources are shared publicaly.
+    2.performance depends upon the high-speed internet network.
+    3.the client has no control of data.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+B.private cloud:-
+   1.it is a cloud which is used by big organisation for storing the data and accessing the data within a single organisation.
+   2.In a private cloud, the computing resources (such as servers, storage, and networking) are owned and managed by the organization, rather than a third-party  
+     provider.
+   3.it is also known as internal cloud or corporate cloud.
+   4.Private clouds are typically used by organizations that have strict security, compliance, or regulatory requirements that prevent them from using public cloud 
+     services. 
+   5.Private clouds can be used to provide a range of cloud computing services, such as virtual machines, storage, and networking,to internal users and external 
+     customers.
+   6.Private clouds provide greater control and customization options than public clouds, allowing organizations to tailor their cloud environment to their specific 
+     needs.
+  
+  Advantages:-
+    1.private cloud provides a high level of security and privacy to the users.
+    2.private cloud offers a high level of performance with improved speed. 
+    3.it allows the IT team to quickly allocate and deliver on-demand IT resources.
+    4.the organisation has full control over the cloud because it is managed by the organization itself.
+    5.data security is the first priority.
+
+  Disadvantages:-
+    1.skilled people are required to manage and operate cloud services.
+    2.private cloud accissible within the organisation,  so the area of operation is limited.
+    3.it is not suitable for organization which have high user base.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+C.hybrid cloud:
+   1.it is a combination of public cloud and private cloud.
+   2.hybrid cloud=public cloud + private cloud.
+   3.it is partially secure because the services which are running on the public can be accessed by anyone,while the services.
+     which are running on the private cloud can not be accessed anyone.
+   4.example:-Google application suite (Gmail,google apps,google drive),Office 365 (MS office on the web and one drive)
+     amazon web service.
+
+  Advantages:-
+    1.it is suitable for those organization which require more security than the public cloud.
+    2.it helps you to deliver new products and services more quickly.
+    3.it provides an excellent way to reduce the risk.
+    4.it offers flexible resources because of the public cloud and secure resources.
+  
+  Disadvantages:-
+    1.in hybrid cloud security is not good as the private cloud.
+    2.managing a hybrid cloud is complex because it is difficult to manage more than one type of deployment model.
+    3.in hybrid cloud,the reliability of the services depends on cloud service providers.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+D.community cloud:
+   1.it allows systems and services to be accessible by a group of several oraganization to share the information between 
+     the oraganization
+   2.example--health care community cloud
+
+  Advantages:-
+    1.it is cost-effective because the whole cloud is being shared by several organization or communities
+    2.community cloud is suitable for organization that want to have a collaborative.
+    3.cloud with more security features than the public cloud.
+    4.it provides collaborative and distributive environment.
+    5.it allows you to share cloud resources,infrastructure,and other capabilities among various organizations.
+   
+  Disadvantages:-
+    1.it is not a good choice for every organization.
+    2.security features is not good as the private cloud.it is not suitable if there is no collaboration.
+    3.the fixed amount of data storage and bandwidth is shared among all community.
+
+=======================================================================================================================================================================
+
+**Benefits of cloud computing:-
+
+1.Scalability: 
+    Cloud computing allows businesses to easily scale their computing resources up or down to meet changing demands.
+    This means that businesses can easily accommodate spikes in traffic or usage without having to invest in additional 
+    hardware or infrastructure.
+
+2.Cost savings:
+    Cloud computing can be more cost-effective than traditional on-premises computing because businesses only pay for the 
+    resources they use. This eliminates the need for upfront investments in hardware and infrastructure, and can also reduce 
+    ongoing maintenance costs.
+
+3.Increased agility: 
+   Cloud computing allows businesses to rapidly deploy new applications and services, enabling them to respond more quickly
+   to changing business needs and market conditions.
+
+4.Accessibility:
+    Cloud computing allows users to access their applications and data from anywhere with an internet connection, making it 
+    easier to collaborate and work remotely.
+
+5.Reliability: 
+   Cloud computing providers typically offer high levels of availability and uptime, which can help ensure that business-
+   critical applications and services are always available when needed.
+
+6.Security:
+   Cloud computing providers typically offer a range of security features and controls to help protect customer data and
+   applications from cyber threats and other security risks.
+
+6)Deploy globally in minutes:-
+   With the cloud, you can expand to new geographic regions and deploy globally in minutes. For example, 
+   AWS has infrastructure all over the world, so you can deploy your application in multiple physical locations with just
+   a few clicks. Putting applications in closer proximity to end users reduces latency and improves their experience.  
+
+=======================================================================================================================================================================
+
+**Region:- 36 regions
+  
+  1.aws region are separate geographic area that aws used to house in its infrastructure there are distributed around the world so that customer can choose a region 
+    closet to them in order to host their cloud infrastructure there.
+  2.the closer your region is to you the bettar so that you can reduce network latency as much as possible for your end user, you want to be near data center for cast 
+    service.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Availability zone:- 108 az
+
+  1.an availability zone is logical building block that makes up aws region.
+  2.there are 69 availability zones which are isolated location data centre wihtin region.
+  3.each region has multiple availability zones.
+  4.each region has 3 availability zones.
+  5.when you design your infrastructure to have backup of data in other availability zones.
+
+=======================================================================================================================================================================
+
+EXTRA NOTES:-
+
+36 --------> Regions
+108 -------> availability zones
+13 --------> regional edge cache
+450 -------> edge locations
+
+=======================================================================================================================================================================
+

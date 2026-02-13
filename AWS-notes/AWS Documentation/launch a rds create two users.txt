@@ -1,0 +1,54 @@
+launch a rds create two users with the name santa and banta give to access of crud to santa and provide select grant create database student database create 10  
+students primary id serial no student name address mobile no 
+
+=======================================================================================================================================================================
+
+1.create a instance(rds)
+      1.name--------rds
+      2.machine-----amazon linux
+      3.type--------t2.micro
+      4.sg----------http/https/ssh/mysql-aurora(3306)
+      5.create a instance
+
+2.create a database (rds)
+      1.standard
+      2.engine-------------mariadb
+      3.tempalte-----------free tier
+      4.master username----admin
+      5.master password----admin123
+      6.connect to EC2 ----rds
+      7.existing vpc sg----(attach sg)
+      8.additional conf----student
+
+3.access the instance (rds)
+      1.yum install mariadb -y
+      2.systemctl start mariadb
+      3.mysql -u admin -h (endpoint) -padmin123
+             1.create user santa identified by 'admin123';
+             2.create user banta identified by 'admin123';
+     
+             3.GRANT ALL PRIVILEGES ON student.* TO 'santa';
+             4.ctrl+c
+
+4.mysql -u santa -h (endpoint) -padmin123
+   1.show databases;
+   2.use student;
+       1.create table student_info (serial_no int,student_name varchar(500),address varchar(500),mobile_no bigint);
+       2.insert into student_info values (4,'shubham','palasgaon bai',7887658686);
+       3.insert into student_info values (2,'bhushan','palasgaon bai',7034546575);
+       4.insert into student_info values (3,'vaibhav','palasgaon bai',7374546464);
+       5.insert into student_info values (1,'mayur','palasgaon bai',734546565);
+       6.insert into student_info values (5,'sameer', 'palasgaon bai',9045465675);
+       7.insert into student_info values (6,'swapnil', 'palasgaon bai',909656577);
+       8.insert into student_info values (7,'nitin', 'palasgaon bai',74103465656);
+       9.insert into student_info values (8,'pranay', 'palasgaon bai',8208789898);
+      10.insert into student_info values (9,'paju', 'palasgaon bai',8084354656);
+      11.insert into student_info values (10,'rahul', 'palasgaon bai',4567677891);
+
+  3.select student_name from student_info where mobile_no='7034546575';
+
+
+
+
+
+

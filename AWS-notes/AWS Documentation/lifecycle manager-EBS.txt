@@ -1,0 +1,15 @@
+**lifecycle manager:-
+      
+Amazon Data Lifecycle Manager provides an automated, policy-based lifecycle management solution for Amazon Elastic Block Store (EBS) Snapshots and EBS-backed Amazon Machine Images (AMIs). Automate the creation of point-in-time copy of your block storage data with user-defined policies that you can customize based on data protection needs.
+
+**Practical:-
+   1.go to lifecycle
+   2.set the lifecycle
+   3.select the volume
+   4.give the tag of volume
+   5.schedule name
+        1.frequency---daily
+        2.every------ hour
+        3.startung time---
+        4.count---
+        5.create a policy

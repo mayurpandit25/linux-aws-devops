@@ -1,0 +1,13 @@
+**How to extend root volume:-
+
+  1.create a instance of ( 8GB )
+  2.stop the instance 
+  3.go to volume and modify the volume to (15GB)
+  4.start the instance and access the instance
+           1.lsblk---------list the blocks/check the partition
+           2.df -Th -------check the size
+           3.growpart /dev/xvda1
+           4.lsblk
+           5.df -Th 
+           6.resize2fs /dev/xvda1
+           7.df -Th

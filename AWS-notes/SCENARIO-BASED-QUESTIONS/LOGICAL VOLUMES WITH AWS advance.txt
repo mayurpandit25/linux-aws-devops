@@ -1,0 +1,157 @@
+LOGICAL VOLUMES WITH AWS
+
+=======================================================================================================================================================================
+
+1.create a instance
+  OS: Amazon Linux / Ubuntu
+  Storage: Root volume only
+
+2.create a volumes and attach to instance
+  1.volume-1 ---> 10Gi ---> /dev/xvdf
+  2.volume-2 ---> 12Gi ---> /dev/xvdg
+  3.volume-3 ---> 14Gi ---> /dev/xvdh
+
+3.create a physical volumes of these three
+  1.pvcreate /dev/xvdf /dev/xvdg /dev/xvdh
+  2.pvs
+
+4.create a volume group 
+  1.vgcreate tws_vg /dev/xvdf /dev/xvdg
+  2.vgs
+
+5.create a logical volume
+  1.lvcreate -L +10G -n tws-lv tws-vg
+  2.lvs
+
+6.attach a filesystem to logical volume
+  1.mkfs.ext4 /dev/tws_vg/tws_lv
+  2.blkid
+
+7.mount the volume
+  1.mount /dev/tws_vg/tws_lv /mnt
+  2.df -Th
+
+=======================================================================================================================================================================
+
+DIRECTLY MOUNT THE DISK
+
+1.create a directory
+  1.mkdir /mnt/tws_disk_mount
+
+2.assgin a filesystem
+  1.mkfs -t ext4 /dev/xvdh
+  2.blkid
+
+3.mount the volume
+  1.mount /dev/xvdh /mnt/tws_disk_mount
+  2.ls /mnt/tws_disk_mount
+  3.df - Th
+
+=======================================================================================================================================================================
+
+EXTEND A LOGICAL VOLUME
+
+1.lvextend -L +5G /dev/tws_vg/tws_lv
+2.lsblk
+3.df -Th
+
+{ Note:- i can see that when i extend the volume i can see the size on the lsblk but on the df -Th i can see the old size }
+
+RESIZE THE FILESYSTEM
+
+1.resize2fs /dev/tws-vg/tws-lv
+2.df -Th
+
+--------------------------------------------------
+
+TO RESIZE & EXTEND FILESYSTEM AT ONCE
+
+1.lvextend -r -L +5G /dev/tws-vg/tws-lv
+2.df -Th
+3.lsblk
+
+=======================================================================================================================================================================
+
+REDUCE A LOGICAL VOLUME
+
+1.Unmount the filesystem
+  umount /mnt
+
+2.Check filesystem intergraty
+  e2fsck -f /dev/tws_vg/tws_lv
+
+3.Resize the filesystem size
+  If current size = 15G, and you want 10G
+  resize2fs /dev/tws_vg/tws_lv 10G
+
+4.Reduce the logical volume
+  lvreduce -L 10G /dev/tws_vg/tws_lv
+
+5.mount the filesystem
+  1.mount /dev/tws_vg/tws_lv /mnt
+  2.df -Th
+  3.lsblk
+
+------------------------------------------------------
+
+6.TO RESIZE AND REDUCE THE FILESYSTEM AT ONCE 
+
+  1.lvreduce -r -L 10G /dev/tws_vg/tws_lv
+  2.df -Th
+  3.lsblk
+
+{ Note:- use only when filesystem type is ext4 }
+
+=======================================================================================================================================================================
+
+HOW TO CHANGE THE NAME OF LOGICAL VOLUME & VOLUME GROUP
+
+1.To change name of logical volume
+  lvrename /dev/tws_vg/tws_lv /dev/tws_vg/prod_lv
+  lvs
+
+2.To change name of volume group
+  vgrename tws_vg prod_vg
+  vgs
+
+2.to mount volumes
+  mount /dev/prod_vg/prod_lv /mnt
+
+=======================================================================================================================================================================
+
+HOW TO REMOVE THE LOGICAL VOLUMES
+
+1.To remove the logical volume
+  lvremove /dev/tws_vg/tws_lv
+  lvs
+
+2.To remove the volume group
+  vgremove tws_vg
+  vgs
+
+3.To remove the physical volume
+  pvremove /dev/xvdf /dev/xvdg
+  pvs
+
+4.optionaly cleanup
+  wipefs -a /dev/xvdf /dev/xvdg
+
+
+=======================================================================================================================================================================
+
+WHY df -Th DOES NOT CHANGE AFTER THE lvextend
+---->
+
+1.lvextend increase the block device size so we can clearly see changes in the lsblk
+
+2.filsystem still thinks the old size
+
+3.so resize2fs updated the filesystem metadata
+
+4.That's why we use the resize2fs whenever we have to extend or reduce the filesystem to update the filesystem 1st then extend or reduce
+
+
+lsblk  ---> block device size
+df -Th ---> filesystem size
+
+=======================================================================================================================================================================

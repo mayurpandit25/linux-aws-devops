@@ -1,0 +1,115 @@
+**CLOUDWATCH WITH AUTOSCALING AND LOAD BALANCER**
+
+1.create a template
+    1.name------my-lt
+    2.machine---amazon-linux
+    3.sg--------http,ssh,https
+    4.tem.tag---Name---mobiie
+    5.userdata-
+        #!/bin/bash
+        sudo yum update -y 
+        sudo yum install httpd -y
+        sudo systemctl start httpd.service
+        sudo systemctl enable httpd.service
+        sudo echo "HELLO" > /var/www/html/index.html
+        sudo systemctl restart httpd.service
+
+2.create a autoscaling group
+    1.name -------ASG
+    2.template----my-lt
+    3.VPC---------default
+    4.AZ----------1A,1B,1C
+    5.desired---4
+      minimum---3
+      maximum---5
+    6.sns----name---my-ASG----(mail_ID)
+    7.tag--Name--mobile
+    8.create a autoscaling group
+
+3.create a cloudwatch alarm (Incremental alarm)
+    1.create a alarm
+    2.select the metrics
+    3.EC2----autoscaling group (ASG)
+    4.click on CPU utilization of ASG
+    5.static----greter/equal
+    6.than 60
+    7.datapoint----1
+    8.sns----my-ASG
+    9.name---increamental alarm
+
+4.create a cloudwatch alarm (Decremental alarm)
+    1.create a alarm
+    2.select the metrics
+    3.EC2----autoscaling group (ASG)
+    4.click on CPU utilization of ASG
+    5.static----lower/equal
+    6.than 20
+    7.datapoint----1
+    8.sns----my-ASG
+    9.name---Decreamental alarm
+
+5.go to autoscaling 
+   1.click on automatic scaling
+   2.click on dynamic scaling
+        1.simple scling
+        2.name-----incremental policy
+        3.select---increamental alarm
+        4.capacity unit---add------2
+        5.create a policy
+
+6.go to autoscaling
+   1.click on automatic scaling
+   2.click on dynamic scaling
+        1.policy_type----simple scling
+        2.name-----decremental policy
+        3.select---decremental alarm
+        4.capacity unit---remove---1
+        5.create a policy
+
+7.create a target groups
+   1.target type-----instance
+   2.target name-----tg
+   3.path------------/index.html
+   4.register ------> NOT ............> only create a tg
+   5.create a target group
+
+8.attach TG to ASG
+  1.click on the asg
+  2.edit the load balancing
+  3.click on application load balancer
+  4.attach-tg
+  5.update
+
+8.create a load balancer
+   1.name-----application load balancer
+   2.vpc----default
+   3.mapping subnets
+   4.default action----tg
+   5.create a load balancer
+
+9.adding stress on the server
+   1.amazon-linux-extras install epel -y
+   2.yum install stress -y
+   3.stress --cpu 80 --io 4 --vm 2 --vm-bytes 128m --timeout 300s
+
+10.copy the dns name and paste 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      

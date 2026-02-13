@@ -1,0 +1,31 @@
+**How to access S3 bucket from ec2 instance without NAT or IGW
+
+1.create a vpc-------10.0.0.0/18
+2.create a subnet
+    1.public-subnet----10.0.0.0/20
+    2.private-subnet---10.0.16.0/20
+3.create a route table
+    public route-----public subnet associate and add route
+    private route
+4.create a internet getway and attach to a vpc
+5.create a endpoint
+    1.create a endpoint
+    2.attach to a private subnet
+    3.and add a s3 bucket permission
+6.then create a ec2 instance 
+    1.bastion-host-server
+    2.private-server
+7.then access bastion host server
+    1.then save the private key 
+    2.then give the ssh and access the private server
+8.then you can create a root credential
+9.and access these in private server by the command like (aws configure)
+     then you can give the access key and secret key
+10.then run the command 
+     aws s3 ls
+11.you can access the s3 bucket in ec2 server 
+
+      or 
+
+you can also mount these bucket on EC2 as well
+

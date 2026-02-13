@@ -1,0 +1,34 @@
+**Lab on nat instance
+
+1.create a vpc---10.0.0.0/16
+2.create a subnet
+    public subnet----10.0.0.0/24
+    private subnet---10.0.1.0/24
+3.create a internet getway and attach to a vpc
+4.create a route table
+    public route---add a public subnet and give the internet getway
+5.then go to ec2
+    1.launch a instance 
+    2.search a nat and click on community AMi and select a nat instance
+    3.give the vpc and public subnet to route the internet for private instance
+    4.giving the security group and add the ssh,http,and all ICMP v4.
+    5.then launch the instance
+6.then create a private instance
+    1.take the amazon machine
+    2.select vpc and give the private subnet
+    3.attach a security group
+    4.launch the instance
+7.then access the nat instance
+    1.access nat instance
+    2.save the pem key
+    3.check also internet is working or nat
+    4.then give the ssh so that we can access private instance on nat instance
+8.then access private instance
+    1.check internet is by ping 8.8.8.8 and the internet is not working
+    2.so go to the route table and when we create a nat instance that time the default route for nat is automatically 
+      created.
+    3.so click on the route table and click on route and give the nat instance
+    4.then check the internet by ping 8.8.8.8 and the internet is not working
+    5.then go to ec2 and click on the nat instance then click on action then click on networking then click on 
+      check source/destination check and stop the checking and then save
+    6.and then you can check the internet by ping 8.8.8.8 and you can access the internet.

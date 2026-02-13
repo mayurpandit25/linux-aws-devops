@@ -1,0 +1,100 @@
+**HOST THE NGINX AND HTTPD SERVICE ON A SINGLE SERVER PERFORM THIS IS IN UBUNTU AND AMAZON-LINUX**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**ON AMAZON-LINUX**
+
+*configure httpd*
+
+1.sudo yum update -y
+2.sudo yum install httpd -y
+3.sudo vim /etc/httpd/conf/httpd.conf
+    Listen 8080
+4.sudo systemctl restart httpd
+5.curl localhost:8080
+
+*configure nginx*
+
+1.sudo yum update -y 
+2.sudo yum install nginx -y
+3.sudo vim /etc/nginx/nginx.conf
+  server {
+    listen 80;
+    server_name localhost;
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+4.sudo systemctl restart nginx 
+5.curl localhost
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**ON-UBUNTU**
+
+*configure apache2*
+
+1.sudo apt update -y
+2.sudo apt install apache2 -y
+3.sudo vim /etc/apache2/ports.conf
+    Listen 8080
+4.sudo systemctl restart apache2
+5.curl localhost:8080
+
+*configure nginx*
+
+1.sudo apt update -y 
+2.sudo apt install nginx -y
+3.sudo vim /etc/nginx/sites-available/default
+  server {
+    listen 80;
+    server_name localhost; 
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # Additional Nginx configurations if needed
+}
+
+4.sudo systemctl restart nginx 
+
+5.curl localhost
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+{ these steps are additional of implementing the reverse proxy u can only run the httpd and nginx service onyl u have to configure httpd for run on the 8080 port }
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

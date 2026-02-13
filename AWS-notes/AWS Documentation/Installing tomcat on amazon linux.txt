@@ -1,0 +1,57 @@
+**Installing tomcat and run the student.war page on amazon-Linux:-
+
+  1.create a instance (amazon-linux)
+  2.access the instance in git bash
+  3.yum update -y
+  4.dnf install java-17-amazon-corretto -y
+  5.wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.109/bin/apache-tomcat-9.0.109.tar.gz
+  6.tar -xzvf apache-tomcat-9.0.109.tar.gz
+  7.mv apache-tomcat-9.0.109 tomcat
+  8.cp -R tomcat /usr/local/
+  9.cd /usr/local/
+ 10.cd tomcat/
+ 11.cd bin/
+ 12../catalina.sh start --------------to start tomcat
+ 13.add the port 8080 on security group
+ 13.(public_ip):8080 -----check on web
+
+14.hosting student.war in webapps
+15.cd /usr/local/
+16.cd tomcat/
+17.cd webapps/
+18.wget https://s3-us-west-2.amazonaws.com/studentapi-cit/student.war
+19.cd ..
+20.cd bin/
+21../catalina.sh start --------------> start
+22.(public_ip):8080/student
+
+**IF WE WANT TO HIDE THE PORT - CREATE REVERSE PROXY ON NGINX**
+
+1.yum install nginx -y
+2.systemctl start nginx
+3.systemctl enable nginx
+
+4.rm -f /etc/nginx/conf.d/default.conf
+5.vim /etc/nginx/conf.d/student.conf
+
+server {
+    listen 80;
+    server_name _;
+
+    location /student/ {
+        proxy_pass http://<public_ip>:8080/student/;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+
+6.nginx -t
+7.systemctl restart nginx
+
+< public_ip/student >
+
+============================================================================================================================

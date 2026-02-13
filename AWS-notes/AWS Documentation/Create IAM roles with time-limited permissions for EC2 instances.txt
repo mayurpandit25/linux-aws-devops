@@ -1,0 +1,42 @@
+Create IAM roles with time-limited permissions for EC2 instances
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a IAM policy in json form
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeInstances",
+        "ec2:StartInstances",
+        "ec2:StopInstances"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+
+
+2.create a iam role and attach these policy to the iam role
+
+3.go to role and modify the role
+    1.edit the trust relationship
+    2.add these block in these field 
+
+"Condition": {
+  "DateGreaterThan": {
+    "aws:CurrentTime": "2024-02-28T00:00:00Z"
+  },
+  "DateLessThan": {
+    "aws:CurrentTime": "2024-03-01T00:00:00Z"
+  }
+}
+
+4.create a instance
+
+5.attach these role to the instance
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

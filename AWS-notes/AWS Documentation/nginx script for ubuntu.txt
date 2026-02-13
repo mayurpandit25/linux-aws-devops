@@ -1,0 +1,8 @@
+#!/bin/bash
+sudo apt update -y 
+sudo apt install nginx -y 
+sudo ufw allow "Nginx HTTP" 
+sudo echo "<h1> this is my mobile webpage of "$HOSTNAME" </h1>"  > /var/www/html/index.html 
+sudo systemctl start nginx 
+sudo systemctl enable nginx 
+sudo systemctl start nginx

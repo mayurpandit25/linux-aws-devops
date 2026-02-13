@@ -1,0 +1,10 @@
+**How to retrive data of terminated instance:-
+
+1.create a instance
+       when we create a instance that time we can click on the (no) option of delete on termination volume.and add also some data in that instance.
+
+2.then you terminate the instance
+3.then go to volume the volume should be available then click on that volume and create a AMI image
+4.when we create a AMI image with the help of these we can launch a instance
+5.then access that instance and check wheather the data is deleted or not
+ 

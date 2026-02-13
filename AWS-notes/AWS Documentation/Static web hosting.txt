@@ -1,0 +1,8 @@
+**STATIC web hosting:-
+
+1.download the css template
+2.then adding the css template files on s3 bucket and give them public access
+3.then click on the files and go to action and select the make using public acl
+4.then go to properties and click on the static web hosting and write there index.html
+5.then copy these link of static web hosting and paste on tab
+6.you can access these static webstite

@@ -1,0 +1,933 @@
+                                                                        **EC2-elastic compute cloud**
+
+=======================================================================================================================================================================
+
+**EC2 instances(elastic compute cloud):-
+
+  1.ec2 is a scalable and fully flexible service which is provided by amazon aws for launching the virtual servers ,virtual machines etc.
+  2.it provides scalable computing capacity in aws cloud.
+  3.you can use amazon EC2 to launch as many or few virtual servers as your needs, configure security and networking and manage storage.
+  4.it enables you to scale up or scale down the instances.
+  5.it is having two storage options i.e. EBS and instance store. instant store is fast but it is also non-persistent storage.
+  6.pre-configured templates are available known as amazon machine image (AMI).
+  7.by default, we create upto 20 instances per EC2 region with two default high I/0 instances.
+ 
+=======================================================================================================================================================================
+
+**Types of EC2 instances:-
+
+    1.general purpose-------------(e.g., A,T,M) 
+         it generally provides balance memory, and cpu and resources that can be used for vanety of workload.
+       
+          a)A---------------webserver
+                            containernarized microservers
+                            distributed data stores
+                            application that requires ARM instrument set
+          b)T--------base performance
+                     website and webapp
+                     code repositories
+                     development , build test
+                     microservices
+          c)M----generally used for broad application, provides balance compute, memory and networking resources (EBS and nvme ssd)
+
+
+    2.compute optimised------------(e.g., C )
+         for fault processing, high level performance, provide more CPUs
+      
+      interview questions:-C5 supports max 25 EBS volumes.
+                           C5 use elastic network adaptor.
+                           C5 uses new EC2 hypervisor.
+     
+    3.memory optimised------------(e.g. R,X,Z)
+         provides large ram for workloads that process larger that set in memory.
+    
+        a)X-----for high performance database,relational database workloads. (banking)
+        b)R-----high performance,relational (mysql) and nosql (mangodb) database.
+        c)Z-----high frequency deliver a sustain or core frequency of upto 4.0 GZ, the fastest of any cloud instance.
+
+    4.storage optimised------------(e.g., H,I,D)
+         it requires for high workload that require high,sequential read and write access to very large data ste on cloud
+         storage.it also provide low latency for high data transfer.
+    
+    5.accelerated computing--------(e.g F,P,G)
+         graphics optimised, it is generally used for gaming or you can also run 3D application. and also used in machine 
+         learning, deep learning graphic processing.
+
+    6.high memory optimised--------(e.g U)
+         1.it is run on dedicated host to runs large in memory database.
+         2.high memory instances are bare metal instances and do not run on a hypervisor
+         3.only available purchasing category (for 3 year term)
+         4.o.s directly on hardware.
+         5.6TB / 9TB / 12TB of instance memory the largest of an y EC2 instance.
+ 
+    7.previous generation
+         1.T1 / M1 / C1 / M2 / CR1 / CR2 / CG1 / HS1 / M3 / C3 / R3
+
+=======================================================================================================================================================================
+
+**Two types of block store devices for EC2:-
+   ( root/boot volume storage where operating system situated.)
+     1.EBS (elastic block storage)
+     2.Instance storage
+
+
+a).EBS (elastic block storage):-(EBS backed EC2 instance)
+   1.EBS volume behaves like raw, Unformatted, external block storage devices that you can attach to your EC2 instance.
+   2.EBS vloumes are block storage devices suitable for database style data that requires frequient reads and writes loads.
+   3.EBS volumes are attached to your EC2 instances through the aws network like virtual hard drives.
+   4.an EBS volume can attach to a single EC2 instance only at a time.
+   5.both EBS volume and EC2 instance must be in the same AZ.
+   6.it is a persistent storage means if u have to stop or reboot the EC2 instance the data will not be deleted.
+     but if you terminate the instance the data will be deleted.(by default)
+   7.but when we remove the delete on termination tick, the EBS volume should not be deleted even after deleting/terminating
+     the EC2 instance.
+   8.and its a network attached storage so its slow than instance storage.
+
+b).Instance storage :-(instance backed EC2 instance)
+   1.instance store backed EC2 basically the virtual hard drive on the host allocated to this EC2 instance.
+   2.limited to 10GB per device.
+   3.it is Ephemeral storage.(it is non persistent storage) means if u terminate the EC2 instance the data will be deleted.
+     but suppose if u rebooted the instance the data will not be deleted. 
+   4.the EC2 instance can't be stopped, can only be rebooted or terminated.
+   5.Terminate will delete the data.
+   6.and its a faster than EBS because it is a directly attach storage.
+  
+=======================================================================================================================================================================
+
+**EBS volume types:-
+
+1.SSD backed volume(solid state drive)-----these are bootable means we can install OS in these drive we can use c drive in server
+       1.general purpose (gp2,gp3)-----------------------default volume(gp2) 30GB.
+       2.provisional IOPS (io2 block express,io1,io2)----data read and write 
+
+2.HHD backed volume (hard disk drive)-----these are non-bootable means we can not install OS and we can use as D drive E drive  for extra storage.                                                                                            
+       1.throughput optimized HDD (st1) data transfer in MB/sec
+       2.cold HDD (sc1)
+
+3.magnetic standard
+     These is bootable means we can install OS in these drive we can c drive in server
+
+
+1>general purpose SSD (gp2):-
+  1.gp2 is the default EBS volume type for the amazon EC2 instance.
+  2.gp2 volumes are backed by SSDs
+  3.general purpose , balances both price and performance.
+  4.ratio of 3IOPS/GB with upto 10,000 IOPS(input/output per second)
+  5.boot volume having low latency
+  6.volume size -1GB-16TB
+
+2>Provisional IOPS (io1):-
+  1.these volumes are ideal for both IOPS intensive and throughput intensive workloads that require extremly low latency
+    or for mission critical applications
+  2.designed for I/O intensive application such as large relational or NOsQL databases.
+  3.use if you need more than 10,000 IOPS
+  4.can provision upto 32,000 IOPS per volume (64000 IOPS)
+  5.volume size -44B-16TB
+  
+3>throughput optimized HDD (st1):-
+  1.st1 is backed by hard disk drives and is ideal for frequently accessed,throughput intensive workloads with large datasets.
+  2.st1 volumes deliver performance in term of throughput, measured in MB/s
+  3.big data, data warehouse, log processing
+  4.it cannot be a boot volume 
+  5.can provisioned upto 500 IOPS per volume
+  6.volume size -500GB-16TB
+
+4>cold HDD (sc1):-
+  1.sc1 is also backed by HDD and provides the lowest cost per GB of all EBS volume types.
+  2.lowest cost storage for infrequent access workloads.
+  3.used in file servers.
+  4.cannot be a boot volume
+  5.can provisioned upto 250 IOPS per volume.
+  6.volume size -500GB-16TB 
+
+=======================================================================================================================================================================
+
+**EBS snapshots**
+
+ 1.EBS snapshots are point-in-time images/copies of your EBS volume.
+ 2.any data written to the volume after the snapshot process is initiated , will not be included in the resulting snapshot (but will
+   be included in future, incremental update).
+ 3.per AWS account, upto 5000 EBS volumes can be created.
+ 4.per account, upto 10,000 EBS snapshots can be created.
+ 5.EBS snapshots are stored on s3, however you cannot access them directly you can only access them through EC2 APIs.
+ 6.while EBS volumes are AZ specific, snapshots are region specific. 
+ 7.any AZ in region can use snapshot to create EBS volume.
+ 8.to migrate an EBS from one AZ to another, create a snapshot (region specific) and create an EBS volume the snapshot in the intended
+   AZ.
+ 9.you can create a snapshot to an EBS volume of the same or longer size than the original volume size, from which the snapshot was 
+   initially created.
+10.you can take a snapshot of a non-root EBS volume while the volume is in use on a running EC2 instance.
+11.this means you can still access it while the snapshot is being processed.
+12.however the snapshot will only include data that is already written to your volume.
+13.the snapshot is created immediately, but it may stay in pending status until the full snapshot is completed this takes few hours
+   to complete , specially for the first time snapshot of a volume
+14.during the period, when the snapshot status is pending, you can still access the volume (no-root) , but I/O might be slower because
+   of the snapshot activity.
+15.while in pending state , an in progress snapshot will not include data from ongoing reads and writes to the volumes
+16.to take complete snapshot of your non-root volume -stop or unmount the volume.
+17.to create a snapshot for a root EBS volume, you must stop the instance first then take the snapshot.  
+18.EBS volume is AZ specific, snapshot are region specific also we can copy that snapshot and send to the another region.
+
+=======================================================================================================================================================================
+
+**EBS incremental snapshots**
+
+ 1.EBS snapshots are stored incrementally 
+ 2.for low cost storage on s3 and a guarantee to be able to fully restore data from the snapshots.
+ 3.what you need is a single snapshot then further snapshots will only carry the changed blocks (incremental updates)
+ 4.therefore you do not need to have multiple full/complete copies of the snapshot.
+ 5.you are charged for-
+      --data transfered to s3 from your EBS volume you are taking snapshot 
+      --snapshot stored in s3
+      --first snapshot is a clone subsequent snapshots are incremental.
+ 6.deleting snapshot will only remove data exclusive to the snapshot.
+ 7.In EBS, the data will be stored in a block storage form so when we create a snapshot of a volume and the data will be not fully
+   stored in volume means the volume blocks are empty the aws can intelligenly take a snapshot of only the stored block data.and when 
+   we add object in a blocks so the blocks are updated so when take a snapshot of volume only the udated blocks are stored in a snapshot
+   because aws can only store updated blocks intelligently.so when we delete the 1st snapshot amazon aws can send the snapshot 1 data to 
+   the snapshot 2 so that the data will not be deleted.and when we create a volume of the snapshot it can retrive all the data only you 
+   give the original storage as well as large storage but not give less storage.in less storage it can not be created.
+
+=======================================================================================================================================================================
+
+**EBS encryption**
+
+ 1.EBS encryption is supported on all EBS volumes types and all EC2 instance families.
+ 2.snapshots of encrypted volumes are also encrypted.
+ 3.creating on EBS volume from an encrypted snapshot will result it an encrypted volume
+ 4.data encryption at rest means , encryption data while it is stored on the data storage device.
+ 5.there are many ways you can encrypt data on an EBS volume is attached to an EC2 instance.
+     -use 3rd party EBS volume
+     -encryption tools
+     -use encrypted 
+ 6.encrypt data at the application level before storing it to the volume.
+ 7.use encrypted file system on the top of the EBS volume
+ 8.encrypted volume are accessed exactly like encrypted ones, basically encryption is handled transperantly
+ 9.you can attach an encrypted and unencrypted volumes to the same EC2 instance.
+10.remember that the EBS volumes are not physically attached to the EC2 instance, rather they are virtually attached thorugh the EBS 
+   infrastructure.
+11.this means when you encrypt data on an EBS volume, data is actually encrypted on the EC2 instance than transferred, encrypted to be stored
+   on the EBS volume
+12.these means data in transit between EC2 and encrypted EBS volume is also encrypted.
+13.there is no direct way to change the encryption state of the volume.
+14.to change the state (indirectly) you need to follow either of the following two ways-
+     1.attach a new, encrypted, EBS volume to the EC2 instance that has the data to be encrypted then,
+     2.mount the new volume to the EC2 instance copy the data from the un-encrypted volume to the new volume.
+     3.both volumes must be on the same EC2 instance.
+
+=======================================================================================================================================================================
+
+**EC2 purchasing option:-
+1.on demand
+  1.dedicated instance-------its price depends on the on demand
+  2.dedicated host-----------its price also depends on the on demand--bare metal
+2.spot instance
+3.schedule instance--------its price depends on the reserved instance
+4.reserved instance
+
+1.On demand:-
+  1.aws on demand instances are virtual servers that runs in aws or aws relational databases service(RDS) and are purchased at a fixed rate per hour.
+  2.aws recommends using on-demand instances for application with short term irregular workloads that cannot be interuppted.
+  3.they are also suitable for use during testing and development of application on EC2.
+  4.with on-demand instance you only pay for EC2 instances you use.
+  5.the use of on-demand instances frees you from the cost and complexities of planning,purchasing, and monitoring hardware and tranforms what are commonly large fixed
+    costs into much smaller variable cost.
+  6.pricing is per instance-hour consumed for each instance,from the time an instance is launched until it is terminated or stopped.
+  7.each partial instance hour consumes will be billed per second for linux instances and as a full hour for all other instance types.
+
+ *base point:-1.purchased at fixed rate per hour
+             2.only pay for consume time
+             3.irregular workloads and short term workloads.
+             4.testing and development
+             5.for linux is bill per second and for other instances it is per hour
+
+
+2.Dedicated instance:-
+  1.dedicated instances are run in a vpc on hardware that is dedicated to a single customer. 
+  2.your dedicated instances are physically isolated at the host hardware level instances that belong to other aws account
+  3.dedicated instances may share hardware with other instances from the same AWS account that are not dedicated instance.
+  4.pay for dedicated instances on-demand save upto 70% by purchsing reserved instances,or save upto 90% by purchasing spot instance.
+  
+
+3.Dedicated host:-
+  1.an amazon EC2 dedicated host is a physical server with EC2 instance capacity fully dedicated to your use.
+  2.dedicated host can help you address compliance requirement and reduce costs by allowing you to use your existing server bound software licenses.
+  3.pay for a physical host that is fully dedicated to running you instances, and bring your existing per-socket,per-core,or per-vm
+    software licenses to reduce cost.
+                                        (can i migrate a dedicated host to another availability zone ---no)
+
+
+4.spot instances:-
+  1.amazon EC2 spot instances let you take advantages of unused EC2 capacity in the AWS cloud spot instances are available at upto 90% 
+    discount compared to on-demand prices.
+  2.you can use spot instances for test and development workloads.
+  3.you also have the options to hibernate, stop or terminate your spot-instances when EC2 reclaims the capacity back with two minutes 
+    of notice.
+
+*base points:-1.unused instances that we can bid on them and available at 90% of cost.
+              2.used for testing and deployment workloads.
+
+
+ question:-when would my spot instances get interupted?
+ ans     :-1.primary reason would be amazon EC2 capacity requirement (eg.on-demand or reserved instances)
+           2.secondarily if you have choosed to set a 'max spot price' and the spot price rised above this.
+
+
+5.schedule instances:-
+  1.shedule reserve instances enable you to purchase capacity reservations that recur on a daily,weekly or monthly basis with a speciafied state time and duration for 
+    a one year term. 
+  2.you reserve the capacity in advance so that you know it is available when you need it
+  3.you pay for the time that the instances are scheduled , even if you do not use them.
+  4.schedule insta nces are a good choice for workloads that do not run continously but do run on a regulare schedule
+  5.purchase instances that are always available on the speciafied recuriing schedule for a one-year term
+  6.for eg->you can use schedule instances for an application that runs during business hours or batch processing run at the end 
+    of the week.
+  
+*base points:-1.we can schedule for daily, weekly, and monthly basis.
+              2.we can reserve on advance so that it is available when we need.
+              3.it used for workloads that do not run continuously but do ran on regular schedule.
+
+
+6.reserved instances:-
+  1.amazon EC2 RI provide a significant discount (upto 75%) compared to on-demand pricing and provide a capacity reservation when used in a specific availability 
+    zone.
+  2.reserved instances give you the option to reserve a DB instance for a one or three year term and in turn receive a significant discount compared to the on-demand 
+    instance pricing for the DB instances.
+
+       *base points:-1.we can reserved for 1-3 years term
+                     2.it is 75% discount compared on demand.
+              
+  3.types of reservd instances 
+        1.standard RI 
+        2.convertible RI
+        3.schedule RI
+  
+     1.standard RI:-these provide the most significant discount (upto 75% on-demand) and are best suited for steady-state usage.
+     2.convertible RI:-these provide a discount (upto 75%) and the capability to change the attributes of the RI as long as the  exchange results in the creation of
+                       reserved instances of greater or equal value.
+     3.schedule RI:-these are available to launch within the time window you reserve.
+
+**Questions:-
+1.can i transfer a convertible or standard RI from one region to another?
+==>no 
+
+2.how do i change the configuration of a convertible RI?
+==>you can change the configuration of your convertible RI using the EC2 management console or the get reserved instance
+   management quata API
+
+3.DO i need to pay a fee when I exchange my convertible RI?
+==>no  
+
+=======================================================================================================================================================================
+
+**EC2 access:-
+   
+  1.to access instance, you need a key and key pair name.
+  2.you can download key pair only once's.
+  3.the public key is saved by aws or match is to the key pair name and private key when you try to login to EC2 instance.
+  4.without key pair you cannot access instance.
+  5.we can create upto 20 instance per region and also we can create a instance by requesting to aws 
+
+=======================================================================================================================================================================
+
+**EC2 status check:-
+  
+  1.by default, aws ec2 service perform automated status checks every one minute 
+  2.this is done on every running EC2 instances to identify any hardware or software issue.
+  3.status check is build into aws ec2 instance.
+  4.they cannot be configured deleted or diasable.
+  5.EC2 instance can send its metric data to aws cloudwatch every 5 minutes.
+  6.enable detailed monitoring is chargeble and sends metric in every 1 minute.
+  7.you are not charged for EC2 instances if they are stopped , however attached EBS volume incure charges.
+
+=======================================================================================================================================================================
+
+**When you stop an EBS backed EC2 instance.
+   
+  1.instances perform a shutdown
+  2.state change from running ---- stopping
+  3.EBS volume remain attached to instance.
+  4.any data cached in ram or instance store volume is gone
+  5.instances retains its private IPv4 or any IPv6
+  6.instances releases its public IPv4 address back to aws pool.
+  7.instance retain its elastic ip address.
+
+=======================================================================================================================================================================
+
+**EC2 termination:-
+  
+  1.when you terminate running instances its state changes running --- shutdown ---- terminate
+  2.during settling down you do not occur charges.
+  3.by default EBS root device volume are deleted automatically 
+  4.additionally volume attach to instance by default persist after the instance is terminated.
+  5.but if we modify the instance by modifying delete on termination tick, volume should not be deleted
+  6.enable EC2 termination protection against accidental termination.so that instance should not be terminated.
+
+=======================================================================================================================================================================
+
+**EBS (elastic block storage)**                              **instance storage**
+
+ 1.most common replicate with A-Z                        1.physically to host server
+   we can create a snapshot of a volume
+   and replicate/ migrate with different 
+   A-Z
+2.EBS volume is a availabilty zone specific                
+  and snapshot is a region specific.
+3.EBS volume are attached at launched and                2.data not lost when os is rebooted.
+  deleted when instance termianted.
+4.but when we detach a EBS and delete a instance         3.data lost when
+  the volume should not be deleted.                         a.underlying drive fails
+                                                            b.instance stopped or terminated.
+                                                            c.you cant attach or detach to another instance
+                                                            d.do not rely on for valuable long term data.
+
+=======================================================================================================================================================================
+
+**TENANCY AND ITS TYPES:-
+
+   "tenancy" refers to the type of hardware virtualization used to host your AWS instances. It determines how your virtual machines (EC2 instances) are placed and 
+    isolated on the underlying physical hardware of the AWS infrastructure.
+
+**Types of tenancy:-
+
+1.Shared Tenancy (Default):
+    1.it is also known as the "multi-tenancy" model.
+    2.In this type of tenancy, multiple AWS accounts share the same physical hardware.
+    3.It means that your EC2 instances can run on the same physical server as instances from other AWS customers.
+    4.However, the instances are logically isolated from each other using virtualization techniques. 
+    5.The shared tenancy is the default option when you launch an EC2 instance in AWS.
+
+Advantages:
+   1.Cost-effective as you share hardware costs with other AWS customers.
+   2.Well-suited for most use cases, especially for small to medium-scale applications.
+
+Limitations:
+   1.May not be suitable for compliance requirements that mandate dedicated hardware.
+
+
+2.Dedicated Tenancy: 
+    In this model, you get dedicated access to a physical server that is entirely reserved for your AWS account.
+    This means that your EC2 instances run on hardware that is exclusively allocated to you, providing additional isolation and control. 
+
+It has two types:-
+   a.Dedicated Instances:-
+       1.In this option, your EC2 instances run on a dedicated physical server, but they share the same hardware with other instances from your AWS account. 
+       2.This provides instance-level isolation while sharing hardware resources.
+   b.Dedicated Hosts:-
+       1.In these you have full control over the physical server. 
+       2.You can launch EC2 instances on specific dedicated physical hosts.
+       3.This gives you more control over instance placement and can help meet strict compliance and regulatory requirements that demand dedicated hardware.
+
+Advantages of Dedicated Tenancy:
+   1.Enhanced control and predictability over the hardware your instances run on.
+   2.Suitable for compliance and regulatory requirements that mandate dedicated hardware.
+
+Limitations of Dedicated Tenancy:
+   1.Generally more expensive than shared tenancy due to the exclusive access to hardware.
+
+=======================================================================================================================================================================
+
+**Elastic IP:-
+
+  1.It is nothing but static ip.
+  2.suppose we have to terminate the instance the instance will be permanently terminated but when we have to stop the instance and next time start the instance the ip
+    will be automatically changes.but we have not to change the ip we can attached elastic ip to a instance then next time you start the machine the ip will not be
+    change.
+  3.A Public IP address associated with an instance is not static means when you stop the instance it will automatically changes whereas Elastic IP address is a static
+    public address associated with your AWS account.
+  4.private ip is remain same in all conditions
+  5.all AWS accounts are limited to five Elastic IP addresses per Region.
+  6.we can use these to run application on static ip because we can give the static domain to the people so that they can easily access the web but if suppose we can 
+    stop the instance the ip will be automatically change to not form such things we can give static ip to a instance.
+
+2)why should we avoid elastic ip:-
+   While Elastic IP addresses can be moved between instances, they are still associated with only a single region, and 
+   only for use within AWS, so they are not totally flexible.
+     
+3)How to launch a EC2 instance:-
+   1.name---------my-server
+   2.select  application o.s image
+   3.instance type
+   4.key pair-------create a new key pair
+   5.network setting------vpc----subnet
+   6.inbound security group rules
+   7.configure storage
+   8.launch instance 
+   9.then copy the public ip
+ 
+  10.open the putty
+  11.paste the ip there
+  12.then ssh
+  13.auhtentification---creadentials
+  14.browse---the key you created attach 
+  15.open
+  16.host the server you have created
+
+
+4)How to attach a elastic ip----static ip to a EC2 instance:-
+   1.go to the elastic ip
+   2.allocate elastic ip
+   3.then go to action
+   4.associate elastic ip address
+   5.allocate the elastic ip and you see that when you stop or start the instance the ip will not be change.
+
+=======================================================================================================================================================================
+
+**security group:-
+   
+   1.it is a virtual firewall works at ENI level.
+   2.upto 5 security groups per EC2 instance interface can be applied.
+   3.can only have permit rules, cannot have deny rule.
+   4.stateful.return traffic,of allowed inbound traffic is allowed,even if there are no rules to allow it.
+   5.if you allow port in inbound traffic then you can not attach separate port in outbound traffic the port will be 
+     automatically allow both inbound and outbound traffic.
+
+base points:-
+   1.it is operate at instance level.
+   2.support allows rules only.
+   3.stateful,return traffic is automatically allowed.
+   4.applies to an instance only
+
+How to attach a security group:-
+   1.click on instance
+   2.go to security group
+   3.edit inbound traffic------add rule  
+   4.save
+
+=======================================================================================================================================================================
+
+**EBS(elastic block storage):-
+
+   1.EBS volume behave like raw, Unformatted, external block storage devices that we can attach to our EC2 instance.
+   2.EBS vloumes are block storage devices suitable for database style data that requires frequient reads and writes.
+   3.EBS volumes are attached to your EC2 instances through the aws network like virtual hard drives.
+   4.an EBS volume can attach to a single EC2 instance only at a time.
+   5.both EBS volume and EC2 instance must be in the same Availability zone.
+   6.it is a persistant storage means if u have to terminate the EC2 instance the data will not be deleted.
+
+
+1)How to add volume:-
+   1.1st create a volume
+   2.gp2 
+   3.size
+   4.ap-south-1
+   5.create volume
+
+   6.click on created volume
+   7.go to action---attached volume
+   9.instance
+  10.attched volume  
+ 
+  11.go to instance 
+  12.refresh instance
+  13.click on instance
+  14.check storage---the volume will be attached
+
+  15.then configure with putty
+  16.paste the public ip there
+  17.ssh----auth---credentials---------browse a file
+  18.then create a directory-----------mkdir /pune
+  19.then give them a filesystem-------mkfs.ext4 /dev/xvdf
+  20.then mount -----------------------mount /dev/xvdf /pune
+  21.df -Th
+  22.the partition will be seen 
+
+=======================================================================================================================================================================
+
+**AMI(amazon machine image):-
+
+  1.it is a amazon machine image.
+  2.amazon machine image is provided by aws that provides the information required to launch an instance.
+  3.it is a template that contents a software information.
+  4.from an AMI, you launch an instance, which is a copy of the AMI running as a virtual server in the cloud.
+  5.You can launch multiple instances from a single AMI when you require multiple instances with the same configuration.
+
+**Types of AMI:-
+• Public ----------------> available to all
+• Private ---------------> created by own also only accessible for those who get access
+• AWS Marketplace -------> purchase the ami
+
+**How to create a AMI(amazon machine image):-
+  1.click on instance
+  2.go to action--------click on image and template----create template
+  3.give a name
+  4.launch or create a AMI
+ 
+  5.then click on created AMI
+  6.launch a instance from that AMI
+  7.the AMI will be default AMI set which you can be created.
+
+=======================================================================================================================================================================
+
+**EC2 metadata:-
+
+  1.it is instance data that you use to configure or manage the instances.
+    e.g:- IPV4, IPV6, hostname, security group, nacl, DHCP, instance type, public keys, private keys, DNS.
+  2.the metadata we can also view on server when we login with them.
+
+
+**How to retrive metadata of amazon linux machine:-   
+  1.create a instance
+      -name-
+      -image-amazon machine image 
+      -security group--http,ssh
+  2.access the instance in putty
+      -ec2-user
+      -run the command
+        TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+        && curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/
+  3.the metadata should be shown and you can the info of these by adding on these after meta-data
+
+=======================================================================================================================================================================
+
+**How to install nginx on server:-(Ubuntu)
+
+1.launch a EC2 instance
+    1.name-ec2instance
+    2.security group
+    3.storage
+    4.machine-ubuntu
+    5.then write script in user data
+        #!/bin/bash
+    5.launch a instance
+
+2.then get ssh of instance
+    1.apt update -y
+    2.apt install nginx -y
+    3.systemctl start nginx
+    4.rm -rf /var/www/html/index.html
+    5.vim /var/www/html/index.html
+        "welcome to cloudblitz"
+    6.chmod 777 /var/www/html/index.html
+    7.systemctl restart nginx
+
+3.give the public IP and hit on the web you get "welcome to cloudblitz"
+
+=======================================================================================================================================================================
+
+**HOW TO ACCCESS THE KEY-LOSS INSTANCE ====>>>
+
+Step 1: Create an “Old” Instance
+Launch the old instance (the one where you will later lose the key).
+SSH into it using your existing key pair.
+Create some data on it (for verification later).
+
+Step 2: Simulate Key Loss
+Delete the key pair associated with the old instance (so you can’t SSH into it anymore).
+
+Step 3: Create a “New” Instance
+Launch a new instance with a new key pair.
+SSH into this new instance successfully (you’ll use it for recovery).
+
+Step 4: Detach the Old Volume
+Stop the old instance.
+Detach its root volume (usually /dev/sda1) from the old instance.
+
+Step 5: Attach the Old Volume to the New Instance
+Stop the new instance.
+Attach the old root volume to the new instance as a secondary volume (for example, /dev/xvdf).
+Start the new instance.
+
+Step 6: Access the Old Volume from the New Instance
+SSH into the new instance.
+Run the following commands:
+
+lsblk                       
+sudo mount -o rw,nouuid /dev/xvdf1 /mnt 
+ls /mnt                       
+sudo cat /home/centos/.ssh/authorized_keys >> /mnt/home/centos/.ssh/authorized_keys
+sudo umount /mnt             
+
+Step 7: Reattach the Old Volume
+Stop the new instance.
+Detach the old volume from it.
+Attach that old volume back to the old instance as /dev/sda1.
+
+Step 8: Access the Old Instance Again
+Start the old instance.
+SSH into it using the new key pair (since its authorized_keys file now contains the new public key).
+Verify the data you created earlier.
+
+✅ You’ve successfully recovered access to the key-lost EC2 instance!
+
+=======================================================================================================================================================================
+
+**copy the AMI images from one account to another account:-
+
+account-1:-
+    1.create one AMI image from instance and then go to AMI and select the AMI then go to action and click on image modify permission
+         a. the image is private
+         b. account number ---- (2ND account-ID)
+         c. tick on add "create volume" permission
+         d. save
+
+account-2:-
+    1.click on the AMI
+    2.click on the private images instead of owned by me
+    3.the image is seen
+
+=======================================================================================================================================================================
+
+**How to copy the AMI image from one region to another region:-
+
+    1.click on AMI then go to action and select copy AMI
+    2.destination region---
+    3.name---
+    4.discription---
+    5.encryption---
+    6.copy AMI
+    7.then go to region that you can specify click on AMI and click on owned by me 
+    8.with this image we can launch the instance as well
+
+=======================================================================================================================================================================
+
+**How to change instance type of running instance:-
+
+   1.create a instance (t2 micro)
+   2.stop the instance
+   3.click on these instance
+   4.go to action------->>instance setting------->>change instance type
+   5.select the instance type and apply (t2 medium)
+   
+=======================================================================================================================================================================
+
+**How to retrieve data of terminated instance:-
+  
+  1.create a instance but click on no option of "delete on termination".
+  2.then add some files on the instance ---> touch file(1..10)
+  3.then terminate the instance the EBS volume should be detached automatically.
+  4.create a new instance
+  5.stop the instance
+  6.and attach a old instance volume to the new instance.
+  7.mount the volume (mount /dev/xvdf /mnt)
+  8.then access the files of terminated instance to a new instance.
+
+=======================================================================================================================================================================
+
+**How to extend root volume:-
+
+  1.create a instance of ( 8GB )
+  2.stop the instance 
+  3.go to volume and modify the volume to (15GB)
+  4.start the instance and access the instance
+           1.lsblk---------> list the blocks/check the partition (ext4)
+           2.df -Th -------> check the size
+           3.growpart /dev/xvda1
+           4.lsblk
+           5.df -Th 
+           6.resize2fs /dev/xvda1
+           7.df -Th
+
+=======================================================================================================================================================================
+
+**How to attached a single EBS to multiple instance:-
+
+   1.create a volume
+        1.volume type----provisioned IOPS (io2)
+        2.enable multi-attach
+        3.create a volume
+   2.create two instance (1 and 2) of instance type-c
+   3.stop these instances
+   4.attach these volume to instance-1
+   5.attach these volume to instance-2
+   6.click on the volume you can see two instance should be attach to a single volume
+
+=======================================================================================================================================================================
+
+**Installing tomcat and run the student.war page in amazon-linux machine:-
+
+  1.create a instance (amazon-linux)
+  2.access the instance in git bash
+  3.yum update -y
+  4.dnf install java-17-amazon-corretto -y
+  5.wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.109/bin/apache-tomcat-9.0.109.tar.gz
+  6.tar -xzvf apache-tomcat-9.0.109.tar.gz
+  7.mv apache-tomcat-9.0.109 tomcat
+  8.cp -R tomcat /usr/local/
+  9.cd /usr/local/
+ 10.cd tomcat/
+ 11.cd bin/
+ 12../catalina.sh start --------------to start tomcat
+ 13.add the port 8080 on security group
+ 13.(public_ip):8080 -----check on web
+
+14.hosting student.war in webapps
+15.cd /usr/local/
+16.cd tomcat/
+17.cd webapps/
+18.wget https://s3-us-west-2.amazonaws.com/studentapi-cit/student.war
+19.cd ..
+20.cd bin/
+21../catalina.sh start --------------> start
+22.(public_ip):8080/student
+
+**IF WE WANT TO HIDE THE PORT - CREATE REVERSE PROXY ON NGINX**
+
+1.yum install nginx -y
+2.systemctl start nginx
+3.systemctl enable nginx
+
+4.rm -f /etc/nginx/conf.d/default.conf
+5.vim /etc/nginx/conf.d/student.conf
+
+server {
+    listen 80;
+    server_name _;
+
+    location /student/ {
+        proxy_pass http://<public_ip>:8080/student/;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+6.nginx -t
+7.systemctl restart nginx
+
+< public_ip/student >
+
+=======================================================================================================================================================================
+
+**Installing tomcat and run the student.war page in UBUNTU:-
+
+1.create a instance (ubuntu machine)
+2.access these instance (git/bash)
+3.sudo apt update -y
+4.sudo apt install default-jre -y
+5.sudo apt install default-jdk -y
+6.java --version
+7.wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.109/bin/apache-tomcat-9.0.109.tar.gz
+8.tar -xvf apache-tomcat-9.0.109.tar.gz
+9.mv apache-tomcat-9.0.109 tomcat
+10.cd tomcat
+11.cd /bin
+12.(./catalina.sh start)
+13.go to security and add the 8080 rule
+14.(public ip of instance):8080
+
+15.hosting the student.war page
+16.go to s3 bucket and upload a student.war file
+17.cd /tomcat
+18.cd /webapps
+19.wget (copy link of student.war)
+20.cd ..
+21.cd /tomcat
+22.cd /bin
+23.(./catalina.sh start)
+24.(public ip of instance):8080/student
+
+=======================================================================================================================================================================
+
+**Snapshot:-
+ 
+ 1.you can back up data of ebs volume to amazon s3 by taking point in time snapshot,snapshot are incremental backup.which means that only the blocks that are updated
+   are stored incrementally.
+ 2.this minimize the time required to create snashot.
+ 3.it can optimising the storage as well as optimize the cost.
+ 4.we can create upto  10,000 snapshot.
+
+**Practical:-
+    1.create a instance
+    2.then go to snapshot
+    3.and create a snapshot of volume
+    4.then create a volume of these snapshot
+
+=======================================================================================================================================================================
+
+**lifecycle manager:-
+      
+Amazon Data Lifecycle Manager provides an automated, policy-based lifecycle management solution for Amazon Elastic Block Store (EBS) Snapshots and EBS-backed Amazon Machine Images (AMIs). Automate the creation of point-in-time copy of your block storage data with user-defined policies that you can customize based on data protection needs.
+
+**Practical:-
+   1.go to lifecycle
+   2.set the lifecycle
+   3.select the volume
+   4.give the tag of volume
+   5.schedule name
+        a.frequency---daily
+        b.every------ hour
+        c.startung time---
+        d.count---
+        e.create a policy
+
+=======================================================================================================================================================================
+
+**Recycle bin:-
+
+Recycle bin is a data recovery feature that enables you to restore accidentally deleted Amazon EBS snapshots and EBS-backed AMIs.
+When using Recycle Bin, if your resources are deleted, they are retained in the Recycle Bin for a time period that you specify before being permanently deleted.
+
+  1.go to snapshot
+  2.go to recycle bin
+  3.go to retention rule
+  4.resource type----snapshot/image
+  5.create a rule
+  6.then go to snapshot
+  7.delete snapshot
+
+=======================================================================================================================================================================
+
+**How to share the snapshot from one account to another account:-
+
+  1.account-1-(mumbai region)
+       1.create a EC2-instance
+       2.create a snapshot of a instance volume
+       3.click on the snapshot 
+       4.go to action
+       5.click on the modify permission
+       6.paste the account no of account-2 and add the permission
+       7.save
+
+  2.account-2-(mumbai region)
+       1.go to mumbai region
+       2.click on EC2
+       3.go to snapshot
+       4.you can see the snapshot
+
+=======================================================================================================================================================================
+
+**How to copy the snapshot from one region to another region:-
+   
+   1.create a EC2 instance
+   2.click on the volume
+   3.create a snapshot
+   4.click on the snaphshot
+   5.go to action
+   6.copy the snapshot
+         1.select destination region--ohio
+         2.description--
+         3.encryption---
+         4.copy the snapshot
+   7.go to ohio region
+   8.go to EC2
+   9.go to snapshot
+
+=======================================================================================================================================================================
+
+**Mount s3 bucket on EC2 ====>>>
+
+  1.create a instance (centos)
+  2.create a s3 bucket
+  3.access the instance
+       1.amazon-linux-extras install epel -y
+       2.yum install s3fs-fuse -y
+       3.echo (access_key):(secret_key) > ${HOME}/.mayurpasswd
+       4.ls -la /root/
+       5.chmod 600 /root/.mayurpasswd
+       6.mkdir /mountbucket
+       7.ls /
+       8.s3fs (bucket name) /mountbucket -o passwd_file=${HOME}/.mayurpasswd
+       9.mount | grep mountbucket
+      10.cd /mountbucket
+      11.ls
+      12.touch file{1..10}
+  4.go to console and refresh the s3 bucket
+  5.then upload a file on s3,you can access these file on EC2.
+
+=======================================================================================================================================================================
+
+
+ 

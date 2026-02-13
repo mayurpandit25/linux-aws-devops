@@ -1,0 +1,14 @@
+**How to add encyption on the bucket:-
+
+1.create a bucket
+2.upload the objects
+3.go to the policy generator
+      1.s3 bucket policy
+      2.*--for all the object
+      3.put object/put bucket policy
+      4.paster the bucket ARN
+      5.string not equals
+      6.key--server side encryption
+      7.aws:kms
+      8.add statement
+      9.generate policy

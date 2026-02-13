@@ -1,0 +1,33 @@
+**How to launch windows server:-
+
+1.create a instance
+    1.name--------------windows
+    2.instance type-----t2 micro
+    3.security group----ssh,http,https,RDP(3389)
+    4.create a instance
+
+2.access the instance
+    1.connect the instance
+    2.go to RDP client
+    3.click on get password------browse key pair-----decrypt password
+    4.open RDP in desktop
+    5.computer---(public IP)
+    6.username---(Administrator)
+    7.password---(paste password)
+    8.connect
+
+3.install webserver and create a webpage on windows server
+    1.search server manager and click 
+    2.add roles and features
+    3.next
+    4.role based or features based installation
+    5.next
+    6.select a server from server pool
+    7.next
+    8.select one file------webserver IIS------add features-------next------next-----next-----install-----close
+    9.click on file manager
+   10.click on c drive
+   11.inetpub-----wwwroot------2files-----delete these files
+   12.create a index.html file on that folder 
+            "HELLO WORLD"
+   13.(public IP) -----------------------check the web

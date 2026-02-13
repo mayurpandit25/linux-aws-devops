@@ -1,0 +1,45 @@
+s3 with cloudfront bucket should be private
+
+========================================================================================================================================================================
+
+1.download a css template
+
+2.create a s3 bucket which is private
+     1.add these template in s3 bucket
+
+3.create a cloudfront
+     1.distribution_name:- privateaccess
+     2.choose destination --> s3 bucket
+     3.origin access --> origin access control (OAC)
+     4.create a distribution
+
+4.add a policy in the s3-bucket
+
+  {
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowCloudFrontServicePrincipal",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "cloudfront.amazonaws.com"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::YOUR_BUCKET_NAME/*",
+      "Condition": {
+        "StringEquals": {
+          "AWS:SourceArn": "arn:aws:cloudfront::ACCOUNT_ID:distribution/DISTRIBUTION_ID"
+        }
+      }
+    }
+  ]
+}
+
+Note:- 1.bucket_name:-
+       2.account_id:-
+       3.distribution_id of cloudfront:-
+
+5.copy the dns and hit on web 
+      { (dns)/index.html }
+
+========================================================================================================================================================================

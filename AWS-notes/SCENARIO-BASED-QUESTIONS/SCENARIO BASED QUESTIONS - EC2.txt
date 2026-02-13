@@ -1,0 +1,145 @@
+SCENARIO BASED QUESTIONS: - EC2
+
+1. EC2 is unreachable via SSH even though port 22 is allowed. What do you do?
+
+===>>> 
+1.check if the instance has a public ip.
+2.verify the security group
+3.also check the nacl rules.
+3.check the cpu spike, maybe instance unhealthy
+4.check ec2 status check (wheather the instance fail or aws issue)
+5.restart the instance if needed.
+
+=================================================================================================
+
+2. How to increase the volume from 8gb to 20gb of running instance?
+
+====>>>
+1.go to volume ------> modify volume -------> changes 8gb to 20gb
+2.get the ssh of a instance
+3.run the commands:
+  growpart /dev/xvda1
+  resize2fs /dev/xvda1
+
+=================================================================================================
+
+3.Old instance terminated but delete-on-termination unchecked — how to recover data?
+
+====>>>
+1.go to volume -----> old volume still available
+2.create a new instance
+3.attach these old volume to new instance ---> /dev/xvdf
+4.mount the volume
+  mount /dev/xvdf /mnt
+
+note:-these volume has already the file system that's why we can directly mount the volume
+
+=================================================================================================
+
+4. Recover access to key-loss EC2 instance?
+
+✔ Stop old instance
+✔ Detach its root EBS
+✔ Attach to new instance as secondary
+✔ Mount and add new public key to authorized_keys
+✔ Detach volume and reattach back to old instance
+✔ Start old instance → SSH works with new key
+
+=================================================================================================
+
+5. Instance store terminated — can you recover data?
+
+❌ No, instance store = ephemeral
+✔ Data is lost permanently
+✔ Only EBS can be recovered.
+
+=================================================================================================
+
+6. Application needs 12 TB RAM — which instance?
+
+✔ U-series High Memory Instances
+Example: u-6tb1, u-9tb1, u-12tb1
+Used for SAP HANA, large in-memory databases.
+
+=================================================================================================
+
+7. Difference between gp2 and gp3?
+
+gp2 → IOPS based on size (3 IOPS per GB)
+gp3 → Fixed 3000 IOPS independent of size
+gp3 cheaper & better performance.
+
+=================================================================================================
+
+8. On-demand EC2 is costly; workload is 24×7 predictable — what option?
+
+Use Reserved Instances:
+  1 or 3-year term
+  Up to 75% savings
+  Great for steady workloads
+
+=================================================================================================
+
+16. EC2 root disk 100% full and cannot SSH — how to fix?
+
+Steps:
+
+Stop instance
+Detach root volume
+Attach to another EC2
+Mount → delete logs or large files
+Detach and reattach to original instance
+Start instance → SSH works
+
+=================================================================================================
+
+Scenario
+
+17.Your organization has multiple EC2 instances running in different environments (production and development). You want to ensure that production EC2 instances cannot be stopped or terminated accidentally, but development instances should remain flexible. How would you achieve this?
+
+======>>>
+
+You can enable termination protection on production EC2 instances. This prevents accidental termination via the console, CLI, or API. For stopping instances, you can use IAM policies to restrict permissions so only authorized users can stop production instances, while development instances remain unrestricted.
+
+=================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

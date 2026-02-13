@@ -1,0 +1,1030 @@
+                                                                     **VPC (VIRTUAL PRIVATE CLOUD)**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**networking: -
+    it is interconnected computing device that can exchange data and share resources within a network.
+
+  ipv4                        ipv6                    mac address 
+  32 bit                      128 bit                 48 bit
+
+
+ 11111111          11111111           11111111         11111111
+   255               255                255              255
+
+
+     1       1        1        1        1        1        1        1
+    2^7     2^6      2^5      2^4      2^3      2^2      2^1      2^0
+    128     64       32       16        8        4        2        1
+
+
+1.we can denote host by------0
+2.we can denote network by---1
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**CIDR:(classless inter-Domain routing):-
+      it is an IP addressing scheme that improves the allocation of IP addresses. It replaces the old system based on classes A, B, and C. This scheme also helped greatly extend the life of IPv4 as well as slow the growth of routing tables.
+
+**main reason of CIDR:-  
+    The problem would commonly occur when an organization required more than 254 host machines and therefore would no longer fall
+    into class C but rather class B. This means that the organization would use a class B license even though they had far less 
+    than 65,535 hosts. Therefore if an organization only required 2,500 hosts, they would be wasting about 63,000 hosts by holding
+    a class B license which would greatly decrease the availability of IPv4 addresses unnecessarily.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**why we create a network:-  
+
+1.network basically we can create to create resources into the network.
+2.if suppose i allocate a /16 range for our network then the network allocate the 65536 computers. then its yours choice to connect computers according to your infrastructure.
+3.thats why we get the subnet range above the network not the same range of /16.
+
+and we allocate higher range because if suppose in future we want to extend the network then that time we cant change the cidr. we have to create the another network. thats why we get higher network range for future use as well.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**classes:-
+
+  1.Class A -- Over 16 million host identifiers--- 0-126------(N/8)----N.H.H.H------(N.256.256.256)---256*256*256
+  2.Class B -- 65,535 host identifiers------------ 128-191----(N/16)---N.N.H.H------(N.N.256.256)-----256*256
+  3.Class C -- 254 host identifiers----------------192-223----(N/24)---N.N.N.H------(N.N.N.256)-------256
+  4.Class D -- future use -------------------------224-239
+  5.Class E -- special purpose --------------------240-255
+
+**127 is the loopback ip (system IP):-
+    1.The IP address range 127.0.0.0/8 is reserved for loopback addresses, which means that any traffic sent to these addresses 
+      is looped back to the same device. In other words, the loopback address allows a device to communicate with itself.
+    2.The most commonly used loopback address is 127.0.0.1, which is also known as the "localhost." When you type "localhost" 
+      into your web browser, it will resolve to 127.0.0.1, and your browser will communicate with your own device's web server.
+    3.In summary, the use of the 127 class IP is to provide a loopback address for devices to communicate with themselves, and 
+      it is commonly used for testing and debugging network applications.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**How to calculate host:-
+ 
+   1.class A -----subnet mask ---N.H.H.H/8
+                         host---=2^24
+                                =167777216 hosts (16 million host)
+
+   2.class B -----subnet mask---N.N.H.H/16
+                         host--=2^16
+                               =65536 hosts
+ 
+   3.class C ----subnet mask----N.N.N.H/24
+                        host---=2^8
+                               =256 hosts
+
+
+**example:-
+
+1.192.168.0.44/19
+  
+ 111111111    111111111    11100000     00000000
+
+  subnetmask--------255.255.224.0
+  network---------- 2^3=8
+  useful host------ 2^13-2=8190
+
+
+
+2.10.0.0.5/28
+
+  11111111    11111111     11111111    11110000
+
+  subnetmask----------255.255.255.240
+  network-------------2^4=16
+  useful host---------2^4-2=14
+
+
+**because 1st IP is -----network ID
+          last IP is ----broadcast ID
+
+  it is used for special purposes....
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**find out the network ID
+
+  1.115.10.0.15
+  
+    subnetmask---------255.0.0.0
+    network ID---------115.0.0.0
+    broadcast ID-------115.255.255.255
+
+  2.196.10.10.0
+   
+    subnetmask--------255.255.255.0
+    network ID--------196.10.10.0
+    broadcast ID------196.10.10.2552
+
+  3.160.10.20.10
+
+    subnetmask-------255.255.0.0
+    network ID-------160.10.0.0
+    broadcast ID-----160.10.255.255
+ 
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**convert these IP into binary form
+
+ 1.192.168.37.200
+    
+    128    64    32     16     8     4     2     1
+     
+    1      1     0      0      0     0     0     0 --------------192
+    1      0     1      0      1     0     0     0 --------------168
+    0      0     1      0      0     1     0     1 --------------37
+    1      1     0      0      1     0     0     0 --------------200
+
+
+ 1100000000   10101000   00100101  11001000 -------binary form of IP
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**some examples to find network, netmask, host, broadcast id =====>>
+
+ 1.192.168.0.0/19
+  
+   11111111    11111111    11100000    00000000   
+
+    subnetmask------- 255.255.224.0
+    networks--------- 2^3=8
+    host bit--------- 2^13-2=8190
+    broadcast ID------192.168.31.255/19
+
+  1st subnet:-192.168.0.0/19  
+  2nd subnet:-192.168.32.0/19
+  3rd subent:-192.168.64.0/19
+  4th subnet:-192.168.96.0/19
+  5th subnet:-192.168.128.0/19
+  6th subnet:-192.168.160.0/19
+  7th subnet:-192.168.192.0/19
+  8th subnet:-192.168.224.0/19
+  
+2.10.0.0.0/26
+
+  11111111   11111111    111111111   11000000
+
+    subnetmask------- 255.255.255.192
+    network ID--------10.0.0.0
+    networks--------- 2^2=4
+    host bit--------- 2^6-2=62
+    broadcast ID------10.0.0.63/26
+
+  1st subnet:-10.0.0.0/26
+  2nd subnet:-10.0.0.64/26
+  3rd subent:-10.0.0.128/26
+  4th subnet:-10.0.0.192/26
+  
+
+3.172.25.0.5/17
+
+  11111111   111111111   10000000   00000000
+
+    subnetmask-------255.255.128.0
+    network ID-------172.25.0.0
+    networks---------2^1=2
+    host bit---------2^15-2=32766
+    broadcast id-----172.25.127.255/17
+
+ 1st subnet:-172.25.0.0/17
+ 2nd subnet:-172.25.128.0/17
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**private IP ranges ===>>
+
+1.class A -----10.0.0.0  -------10.255.255.255
+2.class B -----172.16.0.0 ------172.31.255.255
+3.class C -----192.168.0.0 -----192.168.255.255
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**subnetting concept:-
+
+*what is subnet
+   1.it is a network within a network. 
+   2.a subnet is a range of IP addresses in our vpc.
+   3.you can attach aws resources such as ec2 instances and RDS instances to subnet.
+   4.you can create a subnet to group instances together according to your security and operation needed.
+
+*what is switch:-
+    with the help of switch we can connect two network within a network with same network IDs.
+
+*what is router:-
+    with the help of router we can connect two different networks.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**VPC(virtual private cloud):-
+
+  virtual private cloud is a virtual network that closely resembles a traditional networking that you operate in your own
+  datacentre, with the benefits of using the scalable infrastructure of aws.
+                                              or
+  VPC stands for Virtual Private Cloud. It is a cloud computing service provided by Amazon Web Services (AWS) that allows 
+  users to create a virtual private network (VPN) in the cloud.
+
+  1.amazon vpc provide logically isolated area from other virtual network in aws cloud where we can launch aws resources
+  2.A VPC allows users to define a virtual network topology, including subnets, routing tables, and network gateways, in a 
+    private and isolated virtual network within the AWS cloud. 
+  3.This allows users to launch and manage resources, such as instances and databases, in a secure and isolated manner.
+  4.max 5 vpcs can be created and 200 subnets in 1vpc.
+  5.we can allocate max 5 elastic IP.
+  6.once we created vpc, DHCP, NACL and security group will be automatically created.
+  7.all vpc are isolated to each other.
+  8.if you are pearing your vpc to other in that case your and other client have different CIDR block.otherwire they will
+    not be pearing with each other.
+  9.subnet is availability zone specific.
+ 10.vpc is region specific.
+ 11.once a vpc is created, you cannot change its CIDR block range.
+ 12.if you need different CIDR size, create a new vpc.
+ 13.the different subents within a vpc cannot overlap.
+ 14.you can however expand your vpc CIDR by adding new/extra IP address ranges.
+ 
+  Overall, VPCs provide a secure and flexible way to host resources in the cloud while maintaining control over the network topology and access to those resources.
+
+  overll we say, a vpc is a virtual private cloud or the virtual private network that provides the security and the flexibility to host the aws resoruces.
+
+------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------
+
+**TYPES of VPC:-
+  
+    1.default vpc
+    2.custom vpc
+
+
+A).default vpc:-1.it is created default in each region when an aws account is created.
+                2.Has default CIDR,security group, NACL and route table settings.
+                3.Has an internet getway default.
+
+B).custom  vpc:-1.it is a vpc on aws account owner creates.
+                2.aws user creating the custom vpc can decide the CIDR.
+                3.has its own security group,network acl and route tables.
+                4.does not have a internet getway by default, one needs to be created if needed.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**STEPS TO CREATE A VPC =====>>>
+
+1.create a vpc (10.0.0.0/18)
+
+2.create a subnet
+     a)10.0.0.0/20  ----------public subnet
+     b)10.0.16.0/20 ----------public subnet
+     c)10.0.32.0/20 ----------private subnet
+     d)10.0.48.0/20 ----------private subnet
+
+3.create a internet getway and attach to a vpc
+
+4.create a nat-getway and attach to private route-table
+    
+5.create a route-table
+     a)my-public-route-table
+         1.add subnet public subnet
+         2.attach iGW
+     b)my-private-route-table
+         1.add subnet private subnet
+         2.attach nat-getway
+
+6.create a instances
+     1.bastion-host-server (public server)
+     2.my-web-application-1 (private server)
+
+7.login with putty to access private server
+     1.vim mayur.pem
+     2.chmod 400 mayur.pem
+     3.ls -l mayur.pem
+     4.ssh -i (key-name)(hostname)@(private ip of private server)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+BASTION-HOST SERVER:-
+
+    1.A bastion host server acts as a gateway to a private network or server that is not directly accessible from the internet.
+    2.It provides a single entry point for users who need to access specific resources on the private network.
+    3.All inbound traffic to the private network is routed through the bastion host server, which allows administrators
+      to control and monitor access to the private network.
+    4.It enhances security by restricting access to sensitive systems and data to only authorized users.
+    5.It enables organizations to better control user activity and quickly detect and respond to potential security threats.
+    6.Using a bastion host server can reduce the risk of unauthorized access, data breaches, and other security incidents.
+    7.Overall, a bastion host server is an important tool for securing access to private networks and resources.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+COMPONENTS OF VPC:-
+
+  A).public subnet:-1.In public subnet the internet getway should be attach.they have known the route of internet getway.
+                    2.if a subnet traffic is routed to an internet getway,the subnet is known as public subnet.
+                    3.the instance in public subnet can send outbound traffic directly to the internet.
+                    4.if you want your instance on public subnet to communicate with the internet over IPv4.it must have a public IPv4 address on elastic IP address.    
+
+  B).private subnet:-1.In private subnet the internet getway should not be attached.
+                     2.if a subnet does not have a route to internet getway the subnet known as private subnet.
+                     3.when you create a vpc,you must specify an IPv4 CIDR block for VPC.
+                     4.the allowed block size is between /16 to /24 netmask.
+                     5.the first four and last IP address of subnet cannot be assigned.
+                     6.the instance in a private subnet can not send outbound traffic directly to the internet.
+          
+                              1).10.0.0.0 ------------ network address
+                              2).10.0.0.1 ------------ reserved by aws for vpc route
+                              3).10.0.0.2 ------------ reserved by aws for the IP address of DNS server
+                              4).10.0.0.3 ------------ reserved for future use
+                              5).10.0.0.255 ---------- brodcast address
+                          
+                     Note:-aws do not support brodcast in a vpc but reserve this 5 address.
+             
+                                 =65,536-5           ,    =256-5
+                                 =65,531             ,    =251
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     
+**ROUTE TABLE:-
+   
+  1.it is a central routing function.
+  2.it connects the different availability zone together and connects VPC to internet getway.
+  3.you can have upto 200 routes table per vpc 
+  4.you can have upto 50 routes entries per route table.
+  5.each subnet must be associated with only one route table at any given time.
+  6.if you do not specify a subnet to route table association, the subnet will be associates with the default VPC route
+    table
+  7.you can also edit the main route table if you need,but you cannot delete main route table.
+  8.however you can make a custom route table manually become the main route table then you can delete the former main,
+    as it is no longer a main route table.
+  9.you can associate multiple subnets with the same route table.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**what is the purpose of route table:-
+  
+   1.main purpose of route table is to help routers make effective routing decisions.
+   2.whenever a packet is sent through a router to be forwarded to a host on another network,the router consults the 
+     routing table to find the IP address of the destination device and the best path to reach it.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                           
+**IMPLIED ROUTES:-
+  
+  1.it is nothing but the logical routes.
+  2.it behaves like logical routes but doesnt exist actually.
+  3.but they have the property of VPCs.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+**INTERNET GATEWAY:-
+  
+  1.it is kind of router.
+  2.it also a virtual router that connects VPC to a internet.
+  3.if you create a new VPC then you must attach the internet getway in order to access internet.
+  4.ensure that your subnets route table points to the internet getway.
+  5.it performs NAT between your private and public IPv4 address.
+  6.it supports both IPv4 and IPv6.
+  
+example:- { 0.0.0.0/0 }
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**NAT GATEWAY:-(network address translation)
+
+  1.you can use network translation getway to enable instances in a private subnet to connect to the internet or other 
+    aws services. but prevent internet from initialing a connection with those instances.
+  2.you are charged for creating and using a NAT gateway in your account NAT gateway hourly usage and data processing 
+    rates apply amazon ec2 charges for data transfer also apply
+  3.to create a NAT getway you must specify the public subnet in which the NAT gateway should recide.
+  4.you must also specify an elastic IP address to associate with NAT getaway when you create it.
+  5.no need to assign public IP address to your private instance.
+  6.after you have created a NAT getaway you must update the route table associated with one or more of your private 
+    subnets to point internet bound traffic to gateway. This enables instance in your private subnet to communicate with
+    internet.
+  7.deleting a NAT gateway, disassociates a elastic IP address but does not release the address from your account.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Lab on nat getway:-
+
+1.create a vpc-----10.0.0.0/18
+2.create a subnet
+    public subnet----10.0.0.0/20
+    private subnet---10.0.16.0/20
+3.create a internet getway and attach to vpc
+4.create a nat getway
+   { must attach public subnet and elastic address}
+5.create a route table
+    public route-----give the public subnet and internet getway
+    private route----give the private subnet and the nat getway
+6.then go to ec2
+    1.create a private instance by giving them a private subnet
+    2.create a bastion host server by giving them a public subnet
+7.then access the bastion host server 
+    1.save the pem key
+    2.give the ssh to access the private instance
+    3.then access the private instance by ssh
+      (ssh -i (pem-key name) (machine name)@(private IP of private instance)
+    4.then ping 8.8.8.8 to check the internet and its working.
+
+------------------------------------------------------------------------------------------------------------------------
+
+**NAT instance:-
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+**Lab on nat instance:-
+
+1.create a vpc---10.0.0.0/16
+2.create a subnet
+    public subnet----10.0.0.0/24
+    private subnet---10.0.1.0/24
+3.create a internet getway and attach to a vpc
+4.create a route table
+    public route---add a public subnet and give the internet getway
+5.then go to ec2
+    1.launch a instance 
+    2.search a nat and click on community AMi and select a nat instance
+    3.give the vpc and public subnet to route the internet for private instance
+    4.giving the security group and add the ssh,http,and all ICMP v4.
+    5.then launch the instance
+6.then create a private instance
+    1.take the amazon machine
+    2.select vpc and give the private subnet
+    3.attach a security group
+    4.launch the instance
+7.then access the nat instance
+    1.access nat instance
+    2.save the pem key (vim mayur.pem)
+    3.check also internet is working or not (ping 8.8.8.8)
+    4.then give the ssh so that we can access private instance on nat instance
+        (ssh -i "mayur.pem" (machine name)@(private ip of private instance)
+8.then access private instance
+    1.check internet is by ( ping 8.8.8.8 ) and the internet is not working
+    2.so go to the route table and when we create a nat instance that time the default route for nat is automatically 
+      created.
+    3.so click on the route table and click on route and give the nat instance
+    4.then check the internet by ( ping 8.8.8.8 ) and the internet is not working
+    5.then go to ec2 and click on the nat instance then click on action then click on networking then click on 
+      check source/destination check and stop the checking and then save
+    6.and then you can check the internet by( ping 8.8.8.8 ) and you can access the internet.
+    
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**NACL:- (network access control list)
+ 
+  1.it is a function performed on the implied router
+  2.NACL is an optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets.
+  3.your VPC automatically comes with a  modifiable default network acl by default it allows all inbound and outbound ipv4 traffic and applicable ipv6 traffic.
+  4.you can create a custom network acl and associate it with a subnet by default, each custom network acl denies all inbound and outbound traffic until you add 
+    rules.
+  5.each subnet in your VPC must be associate with a network acl if you don't explicitly associate a subnet is automatically associate with the default network acl
+  6.it functions at subnet level.
+  7.NACL are stateless, outbound traffic for an allowed inbound traffic, must be explicitly allowed too.
+  8.you can have permit and deny rules in a nacl.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Lab on network ACL:-
+
+ 1.create a vpc-------10.0.0.0/16
+
+ 2.create a subnet
+       public subnet---10.0.0.0/24
+
+ 3.create a internet getway and attach to a vpc
+
+ 4.create a route table 
+       public route---add subnet association and route on these
+
+ 5.creat a network acl
+      1.associate a subnet
+      2.add inbound permission 
+            100---ssh 
+      3.add outbound permission 
+            100---http 
+            200---https
+ 
+ 6.then create a ec2 server and access these you can not access the server because of the permission you give in only 
+   inbound traffic. You have to give the permission on the outbound also so that you can access the permission
+      1.outbound traffic---250--all tcp--1024-65535
+
+ 7.then you can access these ec2 server
+ 
+ 8.then try to access the internet you cant access the internet because you have only allow outbound traffic so we can also add permission on the inbound traffic.
+      1.inbound traffic----200---all tcp---1024-65535
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**security group:-
+   
+   1.it is a virtual firewall works at ENI level.
+   2.upto 5 security groups per EC2 instance interface can be applied.
+   3.can only have permit rules, cannot have deny rule.
+   4.stateful.return traffic, of allowed inbound traffic is allowed, even if there are no rules to allow it.
+   5.if you allow port in inbound traffic then you can not attach separate port in outbound traffic the port will be 
+     automatically allow both inbound and outbound traffic.
+
+**Base points:-
+
+   1.it is operate at instance level.
+   2.support allows rules only.
+   3.stateful,return traffic is automatically allowed.
+   4.applies to an instance only
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Differentiate between security group and NACL:-
+
+       security group                                        NACL
+ 
+  1.operate at instance level.                 -----    1.operate at subnet level.
+  2.support allows rules only.                 -----    2.it permits allow as well as deny rules.
+  3.stateful,return traffic is automatically   -----    3.stateless,return traffic must be explicity allowed by 
+    allowed.                                              rules.
+  4.applies to an instance only.               -----    4.applies to all instance in the subnet.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**VPC peering:-
+
+  1.a vpc pearing connection is a networking connection between two vpc that enables you to route traffic between them using private IPv4 addresses or IPv6 address.
+  2.instance in either vpc can communicate with each other as if they are within the same network.
+  3.you can create a vpc peering connection between you own vpc or with a vpc in another aws account and the vpc can be in different region.
+
+**transitive peering:-
+
+  1.Transitive peering refers to the ability for two or more peering partners to exchange routing information with each 
+    other and then extend that routing information to other peering partners that they have in common, even if those partners
+    do not have a direct peering relationship.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**VPC endpoint**
+
+   1.A vpc endpoint enables you to privately connect your vpc to supported aws services instance in your vpc do not require public IP addresses to communicate with 
+     resources in the service.
+   2.there are two types of vpc endpoints
+       a)interface
+       b)getway
+
+
+**Differerence between interface and getway:-
+
+   1.Interface endpoints use an elastic network interface (ENI) as an entry point for traffic to the AWS service, 
+     while gateway endpoints use a VPC endpoint gateway.
+
+   2.Interface endpoints are used for services that have a private IP address within the VPC, such as Amazon S3 and Amazon DynamoDB,
+     while gateway endpoints are used for services that have a public IP address, such as Amazon Kinesis and Amazon CloudWatch.
+
+   3.Interface endpoints are highly available and scalable,with support for multiple ENIs and multiple IP addresses per ENI,
+     while gateway endpoints are typically limited to a single endpoint per VPC.
+
+   4.Interface endpoints are associated with a subnet and require a route table entry to direct traffic to the endpoint,
+     while gateway endpoints are associated with a VPC and do not require any additional configuration.
+
+   5.Interface endpoints support endpoint policies, which allow you to control access to the endpoint,
+     while gateway endpoints do not support endpoint policies.
+ 
+
+**steps:-
+   1.create a vpc (10.0.0.0/16)
+
+   2.create a subnet
+        a)public subnet (10.0.0.0/24) 
+        b)private subnet (10.0.1.0/24)
+
+   3.create a internet getway / attach to a vpc
+
+   4.create a route table
+        a)my-public-routetable
+             1.add subnet-public subnet
+             2.add route/internet getway
+        b)my-private-routetable
+             1.private subnet
+
+   5.create a endpoint
+       a)name-
+       b)aws services
+       c)service add---amazon s3
+       d)select vpc
+       e)route table---my-private-routetable
+       f)create a endpoint
+   
+   6.create a instances
+       a)bastion-host-server (public server)
+       b)my-web-application (private server)
+
+   7.login with putty on bastion-host-sever
+       a)vim mayur.pem
+       b)chmod 400 mayur.pem
+       c)ls -l mayur.pem
+       d)ssh -i (key-name)(hostname)@(private ip of private server)
+       e)aws configure
+       f)create access key or attach a role to the private instance
+       g)aws s3 ls
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Lab on VPC Peering connection:-
+
+**VPC-01
+
+ 1.create a vpc (10.0.0.0/18)
+ 2.create a subnets
+     1.public-subnet-1------(10.0.0.0/20)
+     2.public-subnet-2------(10.0.16.0/20)
+     3.private-subnet-3-----(10.0.32.0/20)
+     4.private-subnet-4-----(10.0.48.0/20)
+3.create a internet getway and attach to a vpc
+4.create a nat getway
+5.create a route table
+     1.public route-----public subnets---IGW
+     2.private route----private subnets---nat
+6.create a two instances
+     1.bastion-host server
+     2.my-web-1
+7.accessing bastion host server
+     1.vim mayur.pem
+     2.chmod 600 mayur.pem
+     3.ssh -i mayur.pem (machine name) @ (private IP of my-web-1)
+
+**VPC-02
+
+1.create a vpc (172.31.0.0/18)
+2.create a subnet
+     1.my-public-subnet-1----(172.31.0.0/20)
+     2.my-private-subnet-2---(172.31.16.0/20)
+3.create a nat getway
+4.create a route table
+     1.my2nd-vpcroute
+          ----subnet-associates----private-subnets---nat
+
+5.create a VPC Peering connection
+     1.name---my-peering connection
+     2.vpc----(requester)----my1stvpc
+     3.(accepter)-----my2ndvpc
+     4.create a peering connection
+
+6.click on created peering connection and accept the request
+
+7.create a instance
+     1.my-web-02
+
+8.then go to the route table
+  1.public-route 
+        -----private ip of my-web-02
+        -----peering connection
+  2.my2nd-vpcroute
+        -----private ip of bastion-host server
+        -----peering connection
+
+9.login with bastion host server
+    1.vim mayur.pem (paste private key of my-web-02)
+    2.chmod 600 mayur.pem
+    3.ssh -i mayur.pem ec2-user@(private ip of my-web-02)
+    4.ping 8.8.8.8
+
+--------------------------------------------------------------------------------
+
+**Simple practical on vpc peering connection ======>>>
+
+VPC-1 ===>>
+
+1.create a vpc 
+    10.0.0.0/16
+2.create a subnet
+    10.0.0.0/24
+3.create a IGW and attach to the vpc
+4.create route table
+   my1stroute--subnet--IGW
+5.create a instance
+   myweb1
+
+VPC-2 ===>>
+
+1.create a vpc
+    172.31.0.0/16
+2.create a subnet
+    172.31.0.0/24
+3.create a IGW and attach to the vpc
+4.create a route table
+    my2ndroute---subnet---IGW
+5.create a instance
+    myweb2
+
+VPC PEERING ====>>
+1.create a vpc peering connection
+      requester-----vpc1
+      accepter -----vpc2
+2.accept the request in vpc2
+
+ADD ENTTRIES IN ROUTES
+1.my1stroute ------> 172.31.0.0/16 -----> peering connection
+2.my2ndroute ------> 10.0.0.0/16 -------> peering connection
+
+CONNECT VPC-1 INSTANCE TO VPC-2
+1.login with myweb1
+    1.vim mayur.pem (paste private key of myweb2)
+    2.chmod 600 mayur.pem
+    3.ssh -i mayur.pem ec2-user@ (private ip of myweb2)
+    4.ping (private_ip_myweb2)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**custom vpc with autoscaling and load balancer:-
+
+1.create a vpc (10.0.0.0/18)
+2.create a subnet 
+      1.public subnet (10.0.0.0/20)--1a
+      2.public subnet (10.0.16.0/20)--1b
+      3.private subnet (10.0.32.0/20)--1a
+3.create a internet getway and attach to a vpc
+4.create a nat getway
+5.create a route table 
+     1.public-route
+          ---subnet associate----public subnets
+          ---route----internet getway
+     2.private-route
+          ---subnet associate----private subnets
+          ---route----nat getway
+6.create a instance
+   1.bastion-host server
+
+7.create a launch template
+     1.name---mylt
+     2.tags---name-mobile
+     3.image--ubuntu
+     4.subnet--private subnet
+     5.sg------ssh,https,http
+     6.tags----Name--mobile
+     7.userdata---
+         #!/bin/bash
+         sudo apt update -y
+         sudo apt install httpd -y 
+         sudo ufw allow "Nginx HTTP"
+         sudo echo "<h1> this is my mobile webpage of "$HOSTNAME" </h1>" > /var/www/html/index.html
+         sudo systemctl start nginx
+         sudo systemctl enable nginx
+
+8.create a autoscaling group
+      1.name---ASG
+      2.launch template---mylt
+      3.vpc----myvpc
+      4.desired---2, minimum--2, maximum--2
+      5.availability zone mapping----private subnet (1a)
+      6.create a ASG
+
+9.create a target group
+      1.name---tg
+      2.type---instance
+      3.register----mobile1 and mobile2
+      4.include as pending below 
+      5.create a target group
+     
+10.create a load balancer
+      1.name---ALB 
+      2.vpc----myvpc
+      3.mapping---public subnet (1a) and public subnet (1b)
+      4.forward to ----tg
+      5.create a load balancer
+
+11.copy dns and hit on the web
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**INFRASTRUCTURE:-
+
+1.create a vpc (10.0.0.0/18)
+2.create a subnets
+    1.public subnet 1---(10.0.0.0/20)---1a
+    2.public subnet 2---(10.0.16.0/20)--1b
+    3.private subnet 3--(10.0.32.0/20)--1a
+    4.private subnet 4--(10.0.48.0/20)--1b
+3.create a internet getway and attach to a vpc
+4.create a nat getway
+5.create a route table
+     1.public-route 
+          ---subnet associate---public1 and public2
+          ---route----IGW
+     2.private route
+          ---subnet associate---private1 and private2
+          ---route----NAT
+6.create a instance
+     1.name-----bastion-host server
+     2.machine--amazon linux
+     3.sg-------http,https,ssh,custom 8080
+     4.user data---
+          #!/bin/bash
+          sudo yum update -y 
+          sudo yum install nginx -y 
+          sudo systemctl start nginx
+          sudo systemctl enable nginx 
+          sudo systemctl start nginx
+7.create a instance
+      1.name----host server
+      2.machine--amzon iinux
+      3.sg----http,https,ssh,custom 8080
+      4.user data---
+           #!/bin/bash
+           sudo yum update -y 
+           sudo yum install nginx -y 
+           sudo systemctl start nginx 
+           sudo systemctl enable nginx 
+           sudo systemctl start nginx 
+
+8.create a template
+      1.name----------mylt
+      2.temlate tag---Name--private-server
+      3.image---------aamzon linux
+      4.subnet--------not associate
+      5.sg------------http,https,ssh,custom 8080
+      6.resource tag--Name--private server
+
+9.create a autoscaling group
+      1.name-----ASG 
+      2.tempate--mylt
+      3.vpc------myvpc
+      4.az-------private subnet 3 and private subnet 4
+      5.desired---2, minimum---2, maximum---2
+      6.create a autoscaling group
+
+10.go to instance
+     1.accesing private server 1 on bastion-host server
+          1.yum update -y 
+          2.dnf install java-17-amazon-corretto -y
+          3.wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.113/bin/apache-tomcat-9.0.113.tar.gz
+          4.tar -xvf apache-tomcat-9.0.113.tar.gz
+          5.cd apache-tomcat-9.0.113
+          6.cd bin/
+          7. ./catalina.sh start
+    
+     2.accessing private server 2 on bastion host server
+          1.yum update -y 
+          2.dnf install java-17-amazon-corretto -y
+          3.wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.50/bin/apache-tomcat-10.1.50.tar.gz
+          4.tar -xvf apache-tomcat-10.1.50.tar.gz
+          5.cd apache-tomcat-10.1.50
+          6.cd bin/
+          7. ./catalina.sh start
+
+11.create a target group
+          1.target type-----instance
+          2.name------------tg/tomcat
+          3.vpc-------------myvpc
+          4.path-----------/index.html
+          5.register-------1.private-server1
+                           2.private-server2
+          6.port for selected instance----(8080)
+          7.include as pending below 
+          8.create a taget group
+
+12.create a load balancer
+      1.name-------ALB
+      2.vpc--------my-vpc
+      3.mapping----public subnet-1a and public subnet-1b
+      4.sg---------(that attach to instance)
+      5.forward to----tg/tomcat
+      6.create a load balancer
+
+13.copy dns of ALB and paste on web you get
+    tomcat-8.5.91 and tomcat-9.0.78
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ **SITE TO SITE VPN CONNECTION:-
+
+1.By default, instance that you launch into an amazon vpc cant communicate with your own network.
+2.you can enable access to your network from your vpc by creating aws site to site vpn connection and configure routing to pass traffic through connection.
+3.aws datacentre to on premises.
+4.onw aws datacentre to another aws datacentre.
+
+
+**MUMBAI:-
+   1.create a vpc (10.100.0.0/16)---(aws-datacentre vpc)
+
+   2.create a subent
+        1.my-private-subnet-(10.100.0.0/24)
+
+   3.create a route table
+        1.my-private-route
+             ---subnet associate---(my-private-subnet)
+
+   4.create a security group (aws-data-sg)
+        1.inbound---(all tcp)----(10.200.0.0/16)
+        2.inbound---(all icmp)---(10.200.0.0/16)
+        3.inbound---(ssh)--------(10.200.0.0/16)       
+        4.inbound---(http)-------(10.200.0.0/16)
+       
+   5.create a instance
+        1.name-------aws-datacentre (private)
+        2.machine----amazon linux
+        3.sg---------aws-data-sg 
+        4.ip---------diasable
+  
+   6.create a virtual private getway
+        1.name-------aws-vpg
+        2.create a virtual private getway
+        3.click on the created vpg and attached to the (aws-datacentre vpc)
+ 
+   7.create a customer getway
+        1.name-------aws-cg
+        2.IP add-----(singapore instance public ip)
+        3.create a customer getway
+
+
+**SINGAPORE:-
+   1.create a vpc (10.200.0.0/16)--(office vpc)
+   
+   2.create a subnet
+        1.office-subnet---(10.200.0.0/24)
+ 
+   3.create  a internet getway and attach to a vpc
+  
+   4.create a route table
+        1.office-route table
+              ---subnet associates---office subnet
+              ---route---------------IGW
+
+   5.create a security group (my-office-sg)
+        1.inbound---(all tcp)----(anywhere/you can also add 1st vpc ip)
+        2.inbound---(all icmp)---(anywhere/you can also add 1st vpc ip)
+        3.inbound---(ssh)--------(anywhere/you can also add 1st vpc ip)       
+        4.inbound---(http)-------(anywhere/you can also add 1st vpc ip)
+
+   6.create a instance
+        1.name------office-server (public)
+        2.machine---amazon linux (HVM)-5.10
+        3.sg--------my-office-sg
+        4.create a instance
+
+
+**MUMBAI:-
+   1.create a site to site vpn connection
+        1.name------aws-datancentre to office server
+        2.virtual private getway
+        3.customer getway
+        4.routing option---(static)
+            ---10.200.0.0/16
+        5.create a vpn connection
+        6.click on created vpn and download configuration 
+            ---vendor---openswan----download
+        
+   2.open downloaded file and 
+        1.copy liftid in /etc/ipsec.d/aws-vpn
+        2.copy rightid in /etc/ipsec.d/aws-vpn
+
+
+**SINGAPORE:-
+   1.access the office-server instance
+        1.yum install openswan -y
+ 
+        2.vim /etc/ipsec.conf ------------remove # from include
+
+        3.vim /etc/sysetl.conf
+              net.ipv4.ip_forward= 1
+              net.ipv4.conf.all.accept_redirects= 0
+              net.ipv4.conf.all.send_redirects= 0
+
+        4.service network restart
+
+        5.vim /etc/ipsec.d/aws-vpn.conf
+            conn tunnel1
+               authby=secret
+               auto=start
+               left=%defaultroute
+               leftid=(give the ip from downloaded vpn)-----change these
+               right=(give the ip from downloaded vpn)------change these
+               type=tunnel
+               ikelifetime=8h
+               keylife=1h
+               phase2alg=aes128-sha1;modp1024
+               ike=aes128-sha1;modp1024
+               keyingtries=%forever
+               keyexchange=ike
+               leftsubnet=(10.200.0.0/16)-----------------change if u give another ip
+               rightsubnet=(10.100.0.0/16)----------------change if u give another ip
+               dpddelay=10
+               dpdtimeout=30
+               dpdaction=restart_by_peer
+
+         6.vim /etc/ipsec.d/aws-vpn.secrets
+             (paste line of /etc/ipsec.d/aws.secrets from downloaded vpn)
+
+         7.commands to start/enable ipsec
+              1.chkconfig ipsec on 
+              2.service ipsec start
+              3.service ipsec status
+
+
+**MUMBAI:-
+   1.go to route table
+         1.my-private-route
+                  1.route propagation
+                  2.edit route propagation
+                  3.enable
+
+
+**SINGAPORE:-
+   1.ping 8.8.8.8
+   2.ping (private ip of aws-datacentre)
+
+              (successfully create a tunnel from aws-datacentre to office-server)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

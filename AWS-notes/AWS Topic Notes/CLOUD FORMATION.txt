@@ -1,0 +1,111 @@
+                                                                           CLOUD-FORMATION
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  1.it is a webservice which is provided by the amazon aws to automate the creation and managing the aws resources using templates.
+  2.A template is a JSON or YAML formatted text file that describes the AWS resources and their properties that you want to create.
+  3.You can use templates to create resources like EC2 instances, S3 buckets, RDS databases, load balancers, and more.
+  4.CloudFormation allows you to manage your infrastructure as code, which means you can version, test, and deploy your infrastructure in a repeatable and consistent 
+    manner.
+  5.You can create, update, and delete stacks of resources using the AWS CloudFormation console, AWS CLI, or AWS SDKs.
+  6.By using CloudFormation, you can save time and reduce errors by creating manually instances or other services.
+  7.cloud formation is a service which we can used to setup a infrastructure. 
+
+  8.cloud formation is also a IAC tool that maintains and provision the infrastructure using code instead of manual process.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+USE-CASES:-
+
+1.create ec2 instance with security groups and elastic ips
+2.provision s3 buckets with http endpoints.
+3.set up vpcs with subnets and route table.
+4.create RDS databases with automatic backups.
+5.deploy lambda functions with api gateways intergrations.
+6.set up elastic load balancers and auto scaling for web applications.
+7.deploy iam roles, policies and user access management.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE A S3-BUCKET USING TEMPLATE:-
+
+1.search stack and click on cloud formation
+2.then create a stack and add these template in stack you can also add these template in s3 and giving s3 link to stack
+
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Create an S3 bucket using CloudFormation",
+  "Resources": {
+    "S3Bucket": {
+      "Type": "AWS::S3::Bucket",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "BucketName": "mayur-s3-bucket-123456"
+      }
+    }
+  }
+}
+
+
+3.then create a stack in default settings
+4.after creating-you can refresh-your s3 bucket should be created.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# This template will create EC2 with Nginx and a sample webpage, Security Group to allow HTTP and an Elastic IP
+
+1.search stack and click on cloud formation
+2.then create a stack and add these template in stack you can also add these template in s3 and giving s3 link to stack
+
+AWSTemplateFormatVersion: '2010-09-09'
+Description: EC2 with Nginx using CloudFormation
+
+Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: Select the default VPC
+
+Resources:
+
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable HTTP access
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+
+  SimpleEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.micro
+      ImageId: ami-02db68a01488594c5
+      SecurityGroupIds:
+        - !Ref InstanceSecurityGroup
+      Tags:
+        - Key: Name
+          Value: MySimpleInstance
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          yum update -y
+          yum install -y nginx
+          systemctl start nginx
+          systemctl enable nginx
+
+          echo "<h1>Nginx via CloudFormation</h1>" > /usr/share/nginx/html/index.html
+
+  ElasticIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref SimpleEC2Instance
+
+
+3.then create a stack in default settings
+4.after creating-you can refresh-your s3 bucket should be created.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

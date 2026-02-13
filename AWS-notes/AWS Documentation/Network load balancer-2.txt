@@ -1,0 +1,160 @@
+                                                                  **Network load balancer**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a vpc (10.0.0.0/18)
+
+2.create a subnet
+      1.public-subnet-1----(10.0.0.0/20)-----1a
+      2.public-subnet-2----(10.0.16.0/20)----1b
+      3.private-subnet-3---(10.0.32.0/20)----1a
+      4.private-subnet-4---(10.0.48.0/20)----1b
+
+3.create a IGW and attached to vpc
+
+4.create a nat getway
+
+5.create a route table
+      1.public-routetable
+           -----subnet-associate----public-subnet1 and public-subnet2
+           -----route---------------IGW
+      2.private-routetable
+           -----subnet-associate----private-subnet1 and private-subnet2
+           -----route---------------NAT
+
+6.create a launch template
+    1.name------------my-lt
+    2.template tag----Name-private-server
+    3.machine---------amazon linux
+    4.security group--ssh,http,https
+    5.user data--
+        #!/bin/bash
+        sudo yum update -y 
+        sudo yum install httpd -y 
+        sudo systemctl start httpd.service
+        sudo echo "HELLO WORLD" > /var/www/html/index.html 
+        sudo systemctl enable httpd.service
+        sudo systemctl start httpd.service
+    6.create a launch template
+
+7.create a autoscaling group
+    1.name----------ASG 
+    2.select--------my-lt
+    3.select VPC----myvpc
+    4.mapping-------private-subnet3 and private-subnet4
+    5.desired---1 and minimun---1 and maximum---3
+    6.create a autoscaling group
+
+8.create a target group
+    1.name----------tg
+    2.target type---instance
+    3.path----------/
+    4.do not register targets
+    5.create a target group
+
+9.create a Network load balancer
+    1.name------------NLB
+    2.scheme----------internet facing
+    3.listner---------TCP-80
+    4.select a vpc----myvpc
+    5.select AZ-------public-subnet1 and public-subnet2
+    6.action---forward to----tg
+    7.create a NLB
+
+10.go to autoscaling group and click on created autoscaling
+    1.load balancing
+    2.select target group----tg
+
+11.then check the target groups whether targets are healthy on not
+
+12.create a policy in autoscaling
+    1.create a dynamic policy
+    2.policy type---simple scaling
+    3.policy name---incresing policy
+    4.take action---add--3
+    5.create a policy
+
+13.copy the dns of load balancer and hit on the web
+
+14.create a cloudwatch for monitoring
+    1.select metric
+    2.EC2 instance
+    3.by---autoscaling group
+    4.search-----my-ASG 
+    5.click on cpu utilisation
+
+15.then go to cloudwatch to create alarm
+    1.create a alarm
+    2.select metric 
+    3.EC2 instance
+    4.By---autoscaling group
+    5.search----my-ASG-----select metric
+    6.greter/equal---------40%
+    7.create a new topic---xyz-----mailid@gmail.com
+    8.create a topic
+    9.add autoscaling action
+   10.EC2 autoscaling group
+            1.ASG
+            2.increase-policy
+   11.alarm name----increase alarm
+   12.create a alarm
+
+16.create a bastion host server
+    1.name------bastion-host-server
+    2.machine---amazon-linux
+    3.subnet----my-public-subnet1
+    4.create a bastion host-server
+
+17.login with bastion-host to access the private server
+    1.vim mayur.pem
+    2.chmod 700 mayur.pem
+    3.ssh -i (mayur.pem) (ec2-user)@(private ip of private instance)
+    4.yum install stress -y
+    5.stress --cpu 80 --io4 --vm2 --vm-bytes 128m --timeout 10M
+ 
+18.then the instance should be autoscale up when the load on the server increase or above 40% as per the policy
+
+19.you can check on the instance
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       

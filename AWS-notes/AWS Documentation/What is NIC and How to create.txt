@@ -1,0 +1,31 @@
+What is NIC and How to create
+
+========================================================================================================================================================================
+
+1.In AWS, a Network Interface Card (NIC) is called an Elastic Network Interface (ENI).
+2.It is a virtual network card that you can attach to an EC2 instance.
+
+Attach NIC (ENI) to an EC2 Instance
+
+Step 1: 
+Create a NIC (ENI)
+Go to EC2 → Network Interfaces
+Click Create network interface
+Enter name → nic2
+Select Subnet
+Select Security Group
+Click Create
+
+Step 2: 
+Attach the NIC to an Instance
+Select the newly created nic2
+Click Actions → Attach
+Choose your EC2 instance
+
+Step 3: 
+Verify on the Instance
+1.ssh into the instance
+  ip a
+  eth0 and eth1
+
+========================================================================================================================================================================

@@ -1,0 +1,122 @@
+
+**CREATE A AUTOSCALING WITH LOAD BALANCER WITH A WARM UP TIME OF 2 MINUTES AND IMPLEMENT DYNAMIC SCALING POLICY ON IT**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a launch template-(home)
+    1.name-------------lt-home
+    2.machine----------amazon-linux
+    3.security group---http/https/ssh
+    4.resource tag-----Name-home
+    5.user-data
+       #!/bin/bash
+       sudo yum update -y
+       sudo yum install httpd -y 
+       sudo systemctl start httpd.service
+       sudo echo "<h1> this is my home page "$HOSTNAME" </h1>" > /var/www/html/index.html
+       sudo systemctl restart httpd.service
+       sudo systemctl enable httpd.service
+
+2.create a autoscaling group-(my-asg-home)
+    1.name ------(my-asg-home)
+    2.template---lt-home
+    3.az and subnets----1a,1b,1c
+    4.capacity
+          desired----2
+          minimum----1
+          maximum----3
+    5.add sns
+    6.tag---Name-home
+    7.create a autoscaling group
+
+3.create a target group
+    1.target type------instance
+    2.target name------tg-home
+    3.path-------------/
+    4.create a target group
+
+4.create a load balancer
+    1.name--------------my-ALB
+    2.default action----tg-home
+    3.create a load balancer
+
+5.add targets on autoscaling group
+    1.click on my-asg-home
+    2.click on load balancing
+    3.add tg-home
+
+6.add warm up time of 2 minutes on autoscaling group
+    1.click on my-asg-home
+    2.click on advanced configuration----edit
+    3.set the warm up time to 120 seconds
+
+7.so when the instance should be launched it can take up 2 minutes to route the traffic to the instance
+
+8.create a dynamic-scaling policy on autoscaling group
+   1.go to autoscaling 
+   2.click on automatic scaling
+        1.dynamic scaling 
+             ---simple scaling 
+        2.incremental policy
+        3.incremental alarm
+        4.add ---1----capacity unit
+        5.create a policy
+
+9.click on automatic scaling
+   1.go to autoscaling 
+   2.click on automatic scaling 
+        1.dynamic scaling 
+            ---simple scaling 
+        2.decremental policy
+        3.decremental alarm
+        4.remove---1----capacity unit
+        5.create a policy
+
+10.go to cloudwatch for setting up the alarm
+   1.create a alarm
+   2.select metrics
+   3.EC2----autoscaling group
+   4.cpu utilization-----ASG
+   5.static--------------greater/equal
+   6.than ------70
+   8.datapoint--1
+   9.sns--------my-asg
+  10.incremental alarm
+
+11.go to cloudwatch for setting up the alarm
+   1.create a alarm
+   2.select metrics
+   3.EC2----autoscaling group
+   4.cpu utilization-----ASG
+   5.static--------------lower/equal
+   6.than ------20
+   8.datapoint--1
+   9.sns--------my-asg
+  10.decremental alarm
+
+11.adding stress on the server with these commands 
+   1.amazon-linux-extras install epel -y 
+   2.yum install stress -y 
+   3.sudo stress --cpu 80 --timeout 800 & ---------------------& to run in background
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+=======================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

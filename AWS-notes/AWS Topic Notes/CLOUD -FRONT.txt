@@ -1,0 +1,69 @@
+                                                              		  **CLOUD FRONT**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+   Amazon cloud front is a web service that gives business and web application developers an easy and cost effective way to distribute content with low latency and high data transfer speed.
+                                      
+ Cloud front is a global service.
+ Amazon cloud front is a web service that speeds up distribution of your static and dynamic web contents such as .html, .css, .js and image files to your users.
+ Cloud front delivers your content through a worldwide network of data centers called Edge Locations.
+ When a user request content that you are serving with cloud front, the user is routed (via DNS resolution) to the edge location that provides the lowest latency, so
+  that content is delivered with the best possible performance.
+ If the content is already in the edge location with the low latency, cloud front delivers it immediately.
+ This dramatically reduces the numbers of networks that your user’s request must pass through which improves performance.
+ If not, cloud front retrieves it from an Amazon S3 bucket or an HTTP/ web server that you have identifies as the source for the definitive version of your content 
+  (origin server).
+ Cloud front also keeps persistent connection with origin servers so files are fetched from the origins as quickly as possible.
+
+=======================================================================================================================================================================
+
+SHORT NOTES:-
+
+1.amazon CloudFront is a cdn network a global service that speeds up the distribution of our static and dyanmic web content such as css html and image files to users.
+2.it delivers our content through the world wide network of datacentre called as edgelocations.
+3.edge location is nothing but a small small servers or cache locations that stores the cache for a temporary purpose which gives us the lowest latency immediately
+4.after that these cache stored in a regional edge location.
+5.at these time there are upto 410 edge locations and 13 regional edge catches.
+
+=======================================================================================================================================================================
+
+**You can access Amazon cloud front in the following ways**
+a. AWS management console
+b. AWS SDKs
+c. Cloud front API
+d. AWS CLI
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Cloud front Edge Locations ====>>>
+
+ Edge locations are not tied to availability zones or regions.
+ They are separate global locations purely for content delivery.
+ CloudFront currently has 400 edge locations and 13 regional edge caches in 84 cities across 42 countries
+ edge location is nothing but the data centre (servers) that stores the cache and the get the response with a lowest latency and immediately.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Cloud front Regional Edge Cache**
+ Amazon cloud front has added several regional edge cache locations globally at close proximity to your viewers.
+ They are located between your origin web server and the global edge locations that serve content directly to your viewers.
+ As objects become less popular, individual edge locations may remove those objects to make room for more popular content.
+ Regional edge cache working as an alternative of origin to reduce the burden of origin.
+ Regional edge cache have a large cache width than any individual edge location, so object remain in the cache longer at the nearest regional edge caches.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Cloud front Regional Edge Cache- working**
+ Whenever a viewer makes a request on your website or through your application, DNS routes the request to the cloud front edge location that can best serve the
+   user’s request.
+ This location is typically the nearest cloud front edge location in terms of latency.
+ In the edge location, cloud front checks its cache for the requested files.
+ If the files are in the cache, cloud front returns then to the user.
+ If the files are nor in the cache, the edge servers go to the nearest regional edge cache to fetch the object.
+ Regional edge caches have features parity with edge locations. For e.g: a cache invalidation request removes an object form both edge cache and regional edge caches
+  before it expires.
+ The next time a viewer request the object, cloud front returns to the origin to fetch the latest version of the object.
+ Proxy method PUT/ POST/ PATCH/ OPTIONS/ DELETE go directly to the origin from the edge locations and do not proxy through the regional edge caches.
+ Dynamic content as determined at request time, doesn’t flow through regional edge cache but goes directly to the origin.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

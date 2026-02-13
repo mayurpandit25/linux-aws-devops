@@ -1,0 +1,16 @@
+☁️ CloudWatch
+
+Used to monitor performance of AWS resources (like EC2, RDS, Lambda).
+Collects metrics, logs, and events to check health and usage.
+Can set alarms and take actions automatically (like restart an instance).
+Helps you know how your system is running.
+
+
+
+🔍 CloudTrail
+
+Used to track user activity and API calls in your AWS account.
+Records who did what, when, and from where.
+Stores logs in S3 or CloudWatch Logs for auditing.
+Helps you know what changes or actions happened in your account.
+

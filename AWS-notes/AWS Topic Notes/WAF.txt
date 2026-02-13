@@ -1,0 +1,27 @@
+WAF ====>>> web application firewall
+
+*******************************************************************************************************
+
+it is a security service that protects your web applications from hackers and bad traffic - like sql injection, cross-site scripting (XSS), or bots - by letting you allow or block requests based on rules you set.
+
+waf acts like a security guard for your website:-
+1.it checks every visitor coming through your load balancer or CloudFront.
+2.and decided whether to allow, block, or challenge them (using captcha).
+
+waf works with:-
+1.application load balancer (ALB)
+2.amazon CloudFront (CDN)
+3.API gateway
+4.app runner / Cognito (optional integrations)
+
+IP Sets:-
+1.A list of IP addresses you want to allow or block.
+2.Example: Allow office IPs, block suspicious ones.
+
+WAF actions:-
+1.allow ------- lets traffic through
+2.block ------- denies the request (403 forbidden)
+3.count ------- just logs request (useful for testing)
+4.captcha ----- asks user to verify they are not a bot.
+
+*******************************************************************************************************

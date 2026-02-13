@@ -1,0 +1,15 @@
+                                                                    **Elastic benstalk**
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  1.it is a platform as a service which is provided by aws that automates the creation of webapplications.
+  1.Elastic Beanstalk is a fully managed service provided by Amazon Web Services (AWS) that simplifies the deployment and management of web applications. Elastic 
+    Beanstalk automates the deployment, scaling, and monitoring of applications in an Amazon Web Services (AWS) environment.
+  2.Elastic Beanstalk provides a platform for developers to deploy their applications without worrying about the underlying infrastructure. 
+  3.It supports several programming languages such as Java, .NET, PHP, Python, Ruby, and Node.js.
+  4.Elastic Beanstalk also integrates with other AWS services such as Amazon RDS, Amazon S3, Amazon DynamoDB, and Amazon Simple Notification Service (SNS), making it 
+    easy to create complex applications that use multiple services.
+  5.In summary, Elastic Beanstalk is a cloud platform that allows developers to easily deploy and manage their web applications without the need to manage the underlying 
+    infrastructure.because it is a platform as a service model.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,237 @@
+Migration Strategies:-
+
+1.What are the AWS Migration Strategies
+
+Rehost (Lift and Shift)
+Move apps to AWS with minimal or zero changes
+Fastest method, widely used
+Cost optimization possible but limited
+
+Replatform
+Similar to rehost but with AWS best practices
+Example: Moving database to RDS, applying managed services
+
+Repurchase
+Move to a SaaS platform (e.g., old CRM → Salesforce)
+Your notes mention but do not describe; we fill with standard definition.
+
+Refactor / Rearchitect
+Modify application architecture (e.g., monolith → microservices)
+Enables cloud-native benefits and modernization
+More cost, time, and complexity
+
+Relocate
+Move entire workloads without purchasing new hardware
+Example: VMware → VMware Cloud on AWS
+
+Retire
+Remove applications that are not needed (legacy removal)
+
+Retain
+Keep some applications on-premises
+Useful for apps that do not benefit from the cloud
+
+================================================================================
+
+Q2. What are the phases of migration?
+
+Preparation
+Planning
+Migrate
+Monitor
+Optimize/Improve
+
+================================================================================
+
+Q3. How do companies select a migration strategy?
+
+Business urgency
+Application architecture complexity
+Cost targets
+Skill availability
+Dependency mapping
+RTO/RPO requirements
+Long-term modernization goals
+
+================================================================================
+
+Q4. What AWS tools help in migration?
+
+AWS Migration Hub
+AWS Application Migration Service (MGN)
+AWS Database Migration Service (DMS)
+AWS Server Migration Service (SMS)
+Cloud Endure Disaster Recovery
+AWS Snowball / Snowmobile
+
+================================================================================
+
+Scenario 1: 
+
+A company has 200 microservices on-prem and wants to migrate them quickly with minimal effort. Which strategy should be used?
+
+Answer: Rehost (Lift and Shift)
+
+“Lift and shift means minimal or zero effort. Very simple. Mostly companies use this approach.”
+
+================================================================================
+
+Scenario 2: 
+
+Application works fine but the company wants to improve performance & cost by using managed services. Which strategy fits?
+
+Answer: Replatform
+
+1.Move MySQL on EC2 → Amazon RDS
+2.Move application servers → Elastic Beanstalk
+
+================================================================================
+
+Scenario 3: 
+
+You have a monolithic Java application and want to break it into microservices on AWS. What strategy is this?
+
+Answer: Refactor / Rearchitect
+
+“If monolithic → convert to microservices → you are rearchitecting.
+
+================================================================================
+
+Scenario 4: 
+
+Your organization wants to move away from self-hosted CRM and start using Salesforce. What is this?
+
+Answer: Repurchase
+
+This means replacing the app with a SaaS solution.
+
+================================================================================
+
+Scenario 5: 
+
+An old legacy app is barely used and expensive to maintain. What should you do?
+
+Answer: Retire
+
+Remove unnecessary workloads to reduce cost.
+
+================================================================================
+
+Scenario 6: 
+
+Your company has a licensing issue and regulatory requirement, preventing migration of a specific on-prem app. Which strategy?
+
+Answer: Retain
+
+Keep workloads on-prem if migration offers no benefit.
+
+================================================================================
+
+Scenario 7: 
+
+You want to move your entire VMware infrastructure to AWS with minimal modification.
+
+Answer: Relocate
+
+Example: VMware Cloud → AWS using VMC on AWS
+
+================================================================================
+
+Scenario 8: 
+
+You want to migrate a database from on-prem to AWS with zero downtime. Which service should you choose?
+
+Answer:
+AWS Database Migration Service (DMS).
+  Supports continuous replication
+  Minimal downtime
+
+================================================================================
+
+Scenario 9: 
+
+You need to migrate petabytes of data but WAN bandwidth is limited.
+
+Solution:
+Use AWS Snowball / Snowmobile.
+
+================================================================================
+
+Scenario 10: 
+
+After a lift & shift, the application is working but costs are too high. What is the solution?
+
+Answer:
+Start “Optimization Phase”:
+Right-size EC2 instances
+Move to RDS / DynamoDB
+Enable Auto Scaling
+Use S3 lifecycle & intelligent tiering
+Switch to serverless where possible
+
+================================================================================
+
+Scenario 11: 
+
+A security audit requires monitoring cloud environment post-migration. What tools should be used?
+
+Use:
+
+CloudTrail (tracks API calls)
+CloudWatch (monitoring)
+GuardDuty (threat detection)
+IAM Access Analyzer
+
+================================================================================
+
+Q1. Performance degraded after rehosting the application. Why?
+
+Reasons:
+Not sized correctly
+Missing autoscaling
+On-prem network assumptions not valid in cloud
+EBS IOPS too low
+DNS latency issues
+No caching (CloudFront, Redis)
+
+Q2. Application fails in replatforming step. Why?
+
+Possible issues:
+Incompatible DB engine versions
+Hard-coded IPs in application
+Incorrect IAM roles
+Misconfigured security groups
+
+Q3. Microservices converted from monolith are failing.
+
+Common causes:
+Wrong decoupling
+No service discovery
+High inter-service latency
+Missing CI/CD pipelines
+Wrong API Gateway mapping
+
+Q4. Database migration results in data mismatch.
+
+Troubleshooting:
+Re-run full load
+Validate CDC (change data capture) setup
+Compare table schemas
+Check collation / encoding differences
+
+================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

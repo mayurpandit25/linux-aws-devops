@@ -1,0 +1,20 @@
+**How to access keyloss instance:-
+
+1.create a instance (old)
+2.accesss the instance and add the data on these so that we can find the instance actually it is.
+3.then delete the keys of these instance so that we can not get access of these server
+
+4.create a new instance (new) with the key pairs and acess the instance
+5.then stop the instance (old) and detach the volume of the instance
+6.then stop the instance (new) and attach the volume of old instance as a secondary volume
+7.then start the instance (new) and access the instance
+      1.lsblk---------to check the volumes
+      2.mount -o rw,nouuid /dev/xvdf1 /mnt -----------to mount the old volume
+      3.ls /mnt
+      4.cat /home/centos/.ssh/authorized_keys >> /mnt/home/centos/.ssh/authorized_keys
+      5.umount /mnt ---------------for unmounting the volume
+8.then stop the instance (new) and detach the old volume from the instance
+9.then select old volume attach to a instance (old) and change the device name to /dev/sda1
+10.stop the instance (new ) to access the instance (old)
+11.start the instance (old) and access the instance (old) you can easily access them
+12.then check the data that you create when launch a instance

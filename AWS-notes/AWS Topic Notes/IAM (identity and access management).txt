@@ -1,0 +1,647 @@
+                                                                **IAM (identity and access management)**
+
+=======================================================================================================================================================================
+
+**IAM (identity and access management)**
+
+   it refers to a framework or policies and technologies for ensuring that the proper people in an organisation have the appropriate access to the technology  
+   resources.
+
+   1.AWS Identity and Access Management (IAM) is a web service that provides secure access to AWS resources.
+   2.we can use IAM to control who is authenticated (signed-in) and authorised (has permission) to use resources.
+   3.It allows you to manage users, groups, and permissions to control who can access which resources in your AWS account. 
+   4.when we create a account you begin with a single sign-in identity that has completely access to all aws services and resources in account.
+   5.this identity is called aws account "root user" and accessed by sign-in with the email address or password.
+   6.but aws recommend that you don't use root user for everyday task even the administrative once's.
+   7.use other IAM account to manage the administrator task of your account and secured lock away the root user credential and use them to perform only a few account
+     and service management task.
+                                           or
+   AWS Identity and Access Management is a web service that you securely control access to AWS resources. We use IAM to control who is authenticated (signed-in) and
+      authorized (has permission) to use resources. 
+
+=======================================================================================================================================================================
+
+**IAM user:-
+   1.an IAM user is a resource in IAM that has associated credential and permission.
+   2.an IAM user can represent a person or an application that gives its creadentials to make a aws request.
+   3.An IAM user is an entity that you create in AWS. 
+   4.It represents the person or service who uses the IAM user to interact with AWS.
+   5.You can create 10 users at time.
+   6.An IAM user can represent an actual person or an application that requires AWS access to perform actions on AWS resources.
+   7.A primary use of IAM users is to give people the ability to sign-in to the AWS management console for interactive task and to make programmatic request to
+     AWS services using the API or CLI.
+   8.For any user you can assign them:
+         A username and password to access the AWS console.
+         An access key ID and secrete key that can use for programmatic access.
+         The newly created IAM user have no password and no access key. You need to create the user password.
+         Each IAM user is associated with one and only one AWS account.
+         Users are defined within your account, so user do not have to do payment. Bill would be pay by the parent account.
+
+**For Any User You can assign them:
+   1.A user name and password to access the AWS console.
+   2.An access key (access key and secrete key) that they can use for programmatic access (issuing request) to your AWS account.
+   3.You assign either or both based on the user activities and needs.
+   4.You can view and download your secret access key only when you create the access key.
+   5.You cannot view or recover a secret access key later.
+   6.If you lose your secrete access key, you can create a new access key.
+   7.Each IAM user is associated with one AWS account.
+
+**By Default a new IAM User:
+   1.A new IAM user has no permission to do anything.
+   2.Has no password and no access key (neither an access key ID nor a secret access key).It means no credentials of any kind.
+   3.You must create the type of credentials for an IAM users based on what the user will be doing.
+   4.You can grant user permissions by attaching IAM policies to them directly or making them members of IAM group where they inherit the group policies/permissions.
+   5.You can have up to 5000 user per account.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**IAM group:-
+   1.an IAM group is an identity that specify collection of IAM user. 
+   2.we can add no of users in a group so that we can specify permission for multiple user at a same time.
+   3.group make permission easier to manage for large set of user.
+   4.An IAM group is a collection of IAM users.
+   5.It is a way to assign permission/policies to multiple users at once.
+   6.Use groups to specify permissions for a collection of users, which can make those permissions easier to manage for those users.
+   7.For E.g: you could have a group called HR and give that group the types of permissions that HR department typically needs.
+   8.Any user in that group automatically has the permission that are assigned to the group.
+   9.If a new user joins your organization and should have administrator privileges, you can assign the appropriate permissions by adding the user to that group.
+  10.If a person changes job in your organization, instead of editing that user’s permission, you can remove him or her from the old groups and add him or her
+     to the appropriate new groups.
+
+**IAM Group Limitations:
+ A group is not truly an identity in IAM because it cannot be identified as a principal in a permission policy.
+ Group cannot be nested.
+ One have a limit of 300 groups in an AWS account.
+ A user can be a member of up to 10 IAM groups.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**IAM role:-
+   1.IAM role is an identity in IAM that we create in our own account that have the specific permission.
+   2.IAM role in aws works like a IAM user.
+   3.it can be authenticated and authorized to utilize an aws resources.  
+   4.An IAM role is very similar to a user, in that it is an identity with permission policies that determine what the identity can and cannot do in AWS.
+   5.An IAM role does not have any credentials (password or access key) associated with it.
+   6.Instead of being associated with one person, a role is intended to be assumable by anyone who needs it.
+   7.An IAM user can assume a role to temporarily take on different permissions for a specific task.
+   8.An IAM role can be assigned to a federated user who sign-in by using an external identity provider instead of IAM.
+   9.generally we can use role to accessing the resources in the server.
+
+**what are the types of role:-
+     1.service role
+     2.service-linked role
+     2.aws cross-account
+     3.web identity
+
+**There are Two ways to use a Role:
+1. Internally in the IAM Console:
+      1.IAM users in your account using the IAM console can switch to a role to temporarily use the permissions of the role in the console.
+      2.The user give up their original permission and take on the permission assigned to the role.
+      3.When the user exists the role, their original permissions are restored.
+2. Programmatically with the AWS CLI, tools for windows powershell or API:
+      1.An application or a service offered by AWS (like Amazon EC2) can assume a role by requesting temporary security credentials for a role with which to make
+        programmatic request to AWS.
+      2.You use a role this way so that you don’t have to share or maintain long-term security credentials for each entity that requires access to a resource.
+
+**Difference between IAM Role and Resource Based Policy:
+      Unlike a user-based policy, a resource based policy specifies who can access that resource.
+      Cross account access with a resource based policy has an advantage over a role, with a resource that is accessed through a resource-based policy, the user
+       still works in the trusted account and does not have to give up this or her user permissions in place of the role permissions.
+      In other words, the user continuous to have access to resources in the trusted account at the same time as he or she has access to the resource in the trusting 
+       account.
+      This is useful for task such as copying information to or form the shared resource in the other account.
+      Note that not all services support resource-based policy
+
+
+**IAM Role Delegation:
+      Delegation is the granting of permission to someone to allow access to resource that you control.
+      Delegation involves setting up a trust between the account that owns the resource (the trusting account) and the account that contains the users that need to 
+       access the resource (the trusted account).
+      The trusted and trusting accounts can be of the following:
+            i. The same account
+           ii. Two accounts that are both under your organization’s control.
+          iii. Two account owned by different organizations.
+      To delegate permission to access a resource you create an IAM role that has two policies attached.
+            i. The Trust Policy
+           ii. The Permission Policy
+      The trusted entity is included in the policy as the principal element in the document.
+      When you create a trust policy, you cannot specify a wildcard (*) as a principal.
+
+
+**Cross Account Permissions:
+      You might need to allow user from another AWS account to access resources in your AWS account. If so, don’t share security credentials, such as access keys 
+        between accounts. Instead use IAM roles. 
+      You can define  a role in the trusted account that specifies what permissions the IAM users in the other account are allowed.
+      You can also designate which AWS account have the IAM users that are allowed to assume the role. We do not define users here rather AWS account.
+
+
+**Role for Cross-Account Access:
+      Granting access to resources in one account to a trusted principal in a different account.
+      Roles are the primary way to grant cross-account access.
+      However with some of the web services offered by AWS, you can attach a policy directly to a resource. These are called resource-based policy. You can use them 
+       to grant principals in another AWS account access to the resource.
+      The following services support resource-based policy:
+              Amazon S3.
+              Amazon Simple Notification Service
+              Amazon Simple Queue Service
+              Amazon Glacier Vault
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+POLICIES:-
+   1.an policy is an object in AWS where is associate with an entity or resources define their permission.
+   2.the permission in the policies that determines whether the request is allowed or denied.
+   3.most policies are stored in AWS as JSON documents.
+   4.a policy defines the permissions to the IAM identity.
+
+TYPES:-
+   1.Identity based policies
+   2.resources based policies
+   3.permisson boundary
+   4.session policy
+   5.ACLs
+   6.organisation SCPs
+
+**what are the ways to attached policy to a user:-
+   1.add user into the group
+   2.copy permissions of existing user
+   3.attach directly
+
+**what are policies:-
+   1.aws managed policies
+   2.customed policy
+        1.inlined policy
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**IAM Temporary Credentials:
+   1.Temporary credential are primary used with IAM roles but there are also other uses.
+   2.You can request temporary credentials that have a more restricted set of permissions than your standard IAM users.
+   3.This prevent you from accidentally performing task that are permitted by the more restricted credentials.
+   4.A benefit of temporary credentials in that they expire automatically after a set period of time.
+
+**Permissions and Policies:
+   1.The access management portion of AWS Identity and Access Management (IAM) helps you to define what a user or other entity is allowed to do in an account, often 
+     referred to as authorization.
+   2.Permissions are granted through policies that are created then attached to user, groups of roles.
+
+**Policies and User:
+   1.By default, IAM users can’t access anything in your account.
+   2.You grant permissions to a user by creating a policy, which is a document that defines the effect, actions, resource and optional conditions.
+   3.Any actions or resources that are not explicitly allowed are denied by default.
+
+**IAM Multiple Policies:
+   1.Users of groups can have multiple policies attached to them that grant different permission.
+   2.In the case of multiple policies attached to a user or group, the user’s permission are calculated based on the combination of policies.
+
+**Federated Users and Roles:
+   1.Federated user don’t have permanent identities in your account the way that IAM users do.
+   2.To assign permissions to federated users you can create an entity referred to as a role and define permission for the role.
+   3.When a federated user sign-in to AWS the users is associated with the role and is granted the permission that are defined in the role.
+
+**Resource based Policy:
+   1.In some cases like S3 bucket, you can attach a policy to a resource in addition to attaching it to a group or user. This is called a resource based policy.
+   2.A resource based policy contains slightly different information than user-based policy.
+   3.In resource based policy you specify what actions are permitted and what resource is affected.
+   4.You also explicitly list who is allowed access to the resource (a principal).
+   5.Resource based policies include a principal element that specifies who is granted the permissions.
+
+**IAM User-The Root User:
+   1.When you first create an AWS account, you create an account (or root user) identity, which you use to sign-in to AWS.
+   2.The account root user credentials are the e-mail address to create the account and a password which can be used to sign-in to the AWS Management console as the
+     root user.
+   3.When you sign-in as root user, you have complete unrestricted access to all resources in your account including access to your billing information and the ability
+     to change your password.
+   4.The level of access is necessary when you initially set up the account.
+   5.It is not possible to restrict the permission that are granted to the AWS account.
+
+**AWS Recommends That:
+   1.AWS recommends that you don’t use root user credentials for everyday access.
+   2.Also AWS recommends that you do not share your root user credentials with anyone because doing so gives them unrestricted access to your account.
+   3.Create an IAM user for yourself and then assign yourself administrative permission for your account.
+   4.You can then sign-in as that user to add more users as needed.
+   5.An IAM user with administrator permissions is not the same things as the AWS account root users.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**LIMITATIONS:-
+    1.IAM user limit is 5000 per aws account you can add upto 10 users at one time.
+    2.you are also limited to 300 groups per aws account.
+    3.you are limited to 1000 IAM roles under aws account.
+    4.default limit of managed policies attached to an IAM role and IAM user is 10.
+    5.IAM user can be a member of 10 groups.
+    6.we can have two access keys (max) to an IAM user.
+   
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+**ARN----> Amazon Resource Names (ARNs):-
+
+ARN format:-
+The following are the general formats for ARNs. The specific formats depend on the resource. To use an ARN, replace the italicized text with the resource-specific information. Be aware that the ARNs for some resources omit the Region, the account ID, or both the Region and the account ID.
+
+1.arn 
+  arn:partition:service:region:account-id:resource-id
+
+2.partition
+  The partition in which the resource is located. A partition is a group of AWS Regions. Each AWS account is scoped to one partition.
+
+   The following are the supported partitions:
+     aws - AWS Regions
+     aws-cn - China Regions
+     aws-us-gov - AWS GovCloud (US) Regions
+
+3.service
+  The service namespace that identifies the AWS product.
+
+4.region
+  The Region code. For example, us-east-2 for US East (Ohio). For the list of Region codes, see Regional endpoints in the AWS General Reference.
+
+5.account-id
+  The ID of the AWS account that owns the resource, without the hyphens. For example, 123456789012.
+
+6.resource-type 
+  The resource type. For example, vpc for a virtual private cloud (VPC).
+
+7.resource-id
+  The resource identifier. This is the name of the resource, the ID of the resource, or a resource path. Some resource identifiers include a parent resource (sub-
+  resource-type/parent-resource/sub-resource) or a qualifier such as a version (resource-type:resource-name:qualifier).
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**FEATURES of IAM:-
+
+1. Shared access to your AWS account:
+     1.You can grant other people permission to administer and use resources in your AWS account without having to share your access credentials.
+
+2. Granular permission:
+     1.You can grant different permission to different people for different resources.
+     2.For instance, you can allow some users complete access to EC2, S3, DynamoDB, Redshift while for others, you can allow read only access to just some S3 buckets,
+       or permission to administer just some EC2 instances or to access your billing information but nothing else.
+
+3. Secure access to AWS resources for application that run on Amazon EC2:
+    1.You can use IAM features to securely give application that run on EC2 instances the credentials that they need in order to access other AWS resources.
+    2.For example, include S3 buckets and RDS or Dynamo DB databases.
+
+4. Multifactor Authentication (MFA):
+    1.You can add two factor authentication to your account and to individual users for extra security. 
+    2.You can use physical hardware or virtual MFA (for e.g:-Google Authenticator)
+
+5. Identity federation:
+    1.You can allow users who already have passwords elsewhere. 
+    2.For e.g: in your corporate network of with an internet identity provider to get temporary access to your AWS account.
+
+6. Identity information for assurance:
+   1.If you use AWS Cloud Trail, you receive log records that include information about those who made request for resources in your account.
+   2.That information is based on IAM Identities.
+
+7. PCI-DSS compliance:
+   1.IAM supports the processing, storage and transmission of credit cards by a merchant of service provider, and has been validated as being complaint with payment 
+     card industries (PCI) data security standards (DSS).
+
+8. Eventually consistent:
+   1.If a request to change some data is successful, the change is committed and safely stored. 
+   2.However the change must be replicated across IAM which can take some time.
+   3.IAM achieves high availability by replicating data across multiple servers within AWS data centre around the world. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Fee to Use:-
+
+     AWS IAM is a feature of AWS account offered at no additional charge. You will be charged only for use of other AWS products by your IAM users. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**IAM TERMS**
+
+1.principle
+2.request
+3.authentification
+4.authorisation
+5.action/operation
+6.resources
+
+1. Principal:
+     1.A principal is a person or application that can make a result for an action or operation on an AWS resources.
+     2.Your administrative IAM user is your first principal.
+     3.You can allow users and services to assume a role.
+     4.IAM users, roles, federated users and application are all AWS principals.
+     5.You can support federated users of programmatic access to allow an application to access your AWS account.
+   
+2. Request:
+     1.When a principal tries to use the AWS management console, the AWS API of the AWS CLI that principal sends a request to AWS.
+     2.The request includes the following information:
+** Actions: That the principal wants to perform.
+** Resources: upon which the actions are performed.
+** Principal information: it’s including the environment from which the request was made.
+** Request context:- 1.before AWS can evaluate and authorize a request, AWS gathers the request information. 
+                     2 Principal (the requester) which is determined based on the authorization data.
+                     3.This includes the aggregate permissions that the associated with that principal.
+** Environment data: such as IP address, user agent, SSL enabled status, or the time of the day.
+** Resource data: it is related to the resource that is being requested.
+
+3. Authentication:
+     1.A principal sending a request must be authenticated (sighed into AWS) to send a request to AWS.
+     2.Some AWS services, like AWS S3 allow request from anonymous users, they are exception to the role.
+     3.To authenticate from the console as a root user, you must sign-in with your user name and password.
+     4.To authenticate from the API to CLI, you must provide your access key and secrete key.
+     5.You might also be required to provide additional security information like MFA (e.g: Google Authentication )
+
+4. Authorization:
+    1.To authorize request, IAM uses value from the request context to check, for matching policies and determine whether to allow or deny the request.
+    2.IAM policies are stored in IAM as JSON documents and specify the permission that are allowed or denied.
+    3.User (identity) Based Policy specifies permission allowed/denied for principals.
+    4.Note: by default the AWS root user access to all the resources in that account.
+   
+  **Resource Based Policies:
+       1.It specifies permission allowed/denied for resources. Popular for granting cross account permission.
+       2.IAM checks each policy that matches the context of your request.
+       3.If a single policy includes a denied actions, IAM denies the entire request and stop evaluating. This is called explicit deny.
+
+  **The evaluation logic follows these Rules:
+       1.By default, all request are denied.
+       2.An explicit allow overrides this default.
+       3.An explicit deny overrides any allows.
+       4.You can create a new IAM policy in the AWS management console using one of the following ways:
+ JSON: you can create your own JSON syntax.
+ Visual Editor: you can construct a new policy from scratch in the visual editor. If you can use the visual editor you do not have to understand JSON syntax.
+ Import: you can import a managed policy with in your account and then edit the policy to customize it to your specific requirement.
+
+5. Actions:
+    1.Actions are defined by a service, and more the things that you can do to a resource such as viewing, creating, editing, and deleting that resource.
+    2.IAM supports approx. 40 actions for a user resource including create user, delete user etc.
+    3.Any actions or resources that are not explicitly allowed are denied by default.
+    4.After your request has been authenticated and authorized, AWS approves the actions in your request.
+
+6. Resource:
+    1.A resource is an entity that exists within a service.
+    2.Examples are EC2 instances, S3 bucket, IAM users, and Dynamo DB table.
+    3.Each AWS service defines a set of actions that can be performed on each resource.
+    4.After AWS approves the actions in your request those actions can be performed on the related resources within your account.
+    5.If you create a request to perform an unrelated action on a resource that request is denied.
+    6.When you provide permissions using an identity based policy in IAM then you provide permissions to access resources only within the same account. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Identity Federation**
+
+    1.If your account users already have a way to be authenticated such as authentication through your corporate network, you can federated those user identities into
+      AWS.
+    2.A user who has already logged to the corporate using their corporate identity, the corporate can replace their existing identity with a temporary identity in 
+      your AWS account.
+    3.The user can work in the AWS management console. Similarly, an application that the user is working with can make programmatic request using permission that you
+      make.
+
+**Federation is particularly useful in those cases:-
+1. If your corporate direct ory is compatible with Security Assertion Markup Language (2.0):
+     You can configure your corporate directory to provide Single Sign-On (SSO) access to the AWS management console for your users.
+     If your corporate directory is not compatible with SAML 2.0, you can create identity broker application to provide single sign-on access to the AWS management  
+      console for your users.
+     If your corporate directory is Microsoft active directory, you can use AWS directory service to establish trust between your corporate directory and your AWS 
+      account
+
+2.Your users already have Internet Identities:
+    if you are creating a mobile app or web-based app that can let users identity themselves through an internet identity provider like login with amazon,facebook, 
+     google or any open ID connect (OIDC) compatible identity provider, the app can use web federation to access AWS.
+    AWS recommends to use AWS Cognito for identity federation
+
+=======================================================================================================================================================================
+
+**IAM Users and SSO:
+
+    IAM users in your account have access only to the AWS resources that you specify in the policy that is attached to the user of to an IAM group that use the user  
+      belongs to.
+    To work in the console user must have permissions to perform the actions that the console performs such as listing and creating AWS resources. 
+
+======================================================================================================================================================================
+
+**IAM Identities:-
+
+ IAM identities is what you create under your AWS account to provide authentication for people, application and process in your AWS account.
+ Identities represents the user and can be authenticated and then authorized to perform actions in AWS.
+ Each of these can be associated with one or more policies to determine what actions a user, role or member of the group can do with which resources and under what
+  conditions.
+ IAM group is a collection of IAM user.
+ IAM role is very limit IAM user. 
+
+=======================================================================================================================================================================
+
+**difference between aws managed poilcy and custom managed policy
+
+aws managed policy:-
+    1.AWS managed policies are predefined policies created and maintained by AWS.
+    2.They are designed to provide common permissions needed for specific AWS services or tasks
+    3.These policies are accessible across multiple AWS accounts and regions. 
+    4.AWS managed policies cannot be edited, and their permissions are managed by AWS.
+    5.You can directly attach AWS managed policies to IAM identities (users, groups, or roles) or use them as a reference in a custom policy.
+
+custom managed policy:-
+    1.Custom managed policies are policies that you create and manage yourself.
+    2.They offer flexibility in defining fine-grained permissions tailored to your specific requirements.
+    3.Custom managed policies are attached to IAM identities (users, groups, or roles) to grant permissions.
+    4.They can be edited, updated, and version-controlled according to your needs.
+    5.custom managed policies require manual updates to incorporate new services or changes.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DIFFERENCE BETWEEN THE INLINED-POLICY AND BOUNDARY PERMISSIOIN:-
+
+INLINED-POLICY:-
+    1.Inlined policies are useful for granting specific permissions to an individual user, group, or role without the need to create a separate managed policy.
+    2.Inlined policies are written in JSON format and provide explicit permissions for the associated entity.
+    3.An inlined policy is an IAM policy that is directly attached to an IAM user, group, or role.
+    4.Inlined policies are defined and managed within the IAM entity to which they are attached.
+
+BOUNDARY PERMISSION:-
+    1.Boundary permissions, also known as a boundary policy, are used to set the maximum permissions that can be granted to an IAM entity (user, group, or role).
+    2.A boundary permission is an IAM policy that is attached to an IAM entity.
+    3.When a boundary policy is assigned to an IAM entity, it restricts the permissions that can be granted to that entity through other means, such as inlined 
+      policies or managed policies.
+    4.When a boundary policy is assigned to an IAM entity, it restricts the permissions that can be granted to that entity through other means, such as inlined 
+      policies or managed policies.
+    5.Boundary policies are useful for enforcing least privilege principles and preventing excessive permissions from being granted to IAM entities.
+ 
+=======================================================================================================================================================================
+
+AUTHENTIFICATION ADN AUTHORISATION:-
+
+AUTHENTIFICATION:-
+   1.Authentication is the process of verifying the identity of a user or entity.
+   2.It is the mechanism used to ensure that the user or entity claiming a particular identity is indeed who they say they are. 
+   3.The goal of authentication is to establish trust and provide access to the appropriate resources or services based on the verified identity.
+   4.Authentication involves presenting credentials, such as a username and password, to a system or application.
+   5.The system then verifies these credentials against a stored database or an authentication server. 
+   6.If the credentials match, the system confirms the user's identity and grants access.
+   7.in simply words authentification simply say that "who are you"?
+
+AUTHORISATION:-
+   1.Authorization, on the other hand, comes after authentication and determines what actions or resources a verified user or entity is allowed to access.
+   2.It involves granting or denying permissions and privileges based on the authenticated identity.
+   3.Authorization ensures that users have the appropriate rights and permissions to perform certain actions or access specific resources within a system.
+   4.Authorization is typically based on predefined access control policies and permissions associated with different roles or groups. 
+   5.It allows administrators to control and manage user access, setting restrictions on what actions can be performed and what data or resources can be accessed.
+   6.Authorization answers the question, "What are you allowed to do or access?"
+
+In summary, authentication verifies the identity of users or entities, while authorization controls their access to resources or actions based on that identity. Authentication establishes trust, while authorization determines the level of privileges and permissions granted to authenticated users. Both authentication and authorization are crucial components of access control systems and play essential roles in ensuring the security of computer systems and data.
+
+=======================================================================================================================================================================
+
+SECRET-KEY AND ACCESS-KEY:-
+ 
+SECRET-KEY:-
+    1.A secret key, also known as a private key or a secret, is a piece of sensitive information used in symmetric encryption algorithms.
+    2.It is a shared secret between two parties, such as a client and a server, that allows them to encrypt and decrypt data securely.
+    3.Secret keys are used to provide confidentiality and integrity to the transmitted data.
+
+ACCESS-KEY:-
+    1.An access key, on the other hand, is a term commonly used in the context of access control and authorization.
+    2.It refers to a unique identifier or a credential that is associated with a user, application, or entity and is used to authenticate and authorize access to a 
+      system, service, or resource.
+    3.Access keys are often used in access control mechanisms such as API authentication or cloud service authentication.
+    4.They can be in the form of a long string of characters, a token, or a cryptographic key pair.
+    5.Access keys are typically generated and managed by the system or service provider and are used to verify the identity and permissions of the requesting entity.
+    
+
+In summary, a secret key is a shared secret used for encryption and data integrity, while an access key is an identifier or credential used for authentication and
+authorization to access specific resources or services.
+
+=======================================================================================================================================================================
+
+GLOBAL AND REGION SPECIFIC:-
+
+GLOBAL:-
+   Global services in AWS are services that are available across all AWS regions. These services have a global infrastructure and are designed to provide consistent 
+   functionality and performance to users worldwide. Some examples of global services in AWS include:
+
+  1.Identity and Access Management (IAM): IAM is used for managing user access and permissions across AWS accounts and services globally.
+
+  2.Route 53: Route 53 is AWS's domain name system (DNS) web service, which is responsible for routing traffic globally and resolving domain names to their respective
+    IP addresses.
+
+  3.CloudFront: CloudFront is a content delivery network (CDN) service that caches and delivers content from edge locations around the world to users, ensuring low-
+    latency and high-performance content delivery.
+
+REGIOIN-SPECIFIC:-
+  1.Region-specific services, as the name suggests, are services that are tied to specific AWS regions. 
+  2.These services have infrastructure and resources deployed in specific regions and are not globally available.
+  3.Some examples of region-specific services in AWS include:
+      1.EC2
+      2.S3
+      3.RDS
+
+======================================================================================================================================================================
+
+**CROSS ACCOUNT ACCESS USING ----->>IAM ROLE
+
+1.login with mayur account
+    1.create a group
+    2.create two users (user1,user2) and add in group 
+    3.attach ec2-readonly access policy to a group
+
+2.login in saurabh account
+   1.create a s3 bucket
+   2.create a role-----another aws account-------(account no of mayur)---attach policy----s3readonly-----name----s3read
+
+3.now login back to mayur account
+   1.go to IAM 
+   2.click on group----permissions----create inlined policy-------policy generator-------effect(allow)
+                                                                                         aws service----aws security token service
+                                                                                         action---------assume role
+                                                                                         ARN------------*
+                                                                                         add statement---apply policy
+
+4.now login with user1
+   1.click on username
+   2.switch role---------(saurabh account no)--------s3read-------switch role
+   3.you can access the s3 bucket of Saurabh's account
+
+5.now login with user2
+   1.click on username
+   2.switch role---------(saurabh account no)--------s3read-------switch role
+   3.you can access the s3 bucket of Saurabh's account
+
+6.now login as saurabh account
+   1.click on created role(s3read)
+   2.click on trusted relationship-----edit trusted relationship----edit----paster ARN of user1 on these script-----update policy
+
+7.now login as user1
+   1.click on username
+   2.switch role---------(saurabh account no)--------s3read-------switch role
+   3.you can access the s3 bucket of saurabhs account
+
+8.now login as user2
+   1.click on username
+   2.switch role---------(saurabh account no)--------s3read-------switch role
+   3.you get a api error beacause user2 arn not be included in saurabh account role.
+
+=======================================================================================================================================================================
+
+AWS IAM BEST PRACTICES:-
+
+1.avoid using root account except of account setup.
+2.add user to group and assign permission to group.
+3.use password policy or MFA
+4.use access keys for CLI & SGK
+5.never share ACCESS KEYS or password on any platform.
+6.audit the permission using IAM credential report.
+
+
+=======================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

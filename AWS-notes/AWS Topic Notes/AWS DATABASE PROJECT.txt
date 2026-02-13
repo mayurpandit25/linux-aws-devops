@@ -1,0 +1,80 @@
+THREE-TIER APPLICATION DEPLOYMENT AWS-studentapp
+
+***************************************************************************
+
+1.create a database
+2.create a instance (ubuntu)
+
+3.access the instance
+  1.apt install mysql-client -y
+  2.mysql -u admin -h (endpoint) -p
+  3.create database student_db;
+  4.show databases;
+  5.exit
+
+4.git clone https://github.com/shubhamkalsait/cloudblitz-student-app.git
+5.cd cloudblitz-student-app
+6.cd backend
+7.apt install openjdk-17-jdk -y
+8.apt install maven -y
+9.vim src/main/resources/application.properties
+  edit localhost:- (database endpoint):3306/student_db
+  username: admin
+  password: admin123
+10.mvn clean package
+11.ls target
+
+12.cd ../frontend
+13.apt install nodejs npm -y
+14.npm --version
+15.npm install
+16.apt install apache2 -y
+17.systemctl start apache2
+18.vim .env
+  VITE_API_URL = "http://(public_ip):8080/api"
+19.add ports in the security group
+   ssh------22
+   http-----80
+   custom---8080
+   mysql----3306
+20.npm run build
+21.cp -rf dist/* /var/www/html/
+22.systemctl start apache2
+23.cd /backend
+24.cd target/
+25.java -jar { student-registration .... }
+
+{ public_ip }
+
+**********************************************************************************************************************************************************************
+
+NOTES:-
+	
+1.A frontend (user interface — what users see)
+2.A backend (logic — handles data and requests)
+3.A database (stores data permanently)
+
+JAVA:-
+1.Used for: Building the backend (server-side) of your app.
+2.Why: It handles the logic like login, registration, connecting to the database, etc.
+3.usually works on the 8080
+
+NODE-JS:-
+1.Used for: Running JavaScript code on the server (not browser).
+2.Why here: It’s needed to build the frontend part of the app (React or Vue project).
+3.To execute:-
+  npm install
+  npm run build
+ 
+APACHE2:-
+1.Used for: Serving (hosting) webpages to users.
+2.Why: After you build your frontend, you copy it into /var/www/html/.
+
+simply:-
+1.database ----------> MySQL(RDS)
+2.backend -----------> java
+3.frontend ----------> node.js + apache
+4.server ------------> ubuntu (ec2 instance)
+
+
+**********************************************************************************************************************************************************************

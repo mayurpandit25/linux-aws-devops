@@ -1,0 +1,30 @@
+                                                              **ROUTE-53--SIMPLE ROUTING**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a instance
+    1.name----------my-server
+    2.machine-------amazon-linux
+    3.sg------------https,http,ssh
+    4.userdata-
+       #!/bin/bash
+       sudo yum update -y
+       sudo yum install httpd -y
+       sudo systemctl start httpd.service
+       sudo systemctl enable httpd.service
+       sudo echo "HELLO" > /var/www/html/index.html
+       sudo systemctl restart httpd.service
+
+2.go to route-53
+     1.create a hosted-zone
+     2.copy the name-server and paste on the freenom
+
+3.go to route-53
+     1.create a record
+          1.name------record
+          2.value-----(IP of instance)
+          3.create a record
+
+4.sagarsonule.tk --------------------on web
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------

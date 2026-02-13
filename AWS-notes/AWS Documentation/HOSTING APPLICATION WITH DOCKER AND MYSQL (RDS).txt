@@ -1,0 +1,41 @@
+HOSTING APPLICATION WITH DOCKER AND MYSQL(RDS) DATABASE
+
+========================================================================================================
+
+PREREQUISITE:-
+
+1.EC2 --------> install docker ----------> 1.host node-app container
+                                           2.mysql container
+2.RDS --------> to connect to EC2
+
+
+CREATE A MYSQL SERVER (RDS)
+1.method------- standard
+2.image ------- mysql
+3.template ---- free-tier
+4.username ---- admin
+5.password ---- ABCD12345
+6.public ------ yes
+7.vpc sg ------ create new ----- mysqlsg
+8.create a rds
+
+
+CREATE A EC2 INSTANCE
+1.sudo yum install docker -y
+2.sudo systemctl start docker 
+3.sudo usermod -aG docker ec2-user
+
+4.sudo docker pull philippaul/node-mysql-app:02
+5.docker images
+6.docker run --rm -p 80:3000 -e DB_HOST="(rds-endpoint)" -e DB_USER="admin" -e DB_PASSWORD="ABCD12345" -d philippaul/node-mysql-app:02
+7.docker ps
+8.{ http://public_ip }
+
+IF U WANT TO ACCESS THE DATABASE TO CHECK WHETHER THE DATA STORE OR NOT
+9.docker run -it --rm mysql:8.0 mysql -h (rds-endpoint) -u admin -pABCD12345
+   1.show databases;
+   2.use my_app_db;
+   3.show tables;
+   4.select * from contacts;
+
+======================================================================================================================================================

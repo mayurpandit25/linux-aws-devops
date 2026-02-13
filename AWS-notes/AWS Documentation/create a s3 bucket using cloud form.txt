@@ -1,0 +1,20 @@
+**create a s3 bucker using cloud formation using just template**
+
+1.search stack and click on cloud formation
+2.then create a stack and add these template in stack you can also add these template in s3 and giving s3 link to stack
+
+   {
+    "Resources": {
+        "S3Bucket": {
+            "Type": "AWS::S3::Bucket",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+                "BucketName": "mayur-s3-bucker"
+            }
+        }
+    }
+}
+
+
+3.then create a stack in default settings
+4.after creating you can refresh your s3 bucker should be created.

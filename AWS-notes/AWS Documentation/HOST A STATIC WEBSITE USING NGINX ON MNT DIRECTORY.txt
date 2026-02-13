@@ -1,0 +1,59 @@
+**HOST A STATIC WEBSITE USING NGINX BUT CHANGE THE ROOT DIR TO /MNT PERFORM THIS IN UBUNTU AND AMAZON-LINUX**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**ON UBUNTU**
+
+1.sudo apt update
+2.sudo apt install nginx -y 
+3.wget https://www.free-css.com/assets/files/free-css-templates/download/page296/oxer.zip
+4.sudo apt install unzip -y 
+5.unzip oxer.zip
+6.sudo cp -r oxer-html/* /mnt/
+7.sudo vim /etc/nginx/sites-available/default
+
+#delete all from the server block and add these block
+ 
+server {
+    listen 80;
+    server_name localhost;  
+
+    root /mnt/;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+
+8.sudo systemctl restart nginx
+9.curl localhost
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**ON amazon-linux**
+
+1.sudo yum update -y
+2.sudo yum install nginx -y 
+3.wget https://www.free-css.com/assets/files/free-css-templates/download/page296/oxer.zip
+4.unzip oxer.zip
+5.sudo cp -r oxer-html/* /mnt/
+6.sudo vim /etc/nginx/nginx.conf
+
+server {
+    listen 80;
+    server_name localhost;  
+
+    root /mnt/;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+
+7.sudo systemctl restart nginx
+8.curl localhost
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

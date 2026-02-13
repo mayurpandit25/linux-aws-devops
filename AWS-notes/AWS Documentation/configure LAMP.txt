@@ -1,0 +1,68 @@
+**configure LAMP server:-(linux, apache2, mariadb, php)**
+
+LAMP stack is a popular open source web platform commonly used to run dynamic web sites and servers. LAMP includes Linux, Apache, Mysql & PHP/Python/Perl and very popular platform of for development and deployment of high performance web application.
+
+1.LINUX : Linux is the most popular operating system used in web servers, primarily because many free Linux distributions are available. This means Linux-based servers are typically cheaper to set up and maintain than Windows servers. Since Linux is (open source|open source), it also works with many other popular open source web hosting software components.
+
+2.APACHE : The most important software component in the “LAMP” package is Apache, or “Apache HTTP Server.” Apache is the web server that serves webpages over the Internet via the HTTP protocol. Once Apache is installed, a standard Linux machine is transformed into a web server that can host live websites.
+
+3.MYSQL : Mysql is the most popular relational database management system. The power of MySQL is that it supports SQL and relational tables, making it much easier to develop enterprise-level databases while using the standard SQL language.
+
+4.PHP : PHP can be used as the object-oriented scripting language but it can also be substituted with Perl or Python.The main benefit of all three of the languages in the LAMP stack, Perl, Python and PHP, is that they are “interpreted” languages. Being interpreted, rather than compiled, they are quick and easy to use so your application becomes faster.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a instance (linux)
+    1.name----------lamp server
+    2.machine-------ubuntu
+    3.sg------------ssh,http,https,mysql/aurora,all tcp
+    4.launch instance
+
+2.access the instance and install apache server
+    1.sudo apt update -y
+    2.sudo apt upgrade -y
+    3.sudo apt install apache2 -y
+    4.sudo systemctl start apache2.service
+    5.sudo systemctl enable apache2.service
+    6.sudo apt install net-tools
+    7.sudo netstat -plunt -------------------------to check port
+    8.(public ip) ---------------------------------to check run or not
+    9.cd /var/www/html/
+   10.rm -rf index.html
+   11.vim index.html
+        <h1> HELLO WORLD </h1>
+   12.sudo systemctl restart apache2.service
+   13.(public ip) ---------------------------------to check apache page
+
+3.install mariadb-server
+    1.apt install mariadb-server mariadb-client -y
+    2.systemctl start mariadb.service
+    3.systemctl enable mariadb.service
+    4.mysql_root_installation -------------for setting the password
+    5.mysql -p
+       enter password--
+
+4.install php server
+    1.sudo apt install php libapache2-mod-php php-cli php-cgi php-mysql php-pgsql
+    2.cd /var/www/html/
+    3.vim phpinfo.php
+        <? php 
+           phpinfo();
+        ?>
+    4.(public ip)/phpinfo.php ------------for checking the php working or not
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Why we recommend LAMP server (Key features) :
+
+1.Full control over the server and it’s software.
+2.Easily re-compile PHP or Apache for additional modules you require.
+3.Easily upgrade software versions to the required or latest releases when you need it.
+4.Better security as only required server daemons are running.
+5.Much higher performance – your server doesn’t need to run fancy Control panel features – e-mail, chat room software, SSL, web control panel and other daemons that are particularly not required for your web site.
+6.Can be acquired at a comparatively low price compared to other software architecture bundles since it uses open source components.
+7.No extra monthly fees for control panel licenses.
+8.No need to find a dedicated server provider who provides specific control panel software.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

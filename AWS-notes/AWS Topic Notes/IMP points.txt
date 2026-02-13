@@ -1,0 +1,168 @@
+AMI (amazon machine image):-
+
+1.it is a pre-configured template that have the software information used to create new instance
+2.it have the information required to launch instance, including os, application server, and application code.
+3.with the help of ami we can launch multiple instances with the same coonfiguration
+4.it can be stored in amazon s3 adn can shared with other aws accounts
+5.its a complete copy of root file system of an instance including os and additional software installed on it.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Snapshot:-
+
+1.it is a backup of EBS volume
+2.it is a point-in-time copy of data on an EBS volume and can be used to create a new EBS volume with the same data.
+3.it is stored in amazon s3 and are incremental meaning only blocks that have changed since last snapshot are stored.
+4.it can be used to create a new EBS volume to restore an existing volume, or to migrate data in new region
+5.it can be used to backup EBS volume in aws 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Template:-
+
+1.its a pre-defined configuration used to launch aws resources
+2.it it used to automate the creation of resources in AWS and can be used to launch multiple resources with same configuration
+3.it can be created using AWS cloudformation and they defined infrastructure as a code.
+4.it can be used to automate creation of AWS resources such as EC2 instance, load balancer, and databases.
+5.it can be versioned, and changes to template can be tracked using AWS cloudformation
+6.it helps you to save time and reduce errors by automating process of creating and configuring resources in AWS
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Screenshot:-
+
+1.it is a visual representation of what is displayed on screen of an instance
+2.it can used to troubleshoot issue with instance or to confirm status of an instance
+3.it can not be used to launch or manage resources or to create backups of data.
+4.it can be taken from EC2 console or using aws CLI/API
+5.if you take a screenshot it may expose sensitive information such as user credentials or confidential data. so must take of sensible information that may visible on 
+  screenshot.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Subnetting:-
+
+1.it is a process of dividing a network into smaller subnetworks, or subnets.
+2.it allow you to create more efficient use of IP addresses and manage network traffic more effectively.
+3.it is use in LAN and WAN
+4.it is typically done by dividing an IP address range into smaller ranges, each of which is assigned to a specific subnet.
+5.each subnet has its own network address and broadcast address as well as range of IP addresses that can be used by devices in that subnet
+6.it allow for bettar control and management of network traffic, as well as improved security.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CIDR (classless inter domain routing service):-
+
+1.it is a method of allocating IP address and routing internet protocol (IP) packets.
+2.it allow for more efficient use of IP address by using variable length subnet masks to divide network into smaller subnet
+3.it replaces older classful addressing scheme, which was less flexible and less efficient.
+4.CIDR notation used to represent IP addresses and subnet mask in a consise way
+5.it uses slash to represent no of bits in subnet mask
+6.both are used to create more efficient use of IP addresses, improve network management and increase security.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+IAM-programmatic access:-
+
+1.its a way to access aws services programatically using APIs or AWS command line interface insted of using aws management console
+2.to use programmatic access, you need to create an IAM user or role and grant them the necessary permission to access aws services and resources
+3.once you create a user or role, you can generate an access key and secret key that can be used to authenticate APIs request or CLI commands.
+4.the access key and secret key are unique identifiers that allow aws to verify that the user or role is authorized to access the requested resources.
+5.IAM also allow you to manage permission and policies for programmatic access, ensuring that only authorized users or roles can access the requested resources
+6.IAM also provides logging and monitoring capabilities to track programmatic access and identity any potential security issue
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+IAM-Identity centre:-
+
+1.it is a central location in aws management console for managing and viewing information about IAM users and groups as well as their permission and access to aws 
+  resources
+2.it can be access through aws management console by selecting IAM service
+3.from identity centre you can create new IAM users, groups or edit existing onces and define their access permission and policies.
+4.IAM allows you to assign different access level to users and groups so that you can control which aws resources they can access and what action they can perform
+5.identity centre also allows you to view and manage IAM credentials, such as access keys and passwords, for each IAM
+6.it also allows you to view and manage IAM role which are used to delegates permission to AWs services and resorces to aws resources
+7.it gives detailed information of user or group including password, policies, access key adn exp date
+8.with help of these, you can identity and address any security issue or policies verification.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Difference between on-premises and off-premises**
+
+**On-Premises**
+
+1.On-premises means we can host our IT resources in traditional way such as servers, networking equipment, and applications, within an organization's own physical data 
+  centers or facilities. 
+2.In this model, the organization is responsible for procuring, setting up, maintaining, and upgrading all the hardware and software infrastructure. 
+3.The organization has full control over the hardware, networking, and security configurations. 
+4.While this provides a high degree of control, it also comes with the overhead of managing the physical infrastructure, which can be expensive and time-consuming.
+
+**Off-Premises (Cloud)**
+
+1.Off-premises, often referred to as cloud computing, involves using remote servers and services provided by a third-party cloud provider, such as Amazon Web Services 
+ (AWS), Microsoft Azure, or Google Cloud Platform (GCP) and other cloud providers.
+2.These cloud providers offer a range of services, including computing resources, storage, databases, networking, analytics, machine learning, and more. 
+3.Users can access and manage these resources over the internet without needing to own or maintain the underlying physical hardware.
+
+
+In summary, the main differences between on-premises and off-premises (cloud) deployments in AWS are:
+
+1.Ownership and Control:
+    On-premises provides full ownership and control of hardware and software infrastructure, while off-premises/cloud shifts much of the infrastructure management  
+    responsibility to the cloud provider.
+
+2.Cost Model:
+    On-premises requires upfront capital investment and ongoing maintenance costs, whereas off-premises/cloud typically follows a pay-as-you-go model, potentially 
+    reducing upfront costs.
+
+3.Scalability and Flexibility:
+    Cloud services offer more scalability and flexibility to scale resources up or down quickly based on demand, compared to the limitations of on-premises 
+    infrastructure.
+
+4.Maintenance and Updates:
+    Cloud providers manage maintenance, updates, and security patches, relieving users from these tasks in comparison to on-premises management.
+
+5.Geographical Reach:
+    Cloud services like AWS have a global network of data centers, providing wider geographical reach compared to the limited reach of on-premises data centers.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**What is server**
+
+1.A server is like a powerful computer or machine that stores data and shares information or services over a network. 
+2.It's designed to respond to requests from other computers, devices, or users and provide them with the data or functionality they need.
+3.Think of a server as a central hub that holds and delivers resources, like web pages, files, or applications, to other devices, like your computer or smartphone, 
+  when you ask for them.
+4.Servers are used for various tasks, such as hosting websites, storing files, managing email, and running software applications that multiple users can access 
+  remotely.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**What is content delivery network**
+
+A Content Delivery Network (CDN) is a distributed network of servers strategically placed across various geographic locations to efficiently deliver web content, such 
+  as images, videos, stylesheets, and scripts, to users.
+2.The main goal of a CDN is to reduce latency, improve content delivery speed, and enhance the overall user experience by ensuring that content is served from a server 
+  location that is physically closer to the user requesting it.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

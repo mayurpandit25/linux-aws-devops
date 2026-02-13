@@ -1,0 +1,12 @@
+**How to attached a single EBS to multiple instance:-
+
+   1.create a volume
+        1.volume type----provisioned IOPS (io2)
+        2.enable multi-attach
+        3.create a volume
+
+   2.create two instance (1 and 2) of instance type-c
+   3.stop these instances
+   4.attach these volume to instance-1
+   5.attach these volume to instance-2
+   6.click on the volume you can see two instance should be attach to a single volume

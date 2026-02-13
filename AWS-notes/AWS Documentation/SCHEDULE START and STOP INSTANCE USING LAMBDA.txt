@@ -1,0 +1,75 @@
+SCHEDULE START INSTANCE USING LAMBDA
+
+1.create a instance in mumbai region
+
+2.create a role
+     1.role--------aws service 
+     2.use-case----lambda
+     3.policy------ec2-full-access 
+     4.role-name---role-for-lambda
+
+3.create a lambda functions in lambda
+     1.author from scratch 
+     2.function name-----start ec2 instance
+     3.runtime-----------python3.9
+     4.role--------------attch these created role
+     5.create a function
+
+4.pass the code to start the ec2 instance
+
+import boto3
+region = 'us-west-1'
+instances = ['i-12345cb6de4f78g9h', 'i-08ce9b2d7eccf6d26']
+ec2 = boto3.client('ec2', region_name=region)
+
+def lambda_handler(event, context):
+    ec2.start_instances(InstanceIds=instances)
+    print('started your instances: ' + str(instances))
+
+5.deploy the code
+6.the instance should be start automatically when deploying
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SCHEDULE STOP INSTANCE USING LAMBDA
+
+1.create a instance in mumbai region
+
+2.create a role
+     1.role--------aws service 
+     2.use-case----lambda
+     3.policy------ec2-full-access 
+     4.role-name---role-for-lambda
+
+3.create a lambda functions in lambda
+     1.author from scratch 
+     2.function name-----start ec2 instance
+     3.runtime-----------python3.9
+     4.role--------------attch these created role
+     5.create a function
+
+4.pass the code to stop the ec2 instance
+
+import boto3
+region = 'us-west-1'
+instances = ['i-12345cb6de4f78g9h', 'i-08ce9b2d7eccf6d26']
+ec2 = boto3.client('ec2', region_name=region)
+
+def lambda_handler(event, context):
+    ec2.stop_instances(InstanceIds=instances)
+    print('stopped your instances: ' + str(instances))
+
+5.deploy the code
+6.the instance should be stop automatically when deploying
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+

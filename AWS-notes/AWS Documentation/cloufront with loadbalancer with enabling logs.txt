@@ -1,0 +1,85 @@
+cloufront with loadbalancer with enaling loadbalancer logs
+
+=======================================================================================================================================================================
+
+1.create a instances(2)
+      1.name------server1 and server2
+      2.machine---amazon-linux
+      3.type------t2.micro
+      4.sg--------https/http/ssh
+      5.user-date
+         #!/bin/bash
+         sudo yum update -y
+         sudo yum install httpd -y
+         sudo systemctl start httpd.service
+         sudo echo "<h1> this is my server page "$HOSTNAME" </h1>" > /var/www/html/index.html 
+         sudo systemctl restart httpd.service
+         sudo systemctl enable httpd.service
+
+2.create a target group
+    1.type------instance
+    2.name------tg-server
+    3.path------/
+    4.register-----server1 and server2----include as pending below
+    5.create a target group
+
+3.create a load balancer
+    1.name--------------ALB
+    2.default action----tg-server
+    3.create a load balancer
+
+4.create a s3 bucket and add policy of accessing the ALB logs in s3 bucket
+   
+   {
+    "Version": "2012-10-17",
+    "Id": "AWSConsole-AccessLogs-Policy-1668943070662",
+    "Statement": [
+        {
+            "Sid": "AWSConsoleStmt-1668943070662",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::718504428378:root" -----------------------#your principle arn here
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::mayur-s3-bucket1/*"
+        },
+        {
+            "Sid": "AWSLogDeliveryWrite",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "delivery.logs.amazonaws.com"
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::mayur-s3-bucket1/*",
+            "Condition": {
+                "StringEquals": {
+                    "s3:x-amz-acl": "bucket-owner-full-control"
+                }
+            }
+        },
+        {
+            "Sid": "AWSLogDeliveryAclCheck",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "delivery.logs.amazonaws.com"
+            },
+            "Action": "s3:GetBucketAcl",
+            "Resource": "arn:aws:s3:::mayur-s3-bucket1"
+        }
+    ]
+}
+
+5.click on ALB
+    1.edit the attributes
+    2.access logs and add bucket (mayur-s3-bucket1)
+
+4.copy the dns and hit on web and refresh
+
+5.create a cloudfront
+    1.create a distribution
+    2.origin domain------ALB
+    3.create a cloudfront
+
+6.hit the dns of cloudfront
+
+=======================================================================================================================================================================

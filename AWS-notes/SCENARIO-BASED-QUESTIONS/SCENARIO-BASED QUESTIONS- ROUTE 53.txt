@@ -1,0 +1,157 @@
+SCENARIO-BASED QUESTIONS- ROUTE 53
+
+***************************************************************************************************
+
+1. Scenario:
+
+You registered a domain using a third-party registrar. After connecting it to Route 53, the website is still not resolving even after 2 hours.
+Question: What is the most likely reason for the delay?
+
+Answer:
+DNS changes, especially name server updates, can take up to 48 hours due to global DNS caching (TTL).
+
+***************************************************************************************************
+
+2. Scenario:
+
+You want Route 53 to route traffic away from a malfunctioning web server and switch to a backup server.
+Question: Which routing policy would you use?
+
+Answer:
+Use Failover Routing Policy, which routes traffic to the primary as long as it is healthy, and switches to secondary when unhealthy. 
+
+***************************************************************************************************
+
+3. Scenario:
+
+Your application is deployed in both Mumbai and N. Virginia regions. Users from London should be routed automatically to the region with lowest latency.
+Question: Which routing policy applies?
+
+Answer:
+Latency-Based Routing, which routes users to the region providing the lowest latency.
+
+***************************************************************************************************
+
+4. Scenario:
+
+You want to show different localized content for users in Asia vs Europe.
+Question: Which routing policy should be used?
+
+Answer:
+Geolocation Routing, which routes based on the origin of DNS queries (continent, country, or US state).
+
+***************************************************************************************************
+
+5. Scenario:
+
+You need to route 20% traffic to a new version of application and 80% to the stable version.
+Question: Which routing policy helps?
+
+Answer:
+Weighted Routing, allowing weights like 1 (20%) and 4 (80%).
+
+***************************************************************************************************
+
+6. Scenario:
+
+You want to shift some percentage of global traffic from Europe servers to US servers.
+Question: Which policy allows shifting traffic using “BIAS”?
+
+Answer:
+Geo-Proximity Routing, which uses “BIAS” to expand or shrink geographic traffic regions. 
+
+***************************************************************************************************
+
+7. Scenario:
+
+A web server is configured as an S3 static website. You want failover between S3 bucket and EC2 instance.
+Question: Is it possible?
+
+Answer:
+Yes. Failover routing supports routing traffic between any type of resource, including S3 static website and EC2. 
+
+***************************************************************************************************
+
+8. What records does Route 53 create automatically in a hosted zone?
+
+NS (name server) and SOA records
+
+***************************************************************************************************
+
+9. What is the limit of hosted zones and record sets in Route 53?
+
+500 hosted zones and 10,000 records per zone (can be increased).
+
+***************************************************************************************************
+
+10. When does TTL matter during DNS migration?
+
+During name server updates, as DNS changes may take up to 48 hours.
+
+***************************************************************************************************
+
+11. How does Geolocation Routing decide priority?
+
+Smaller geographic area takes priority (e.g., Canada over North America).
+
+***************************************************************************************************
+
+12. What is the purpose of Weighted Routing?
+
+Load balancing or testing new versions by defining traffic proportions.
+
+***************************************************************************************************
+
+13. What is the purpose of NS record?
+
+Identifies which name servers are authoritative for the zone.
+
+***************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+For ext4
+
+sudo apt update && sudo apt install cloud-guest-utils -y
+sudo growpart /dev/nvme0n1 1
+sudo resize2fs /dev/nvme0n1p1
+
+For XFS
+sudo apt update && sudo apt install cloud-guest-utils -y
+sudo growpart /dev/nvme0n1 1
+sudo xfs_growfs /
+
+==================================================================================================================================================

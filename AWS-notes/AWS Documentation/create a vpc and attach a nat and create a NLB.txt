@@ -1,0 +1,15 @@
+**create a priv.pub. subnets and attach a nat instance and apply NLB enable proxy protocol and implement target group stickiness.
+
+1.create a vpc
+2.create a 2 private subnet and 2 public subnets
+3.create internet getway and attach to a vpc
+4.create a route table
+      public route------associate subnets and attach a internet getway
+      private route-----associate subnets 
+5.go to ec2 and launch a instance
+      1.search for nat and then select nat and give the public IP to the nat and create a instance
+6.then we can create one private instance
+7.then go to the route table,nat can create a default route we can add a entry on the route i.e we can add a (0.0.0.0) and nat
+8.then create a target group
+9.create a NLB and attach a target group in it
+10.after creating a TG you can go to action and edit attributes and enable the proxy protocol and target group stickiness.

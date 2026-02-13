@@ -1,0 +1,71 @@
+
+**HOST NGINX SERVICE AND ATTACH SSL CERTIFICATE ON IT**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+{ note:-use these process when you have not the domain to register for acm } 
+
+1.create a instance
+    1.name---------my-instance
+    2.machine------amazonlinux
+    3.key----------id_rsa
+    4.user_data
+      #!/bin/bash
+      sudo yum update -y
+      sudo yum install nginx -y
+      sudo systemctl start nginx 
+      sudo systemctl enable nginx 
+
+2.to create a ssl certificate 
+vim script
+# Create the SSL directory
+sudo mkdir -p /etc/ssl/private
+# Change the ownership of the directory to the nginx user
+sudo chown -R nginx:nginx /etc/ssl/private
+# Generate a self-signed SSL certificate and key
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/selfsigned.key -out /etc/ssl/certs/selfsigned.crt
+
+bash script
+
+3.after that edit the nginx conf file /etc/nginx/nginx.conf add these block 
+
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        # Nginx configurations for your application
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name _;
+
+    ssl_certificate /etc/ssl/certs/selfsigned.crt;
+    ssl_certificate_key /etc/ssl/private/selfsigned.key;
+
+    # Other SSL configurations, e.g., ssl_protocols, ssl_ciphers, etc.
+
+    location / {
+        # Nginx configurations for your application
+    }
+}
+
+4.sudo nginx -t
+
+5.sudo service nginx restart
+
+6.curl https://public_ip
+7.curl -v https://public-ip
+   {if you are not getting nginx page then you can go with acm}
+
+8.to dissable the ssl
+  curl -k https://public_ip
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+note:- these proccess is unsuccessful
+
+
+

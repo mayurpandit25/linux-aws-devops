@@ -1,0 +1,13 @@
+
+# Export data from DynamoDB to S3
+aws dynamodb scan --table-name StudentTable --output json > data.json
+aws s3 cp data.json s3://my-s3-bukcett/path/data.json
+
+# Download the CSV file from S3 to local
+aws s3 cp s3://my-s3-bukcett/path/data.json ~/Downloads/
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+RESTORE DELETED OBJECTS FROM S3 BUCKET
+
+1.create a s3 bucket and enable the versioning in the s3 bucket
+  {my-s3-bucket}
+
+2.then add some objects in the s3 bucket and after that delete the objects that we store
+
+ { note:-in s3 versioning when you delete the object a delete marker is place on that object if we want to restore these object you have to delete the delete marker
+         from that object }
+
+3.Turn on Show versions.
+
+4.In the search bar, enter the name of the deleted object.
+
+5.Select the delete marker of the object.
+
+6.Choose Delete.
+
+7.In the Delete objects page, confirm that the correct delete marker is listed. Then, enter permanently delete to confirm deletion.
+
+8.Choose Delete objects.
+
+9.the objects are restored
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ALSO RESTORE THE OBJECTS USING AWS CLI:-
+
+1.create a s3 bucket {my-s3-bucket} and enable the versioning and add objects in the s3 bucket and delete these objects.
+
+2.create a access key and secret key in your account
+
+3.go to command prompt and run the command {aws configure} and give the credentials {access key and secret key}
+
+4.run these code to restore the deleted objects from s3 bucket
+
+aws s3api restore-object --bucket my-s3-bucket --key your-object-key --restore-request '{"Days": 7, "GlacierJobParameters": {"Tier": "Standard"}}'
+ 
+  { note:-edit your s3 bucket name 
+          edit the object key
+          give the days that wont to restore from that day }
+
+5.check the status of the restoration
+
+aws s3api head-object --bucket my-s3-bucket --key your-object-key
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**REMOVE DELETE MARKER ON THOUSANDS OF OBJECTS**
+
+1.aws configure
+2.run these command to restore all the obejcts
+
+aws s3api list-object-versions --bucket DOC-EXAMPLE-BUCKET --prefix examplefolder/ --output json --query 'DeleteMarkers[?IsLatest==`true`].[Key, VersionId]' | jq -r '.[] | "--key '\''" + .[0] + "'\'' --version-id " + .[1]' | xargs -L1 aws s3api delete-object --bucket DOC-EXAMPLE-BUCKET
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

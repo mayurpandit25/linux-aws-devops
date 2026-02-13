@@ -1,0 +1,16 @@
+**How to use only one key insted of creating multiple keys**
+
+1.go to CMD 
+2.ssh-keygen
+3.then go to c drive
+4.users
+5.HP
+6. (.ssh)
+7.copy the keys (id_rsa / id_rsa.pub) and paste in download
+8.then go to aws account and go to key pair
+9.click on action and import the key
+10.browse the public key (id_rsa.pub)
+11.import the key
+12.then you can use these key for ur instances
+
+

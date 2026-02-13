@@ -1,0 +1,28 @@
+**DYNAMO-DB**
+
+1.go to dynamodb and create a table
+       1.create a table
+       2.name----employee_id
+       3.partiotion key-----EMPid
+       4.default setting
+       5.create table
+
+2.click on Explore item
+      1.click on explore item
+      2.create a item
+           EMP_id       1        number
+           emp_name    mayur     string
+           emp_last    pandit    string
+           mob_no      12345     number
+           flat_no     25        number
+      3.create a item
+ 
+
+      1.create a item
+           EMP_id       2       number
+           emp_name     vinay   string
+      2.create a item
+
+
+3.you can check by filtering the string as well as number
+

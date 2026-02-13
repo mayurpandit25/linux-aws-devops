@@ -1,0 +1,37 @@
+MOUNT S3_BUCKET ON EC2
+
+**************************************************************************************************************************************************************************************************************
+
+1.create a s3 bucket (mayur-s3-bucket)
+2.Create a instance (ubuntu)
+
+3.Install s3fs on Ubuntu
+apt update -y
+apt install s3fs -y
+s3 --version
+
+4.Create Password File (Access Key Method) and assign permissions
+echo (access_key):(secret_key) > /root/.mayurpasswd
+ls -la /root/
+chmod 600 /root/.mayurpasswd
+
+6.Create Mount Directory
+mkdir /mountbucket
+
+7.Mount S3 Bucket
+s3fs mayur-s3-bucket /mountbucket -o passwd_file=/root/.mayurpasswd
+
+8.Verify Mount
+mount | grep mountbucket
+  output (s3fs on /mountbucket type fuse.s3fs (rw,nosuid,nodev,relatime,user_id=0,group_id=0))
+
+9.Access Mounted Bucket
+cd /mountbucket
+
+10.Create Files from EC2
+touch file{1..10}
+
+11.Check it on the s3_bucket
+
+
+**************************************************************************************************************************************************************************************************************

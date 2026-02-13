@@ -1,0 +1,19 @@
+**creating a lifecycle policy:-
+
+1.create a bucket
+2.click on bucket and upload a file
+3.go to management and click on lifecycle and add rule
+      1.name-lifecycle
+      2.apply all object in bucket
+      3.tag -name-tech 
+      4.current version
+              1.standard IA----30 days
+              2.standard one zone----60 days
+              3.s3 glacier-----180
+      5.privious version
+              1.standard IA------30 days
+              2.one zone --------60 days
+              3.glacier deep ----120 days
+      6.deleted privous version----365 days
+      7.clean up delete marker
+      8.and then save

@@ -1,0 +1,38 @@
+**VPC endpoint**
+
+   1.create a vpc (10.0.0.0/16)--myvpc
+
+   2.create a subnet
+        a)public subnet (10.0.0.0/24) 
+        b)private subnet (10.0.1.0/24)
+
+   3.create a internet getway / attach to a vpc
+
+   4.create a route table
+        a)my-public-routetable
+             1.add subnet-public subnet
+             2.add route/internet getway
+        b)my-private-routetable
+             1.private subnet
+
+   5.create a endpoint
+       a)name--myendpoint
+       b)aws services
+       c)service add---amazon s3
+       d)select vpc--myvpc
+       e)route table---my-private-routetable
+       f)create a endpoint
+   
+   6.create a instances
+       a)bastion-host-server (public server)
+       b)my-web-application (private server)
+
+   7.login with putty on bastion-host-sever
+       a)vim mayur.pem
+       b)chmod 400 mayur.pem
+       c)ls -l mayur.pem
+       d)ssh -i (key-name)(hostname)@(private ip of private server)
+       e)aws configure
+       f)create access key or attach a role to the private instance
+       g)aws s3 ls
+

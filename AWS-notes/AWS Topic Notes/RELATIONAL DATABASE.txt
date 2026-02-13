@@ -1,0 +1,100 @@
+									RELATIONAL DATABASE:-
+
+relational database is a datastructure that allows you to store and link the information between the different table and different types of databuckets.
+
+what is data:-
+  data basically means the information or the details about the reference.
+
+what is database:-
+  its a systematic collection of data in a organise form.
+
+1.relational database is a datastructure that store and allows you to link the information between the different tables and different types of databuckets.
+2.tables are related to each other
+3.all fields must be filled
+4.it is best suited for oltp i.e online transaction processing
+5.it supports the 8 type databases engines...
+   1.mssql
+   2.mysql
+   3.mariadb
+   4.postgresql
+   5.aurora postgresql
+   6.oracle
+   7.amzon aurora
+   8.IBM db2
+6.every database has a unique key called as primary key (eg for banking its a account number)
+
+RDS -> relational database service
+its a fully managed aws service where aws is responsible for
+1.security and patching
+2.automated backup
+3.software updates for the database engine
+4.multi-az deployment ----> provides high availability and fault tolerance
+
+1.types of templates
+  1.production
+  2.dev/test
+  3.free-tier
+
+PRACTICAL:-
+
+1.create a database (RDS)
+2.create a instance (EC2)
+3.access the instance
+
+1.yum install mariadb-server -y
+2.systemctl start mariadb-server
+3.systemctl enable mariadb-server
+
+4.mysql -u root -h (endpoint) -pmayur
+5.show databases;
+6.use student_data;
+6.create table student_info (name varchar(10),roll_no int,status varchar(10));
+7.show tables;
+8.describe student_info;
+9.insert into student_info values ('user1',100,'pass');
+  insert into student_info values ('user2',101,'fail');
+  insert into student_info values ('user3',102,'pass');
+10.select * from student_info;
+11.select name from student_info where status='fail';
+
+TO GET BACKUP OF DATA:-
+mysqldump -u root -h (endpoint) -pmayur student_data > abc.bkp
+
+mysql -u root -h (endpoint) -pmayur 
+use student_data;
+drop table student_info;
+
+TO RETRIVE THE TABLE
+mysql -u root -h (endpoint) -pmayur student_data < abc.bkp
+
+mysql -u root -h (endpoint) -pmayur 
+use student_data;
+show tables;
+select * from student_info;
+
+**************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

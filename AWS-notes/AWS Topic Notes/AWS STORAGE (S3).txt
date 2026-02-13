@@ -1,0 +1,422 @@
+									**AWS S3 STORAGE**
+
+=======================================================================================================================================================================
+
+TYPES OF STORAGE:-
+
+1. Simple Storage Service (S3)
+2. Elastic File System (EFS)
+3. Elastic Block Store (EBS)
+4. amazon Glacier
+5. amazon s3 glacier
+6. FXS
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Difference between Object Storage and Block Storage**
+
+**Block Storage:-
+1.Block storage is suitable for transitional databases, random read/write loads and structured database storage.
+2.Block storage divides the data to be stored in evenly sized blocks called data chunks for instance, a file can be split into evenly sized blocks before it is stored.
+3.Data blocks stored in block storage would not contain metadata. (Data created, data modified, content type etc.)
+4.Block storage only keeps the address (index number) where the data blocks are stored, it does not care what is in that block, just how to retrieve it when required.
+  
+
+**Object Storage:-
+5.Object storage stores the files as a whole and does not divide them.
+6.In object storage an object is: the file/ data itself, its Meta data, object global unique ID.
+7.The object global unique ID is a unique identifier for the object (can be the object name itself) and it must be unique such that it can be retrieved disregarding 
+  where it’s physical storage location is.
+8.Object storage cannot be mounted as a drive.
+9.Example of object storage solutions are Dropbox, AWS S3, Facebook.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SIMPLE STORAGE SERVICE:-(S3)
+
+ S3 is a storage for the internet. It has a simple web service interface for simple storing and retrieving of any amount of data, anytime from anywhere on the     
+  internet.
+ S3 is object based storage.
+ You cannot install operating system on S3.
+ S3 has a distributed data store architecture where objects are redundantly stored in multiple locations. (minimum 3 locations in same region)
+ Data is stored in bucket.
+ A bucket is a flat container of objects.
+ Maximum capacity of a bucket is 5TB.
+ You can create folders in your bucket (available through console)
+ You cannot create nested buckets.
+ Bucket ownership is non transferrable.
+ S3 bucket is region specific.
+ You can have up to 100 buckets per account. (may expand on request)
+ s3 is a cloud based object oriented storage for storing any type of data any form of data and retrive the data anytime anywhere on the internet on pay as you basis.
+
+**S3 Bucket Naming Rules**
+ S3 bucket names (keys) are globally unique across all AWS regions.
+ Bucket names cannot be change after they are created.
+ If bucket is deleted its name become available again to you or other account to use.
+ Bucket names must be at least 3 and no more than 63 characters long.
+ Bucket names are part of URL used to access a bucket.
+ Bucket name must be a series of one or more labels (xyz bucket)
+ Bucket names can contain lowercase, numbers and hyphen but cannot use uppercase letters.
+ Bucket name should not be an IP address.
+ Each label must start and end with a lowercase letter or a number.
+ By default buckets and its objects are private, and by default only owner can access the bucket.
+
+
+S3 BUCKET SUB-RESOURCE:-
+
+1.Lifecycle: to decide on objects lifecycle management.
+2.Website: to hold configurations related to static website hosted in S3 buckets.
+3.Versioning: keep objects versions as it changes (set updated)
+4.Access Control List: bucket policies
+5.The name is simply two parts: bucket region’s end point / bucket name
+
+         Example: for S3 bucket named mybucket in Europe west region is
+                 https://s3-eu-west1.amazonaws.com/mybucket
+
+**S3 Objects**
+ An object size stored in an S3 bucket can be 0 byte to 5TB.
+ Each object is stored and retrieve by unique key. (ID or name)
+ An object in AWS S3 is uniquely identified and addressed through:
+        service endpoint
+        bucket name
+        object key (name)
+        optionally object version
+ Object stored in a S3 bucket in a region will never leave that region unless you specifically move them to another region or CRR.
+ A bucket owner can grant cross account permissions to another AWS account (or users in another account) to upload objects.
+ You can grant S3 bucket / object permission to:
+        Individual users
+        AWS account
+        Make the resource public
+        To all authenticate user
+
+-------------------------------------------------------------------------------------
+
+S3 BUCKET VERSIONING:-
+
+ Bucket versioning is a S3 bucket sub resource used to protect against accidental object/data deletion or overwrites.
+ Versioning can also be used for data retention and archive.
+ Once you enable versioning on a bucket it cannot be disabled however it can be suspended.
+ When enable, bucket versioning will protect existing and new objects and maintains their versions as they are updated.
+ Updating objects refers to PUT, POST, COPY, DELETE actions on objects.
+ When versioning is enable and you try to delete an object a delete marker is placed on the object.
+ You can still view the object and delete the marker.
+ If you reconsider deleting the objects you can delete the delete marker and the object will be enable again.
+ You will be charged for all S3 storage cost for all object versions stored.
+ You can use versioning with S3 lifecycle policies to delete older version or you can move them to a cheaper S3 storage (Glacier.)
+ Bucket version state:-
+      Enabled
+      Suspended
+ Versioning applies to all objects in a bucket and not partially applied.
+ Object existing before enable versioning will have a version ID or NULL.
+ If you have a bucket that is already versioned then you suspended versioning existing objects and their versions remain as it is.
+ However they will not be updated/ version further with future updates while the bucket versioning is suspended.
+ New objects (uploaded after suspension) they will have a version ID “null” if the same key (name) is used to stone another objects it will override the existing 
+  one.
+ An object deletion in a suspended versioning buckets will only delete the objects with ID “null”.
+
+
+**S3 Bucket Versioning-MFA Delete**
+ Multifactor authentication delete is a versioning capacity that adds another level of security in case your account is compromised.
+ This adds another layer of security for the following:
+      Changing your bucket’s versioning state.
+      Permanently deleting on objects version.
+ MFA delete requires:
+      Your security credentials.
+      The code displayed on an approved physical or s/w based authentication device.
+
+-------------------------------------------------------------------------------------
+
+REPLICAS IN S3:-
+
+1.Amazon S3 creates copies of your objects in another bucket or region to protect your data.
+2.This process is called replication, and it helps in disaster recovery and faster access from different locations.
+3.Replication works only when versioning is enabled, and it keeps your data safe by storing it in multiple places.
+
+-------------------------------------------------------------------------------------
+
+STATIC WEB HOSTING:-
+
+1.static web-hosting is a serverless hosting generally developers use these service to host their website serverless means without 
+  server-side proccessing.it is affordable and scalable solution for hosting static website and its low traffic website provides high 
+  availability and durability to website.
+
+-------------------------------------------------------------------------------------
+
+S3 MULTIPART UPLOAD:-
+
+ It is used to upload an object in parts.
+ Parts are uploaded independently and in parallel in any order.
+ It is recommended for objects sizes of 100MB or larger.
+ You must use it for objects larger than 5GB.
+ This is done though S3 multipart upload API. 
+
+ Copying S3 Objects:
+ The copy operation creates a copy of an objects that is already stored in Amazon S3.
+ You can create a copy of your object up to 5GB in size a single atomic operation.
+ However to copy an object greater then 5GB you must use the multipart upload API.
+ Incur charges if copy to another region.
+
+
+**Use the copy operation to**
+       Generate additional copies of the subjects.
+       Renaming object (copy to a new name)
+       Changing the copy’s storage class or encrypt it at rest.
+       Move object across AWS location/region.
+       Change object metadata.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**STORAGE CLASSES OF AMAZON S3**
+
+There are 6 types of storage classes of Amazon S3 is available such as:-
+
+1.Amazon S3 Standard
+2.Amazon S3 Glacier Deep Archive
+3.Amazon Glacier
+4.Amazon S3 Standard Infrequent Access
+5.Amazon S3 one-zone-IA
+6.Amazon S3 Intelligent Tiering
+
+1. Amazon S3 Standard:-
+ S3 standard offers high durability, availability and performance object storage for frequently accessed data.
+ Durability is 99.999999999%.
+ Designed for 99.99% availability over a given year.
+ Supports SSL for data in transit and encryption of data at rest.
+ The storage cost for the object is fairly high but there is very less charge for accessing the objects.
+ Largest object that can be uploaded in a single PUT in 5GB.
+
+2. Amazon S3 IA (infrequent access):-
+ S3-IA is for data that is accessed less frequently but requires rapid access when needed.
+ The storage cost is much cheaper than S3-standard almost half the price, but you are charged more heavily for accessing your objects.
+ Durability is 99.999999999%.
+ Resilient against events that impact an entire AZ.
+ Availability is 99.9% in a year.
+ Supports SSL for data in transit and encryption of data at rest.
+ Data that is deleted from S3-IA within 30 days will be charged for a full 30 days.
+ Backed with the Amazon S3 service level agreement for availability.
+
+3. Amazon S3 Intelligent Tiering:-
+ The S3 intelligent tiering storage class is designed to optimize cost by automatically moving data to the most cost effective access tier.
+ It works by storing objects in two access tiers.
+ If an object in the frequent access tier is accessed it is automatically moved back to the frequent access tier.
+ There is no retrieval fees when using the S3 intelligent tiering storage class and no additional tearing fees when objects are moved between access tiers.
+ Same low latency and high performance of S3 standard.
+ Objects less than 128kb cannot move to IA.
+ Durability is 99.999999999%.
+ Availability is 99.9%.
+
+4. Amazon One-Zone IA:-
+ S3 one zone IA is for data that is accessed less frequently but requires rapid access when needed.
+ Data store is single AZ.
+ Ideal for those who want lower cost option of IA data.
+ It is good choice for storing secondary backup copies of on-premise data of easily re-creatable data.
+ You can use S3 lifecycle policies.
+ Durability is 99.999999999%.
+ Availability is 99.5%.
+ Because S3 one zone IA stores data in a single AZ, data stored in this storage class will be lost in the event of AZ destruction.
+
+5. Amazon S3 Glacier:-
+ S3 glacier is a secure, durable, low cost storage class for data archiving.
+ To keep cost low yet suitable for varying needs S3 glacier provides three retrieval options that ranges from a few minutes to hours.
+ You can upload object directly to glacier or use lifecycle policies.
+ Durability is 99.999999999%.
+ Data is resilient in the event of one entire AZ destruction.
+ Supports SSL for data in transit and encryption data at rest.
+ You can retrieve 10GB of your amazon S3 glacier data per month for free with free tier account.
+
+6. Amazon S3 Glacier Deep Archive:-
+ S3 glacier deep archive is amazon S3 cheapest storage.
+ Design to retain data for long period even if for 10 years.
+ All objects stored in S3 glacier deep archive are replicated and stored across at least at three geographically AZ.
+ Durability is 99.999999999%.
+ Ideal alternative to magnetic tape libraries.
+ Retrieval time within 12 hours.
+ Storage cost is up to 75% less than for the existing S3 glacier storage class.
+ Availability is 99.9%. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+FEATURES:-
+
+1.Scalability: 
+    Amazon S3 is designed to scale horizontally, allowing you to store and retrieve any amount of data, from a few gigabytes to multiple petabytes.
+
+2.Durability and Availability: 
+    S3 offers high durability by automatically storing multiple copies of your data across different locations. It provides 99.999999999%   (11 nines) of object 
+    durability and 99.99% availability.
+
+3.Data Transfer: 
+    You can easily transfer large amounts of data in and out of Amazon S3 using the AWS Management Console, APIs (Application Programming Interfaces), or third-party
+     tools.
+
+4.Security:
+    Amazon S3 offers several security features to protect your data, including encryption at rest and in transit. You can use server-side encryption with Amazon S3 
+    managed keys (SSE-S3), AWS Key Management Service (SSE-KMS), or your own customer-provided keys (SSE-C).
+
+5.Access Control: 
+   S3 provides fine-grained access control mechanisms to secure your data. You can define access policies using AWS Identity and Access Management (IAM) to manage who 
+   can access your buckets and objects.
+
+6.Versioning:
+   With versioning enabled, Amazon S3 automatically archives all versions of an object, allowing you to preserve, retrieve, and restore previous versions of your 
+   files.
+
+7.Lifecycle Management: 
+   You can define lifecycle policies to automatically transition or expire objects based on predefined rules. This feature helps optimize storage costs and automate 
+   data management tasks.
+
+8.Event Notifications:
+   Amazon S3 can send notifications to AWS Lambda, Amazon SNS (Simple Notification Service), or Amazon SQS (Simple Queue Service) when specific events occur, such as 
+   object creation, deletion, or modification.
+
+9.Cross-Region Replication:
+   You can replicate objects from one S3 bucket to another in a different AWS region for data redundancy, disaster recovery, or data localization purposes.
+
+10.Integrations: 
+   S3 seamlessly integrates with other AWS services, such as AWS Lambda, AWS Glue, AWS CloudTrail, Amazon Athena, Amazon Redshift, and more, enabling you to build
+   scalable and powerful data-driven applications.
+
+11.These features make Amazon S3 a versatile and robust storage solution, widely used by individuals, startups, and enterprises for various use cases like backup and restore, data archiving, content distribution, data lakes, and more.
+
+=======================================================================================================================================================================
+
+**creating a lifecycle policy:-
+
+1.create a bucket
+2.click on bucket and upload a file
+3.go to management and click on lifecycle and add rule
+      1.name-lifecycle
+      2.apply all object in bucket
+      3.tag -name-tech 
+      4.current version
+              1.standard IA----30 days
+              2.standard one zone----60 days
+              3.s3 glacier-----180
+      5.privious version
+              1.standard IA------30 days
+              2.one zone --------60 days
+              3.glacier deep ----120 days
+      6.deleted privous version----365 days
+      7.clean up delete marker
+      8.and then save
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Adding MFA-delete protection on s3 buckets:-
+
+1.configure aws cli with your own access creadentials
+2.version must be enabled.
+
+  note:-1.you can not stop versioning withour MFA token
+        2.only root can enabled or disabled the MFA-DELETE
+
+
+1.create a bucket
+2.create a MFA 
+3.create a access/secrete key credentials
+4.aws configure
+5.aws s3 ls / aws s3api list-buckets
+6.aws s3api get-bucket-versioning --bucket "bucket name" ---------------for checking the versioning wheather it is desabled or enabled.
+7.aws s3api put-bucket-versioning --bucket "bucket name" --versioning-configuration Status=Enabled,mfaDelete=Enabled --mfa "arn:aws:iam::(account iD):mfa/root-account-
+  mfa-device "(mfatoken/MFA code)" ------------for enabling the MFA
+8.aws s3api delete-object --bucket (bucket name) --key (image name) ------delete object in bucket
+9.aws s3api delete-object --bucket (bucket name) --key (image name) --version-id (ID) -----to try to delete version of object
+
+                              
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**STATIC web hosting:-
+
+1.download the css template
+2.then adding the css template files on s3 bucket and give them public access
+3.then click on the files and go to action and select the make using public acl
+4.then go to properties and click on the static web hosting and write there index.html
+5.then copy these link of static web hosting and paste on tab
+6.you can access these static webstite
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**aws s3 cross region replication rule:-
+
+1.create a bucket in mumbai region and one more create in singapore region and give them a public access to both
+2.then create a replication rule and in these rule you can choose the bucket in which bucket you can replicate the object like singaapore bucket
+3.then add the objects in the mumbai region bucket 
+4.then go to singapore region bucket and refresh the objects should be replicated from mumbai region bucket to singapore region bucket.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**How to create a KMS (key management service) encyrption:-
+
+1.go to KMS 
+2.click on customer manage keys
+3.create key
+4.symmetric---encrypt and decrypt
+5.advanced setting
+     1.KMS
+     2.single region key
+     3.alias---myKMSkey
+     4.administrative access----(one user)
+     5.key usage permission--key users-------(one user)
+     6.create a key
+6.create a bucket
+7.add objects in the bucket and apply KMS encryption
+8.when you disabled these encyrption you can not download these files
+9.when you enabled it you can easily download these files.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**How to add encyption on the bucket:-
+
+1.create a bucket
+2.upload the objects
+3.go to the policy generator
+      1.s3 bucket policy
+      2.*--for all the object
+      3.put object/put bucket policy
+      4.paster the bucket ARN
+      5.string not equals
+      6.key--server side encryption
+      7.aws:kms
+      8.add statement
+      9.generate policy
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TYPES OF ENCRYPTION:-
+
+     1.SSE-S3
+     2.SSE-KMS
+     3.DSSE
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**How to create bucket using CLI:-
+
+   1.create a security credentials of root user
+   2.aws configure on CLI
+   3.aws s3 ls
+   4.aws s3 mb s3://mayur-s3-bucket
+   5.aws s3 rb s3://mayur-s3-bucket
+
+**To copy object from desktop to s3 bucket
+   1.cd deskop
+   2.aws s3 sync . s3://mayur-s3-bucket
+   
+**suppose the object should be deleted from my desktop to recover these from s3
+   1.aws s3 sync s3://mayur-s3-bucket .
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**How to enable Versioning:-
+
+1.create a file
+2.uplod a file in s3
+3.enable the versioning in s3
+4.then update these file means add some new data into the file
+5.then upload these file again and show the versions you have to two files of same name
+6.when you delete these file a delete marker place on the file
+7.means you can retrive these file again by deleting the delete marker of that object
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+

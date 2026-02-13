@@ -1,0 +1,183 @@
+SCENARIO BASED QUESTIONS - VIRTUAL PRIVATE CLOUD
+
+================================================================================================
+
+1. Scenario:- 
+Your private EC2 instance in subnet 10.0.32.0/20 cannot access the internet.
+You already created NAT Gateway, but still no internet.
+
+=====>>> The private subnet’s route table is not pointing 0.0.0.0/0 to the NAT Gateway.
+
+================================================================================================
+
+2. Scenario
+You created a custom VPC but cannot assign public IPs in a public subnet.
+What could be the reason?
+
+====>>> Public subnet’s auto-assign public IPv4 option is disabled.
+
+================================================================================================
+
+3. Scenario
+
+Instance in public subnet has no internet, even though IGW attached.
+Why?
+
+=====>>>Public subnet route table missing: 0.0.0.0/0 → IGW
+
+================================================================================================
+
+4. Scenario
+
+You created a NAT instance, but private EC2 has no internet.
+What must you check?
+
+=====>>> Disable Source/Destination Check on NAT instance.
+
+================================================================================================
+
+5. Two EC2 instances in the same VPC but different subnets cannot communicate. What will you check?
+
+=====>>>
+
+1.Route tables → Subnets must route traffic to each other.
+2.Security groups → Allow inbound/outbound traffic between instances.
+3.NACLs → Ensure they are not blocking traffic.
+4.Different Availability Zones → Even if AZs differ, routing must exist.
+
+================================================================================================
+
+6. Your EC2 instance has a public IP but still cannot access the internet. What could be the issues?
+
+======>>>
+
+Subnet route table does not have a 0.0.0.0/0 → Internet Gateway.
+Security group outbound rules don’t allow traffic.
+NACL outbound rules blocking traffic.
+IGW not attached to the VPC.
+
+===============================================================================================
+
+7. Your VPC has overlapping CIDR with another team's VPC. How will you connect them?
+
+======>>>
+
+Overlapping CIDRs cannot be peered.
+Solutions:
+✔ Create a new VPC with a non-overlapping CIDR.
+OR
+✔ Use Transit Gateway with NAT/Translation, but best practice is to redesign CIDR.
+
+===============================================================================================
+
+8. You created a NAT Gateway, but the private EC2 still cannot access internet. What do you check?
+
+======>>>
+
+Private subnet route → 0.0.0.0/0 → NAT Gateway
+NAT Gateway must be in a public subnet with route to IGW.
+Elastic IP attached to NAT Gateway.
+NACL/Security Group outbound allowed.
+
+===============================================================================================
+
+6. You peered two VPCs, peering is ACTIVE, but traffic is not flowing. Why?
+
+========>>>
+
+Each VPC must add route → Peering connection.
+Security group rules not allowing traffic.
+NACL blocking.
+CIDR overlap → Routing fails.
+
+===============================================================================================
+
+Question 7:-
+Your organization has a VPC with multiple subnets. You want to restrict outbound internet access for resources in one subnet, but allow outbound internet access for resources in another subnet. How would you achieve this?
+
+====>>>
+1.To restrict outbound internet access for resources in one subnet, we can modify the route table associated with that subnet. In the route table, we can remove the default route (0.0.0.0/0) that points to an internet gateway.
+
+2.This would prevent resources in that subnet from accessing the internet. For the subnet where outbound internet is required, we can keep the default route pointing to the internet gateway.
+
+===============================================================================================
+
+8. You have launched EC2 instances in your VPC, and you want them to communicate with each other using private IP addresses. What steps would you take to enable this communication?
+
+Both instances must be in the same VPC:-
+1. Private IP communication is only possible inside the same VPC.
+2. If they are in different VPCs, you must use VPC Peering, Transit Gateway, or VPN.
+
+3.Ensure both instances are in the same VPC.
+4.Verify route table has the default local route for internal traffic.
+5.Update security groups to allow traffic between the instances.
+6.Ensure Network ACLs allow the required ports.
+7.Ensure the OS firewall allows the traffic.
+
+===============================================================================================
+
+9. You want to implement strict network access control for your VPC resources. How would you achieve this?
+
+====>>>
+
+1.we use NACL for Strick network access control 
+2.nacl is a security layer for controlling the inbound as well as outbound traffic 
+3.it works on the subnet level
+4.and has a property stateless, it can allow the inbound as well as outbound traffic.
+
+===============================================================================================
+
+10. Your organization requires an isolated environment within the VPC for running sensitive workloads. How would you set up this isolated environment?
+
+To set up an isolated environment within the VPC, we can create a subnet with no internet gateway attached.
+
+This subnet, known as an “isolated subnet”, will not have direct internet connectivity. We can place the sensitive workloads in this subnet, ensuring that they are protected from inbound and outbound internet traffic.
+
+===============================================================================================
+
+11. Your application needs to access AWS services, such as S3 securely within your VPC. How would you achieve this?
+
+====>>>
+To securely access AWS services within the VPC, we cab use VPC endpoint, VPC endpoints enables you to privately connect your vpc to the supported aws services in the vpc and do not require public iv4 address to connect with resources in the service.
+
+===============================================================================================
+
+12. You launched an EC2 instance, but can’t SSH into it. What are possible reasons?
+
+1.Security Group doesn’t allow inbound SSH (port 22)
+2.Wrong key pair or missing .pem file
+3.Instance has no public IP address
+4.You’re trying to SSH using a wrong username (e.g., ec2-user vs ubuntu)
+5.Network ACL or route table issue (if custom VPC)
+
+===============================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

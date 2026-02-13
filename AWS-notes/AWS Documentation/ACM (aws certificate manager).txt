@@ -1,0 +1,101 @@
+			                                           **ACM ====>>> (aws certificate manager)**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a instance
+      1.name----web1
+      2.machine---amazon-linux
+      3.az--------1a
+      4.sg--------http,https,ssh
+      5.create a instance
+
+2.create a instance
+      1.name----web2
+      2.machine---amazon-linux
+      3.az--------1b
+      4.sg--------http,https,ssh
+      5.create a instance
+
+3.create a instance
+      1.name----app1
+      2.machine---amazon-linux
+      3.az--------1a
+      4.sg--------http,https,ssh
+      5.useradata-
+           #!/bin/bash
+           sudo yum update -y
+           sudo yum install httpd -y
+           sudo systemctl start httpd.service
+           sudo systemctl enable httpd.service
+           sudo echo "HELLO FRIENDS" > /var/www/html/index.html
+           sudo systemctl restart httpd.service
+
+4.create a instance
+      1.name----app2
+      2.machine---amazon-linux
+      3.az--------1b
+      4.sg--------http,https,ssh
+      5.useradata-
+           #!/bin/bash
+           sudo yum update -y
+           sudo yum install httpd -y
+           sudo systemctl start httpd.service
+           sudo systemctl enable httpd.service
+           sudo echo "HELLO DOSTO" > /var/www/html/index.html
+           sudo systemctl restart httpd.service
+
+5.create a target group
+     1.type-----instance
+     2.name-----tg
+     3.path-----/
+     4.register---1.app1
+                  2.app2
+     5.create a target group
+
+6.create a load balancer
+     1.name----ALB
+     2.vpc----default
+     3.az-----1a,1b
+     4.sg-----our instance sg
+     5.forward to----tg
+     6.create a load balancer
+
+7.go to route-53
+     1.create a hosted zone
+     2.copy the all name-servers and paste it on the freenom account (xyz.com)
+
+7.go to freenom
+     1.access the account/sign
+     2.my-account
+     3.paste here
+
+8.go to route-53
+     1.create a record
+          1.name------------my-record
+          2.route traffic---alias
+          3.endpoint--------(region-name --- where the load balancer is)
+          4.policy----------simple routing
+
+9.(xyz.com) ----------------on web
+
+10.search ACM (for creating certificates)
+      1.create a certificate
+      2.domain------(xyz.com)
+      3.request
+      4.view certificate
+      5.create a record in route-53
+      6.refresh
+
+11.go to load balancer
+     1.add listener
+     2.add port----https---443
+     3.add acm-----(certificate)
+
+12.Redirect the http traffic to https (80-->443)
+     1.click on http -----> edit listener
+     2.redirect to url------https--(443)
+     3.save
+
+13.xyz.com
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

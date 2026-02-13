@@ -1,0 +1,254 @@
+Top 50 AWS interview questions in 2022
+
+ 
+Q1) What is AWS?
+Answer: AWS is a platform that provides on-demand resources for hosting web services, storage, networking, databases, and other resources over the internet. AWS enables you to pay for only the resources you use, making it a more cost-effective option for businesses of all sizes. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q2) What is S3?
+Answer: S3 is the perfect storage solution for businesses of all sizes. You can store unlimited data and only pay for what you use. Plus, the payment model is highly flexible, so you can choose the plan that best suits your needs. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q3) What is S3 used for?
+Answer: S3 is used for various of purposes, the most common of which is storage. Companies and individuals use S3 to store data that they don’t want to keep on their own computers, such as photos, videos, and documents. S3 can also be used to host websites and applications. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q4) What are EBS volumes?
+Answer: EBS can be thought of as your very own block of elasticity. Attach it to an instance, and your data will be preserved, regardless of what happens to the instance. Plus, it’s always there when you need it – no deleting necessary!
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q5) What is stored in EBS volume?
+Answer: EBS is a storage system that can be used to store persistent data for EC2 instances.  
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q6) What is auto-scaling?
+Answer: Auto scaling allows you to automatically scale your instances up and down, depending on your CPU or memory utilization. There are two components to auto-scaling: auto-scaling groups and launch configurations. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q7) What are the types of volumes in EBS?
+Answer: EBS offers a variety of volume types to suit your needs, such as: 
+
+General-purpose 
+Provisioned IOPS 
+Magnetic standard
+Cold HDD 
+Throughput optimized 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q8) What are the pricing models for EC2instances?
+Answer: The pricing models for EC2 instances come in all shapes and sizes like: 
+
+On-demand 
+Reserved 
+Spot 
+Scheduled 
+Dedicated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q9) What are key pairs?
+Answer: The security of your instances and virtual machines relies on key pairs. These pairs consist of a public-key and private-key, which are used to connect to your instances. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q10) Tell us the volume types for EC2 Instances.
+Answer:-1) Instance store volumes
+        2) EBS
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q11) What are the different types of instances?
+Answer: Following are the types of instances, 
+
+General-purpose 
+Computer Optimized 
+Storage Optimized 
+Memory-Optimized 
+Accelerated Computing 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q12) What are the components of AWS?
+Answer: AWS is a comprehensive cloud platform that consists of EC2, S3, Route53, EBS, Cloudwatch, and Key-Paris. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q13) What are the four foundational services in AWS?
+Answer: Compute, storage, networking, database, and identity & access management (IAM). 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q14) what are the ways to encrypt data in S3?
+Answer: 
+
+Server-Side Encryption -S3 (AES 256 encryption) 
+Server-Side Encryption -KMS (Key Management Service) 
+Server-Side Encryption -C (Client-Side) 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q15) What is VPC?
+Answer: A VPC (Virtual Private Cloud) is a private network in the cloud. It’s a way to create isolated networks in AWS, similar to on-premises data centers. You can create a VPC with public and private subnets and control access to resources in each subnet. You can also route traffic between subnets and create VPN connections to your on-premises network. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q16) What is the difference between VPC and subnet?
+Answer: A subnet is an important part of a VPC. A VPC can have all public subnets or a combination of public and private subnets. A private subnet is a subnet that doesn’t have a route to the internet gateway and can be used for VPNs. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q17) What are edge locations?
+Answer: Edge location is the place where the best content will be cached. When a user tries to access some content, the content will be searched in the edge location. If it is not available then, the content will be made available from the original location, but a copy will be stored in the edge location to be accessed more quickly in the future. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q18) What are the minimum and maximum size of individual objects that you can store in S3?
+Answer: The maximum size of an individual object that you can store in S3 is 5TB, and the minimum size is 0 bytes. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q19) What is the default storage class in S3?
+Answer: Amazon S3’s default storage class is the S3 Standard. When you don’t specify a storage class, your objects will be stored in this reliable and convenient class. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q20) What are the parameters for S3 pricing?
+Answer: The pricing model for S3 is as below, 
+
+Storage used 
+Number of requests you make 
+Storage management 
+Data transfer 
+Transfer acceleration 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q21) What is an AWS glacier?
+Answer: Amazon Glacier is a low-cost cloud storage service for data that you don’t need right away. Store your data archiving and backup needs with Amazon Glacier and save! 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q22) What is the maximum individual archive that you can store in glaciers?
+Answer: You can store a maximum individual archive of up to 40 TB. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q23) What is the difference between S3 and Glacier?
+Answer: Amazon S3 (Simple Storage Service) is one of the most popular AWS cloud storage options. It allows you to store and retrieve any amount of data at any time and from anywhere on the network. 
+
+Amazon Glacier was built for the long-term storage and digital archiving of data, making it a great option for creating large backups for data recovery. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q24) What is the prerequisite to work with Cross-region replication in S3?
+Answer: To use cross-region replication, you must enable versioning on both the source and destination buckets and make sure they are in different regions. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q25) What are the different storage classes in S3?
+Answer: Following are the types of storage classes in S3, 
+
+1.amazon s3 standard
+2.amazon s3 IA-infrequent access
+3.amazon s3 one-zone access
+4.amazon s3 interligent access
+5.amazon s3 glacier
+6.amazon s3 deep-archive
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q26) What is a Cloudwatch?
+Answer: CloudWatch is the perfect way to keep an eye on your AWS resources and applications in real-time. With CloudWatch, you can track important metrics that will help you keep your applications running smoothly. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q27) What are the cloudwatch metrics that are available for EC2 instances?
+Answer: Disk reads, Diskwrites, CPU utilization, network packets in, network packets out, networkIn, networkOut, CPUCreditUsage, CPUCreditBalance. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q28) What is CloudWatch vs CloudTrail?
+Answer: CloudWatch and CloudTrail provide complementary services that help you keep an eye on your AWS environment. CloudWatch focuses on the activity of AWS services and resources, reporting on their health and performance.  
+
+CloudTrail, on the other hand, is a log of all actions that have taken place inside your AWS environment, so that you can track changes and activity over time. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q29) Why do I need CloudWatch?
+Answer: CloudWatch data and reports empower users to keep track of application performance, resource use, operational issues, and constraints. This helps organizations resolve technical issues and optimize operations. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q30) What are the types of cloudwatch?
+Answer: There are two types of cloud monitoring: basic and detailed. Basic monitoring is free, while detailed monitoring incurs a charge. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q31) What is an AMI?
+Answer: AMI is an acronym for Amazon Machine Image. AMI is a template that stores the software required to launch an Amazon instance. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q32) What is an EIP?
+Answer: EIP is an elastic IP address that is perfect for dynamic cloud computing. When you need a static IP address for your instances, EIP is the perfect solution. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q33) What are reserved instances?
+Answer: Reserved instances are a great way to ensure you always have a fixed capacity of EC2 instances available. In reserved instances, you’ll have to get into a contract of 1 year or 3 years. This will give you configurations, launch permission, and a block device mapping that specifies the volume to attach to the instance when it is launched. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q34) What is cloudfront?
+Answer: Cloudfront is the perfect way to quickly and easily distribute your content. With its low latency and high data transfer speeds, Cloudfront ensures that your viewers will have a smooth and enjoyable experience. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q35) What are roles?
+Answer: Roles provide permissions to resources in your account that you trust. With roles, you don’t need to create any usernames or passwords – you can simply work with the resources you need. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q36) What are the policies in AWS?
+Answer: Policies are permissions that you can attach to the users that you create. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q37) What are AWS service-linked roles?
+Answer: AWS service-linked roles provide you with an easy way to give the service the permissions it needs to call other services on your behalf. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q38) What are the ways to secure access S3 bucket?
+Answer: There are two ways that you can control access to your S3 buckets, 
+
+ACL -Access Control List 
+Bucket policies 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q39) What is VPC peering connection?
+Answer: Create a VPC peering connection to connect your business’s two AWS accounts and enjoy the benefits of instances in each VPC behaving as if they are in the same network. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q40) How can you control the security of your VPC?
+Answer: You can use security groups and NACLs to control the security of your VPC finely. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q41) What are the database types in RDS?
+Answer: Following are the types of databases in RDS, 
+
+Aurora 
+Oracle 
+MYSQL server 
+Postgresql 
+MariaDB 
+SQL server 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q42) What are the types of Route 53 Routing Policy?
+Answer:  
+
+Simple routing policy 
+Weighted routing policy 
+Latency routing policy 
+Failover routing policy 
+Geolocation routing policy 
+Geoproximity routing policy 
+Multivalue answer routing policy 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q43) What is the maximum size of messages in SQS?
+Answer: The maximum size of messages in SQS is 256 KB. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q44) What is a redshift?
+Answer: Amazon redshift is a data warehouse product that is fast, powerful, and fully managed. It can handle petabytes of data in the cloud. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q45) What are the different types of storage gateway?
+Answer: Following are the types of storage gateway. 
+
+File gateway 
+Volume gateway 
+Tape gateway 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q46) What are NAT gateways?
+Answer: NAT stands for Network Address Translation. It provides a way for instances in a private subnet to connect to the internet while preventing the internet from initiating a connection with those instances. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q47) What is a snowball?
+Answer: Snowball is the perfect way to transport data to and from AWS. With its source appliances, you can move large amounts of data quickly and securely, reducing your network costs and transfer times. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q48) What is VPC peering connection?
+Answer: With VPC peering, you can connect your business’s two AWS accounts and enjoy the benefits of instances in each VPC behaving as if they are in the same network. This can help reduce costs and increase security. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q49) What is SNS?
+Answer: SNS is a powerful web service that simplifies the process of notifications from the cloud. You can configure SNS to receive email or message notifications in a matter of minutes. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q50) What is the difference between SES and SNS?
+Answer: SES takes care of the engineering required to ensure the delivery of their e-mails. SNS is a secure service that allows publishers and subscribers to communicate privately. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

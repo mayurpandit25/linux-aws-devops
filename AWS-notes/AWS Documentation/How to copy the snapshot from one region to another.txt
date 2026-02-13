@@ -1,0 +1,15 @@
+**How to copy the snapshot from one region to another region:-
+   
+   1.create a EC2 instance
+   2.click on the volume
+   3.create a snapshot
+   4.click on the snaphshot
+   5.go to action
+   6.copy the snapshot
+         1.select destination region--ohio
+         2.description--
+         3.encryption---
+         4.copy the snapshot
+   7.go to ohio region
+   8.go to EC2
+   9.go to snapshot

@@ -1,0 +1,56 @@
+									   **AUTOSCALING**
+  
+=======================================================================================================================================================================
+
+  1.it is a service which is provided by aws to autoscale up and scale down the instances based on the demand for your application.
+  2.autoscaling helps you save cost by cutting down the number of EC2 instances when not needed and scaling out to add the instances when it is required.
+  3.it works on the scaling policies that we can attach to the autoscaling group.
+  4.When the demand for your application is increases, autoscaling will automatically add the instances to handle the load.
+  5.Conversely,when the demand for your application is decreases, autoscaling will automatically remove unnecessary instances to save the cost.
+  6.autoscaling in AWS is a powerful feature that can help you optimize your compute resources and improve the performance and scalability of your application or  
+    service.
+
+
+TYPES OF SCALING:-
+  
+   a).Vertical scaling:
+       1.With vertical autoscaling, you can add or remove CPU, memory, storage, or other resources to an instance to increase or decrease its capacity.
+       2.In other words, it involves adding more resources to an existing instance, rather than adding more instances.
+    
+   B).Horizontal scaling:-
+       1.Horizontal scaling involves adding more instances to a system to handle increased demand or workload.
+       2.Horizontal scaling is often used for applications or services that experience high traffic or workload spikes, where additional computing resources are needed 
+         to handle the increased demand.
+       3.Horizontal scaling can be more cost-effective than vertical scaling (scaling up), as adding additional smaller instances is often cheaper than adding more 
+         resources to a single larger instance.
+
+=======================================================================================================================================================================
+
+**Difference between launch configuration and launch template:-
+ 
+  1.launch configuration:-1.it is a older format for creating a instance.
+                          1.it is a instance configuration template used with autoscaling group to create a instance. 
+                          2.it can be associated with multiple ASGs. 
+                          3.after creating an instance with the help of launch configuration we can not modify them.
+                          4.we have to create new instance and attach to the autoscaling group if any modification is 
+                            required.    
+                          5.Basic or detailed monitoring for the instances in the ASG can be enabled when a launch 
+                            configuration is created.
+
+                                
+  2.launch template-----:-1.it is a newer format or more flexible format to create a instance.
+                          2.it is a template which is used to launch an instance using EC2 console.
+                          3.after creating an instance we can also modify them.
+                          4.it enable you to store the ami,instance type,security groups,and key pair etc.so that you do not need to 
+                            define these parameters every time when you launch an instance.
+                          5.Launch templates allow you to maintain and update your instances in a more efficient way.
+                          6.it allows multiple versions of a template to be defined.
+                          7.it allows the selection of both Spot and On-Demand Instances or multiple instance types.
+                          8.it supports EC2 Dedicated Hosts. Dedicated Hosts are physical servers with EC2 instance 
+                            capacity that are dedicated to your use.
+                          9.it Supports the multiple instance types and purchase options in a single ASG.
+           
+    In summary, while both launch configuration and launch template can be used to launch instances in AWS, launch templates offer 
+    more advanced customization options, greater flexibility, and easier maintenance and management compared to launch configurations.
+
+=======================================================================================================================================================================

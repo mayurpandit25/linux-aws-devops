@@ -1,0 +1,239 @@
+ARCHITECTURE & TROUBLESHOOTING SCENARIOS
+
+=================================================================================
+
+🔥 SCENARIO 1: A 3-tier web application must be designed for high availability & fault tolerance. Explain the architecture.
+
+Architecture Components:
+
+VPC
+2 public subnets
+2 private subnets
+Multi-AZ design
+
+Load Balancing
+Application Load Balancer (ALB) in public subnets
+
+Compute Layer
+Auto Scaling Group in private subnets
+EC2 instances with IAM roles
+
+Database Layer
+RDS Multi-AZ (for high availability)
+Read Replicas (for read scaling)
+
+Caching
+ElastiCache Redis
+
+Object Storage
+S3 for static content
+CloudFront for global caching
+
+Security
+SG: only ALB → EC2, EC2 → RDS
+NACL: stateless subnet control
+IAM roles for EC2 → S3
+
+Monitoring
+CloudWatch Metrics + Alarms
+CloudTrail for auditing
+
+Why it is HA?
+Multi-AZ across all layers
+Stateless EC2 behind ALB
+Database failover (RDS)
+Auto Scaling
+
+=================================================================================
+
+🔥 SCENARIO 2: Users complaining site is slow globally. How do you fix latency?
+
+Root Causes:
+Traffic routed to only one region
+Static content served from origin
+No caching layer
+
+Solution:
+Enable CloudFront with S3 or ALB as origin
+Enable Gzip/Brotli compression
+Enable Caching policies
+Move DNS to Route53 Latency-Based Routing
+Add Global Accelerator for dynamic traffic acceleration
+
+Expected Result:
+Global latency reduced by 50–70%.
+
+=================================================================================
+
+🔥 SCENARIO 3: CPU is low but your application is extremely slow. What could be the issue?
+
+Common Causes:
+High Disk I/O (EBS bottleneck)
+High Network I/O
+Application lock or DB deadlock
+Memory pressure (swap usage)
+Thread starvation
+
+How to troubleshoot using CloudWatch:
+Check DiskReadOps / DiskWriteOps
+Check NetworkIn/NetworkOut
+Check StatusCheckFailed_System
+Create metric math graphs
+Validate RDS performance insights
+
+Fix:
+Change volume GP2 → GP3
+Increase IOPS (IO1/IO2)
+Add Read Replicas
+Increase EC2 instance type
+
+=================================================================================
+
+🔥 SCENARIO 4: Traffic spikes every morning at 9 AM. App becomes slow or fails.
+
+Solution:
+Use a combination of:
+Scheduled Auto Scaling → Scale-out at 8:55 AM
+Dynamic Scaling → CPU > 60% triggers new EC2
+ALB target warm-up
+Provisioned Concurrency for Lambda (if serverless)
+
+Benefits:
+No downtime
+Cost-efficient
+Predictable performance
+
+=================================================================================
+
+🔥 SCENARIO 5: You want to migrate a monolithic application to microservices on AWS. Explain how.
+
+Steps:
+Identify bounded contexts → split into microservices
+Use API Gateway as unified entry point
+Containerize services → ECS/EKS
+Use SQS/SNS/EventBridge for async communication
+Use DynamoDB or RDS per microservice
+Use CloudWatch Logs, X-Ray for monitoring
+
+Key Principles:
+Loose coupling
+Independent deployability
+Fault isolation
+
+=================================================================================
+
+🔥 SCENARIO 6: A developer accidentally deleted an EC2 instance. How do you recover?
+
+Possible Recovery Methods:
+If EBS root volume retained → attach to another EC2 → recover data
+If snapshots existed → recreate instance
+If AMI existed → launch new instance
+
+Enable:
+  IAM least privilege  
+  MFA delete
+
+Prevent Future Accidents:
+Disable EC2 termination protection
+Add IAM restrictions (ec2:TerminateInstances)
+
+=================================================================================
+
+🔥 SCENARIO 7: S3 bucket is publicly accessible and security team is alerted. What do you do?
+
+Steps to fix:
+Use IAM Access Analyzer to detect external access.
+Enable Block Public Access
+Fix bucket policies and remove public ACLs
+Review CloudTrail logs to trace access
+Add SCP to prevent public S3 in all accounts
+
+=================================================================================
+
+🔥 SCENARIO 9: You need cross-region disaster recovery for a database. How do you design it?
+
+Solution 1: RDS Cross-Region Read Replica
+Async replication
+Manual promotion
+
+Solution 2: Aurora Global Database
+1 primary region
+5 secondary regions
+<1s replication lag
+Automated failover
+
+Solution 3: Backup + Restore Strategy
+Cross-region snapshot copy
+
+=================================================================================
+
+🔥 SCENARIO 10: A Lambda function reading from SQS is slow. Messages pile up.
+
+Causes:
+Low Lambda concurrency limit
+SQS batch size too small
+Lambda errors causing retries
+DLQ threshold reached
+
+Fix:
+Increase Lambda concurrency
+Increase SQS batch size (up to 10 messages)
+Add DLQ
+Increase function timeout
+
+=================================================================================
+
+🔥 SCENARIO 12: After migrating to AWS, costs increase dramatically. How do you optimize?
+
+Checklist:
+Right-size EC2 instances
+Convert on-demand → Reserved / Savings Plan
+Move EC2 → Fargate or Lambda
+S3 Intelligent Tiering
+Delete unused EBS volumes
+Use GP3 instead of GP2
+Enable Autoscaling everywhere
+
+Optimize RDS:
+Move to Serverless
+Pause non-prod databases
+
+=================================================================================
+
+🔥 SCENARIO 13: Application needs to handle millions of writes per second. Which architecture do you choose?
+
+Approach:
+Use Kinesis Data Streams or SQS for ingestion
+Use Lambda or Kinesis Consumers for processing
+Use DynamoDB for storage
+  Enable Auto Scaling
+  Use On-Demand capacity mode
+
+=================================================================================
+
+🔥 SCENARIO 14: An EKS/ECS service cannot talk to RDS. How do you troubleshoot?
+
+Check:
+Security group inbound rules (RDS must allow SG of cluster)
+Subnet routing (must be private)
+NACLs
+IAM role for auth (if IAM DB Auth used)
+VPC endpoints (optional)
+
+=================================================================================
+
+🔥 SCENARIO 15: You need zero-downtime deployments for production.
+
+Options:
+1.Blue/Green Deployment (best)
+    CodeDeploy + ALB
+    Weighted target groups
+2.Rolling Deployments
+3.Canary Deployments
+
+Benefits:
+1.No downtime
+2.Easy rollback
+3.Controlled testing
+
+=================================================================================

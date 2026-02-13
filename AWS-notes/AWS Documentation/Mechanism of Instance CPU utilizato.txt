@@ -1,0 +1,9 @@
+**Mechanism of Instance CPU utilizaton and get notify on email
+
+1.create a launch template
+2.create a autoscling group and give the autoscaling policies
+3.create a target group
+4.create a ALB and access logs in S3 bucket
+5.creat a alarm in cloudwatch and provide email so that it can notify when utilization is increase or decrease
+6.add stress on the server so that cpu utilization is high.
+   (https://arstech.net/install-stress-on-amazon-linux/)

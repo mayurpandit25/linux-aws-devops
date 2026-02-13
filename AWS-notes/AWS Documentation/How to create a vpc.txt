@@ -1,0 +1,31 @@
+**How to create a vpc
+
+1.create a vpc (10.0.0.0/18)
+
+2.create a subnet
+     a)10.0.0.0/20  ----------public subnet
+     b)10.0.16.0/20 ----------public subnet
+     c)10.0.32.0/20 ----------private subnet
+     d)10.0.48.0/20 ----------private subnet
+
+3.create a internet getway and attach to a vpc
+
+4.create a nat-getway and attach to private route-table
+    
+5.create a route-table
+     a)my-public-route-table
+         1.add subnet public subnet
+         2.attach iGW
+     b)my-private-route-table
+         1.add subnet private subnet
+         2.attach nat-getway
+
+6.create a instances
+     1.bastion-host-server (public server)
+     2.my-web-application-1 (private server)
+
+7.login with putty to access private server
+     1.vim mayur.pem
+     2.chmod 400 mayur.pem
+     3.ls -l mayur.pem
+     4.ssh -i (key-name)(hostname)@(private ip of private server)

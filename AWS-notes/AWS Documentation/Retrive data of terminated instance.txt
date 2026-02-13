@@ -1,0 +1,10 @@
+**How to retrive data of terminated instance:-
+  
+  1.create a instance but click on no option of "delete on termination" of EBS volume.
+  2.then add some files on the instance---touch file(1..10)
+  3.then terminate the instance the EBS volume should be detached automatically.
+  4.create a new instance
+  5.stop the instance
+  6.and attach a old instance volume to the new instance.
+  7.mount the volume (mount /dev/xvdf /mnt)
+  8.then access the files terminated instance to a new instance.

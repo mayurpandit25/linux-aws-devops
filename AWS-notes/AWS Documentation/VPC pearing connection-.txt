@@ -1,0 +1,55 @@
+**lab on VPC pearing connection:-
+
+**VPC-01
+
+ 1.create a vpc (10.0.0.0/18)
+ 2.create a subnets
+     1.public-subnet-1------(10.0.0.0/20)
+     2.public-subnet-2------(10.0.16.0/20)
+     3.private-subnet-3-----(10.0.32.0/20)
+     4.private-subnet-4-----(10.0.48.0/20)
+3.create a internet getway and attach to a vpc
+4.create a nat getway
+5.create a route table
+     1.public route-----public subnets---IGW
+     2.private route----private subnets---nat
+6.create a two instances
+     1.bastion-host server
+     2.my-web-1
+7.accessing bastion host server
+     1.vim mayur.pem
+     2.chmod 600 mayur.pem
+     3.ssh -i mayur.pem (machine name) @ (private IP of my-web-1)
+
+**VPC-02
+
+1.create a vpc (172.31.0.0/18)
+2.creat a subnet
+     1.my-public-subnet-1----(172.31.0.0/20)
+     2.my-private-subnet-2---(172.31.16.0/20)
+3.create a nat getway
+4.create a route table
+     1.my2nd-vpcroute
+          ----subnet-associates----private-subnets---nat
+5.create a peering connection
+     1.name---my-peering connection
+     2.vpc----(requester)----my1stvpc
+     3.(accepter)-----my2ndvpc
+     4.create a peering connection
+6.click on created peering connection and accept the request
+7.create a instance
+     1.my-web-02
+
+8.then go to the route table
+  1.public-route 
+        -----private ip of my-web-02
+        -----peering connection
+  2.my2nd-vpcroute
+        -----private ip of bastion-host server
+        -----peering connection
+
+9.login with bastion host server
+    1.vim mayur.pem (paste private key of my-web-02)
+    2.chmod 600 mayur.pem
+    3.ssh -i mayur.pem (machine name) @ (private ip of my-web-02)
+    4.ping 8.8.8.8

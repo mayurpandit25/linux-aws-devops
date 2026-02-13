@@ -1,0 +1,160 @@
+
+PATH BASED ROUTNG IN LOAD BALANCER
+
+
+1.create a template-(home)
+     1.name--------------lt-home
+     2.machine-----------amazon-linux
+     3.security group----http/https/ssh
+     4.resource tag------Name--home
+     5.user data
+        #!/bin/bash
+        sudo yum update -y
+        sudo yum install httpd -y
+        sudo systemctl start httpd.service
+        sudo echo "<h1> this is my homepage "$HOSTNAME" </h1>" > /var/www/html/index.html 
+        sudo systemctl restart httpd.service
+        sudo systemctl enable httpd.service
+
+ 
+2.create a template-(mobile)
+     1.name--------------lt-mobile
+     2.machine-----------amazon-linux
+     3.security group----http/https/ssh
+     4.resource tag------Name--mobile
+     5.user data
+        #!/bin/bash
+        sudo yum update -y
+        sudo yum install httpd -y
+        sudo systemctl start httpd.service
+        sudo mkdir -p /var/www/html/mobile
+        sudo echo "<h1> this is my mobilepage "$HOSTNAME" </h1>" > /var/www/html/mobile/index.html 
+        sudo systemctl restart httpd.service
+        sudo systemctl enable httpd.service
+
+
+3.create a template-(laptop)
+     1.name--------------lt-laptop
+     2.machine-----------amazon-linux
+     3.security group----http/https/ssh
+     4.resource tag------Name--laptop
+     5.user data
+        #!/bin/bash
+        sudo yum update -y
+        sudo yum install httpd -y
+        sudo systemctl start httpd.service
+        sudo mkdir -p /var/www/html/laptop
+        sudo echo "<h1> this is my laptoppage "$HOSTNAME" </h1>" > /var/www/html/laptop/index.html 
+        sudo systemctl restart httpd.service
+        sudo systemctl enable httpd.service
+
+4.create a autoscaling group-(home)
+     1.name--------home-asg
+     2.template----lt-home
+     3.AZ----------1a,1b,1c
+     4.capacity
+          desired---2
+          minimum---1
+          maximun---3
+     5.add sns
+     6.tag----Name--home
+   
+5.create a autoscaling group-(mobile)
+     1.name--------mobile-asg
+     2.template----lt-mobile
+     3.AZ----------1a,1b,1c
+     4.capacity
+          desired---2
+          minimum---1
+          maximun---3
+     5.add sns
+     6.tag----Name--mobile
+
+6.create a autoscaling group-(laptop)
+     1.name--------laptop-asg
+     2.template----lt-laptop
+     3.AZ----------1a,1b,1c
+     4.capacity
+          desired---2
+          minimum---1
+          maximun---3
+     5.add sns
+     6.tag----Name--laptop
+
+
+7.create a target group(home)
+    1.type-------instance
+    2.name-------tg-home
+    3.path-------/
+    4.create a target group
+
+8.create a target group(mobile)
+    1.type-------instance
+    2.name-------tg-mobile
+    3.path-------/mobile/
+    4.create a target group
+
+9.create a target group(laptop)
+    1.type------instance
+    2.name------tg-laptop
+    3.path------/laptop/
+    4.create a target group
+
+10.add these targets in autoscaling group
+    1.click on the home-asg
+    2.click on load balancing
+    2.add tg-home 
+
+11.add another target in autoscaling group
+    1.click on the mobile-asg
+    2.click on load balancing
+    3.add tg-mobile
+
+12.also add laptop target in autoscaling group
+    1.click on the laptop-asg
+    2.click on load balancing
+    3.add tg-laptop
+
+13.create a load balancer
+    1.name--------------ALB
+    2.default action----tg-home
+    3.create a load balancer
+
+14.add rule on ALB of (tg-mobile)
+    1.listner--------manage rule----add-rule
+    2.name-----------mobile
+    3.path-----------/mobile/
+    4.forward to-----tg-mobile
+    5.priority-------2
+    6.stickness------10 seconds
+
+15.add rule on ALB of (tg-laptop)
+    1.listner---------manage rule--add-rule
+    2.name------------laptop
+    3.path------------/laptop/
+    4.forward to------tg-laptop
+    5.priority--------3
+    6.stickness-------5 seconds
+
+16.copy link of ALB (dns)
+       1.copy the link of dns
+       2.copy the link of dns/mobile/
+       3.copy the link of dns/laptop/
+
+=======================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

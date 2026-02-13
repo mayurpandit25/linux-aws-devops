@@ -1,0 +1,19 @@
+**How to create a KMS (key management service) encyrption:-
+
+1.create a bucket and go to encryption
+1.choose SSE KMS 
+2.click on customer manage keys
+3.create key
+4.symmetric---encrypt and decrypt
+5.advanced setting
+     1.KMS
+     2.single region key
+     3.alias---myKMSkye
+     4.administrative access----(one user)
+     5.key usage permission--key users-------(one user)
+     6.create a key
+7.add objects in the bucket you can also download these objects easily
+8.but when you disabled these encyrption you can not download these files as well as upload the file
+9.when you enabled it you can easily download these files and upload the files
+
+you can also add bucket encryption (put bucket policy)

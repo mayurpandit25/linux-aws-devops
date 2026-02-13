@@ -1,0 +1,33 @@
+**CREATE A MECHANISM IF MY EC2 INSTANCE'S CPU OR DISK USAGE IS 90% OR ABOVE I SHOULD GET THE NOTIFICATION ON EMAIL**
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a instance
+     name-------my-instance
+     machine----amazon-linux
+     key_name---id_rsa 
+     create a instance
+
+2.go to cloudwatch
+    1.click on metrics
+    2.click on ec2 
+    3.search instance---> my-instance---> cpu-utilization
+    4.add to dashboard for checking the utilization on the instance
+
+3.click on alarm
+    1.create a alarm
+    2.select metric----EC2----my-instance-----cpu-utilization
+    3.Whenever StatusCheckFailed_System is----greater>=threshhold 
+    4.than-----90%
+    5.create a sns topic-----> mayur@gmail.com
+    6.create a topic
+    7.create a alarm
+
+4.access the instance
+    1.sudo dnf install stress -y
+    2.nproc
+    3.stress --cpu $(nproc)
+
+5.whenever the cpu utilization on the server is 90% or above u get the notification 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------

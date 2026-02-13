@@ -1,0 +1,38 @@
+**Lab on VPN connection in aws
+
+1.create a vpc------10.0.0.0/16
+
+2.create a subnet
+   public subnet----10.0.0.0/24
+   private subnet---10.0.1.0/24
+
+3.create a internet getway and attach to a vpc
+
+4.create a route table
+   public route-----add public subnet and attach a internet getway
+
+5.create a ec2 server
+   1.create a vpn network by launching instance and search for openvpn and select 1st network
+   2.select the vpc and public subnet
+   3.then launch a instance
+
+6.create also one more server i.e. private server
+   1.launch a instance 
+   2.select the vpc and private subnet
+   3.then launch a instance
+ 
+7.then access the vpn server
+   1.access by openvpnas
+   2.give all the permissions
+   3.then copy the client UI and paste on the chrome
+   4.then set passwd for vpn in putty go to putty and set the passwd like #sudo passwd openvpn
+   5.then go to chrome and give a username=openvpn
+                                  password=(example)
+   6.then click on the machine which you created on the webpage then automatically download a file
+   7.click on that downloaded file so that file is install on the machine which you are created
+   8.and when vpn is install it create a symbol on the desktop so you can click on that icon and connect 
+   9.server  ---
+     username---openvpn
+     password---(example)
+ 
+8.then you can access the private server

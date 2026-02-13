@@ -1,0 +1,70 @@
+**How to configure EFS on UBUNTU**
+
+1.create a instance
+     1.name---------EFS-01
+     2.machine------ubuntu
+     3.sg-----------http,https,ssh,nfs(2049)
+     4.create a instance
+ 
+2.create a instance
+     1.name---------EFS-02
+     2.machine------ubuntu
+     3.sg-----------http,https,ssh,nfs(2049)
+     4.create a instance
+ 
+3.create a EFS (file system)
+     1.name---------EFS
+     2.click on customized
+     3.next---------next
+     4.remove default sg and add our sg which we created
+     5.create a EFS
+
+4.access the EFS-01
+     1.sudo apt-get update 
+     2.sudo apt-get -y install git binutils
+     3.git clone https://github.com/aws/efs-utils
+     4.cd efs-utils
+     5. ./build-deb.sh
+     6.sudo apt-get -y install ./build/amazon-efs-utils*deb
+     7.mkdir /efs
+     8.cd /efs
+     9.then go to efs and click on attach and copy the mount via dns
+    10.paste the dns
+    11.touch file{1..10}
+    
+Then install tomcat on EFS-01 and check on EFS-02
+    12.apt install java* -y / apt install default-jdk -y
+    12.wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.92/bin/apache-tomcat-8.5.92.tar.gz
+    13.tar -xvf apache-tomcat-8.5.92.tar.gz
+    14.cd apache-tomcat-8.5.92
+    15.chmod +x bin/*
+    16.cd bin/
+    17. ./catalina.sh start
+    18.copy the public ip and paste on the web to check the tomcat start or not
+
+5.access the EFS-02
+     1.sudo apt-get update 
+     2.sudo apt-get -y install git binutils
+     3.git clone https://github.com/aws/efs-utils
+     4.cd efs-utils
+     5. ./build-deb.sh
+     6.sudo apt-get -y install ./build/amazon-efs-utils*deb
+     7.mkdir /efs
+     8.cd /efs
+     9.then go to efs and click on attach and copy the mount via dns
+    10.paste the dns
+    11.ls
+ 
+    12.apt install default-openjdk -y 
+    13. ./catalina.sh start
+    14.copy the public ip and paste on the web to check the tomcat start or not
+
+
+
+
+
+
+
+
+
+

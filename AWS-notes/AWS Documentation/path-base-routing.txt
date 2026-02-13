@@ -1,0 +1,133 @@
+mount the s3 bucket on ec2 and host about 10 css template on s3 bucket configure nginx on server1 and create server2 that use as a nginx-load balancer---all the templates are routed on the load balancer----{ path based routing concept }
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a instance 
+   1.name-------server1
+   2.machine----amazon-linux-2
+   3.type-------t2.micro
+   4.create a instance
+
+2.create a s3 bucket (mayur-s3-bucket)
+
+3.create the access key and secret key credentials 
+
+3.mount the s3 bucket on the amazon-linux
+    1.amazon-linux-extras install epel -y
+    2.yum install s3fs-fuse -y
+    3.echo (access key):(secret key) > ${HOME}/.mayurpasswd
+    4.ls -la /root/
+    5.chmod 600 /root/.mayurpasswd
+    6.mkdir /mountbucket
+    7.ls /
+    8.s3fs (bucket name) /mountbucket -o passwd_file=${HOME}/.mayurpasswd
+       { u get these message:- s3fs on /mountbucket type fuse.s3fs (rw,nosuid,nodev,relatime,user_id=0,group_id=0) }
+    9.mount | grep mountbucket
+    10.cd /mountbucket
+    11.ls
+
+4.install the nginx  
+   1.yum update -y
+   2.yum install nginx -y
+   3.systemctl start nginx 
+   4.systemctl enable nginx 
+   5.systemctl status nginx
+
+5.change the directory to work on 
+   1.cd /mountbucket
+  
+6.download the css templates
+   1.wget https://www.free-css.com/assets/files/free-css-templates/download/page296/oxer.zip
+   2.unzip oxer.zip
+   3.mkdir /usr/share/nginx/html/test1
+   4.mv oxer-html/* /usr/share/nginx/html/test1/
+   5.systemctl restart nginx 
+   
+7.add another css template
+   1. wget https://www.free-css.com/assets/files/free-css-templates/download/page296/carvilla.zip
+   2.unzip carvilla.zip
+   3.mkdir /usr/share/nginx/html/test2
+   4.mv carvilla-v1.0/* /usr/share/nginx/html/test2/
+   5.systemctl restart nginx
+
+8.you can add upto 10 css template like these...
+
+9.create a new instance that we can use as a nginx-laod-balancer
+    1.name--------load balancer
+    2.machine-----amazon-linux
+    3.type--------t2.micro
+    4.create a instance
+
+10.install nginx on load-balancer instance
+    1.yum update -y
+    2.yum install nginx -y
+    3.systemctl start nginx 
+    4.systemctl enable nginx
+   
+11.configure the nginx
+     1.add these configuration blok on the http block
+     2.vim /etc/nginx/nginx.conf
+
+http {
+    upstream backend {
+        server <YOUR_SERVER1_IP>; ---------------#your server1 ip here 
+
+        # Add more backend servers as needed
+    }
+
+    server {
+        listen 80;
+
+        location / {
+            proxy_pass http://backend;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+
+    # ... (other configurations may exist)
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile            on;
+    tcp_nopush          on;
+    keepalive_timeout   65;
+    types_hash_max_size 4096;
+}
+
+12.if u faces any error run the { nginx -t } as well as you can check the logs
+
+13.restart the nginx
+    1.systemctl restart nginx
+    2.systemctl status nginx
+
+14.check the load balancer can route our request to the paths that we give
+    1.(public_ip) -------------------#get the nginx page
+    2.(public_ip)/test1 -------------#get the css template that u host
+    3.(public_ip)/test2
+    4.(public_ip)/test3
+    5.(public_ip)/test4
+    6.(public_ip)/test5
+    8.(public_ip)/test6
+    9.(public_ip)/test7
+   10.(public_ip)/test8
+   11.(public_ip)/test9
+   12.(public_ip)/test10
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+

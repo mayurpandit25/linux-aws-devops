@@ -1,0 +1,166 @@
+**VPC PEERING WITH TRANSTI GATEWAY**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a vpc1-vpc2-vpc2 and vpc3
+ 
+vpc1:-
+
+1.create a vpc-1 -----------------------12.0.0.0/16
+2.create a subnet--(subnet-vpc-1)-------12.0.1.0/24
+3.create a IGW and attach to the vpc-1
+4.create a route table--(rt-vpc-1)
+        associate---subnet-vpc-1----IGW
+5.create a instance
+    1.name---------ec2-vpc-1
+    2.machine------amazon-linux
+    3.type---------t2.micro
+    4.key----------ec2-vpc-1 key
+    5.user-data
+       #!/bin/bash
+       sudo yum update -y
+       sudo yum install httpd -y
+       sudo systemctl start httpd.service
+       sudo echo "<h1> this is my 1st vpc </h1>" > /var/www/html/index.html
+       sudo systemctl restart httpd.service
+       sudo systemctl enable httpd.service
+
+
+vpc2:-
+
+1.create a vpc-2 -----------------------13.0.0.0/16
+2.create a subnet--(subnet-vpc-2)-------13.0.1.0/24
+3.create a IGW and attach to the vpc-2
+4.create a route table--(rt-vpc-2)
+        associate---subnet-vpc-2----IGW
+5.create a instance
+    1.name---------ec2-vpc-2
+    2.machine------amazon-linux
+    3.type---------t2.micro
+    4.key----------ec2-vpc-2 key
+    5.user-data
+       #!/bin/bash
+       sudo yum update -y
+       sudo yum install httpd -y
+       sudo systemctl start httpd.service
+       sudo echo "<h1> this is my 2nd vpc </h1>" > /var/www/html/index.html
+       sudo systemctl restart httpd.service
+       sudo systemctl enable httpd.service
+
+
+vpc3:-
+
+1.create a vpc-3 -----------------------14.0.0.0/16
+2.create a subnet--(subnet-vpc-3)-------14.0.1.0/24
+3.create a IGW and attach to the vpc-3
+4.create a route table--(rt-vpc-3)
+        associate---subnet-vpc-3----IGW
+5.create a instance
+    1.name---------ec2-vpc-3
+    2.machine------amazon-linux
+    3.type---------t2.micro
+    4.key----------ec2-vpc-3 key
+    5.user-data
+       #!/bin/bash
+       sudo yum update -y
+       sudo yum install httpd -y
+       sudo systemctl start httpd.service
+       sudo echo "<h1> this is my 3rd vpc </h1>" > /var/www/html/index.html
+       sudo systemctl restart httpd.service
+       sudo systemctl enable httpd.service
+
+
+vpc4:-
+
+1.create a vpc-4 -----------------------15.0.0.0/16
+2.create a subnet--(subnet-vpc-4)-------15.0.1.0/24
+3.create a IGW and attach to the vpc-4
+4.create a route table--(rt-vpc-4)
+        associate---subnet-vpc-4----IGW
+5.create a instance
+    1.name---------ec2-vpc-4
+    2.machine------amazon-linux
+    3.type---------t2.micro
+    4.key----------ec2-vpc-4 key
+    5.user-data
+       #!/bin/bash
+       sudo yum update -y
+       sudo yum install httpd -y
+       sudo systemctl start httpd.service
+       sudo echo "<h1> this is my 4th vpc </h1>" > /var/www/html/index.html
+       sudo systemctl restart httpd.service
+       sudo systemctl enable httpd.service
+
+
+2.create a transit getway
+     1.name-------tg-for-vpc1-vpc2-vpc3-vpc4
+     2.create a transit getway
+
+
+3.then create transit getway attachments-for-vpc-1
+     1.name----------tg-attachment-vpc-1
+     2.tg ID---------(select)
+     3.type----------vpc
+     4.vpc ID--------(vpc-1)
+     5.create a tg attachments
+
+4.then create transit getway attachments-for-vpc-2
+     1.name----------tg-attachment-vpc-2
+     2.tg ID---------(select)
+     3.type----------vpc
+     4.vpc ID--------(vpc-2)
+     5.create a tg attachments
+
+5.then create transit getway attachments-for-vpc-3
+     1.name----------tg-attachment-vpc-3
+     2.tg ID--------(select)
+     3.type---------vpc
+     4.vpc ID-------(vpc-3)
+     5.create a tg attachments
+
+6.then create transit getway attachments-for-vpc-4
+     1.name----------tg-attachment-vpc-4
+     2.tg ID--------(select)
+     3.type---------vpc
+     4.vpc ID-------(vpc-4)
+     5.create a tg attachments
+
+
+7.then updates the routs of vpc-1 in vpc-1 we can add (vpc2-vpc3-vpc4)
+    1.add route------13.0.0.0/16 ----------transit getway-------------save
+    2.add route------14.0.0.0/16-----------transit getway-------------save
+    3.add route------15.0.0.0/16-----------transit getway-------------save
+
+8.then update the routs of vpc-2 in vpc-2 we can add (vpc1-vpc3-vpc4)
+    1.add route------12.0.0.0/16 ----------transit getway-------------save
+    2.add route------14.0.0.0/16-----------transit getway-------------save
+    3.add route------15.0.0.0/16-----------transit getway-------------save
+
+9.then update the routs of vpc-3 in vpc-3 we can add (vpc1-vpc2-vpc4)
+    1.add route------12.0.0.0/16 ----------transit getway-------------save
+    2.add route------13.0.0.0/16-----------transit getway-------------save
+    3.add route------15.0.0.0/16-----------transit getway-------------save
+
+10.then update the routs of vpc-4 in vpc-4 we can add (vpc1-vpc2-vpc3)
+    1.add route------12.0.0.0/16 ----------transit getway-------------save
+    2.add route------13.0.0.0/16-----------transit getway-------------save
+    3.add route------14.0.0.0/16-----------transit getway-------------save
+
+
+11.then test the instances 
+
+12.instance----ec2-vpc-1----connect
+      1.vim vpc-1 key.pem
+      2.vim vpc-2 key.pem
+      3.vim vpc-3 key.pem
+      4.vim vpc-4 key.pem
+ 
+      chmod 400 vpc-1 key.pem
+      chmod 400 vpc-2 key.pem
+      chmod 400 vpc-3 key.pem
+      chmod 400 vpc-4 key.pem
+  
+1.ssh -i vpc-1 key.pem ec2-user@(ip of vpc-1)
+  curl (private ip of vpc-2)
+  curl (private ip of vpc-3)
+  curl (private ip of vpc-4)

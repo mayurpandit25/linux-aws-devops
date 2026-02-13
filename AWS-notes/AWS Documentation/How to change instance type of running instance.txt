@@ -1,0 +1,7 @@
+**How to change instance type of running instance:-
+
+   1.create a instance (t2 micro)
+   2.stop the instance
+   3.click on these instance
+   4.go to action------->>instance settting------->>change instance type
+   5.select the instance type and apply (t2 medium)

@@ -1,0 +1,315 @@
+AWS MIGRATION – INTERVIEW Q&A
+
+======================================================================================================================================================================
+
+1. What is AWS migration?
+
+Answer:
+AWS migration is the process of moving applications, data, and workloads from on-premises servers or another cloud to AWS.
+
+======================================================================================================================================================================
+
+2. Why do companies migrate to AWS?
+
+Answer:
+To reduce infrastructure cost, improve scalability, increase availability, enhance security, and avoid hardware maintenance.
+
+======================================================================================================================================================================
+
+3. What are the main phases of AWS migration?
+
+Answer:
+
+1.Assess – Understand current environment
+
+2.Mobilize – Prepare AWS landing zone
+
+3.Migrate & Modernize – Move workloads and optimize
+
+======================================================================================================================================================================
+
+4. What is the AWS migration strategy (6 Rs)?
+
+Answer:
+
+Rehost – Lift and shift
+
+Replatform – Minor changes
+
+Refactor – Redesign application
+
+Repurchase – Move to SaaS
+
+Retire – Remove unused apps
+
+Retain – Keep as-is
+
+======================================================================================================================================================================
+
+5. What is “Lift and Shift”?
+
+Answer:
+Moving applications to AWS without changing code, usually using EC2.
+
+======================================================================================================================================================================
+
+6. When should you use Replatforming?
+
+Answer:
+When small optimizations (like moving DB to RDS) are needed without changing core architecture.
+
+======================================================================================================================================================================
+
+7. What is Refactoring in migration?
+
+Answer:
+Rewriting applications to use cloud-native services like Lambda, DynamoDB, or containers.
+
+======================================================================================================================================================================
+
+8. What is AWS Migration Hub?
+
+Answer:
+AWS Migration Hub
+A central dashboard to track and manage application migrations across AWS tools.
+
+======================================================================================================================================================================
+
+9. What is AWS Application Discovery Service?
+
+Answer:
+It collects server configuration and dependency data to help plan migrations.
+
+======================================================================================================================================================================
+
+10. Difference between Agent-based and Agentless discovery?
+
+Answer:
+
+Agent-based: Installed on servers (detailed data)
+Agentless: Uses VMware credentials (basic data)
+
+======================================================================================================================================================================
+
+11. What is AWS DMS?
+
+Answer:
+AWS Database Migration Service
+A service to migrate databases to AWS with minimal downtime.
+
+======================================================================================================================================================================
+
+12. Which databases are supported by AWS DMS?
+
+Answer:
+MySQL, PostgreSQL, Oracle, SQL Server, MariaDB, MongoDB, Aurora.
+
+======================================================================================================================================================================
+
+13. Can AWS DMS migrate heterogeneous databases?
+
+Answer:
+Yes, for example Oracle to Aurora or SQL Server to PostgreSQL.
+
+======================================================================================================================================================================
+
+14. What is AWS Snowball?
+
+Answer:
+AWS Snowball
+A physical device to transfer large amounts of data securely to AWS.
+
+======================================================================================================================================================================
+
+15. When should you use AWS Snowball?
+
+Answer:
+When data size is very large (TBs or PBs) and network transfer is slow or expensive.
+
+======================================================================================================================================================================
+
+16. Difference between Snowball and Snowmobile?
+
+Answer:
+
+Snowball – TB to PB scale
+
+Snowmobile – Exabyte-scale data (truck)
+
+======================================================================================================================================================================
+
+17. What is AWS DataSync?
+
+Answer:
+A service for online data transfer between on-premises storage and AWS.
+
+======================================================================================================================================================================
+
+18. Snowball vs DataSync?
+
+Answer:
+
+Snowball – Offline, physical transfer
+
+DataSync – Online, network-based transfer
+
+======================================================================================================================================================================
+
+19. What is a landing zone?
+
+Answer:
+A preconfigured AWS environment with accounts, networking, security, and logging.
+
+======================================================================================================================================================================
+
+20. What is AWS Control Tower?
+
+Answer:
+AWS Control Tower
+Automates landing zone setup with governance and compliance.
+
+======================================================================================================================================================================
+
+21. What security considerations during migration?
+
+Answer:
+IAM roles, encryption, security groups, NACLs, least privilege, logging.
+
+======================================================================================================================================================================
+
+22. What is IAM’s role in migration?
+
+Answer:
+Controls who can access AWS resources during and after migration.
+
+======================================================================================================================================================================
+
+23. What is a hybrid migration?
+
+Answer:
+When on-premises and AWS systems run together during migration.
+
+======================================================================================================================================================================
+
+24. What AWS service connects on-prem to AWS?
+
+Answer:
+
+VPN
+AWS Direct Connect
+
+======================================================================================================================================================================
+
+25. VPN vs Direct Connect?
+
+Answer:
+
+VPN – Internet-based, cheaper
+Direct Connect – Dedicated, faster, more stable
+
+======================================================================================================================================================================
+
+26. What is CloudEndure?
+
+Answer:
+A tool for continuous replication and near-zero downtime migration.
+
+======================================================================================================================================================================
+
+27. What is downtime in migration?
+
+Answer:
+The period when applications are unavailable during data or system switch.
+
+======================================================================================================================================================================
+
+28. How do you minimize downtime?
+
+Answer:
+Using DMS CDC, CloudEndure, blue-green deployments, and testing cutovers.
+
+======================================================================================================================================================================
+
+29. What is a pilot migration?
+
+Answer:
+Migrating a small, low-risk application first to validate the process.
+
+======================================================================================================================================================================
+
+30. What is post-migration optimization?
+
+Answer:
+Rightsizing instances, enabling auto scaling, cost optimization, monitoring.
+
+======================================================================================================================================================================
+
+31. What AWS service helps reduce cost after migration?
+
+Answer:
+AWS Cost Explorer, Trusted Advisor, Savings Plans.
+
+======================================================================================================================================================================
+
+32. What is blue-green deployment?
+
+Answer:
+Running old and new environments in parallel and switching traffic after testing.
+
+======================================================================================================================================================================
+
+33. What is rollback in migration?
+
+Answer:
+Returning to the original system if migration fails.
+
+======================================================================================================================================================================
+
+34. How do you test migrated applications?
+
+Answer:
+Functional testing, performance testing, security testing, user acceptance testing.
+
+======================================================================================================================================================================
+
+35. What is the biggest migration challenge?
+
+Answer:
+Application dependencies, data consistency, downtime, and cost control
+
+======================================================================================================================================================================
+
+36. What AWS service tracks application dependencies?
+
+Answer:
+AWS Application Discovery Service.
+
+======================================================================================================================================================================
+
+37. What is migration wave planning?
+
+Answer:
+Migrating applications in groups based on dependency and priority.
+
+======================================================================================================================================================================
+
+38. What is modernization after migration?
+
+Answer:
+Using containers, serverless, managed databases to improve performance and cost.
+
+======================================================================================================================================================================
+
+39. What is container migration?
+
+Answer:
+Moving apps into Docker containers and running them on ECS or EKS.
+
+======================================================================================================================================================================
+
+40. How do you ensure high availability post-migration?
+
+Answer:
+Multi-AZ deployment, load balancers, auto scaling, backups.
+
+======================================================================================================================================================================

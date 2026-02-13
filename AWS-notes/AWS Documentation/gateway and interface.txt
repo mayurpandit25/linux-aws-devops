@@ -1,0 +1,19 @@
+what is the difference between gateway and interface
+
+ANS:-
+Gateway:
+1.A gateway in AWS typically refers to a service or device that acts as an entry or exit point for network traffic.
+2.e.g like,
+  Internet Gateway (IGW): Connects a Virtual Private Cloud (VPC) to the internet, allowing resources within the VPC to communicate with the internet.
+  Virtual Private Gateway (VGW): Connects a VPC to a corporate data center, enabling communication between the VPC and on-premises resources.
+  API Gateway: Manages and secures APIs (Application Programming Interfaces) by acting as a front-end entry point for applications to access various services.
+
+Interface:
+1.An interface in AWS generally refers to a way for resources to communicate with each other or with external systems.
+2.e.g likes,
+  Network Interface (ENI): Represents a virtual network interface attached to an instance in a VPC. It has private and public IP addresses and can be associated with         
+  security groups and network ACLs.
+  Elastic Network Interface (ENI): Similar to ENI but used in the context of Elastic Load Balancers.
+  VPC Peering: An interface that enables communication between VPCs within the same or different AWS accounts.
+
+a gateway is like a doorway that controls traffic in and out of a network, while an interface is like a connection point that allows different components or resources to communicate within a network. 

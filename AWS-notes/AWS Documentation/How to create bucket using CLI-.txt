@@ -1,0 +1,14 @@
+**How to create bucket using CLI:-
+
+   1.create a security creadentils of root user
+   2.aws configure on CLI
+   3.aws s3 ls
+   4.aws s3 mb s3://mayur-s3-bucket
+   5.aws s3 rb s3://mayur-s3-bucket
+
+**To copy object from desktop to s3 bucket
+   1.cd deskop
+   2.aws s3 sync . s3://mayur-s3-bucket
+   
+**suppose the object should be deleted from my desktop to recover these from s3
+   1.aws s3 sync s3://mayur-s3-bucket .

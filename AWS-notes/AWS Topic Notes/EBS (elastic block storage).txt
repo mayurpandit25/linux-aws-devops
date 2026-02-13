@@ -1,0 +1,216 @@
+**EBS (elastic block storage)**
+
+=======================================================================================================================================================================
+
+**Two types of block store devices for EC2:-
+   ( root/boot volume storage where operating system situated.)
+    1.EBS (elastic block storage)
+    2.Instance storage
+
+
+a).EBS (elastic block storage):-(EBS backed EC2 instance)
+   1.EBS volume behaves like ram,Unformatted,external block storage devices that you can attach to your EC2 instance.
+   2.EBS vloumes are block storage devices suitable for database style data that requires frequient reads and writes.
+   3.EBS volumes are attached to your EC2 instances through the aws network like virtual hard drives.
+   4.an EBS volume can attach to a single EC2 instance only at a time.
+   5.both EBS volume and EC2 instance must be in the same AZ.
+   6.it is a persistant storage means if u have to stop or reboot the EC2 instance the data will not be deleted. but if you terminate the instance the data will be 
+     deleted.(by default)
+   7.but when we remove the delete on termination tick, the EBS volume should not be deleted even after deleting/terminating the EC2 instance.
+   8.and its a network attached storage so its slow than instance storage.
+
+b).Instance storage:-(instance backed EC2 instance)
+   1.instance store backed EC2 basically the virtual hard drive on the host allocated to this EC2 instance.
+   2.limited to 10GB per device.
+   3.it is Emphemeral storage.(it is non persistant storage) means if u teminate the EC2 instance the data will be deleted. but suppose if u rebooted the instance the
+     data will not be deleted. 
+   4.the EC2 instance can't be stopped,can only be rebooted or teminated.
+   5.Terminate will delete the data.
+   6.and its a faster than EBS because it is a directly attach storage.
+  
+=======================================================================================================================================================================
+
+**EBS volume types:-
+
+1.SSD backed volume(solid state drive)-------------------these are bootable means we can install OS in these drive we can use c drive in server
+       1.general purpose (gp2,gp3)-----------------------default volume(gp2) 30GB.
+       2.provisional IOPS (io2 block express,io1,io2)----data read and write 
+
+2.HHD backed volume (hard disk drive)---------------------these are non-bootable means we can not install OS and we can use as D drive E drive for extra storage.                                                                                                          
+       1.throughput optimized HDD (st1) data transfer in MB/sec
+       2.cold HDD (sc1)
+
+3.magnetic standard----------------------------------------these is bootable means we can install OS in these drive we can c drive in server
+
+
+1>general purpose SSD (gp2):-
+  1.gp2 is the default EBS volume type for the amazon EC2 instance.
+  2.gp2 volumes are backed by SSDs
+  3.general purpose , balances both price and performance.
+  4.ratio of 3IOPS/GB with upto 10,000 IOPS(input/output per second)
+  5.boot volume having low latency
+  6.volume size -1GB-16TB
+
+2>Provisional IOPS (io1):-
+  1.these volumes are ideal for both IOPS intensive and throughput intensive workloads that require extremly low latency
+    or for mission critical applications
+  2.designed for I/O intensive application such as large relational or NOsQL databases.
+  3.use if you need more than 10,000 IOPS
+  4.can provision upto 32,000 IOPS per volume (64000 IOPS)
+  5.volume size -44B-16TB
+  
+3>throughput optimized HDD (st1):-
+  1.st1 is backed by hard disk drives and is ideal for frequently accessed,throughput intensive workloads with large datasets.
+  2.st1 volumes deliver performance in term of throughput, measured in MB/s
+  3.big data, data warehouse, log processing
+  4.it cannot be a boot volume 
+  5.can provisioned upto 500 IOPS per volume
+  6.volume size -500GB-16TB
+
+4>cold HDD (sc1):-
+  1.sc1 is also backed by HDD and provides the lowest cost per GB of all EBS volume types.
+  2.lowest cost storage for infrequent access workloads.
+  3.used in file servers.
+  4.cannot be a boot volume
+  5.can provisioned upto 250 IOPS per volume.
+  6.volume size -500GB-16TB 
+
+5>magnetic standard:-
+  1.Lowest cost per GB of all EBS volume type that is bootable.
+  2.Magnetic volumes are ideal for workloads where data is accessed infrequently and applications where the lowest storage cost is important.
+  3.Price: $0.05/GB/month
+  4.Volume size: 1GB to 1TB
+  5.Max IOPS/volume: 40-200
+
+=======================================================================================================================================================================
+
+**EBS snapshots of root volume**
+
+ 1.EBS snapshots are point-in-time images/copies of your EBS volume.
+ 2.any data written to the volume after the snapshot process is intiated, will not be included in the resulting snapshot (but will be included in future, incremental 
+   update).
+ 3.per AWS account, upto 5000 EBS volumes can be created.
+ 4.per account, upto 10,000 EBS snapshots can be created.
+ 5.EBS snapshots are stored on s3, however you cannot access them directly you can only access them through EC2 APIs.
+ 6.while EBS volumes are AZ specific, snapshots are region specific. 
+ 7.any AZ in region can use snapshot to create EBS volume.
+ 8.to migrate an EBS from one AZ to another,create a snapshot (region specific) and create an EBS volume the snapshot in the intended AZ.
+ 9.you can create a snapshot to an EBS volume of the same or longer size than the original volume size,from which the snapshot was initially created.
+
+=======================================================================================================================================================================
+
+**EBS snapshots of non-root volume**
+
+10.you can take a snapshot of a non-root EBS volume while the volume is in use on a running EC2 instance.
+11.this means you can still access it while the snapshot is being proccessed.
+12.however the snapshot will only include data that is already written to your volume.
+13.the snapshot is created immediately,but it may stay in pending status untill the full snapshot is completed this takes few hours to complete , specially for the 
+   first time snapshot of a volume
+14.during the period, when the snapshot status is pendig, you can still access the volume (no-root) , but I/O might be slower because of the snapshot activity.
+15.while in pending state , an in progress snapshot will not include data from ongoing reads and writes to the volumes
+16.to take complete snapshot of your non-root volume -stop or unmount the volume.
+17.to create a snapshot for a root EBS volume, you must stop the instance first then take the snapshot.  
+18.EBS volume is AZ specific, snapshot are region specific also we can copy that snapshot and send to the another region.
+
+=======================================================================================================================================================================
+
+**EBS incremental snapshots**
+
+ 1.EBS snapshots are stored incrementally. 
+ 2.for low cost storage on s3 and a guarantee to be able to fully restore data from the snapshots.
+ 3.what you need is a single snapshot then further snapshots will only carry the changed blocks (incremental updates)
+ 4.therefore you do not need to have multiple full/complete copies of the snapshot.
+ 5.you are charged for-
+      --data transfered to s3 from your EBS volume you are taking snapshot 
+      --snapshot stored in s3
+      --first snapshot is a clone subsequent snapshots are incremental.
+ 6.deleting snapshot will only remove data exclusive to the snapshot.
+ 7.In EBS, the data will be stored in a block storage form so when we create a snapshot of a volume and the data will be not fully
+   stored in volume means the volume blocks are empty the aws can intelligenly take a snapshot of only the stored block data.and when 
+   we add object in a blocks so the blocks are updated so when take a snapshot of volume only the udated blocks are stored in a snapshot
+   because aws can only store updated blocks intelligently.so when we delete the 1st snapshot amazon aws can send the snapshot 1 data to 
+   the snapshot 2 so that the data will not be deleted.and when we create a volume of the snapshot it can retrive all the data only you 
+   give the original storage as well as large storage but not give less storage.in less storage it can not be created.
+
+=========================================================================================================================================
+
+**EBS encryption**
+
+ 1.EBS encryption is supported on all EBS volumes types and all EC2 instance families.
+ 2.snapshots of encrypted volumes are also encrypted.
+ 3.creating on EBS volume from an encrypted snapshot will result it an encrypted volume
+ 4.data encryption at rest means , encryption data while it is stored on the data storage device.
+ 5.there are many ways you can encrypt data on an EBS volume is attached to an EC2 instance.
+     -use 3rd party EBS volume
+     -encryption tools
+     -use encrypted 
+ 6.encrypt data at the application level before storing it to the volume.
+ 7.use encrypted file system on the top of the EBS volume
+ 8.encrypted volume are accessed exactly like encrypted ones, basically encryption is handled transperantly
+ 9.you can attach an encrypted and unencrypted volumes to the same EC2 instance.
+10.remember that the EBS volumes are not physically attached to the EC2 instance, rather they are virtually attached thorugh the EBS infrastructure.
+11.this means when you encrypt data on an EBS volume, data is actually encrypted on the EC2 instance than transferred, encrypted to be stored on the EBS volume
+12.these means data in transit between EC2 and encrypted EBS volume is also encrypted.
+13.there is no direct way to change the encryption state of the volume.
+14.to change the state (indirectly) you need to follow either of the following two ways-
+     1.attach a new, encrypted, EBS volume to the EC2 instance that has the data to be encrypted then,
+     2.mount the new volume to the EC2 instance copy the data from the un-encrypted volume to the new volume.
+     3.both volumes must be on the same EC2 instance.
+
+                                         or
+
+ Create a snapshot of the unencrypted volume.
+ Copy the snapshot and choose encryption for the new copy, this will create an encrypted copy of the snapshot.
+ Use this new copy to create an EBS volume which will be encrypt too.
+ Attach the new encrypted EBS volume to the EC2 instance. 
+
+=======================================================================================================================================================================
+
+**Root EBS Volume Encryption**
+
+ There is no direct way to change the encryption state of a volume.
+ There is an indirect work around to this:
+      Launch the instance with the EBS volume required.
+      Do whatever patching of install applications.
+      Create an AMI from the EC2 instance.
+      Copy the AMI and choose encryption while copying.
+      This results it an encrypted AMI that is private (yours only).
+      Use the encrypted AMI to launch new EC2 instances which will have their EBS root volume3 encrypted.
+
+**EBS Encryption Key**
+ To encrypt a volume or snapshot, you need an encryption key, these keys are called customer master key (CMK) and are managed by AWS key management service (KMS).
+ When encrypting the first EBS volume, AWS KMS creates a default CMK key.
+ This key is used for your first volume encryption of snapshots created from this volumes and subsequent volumes created from these snapshots.
+ After that each newly encrypted volume is encrypted with a unique/ separate AES-256 bit encryption key. This key is used to encrypt the volume, its snapshot and any
+  volumes created of its snapshots.
+
+**Changing Encryption Key**
+ You cannot change the encryption (CMK) key used to encrypt an existing encrypted snapshot or encrypted EBS volume.
+ If you want to change the key, create a copy of the snapshot and specify during the copy process that you want to re-encrypt the copy with a different key.
+ This comes in handy when you have a snapshot that was encrypted using your default CMK key and you want to change the key in order to able to share the snapshot 
+   with other accounts.
+
+=======================================================================================================================================================================
+
+**Sharing EBS Snapshot**
+
+ By default only the account owner can create volumes from the account snapshots.
+ You can share your unencrypted snapshots with the AWS community by making them public.
+ Also you can share your unencrypted snapshots with a selected AWS account by making them private then selecting the AWS accounts to share with.
+ You cannot make your encrypted snapshots public.
+ You cannot make a snapshot of an encrypted EBS volume public on AWS.
+ You can share your encrypted snapshot with specific AWS account as follows:
+        Make sure that you use a non-default/custom CMK key to encrypt the snapshot, not the default CMK key (AWS will not allow the sharing if default CMK is used.)
+        Configure cross account permissions in order to give the account with which you want to share the snapshot access to the custom CMK key used to encrypt
+         the snapshot.
+        Without this the other account will not be able to copy the snapshots nor will be able to create volumes of the snapshots.
+ AWS will not allow you to share snapshots encrypted using your default CMK key.
+ For the AWS account with whom an encrypted snapshot is shared.
+        They must first create their own copies of the snapshot.
+        Then they use that copy to restore/create EBS volume.
+ You can make a copy of the snapshot when it has been fully saved to S3 (its status show as complete) and not during the snapshot’s pending status (when data blocks
+   are being moved to S3).
+ Amazon S3 server side encryption (SSE) protect the snapshot data-in-transit while copying.
+ You can have up to 5 snapshots copy request running in a single destination per account. 
+
+=======================================================================================================================================================================

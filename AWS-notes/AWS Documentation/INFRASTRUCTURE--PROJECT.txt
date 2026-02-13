@@ -1,0 +1,96 @@
+**INFRASTRUCTURE:-
+
+1.create a vpc (10.0.0.0/18)
+2.create a subnets
+    1.public subnet 1---(10.0.0.0/20)---1a
+    2.public subnet 2---(10.0.16.0/20)--1b
+    3.private subnet 3--(10.0.32.0/20)--1a
+    4.private subnet 4--(10.0.48.0/20)--1b
+3.create a internet getway and attach to a vpc
+4.create a nat getway
+5.create a route table
+     1.public-route 
+          ---subnet associate---public1 and public2
+          ---route----IGW
+     2.private route
+          ---subnet associate---private1 and private2
+          ---route----NAT
+6.create a instance
+     1.name-----bastion-host server
+     2.machine--amzon linux
+     3.sg-------http,https,ssh,custom 8080
+     4.user data---
+          #!/bin/bash
+          sudo yum update -y 
+          sudo yum install nginx -y 
+          sudo systemctl start nginx
+          sudo systemctl enable nginx 
+          sudo systemctl start nginx
+7.create a instance
+      1.name----host server
+      2.machine--amzon iinux
+      3.sg----http,https,ssh,custom 8080
+      4.user data---
+           #!/bin/bash
+           sudo yum update -y 
+           sudo yum install nginx -y 
+           sudo systemctl start nginx 
+           sudo systemctl enable nginx 
+           sudo systemctl start nginx 
+
+8.create a template
+      1.name----------mylt
+      2.temlate tag---Name--private-server
+      3.image---------aamzon linux
+      4.subnet--------not associate
+      5.sg------------http,https,ssh,custom 8080
+      6.resource tag--Name--private server
+
+9.create a autoscaling group
+      1.name-----ASG 
+      2.tempate--mylt
+      3.vpc------myvpc
+      4.az-------private subnet 3 and private subnet 4
+      5.desired---2, minimun---2, maximun---2
+      6.create a autoscaling group
+
+10.go to instance
+     1.accesing private server 1 on bastion-host server
+          1.yum update -y 
+          2.yum install java* -y
+          3.wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.91/bin/apache-tomcat-8.5.91.tar.gz
+          4.tar -xvf apache-tomcat-8.5.91.tar.gz
+          5.cd apache-tomcat-8.5.91
+          6.cd bin/
+          7. ./catalina.sh start
+    
+     2.accessing private server 2 on bastion host server
+          1.yum update -y 
+          2.yum install java* -y 
+          3.wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.78/bin/apache-tomcat-9.0.78.tar.gz
+          4.tar -xvf apache-tomcat-9.0.78.tar.gz
+          5.cd apache-tomcat-9.0.78
+          6.cd bin/
+          7. ./catalina.sh start
+
+11.create a target group
+          1.target type-----instance
+          2.name------------tg/tomcat
+          3.vpc-------------myvpc
+          4.path-----------/index.html
+          5.register-------1.private-server1
+                           2.private-server2
+          6.port for selected instance----(8080)
+          7.include as pending below 
+          8.create a taget group
+
+12.create a load balancer
+      1.name-------ALB
+      2.vpc--------my-vpc
+      3.mapping----public subnet-1a and public subnet-1b
+      4.sg---------(that attach to instance)
+      5.forward to----tg/tomcat
+      6.create a load balancer
+
+13.copy dns of ALB and paste on web you get
+    tomcat-8.5.91 and tomcat-9.0.78

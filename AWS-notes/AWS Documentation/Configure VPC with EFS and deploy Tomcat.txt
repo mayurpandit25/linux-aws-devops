@@ -1,0 +1,103 @@
+create vpc with 4 subnets 2 public 2 private create a jumpserver launch a private instance mount efs on that subnet deploy tomcat on efs on /mnt
+
+=======================================================================================================================================================================
+
+1.create a vpc-------------10.0.0.0/18
+
+2.create a subnet
+      1.public-subnet-1----10.0.0.0/20
+      2.public-subnet-2----10.0.16.0/20
+      3.private-subnet-3---10.0.32.0/20
+      4.private-subnet-4---10.0.48.0/20
+
+3.create a IGW and attach to vpc
+ 
+4.create a nat getway
+
+5.create a route table
+      1.public-route
+          associates-----public-subnet1 and 2----attach IGW
+      2.private-route
+          associate------private-subnet1 and 2---attach nat getway
+ 
+6.create a instances
+     1.name------bastion-host-server
+     2.machine---ubuntu
+     3.subnet----public-subnet-1
+     3.sg--------http/https/ssh/nfs/8080
+     4.type------t2.micro
+     5.create a instance
+ 
+7.create a instance
+     1.name------private-server
+     2.machine---ubuntu
+     3.subnet----private-subnet-3
+     4.sg--------http/https/ssh/nfs/8080
+     5.type------t2.micro
+     6.create a instance
+
+8.create a EFS(elastic file system)
+    1.name----------EFS
+    2.vpc-----------my-vpc
+    3.customized----attach your sg that you attach to the instance
+    4.create a efs
+
+9.access the bastion host server
+     1.vim mayur.pem ---------------(paste the key of private instance)
+     2.chmod 600 mayur.pem
+     3.ssh -i mayur.pem ubuntu@(private ip of private instance)
+     
+     1.then mount the efs on /mnt
+     2.apt update -y
+     3.apt install nfs-common
+     4.go to efs----click on attach----click on mount via IP----copy these and paste on server and write at last /mnt
+     5.df -Th
+     5.cd /mnt
+     
+     6.deploy tomcat on /mnt
+     7.apt update -y
+     8.apt install default-jdk -y 
+     9.apt install default-jre -y 
+    10.wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.85/bin/apache-tomcat-9.0.85.tar.gz ------------#downloading the tomcat package
+    11.tar -xzf apache-tomcat-9.0.85.tar.gz
+    12.cd apache-tomcat-9.0.85
+    13.cd webapps/
+    14.wget https://s3-us-west-2.amazonaws.com/studentapi-cit/student.war -------------------------------#download student.war on webapps
+    15.cd ../bin/
+    16. ./catalina.sh start -----------------------------------------------------------------------------#start the tomcat
+  
+    17.curl localhost:8080
+    18.curl localhost:8080/student/ ---------------------------------------------------------------------#to check wheather the tomcat start or not
+
+
+10.then create a target group
+      1.type---------instance
+      2.name---------mytg
+      3.path---------/student/
+      4.register private instance-----8080----include as pending below
+      5.create a target group
+
+11.create a load balancer
+      1.name--------------ALB
+      2.default action----mytg
+      3.create a load balancer
+
+12.copy the dns and paste on web
+        (dns)/student/
+
+=======================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,141 @@
+ **SITE TO SITE VPN CONNECTION**
+
+1.By default, instance that you launch into an amazon vpc cant communicate with your own network.
+2.you can enable access to your network from your vpc by creating aws site to site vpn connection and configure routing to pass traffic through connection.
+3.aws datacentre to on premises.
+4.onw aws datacentre to another aws datacentre.
+
+
+**MUMBAI:-
+   1.create a vpc (10.100.0.0/16)---(aws-datacentre vpc)
+
+   2.create a subent
+        1.my-private-subnet-(10.100.0.0/24)
+
+   3.create a route table
+        1.my-private-route
+             ---subnet associate---(my-private-subnet)
+
+   4.create a security group (aws-data-sg)
+        1.inbound---(all tcp)----(10.200.0.0/16)
+        2.inbound---(all icmp)---(10.200.0.0/16)
+        3.inbound---(ssh)--------(10.200.0.0/16)       
+        4.inbound---(http)-------(10.200.0.0/16)
+       
+   5.create a instance
+        1.name-------aws-datacentre (private)
+        2.machine----amazon linux
+        3.sg---------aws-data-sg 
+        4.ip---------diasable
+  
+   6.create a virtual private getway
+        1.name-------aws-vpg
+        2.create a virtual private getway
+        3.click on the created vpg and attached to the (aws-datacentre vpc)
+ 
+   7.create a customer getway
+        1.name-------aws-cg
+        2.IP add-----(singapore instance public ip)
+        3.create a customer getway
+
+
+**SINGAPORE:-
+   1.create a vpc (10.200.0.0/16)--(office vpc)
+   
+   2.create a subnet
+        1.office-subnet---(10.200.0.0/24)
+ 
+   3.create  a internet getway and attach to a vpc
+  
+   4.create a route table
+        1.office-route table
+              ---subnet associates---office subnet
+              ---route---------------IGW
+
+   5.create a security group (my-office-sg)
+        1.inbound---(all tcp)----(anywhere/you can also add 1st vpc ip)
+        2.inbound---(all icmp)---(anywhere/you can also add 1st vpc ip)
+        3.inbound---(ssh)--------(anywhere/you can also add 1st vpc ip)       
+        4.inbound---(http)-------(anywhere/you can also add 1st vpc ip)
+
+   6.create a instance
+        1.name------office-server (public)
+        2.machine---amazon linux (HVM)-5.10
+        3.sg--------my-office-sg
+        4.create a instance
+
+
+**MUMBAI:-
+   1.create a site to site vpn connection
+        1.name------aws-datancentre to office server
+        2.virtual private getway
+        3.customer getway
+        4.routing option---(static)
+            ---10.200.0.0/16
+        5.create a vpn connection
+        6.click on created vpn and download configuration 
+            ---vendor---openswan----download
+        
+   2.open downloaded file and 
+        1.copy liftid in /etc/ipsec.d/aws-vpn
+        2.copy rightid in /etc/ipsec.d/aws-vpn
+
+
+**SINGAPORE:-
+   1.access the office-server instance
+        1.yum install openswan -y
+ 
+        2.vim /etc/ipsec.conf ------------remove # from include
+
+        3.vim /etc/sysetl.conf
+              net.ipv4.ip_forward= 1
+              net.ipv4.conf.all.accept_redirects= 0
+              net.ipv4.conf.all.send_redirects= 0
+
+        4.service network restart
+
+        5.vim /etc/ipsec.d/aws-vpn.conf
+            conn tunnel1
+               authby=secret
+               auto=start
+               left=%defaultroute
+               leftid=(give the ip from downloaded vpn)-----change these
+               right=(give the ip from downloaded vpn)------change these
+               type=tunnel
+               ikelifetime=8h
+               keylife=1h
+               phase2alg=aes128-sha1;modp1024
+               ike=aes128-sha1;modp1024
+               keyingtries=%forever
+               keyexchange=ike
+               leftsubnet=(10.200.0.0/16)-----------------change if u give another ip
+               rightsubnet=(10.100.0.0/16)----------------change if u give another ip
+               dpddelay=10
+               dpdtimeout=30
+               dpdaction=restart_by_peer
+
+         6.vim /etc/ipsec.d/aws-vpn.secrets
+             (paste line of /etc/ipsec.d/aws.secrets from downloaded vpn)
+
+         7.commands to start/enable ipsec
+              1.chkconfig ipsec on 
+              2.service ipsec start
+              3.service ipsec status
+
+
+**MUMBAI:-
+   1.go to route table
+         1.my-private-route
+                  1.route propagation
+                  2.edit route propagation
+                  3.enable
+
+
+**SINGAPORE:-
+   1.ping 8.8.8.8
+   2.ping (private ip of aws-datacentre)
+
+              (successfully create a tunnel from aws-datacentre to office-server)
+
+
+

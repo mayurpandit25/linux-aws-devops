@@ -1,0 +1,19 @@
+Use an intelligent-tiering to automatically move objects between storage class based on access patterns
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a s3 bucket and enables the versioning beacuse intelligent tier generally uses the versioning
+   {my-s3-bucket}
+
+2.add objects in the bucket with the storage class intelligent-tiering as well as you can create a rule by going in the management tab and create rule of intelligent 
+  tiering
+
+ note:- { so intelligent-tiering generally design to optimised the cost by automatically moving the objects in the most-cost effective access tier
+          it generally uses the storage class amazon s3 standard and amazon s3 standard infrequent access so if the objects are very less accessible then the objects 
+          are automatically moving from amazon s3 standard to amazon s3 standard infrequest access but if the objests are frequently accessible then it uses the amazon
+          s3 standard storage by default.}
+
+3.so if your objects are less accessible then your objects are move to amazon s3 standard infrequent access and if u access the objects frequently then they use the 
+  default storage amazon s3 standard
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------

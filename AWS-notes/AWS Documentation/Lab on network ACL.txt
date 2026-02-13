@@ -1,0 +1,29 @@
+**Lab on network ACL
+
+ 1.create a vpc-------10.0.0.0/16
+
+ 2.create a subnet
+       public subnet---10.0.0.0/24
+
+ 3.create a internet getway and attach to a vpc
+
+ 4.create a route table 
+       public route---add subnet association and route on these
+
+ 5.creat a network acl
+      1.associate a subnet
+      2.add inbound permission 
+            100---ssh 
+      3.add outbound permission 
+            100---http 
+            200---https
+ 
+ 6.then create a ec2 server and access these you can not access the server because of the permission you give in only 
+   inbound traffic.you have to give the permission on the outbound also so that you can access the permission
+      1.outbound traffic---250--all tcp--1024-65535
+
+ 7.then you can access these ec2 server
+ 
+ 8.then try to access the internet you cant access the internet because you have only allow outbound traffic so we can also
+   add permission on the inbound traffic.
+      1.inbound traffic----200---all tcp---1024-65535

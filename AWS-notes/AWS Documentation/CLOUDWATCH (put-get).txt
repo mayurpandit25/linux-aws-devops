@@ -1,0 +1,103 @@
+                                                       **CLOUDWATCH---custom metrics (put/get)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a instance
+     1.name------cloudwatch
+     2.machine---amazon-linux-2(HVM)
+     3.sg--------http,ssh,https
+     4.userdata
+          #!/bin/bash
+          sudo yum update -y 
+          sudo yum install httpd -y 
+          sudo systemctl start httpd.service
+          sudo systemctl enable httpd.service
+          sudo echo "HELLO WORLD" > /var/www/html/index.html 
+          sudo systemctl restart httpd.service
+
+2.go to cloudwatch
+     1.go to metrics / all metrics
+     2.click on EC2---preinstance
+     3.search with instance id
+     4.select CPU utilisation,network IN,network OUT
+     5.click on action and adding to the datashboard
+         1.create a dashboard
+         2.name----my-dash
+         3.create
+
+3.create a IAM role
+     1.go to role
+     2.EC2
+     3.cloudwatchfullaccess
+     4.name-----role-for-cloudwatch
+     5.create a role
+
+4.go to instance
+     1.click on instance
+     2.go to action----security-----modify role----attach role---(role-for-cloudwatch)
+
+5.getting ssh on CMD
+     1.ssh -i id_rsa ec2-user@(public ip)
+     2.yum update -y
+     3.sudo amazon-linux-extras install epel -y 
+     4.yum install stress -y 
+     5.stress --cpu 80 --io 4 --vm 2 --vm-bytes 128M --timeout 10M & 
+     6.sudo yum install -y perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https perl-Digest-SHA.x86_64
+     7.perl --version
+     
+ Installing monotoring scripts
+
+     8.curl https://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.2.zip -O
+     9.unzip CloudWatchMonitoringScripts-1.2.2.zip && \
+    10.rm CloudWatchMonitoringScripts-1.2.2.zip && \
+    
+    11.cd aws-scripts-mon
+    12../mon-get-instance-stats.pl
+    13../mon-put-instance-data.pl --mem-util  ------------for memory utilization
+    14../mon-put-instance-data.pl --mem-used  ------------for memory used
+    15../mon-put-instance-data.pl --mem-avail ------------for memory available
+    16../mon-put-instance-data.pl --swap-used ------------for swap used
+
+6.go to cloudwatch
+     1.all metrics
+     2.custom metrics
+     3.select these metrics 
+     4.and add these metrics in dashboard (my-dash)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**create a scripts to automatically (put and get) the objects with crontab**
+
+1.crontab -e 
+ 
+     *       *      *      *        *    /root/aws-scripts-mon/mon-get-instance-stats.pl --mem-util --mem-used
+ (minute) (hour) (date) (month) (week?)
+
+  :wq!
+
+2.systemctl restart crond
+3.systemctl enable crond
+4.crontab -l
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+**Adding MFA-delete  protection on s3 buckets:-
+
+1.configure aws cli with your own access creadentials
+2.version must be enabled.
+
+  note:-1.you can not stop versioning withour MFA token
+        2.only root can enabled or disabled the MFA-DELETE
+
+
+1.create a bucket
+2.create a MFA 
+3.create a access/secrete key credentials
+4.aws configure
+5.aws s3 ls / aws s3api list-buckets
+6.aws s3api get-bucket-versioning --bucket "bucket name" --------------------------for checking the versioning wheather it is desabled or enabled.
+7.aws s3api put-bucket-versioning --bucket (bucket name) --versioning-configuration Status=Enabled,MFADelete=Enabled --mfa "mfa token"------------for enabling the MFA
+8.aws s3api delete-object --bucket (bucket name) --key (image name) ---------------delete object in bucket
+9.aws s3api delete-object --bucket (bucket name) --key (image name) --version-id (ID) -----to try to delete version of object

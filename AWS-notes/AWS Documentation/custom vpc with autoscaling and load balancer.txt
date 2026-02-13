@@ -1,0 +1,59 @@
+                                                         **custom vpc with autoscaling and load balancer:-
+
+1.create a vpc (10.0.0.0/18)
+2.create a subnet 
+      1.public subnet (10.0.0.0/20)--1a
+      2.public subnet (10.0.16.0/20)--1b
+      3.private subnet (10.0.32.0/20)--1a
+      4.private-subnet (10.0.48.0/20)--1b
+3.create a internet getway and attach to a vpc
+4.create a nat getway
+5.create a route table 
+     1.public-route
+          ---subnet associate----public subnets
+          ---route----internet getway
+     2.private-route
+          ---subnet associate----private subnets
+          ---route----nat getway
+6.create a instance
+   1.bastion-host server
+
+7.create a launch template
+     1.name---mylt
+     2.tags---name-mobile
+     3.image--amazon-linux
+     4.subnet--private subnet
+     5.sg------ssh,https,http
+     6.tags----Name--mobile
+     7.userdata---
+        #!/bin/bash
+        sudo yum update -y 
+        sudo yum install httpd -y
+        sudo echo "<h1> this is my mobile webpage of "$HOSTNAME" </h1>" > /var/www/html/index.html
+        sudo systemctl start httpd
+        sudo systemctl enable httpd
+        sudo systemctl restart httpd
+
+8.create a autoscaling group
+      1.name---ASG
+      2.launch template---mylt
+      3.vpc----myvpc
+      4.desired---2, minimum--2, maximum--2
+      5.availability zone mapping----private subnet (1a), private subnet (1b)
+      6.create a ASG
+
+9.create a target group
+      1.name---tg
+      2.type---instance
+      3.register----mobile1 and mobile2
+      4.include as pending below 
+      5.create a target group
+     
+10.create a load balancer
+      1.name---ALB 
+      2.vpc----myvpc
+      3.mapping---public subnet (1a) and public subnet (1b)
+      4.forward to ----tg
+      5.create a load balancer
+
+11.copy dns and hit on the web

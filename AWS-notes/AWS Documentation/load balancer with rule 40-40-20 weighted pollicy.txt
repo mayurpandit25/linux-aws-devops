@@ -1,0 +1,115 @@
+
+LOAD BALANCER WITH 40 - 40 - 20 RULE
+
+======================================================================================================================================================================
+
+1.create a template--nginx-lt
+2.create a template--apache-lt
+3.create a template--tomcat-lt
+
+4.create  a autoscaling group(nginx)
+       1.name ------ASG-nginx
+       2.template---nginx-lt
+       3.az and subnets----1a,1b,1c
+       4.capacity
+            desired-------1
+            minimum----1
+            maximum----2
+       5.add sns
+       6.tag---Name-nginx
+       7.create a autoscaling group
+   
+5.create  a autoscaling group(apache)
+        1.name ------ASG-apache
+        2.template---apache-lt
+        3.az and subnets----1a,1b,1c
+        4.capacity
+             desired-------1
+             minimum----1
+             maximum----2
+       5.add sns
+       6.tag---Name-apache
+       7.create a autoscaling group
+
+6.create  a autoscaling group(tomcat)
+        1.name ------ASG-tomcat
+        2.template---tomcat-lt
+        3.az and subnets----1a,1b,1c
+        4.capacity
+             desired----1
+             minimum----1
+             maximum----2
+       5.add sns
+       6.tag---Name-tomcat
+       7.create a autoscaling group
+
+7.click on created instance–nginx---> connect
+         1.sudo apt update -y
+         2.sudo apt install nginx -y
+         3.sudo systemctl start nginx
+
+8.click on created instance-apache---> connect
+         1.sudo apt update -y
+         2.sudo apt install apache2 -y 
+         3.sudo systemctl start apache2
+
+10.click on created instance-tomcat---> connect
+          1.sudo apt update -y
+          2.apt install openjdk-17-jdk -y 
+          3.wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.50/bin/apache-tomcat-10.1.50.tar.gz
+          4.tar -xvf aapache-tomcat-10.1.50.tar.gz 
+          5.cd apache-tomcat-10.1.50
+          6.cd bin/
+          7. ./catalina.sh start
+
+
+11.create a target group (nginx)
+            1.name------tg-nginx
+            2.type-------instance
+            3.path---------/
+           4.register-------nginx
+  
+12.create a target group (apache)
+            1.name------tg-apache
+            2.type-------instance
+            3.path---------/
+           4.register-------apache
+
+13.create a target group (tomcat)
+            1.name------tg-tomcat
+            2.type-------instance
+            3.path---------/
+           4.register----tomcat----> 8080---> include as pending below ---> create
+
+14.Click on ASG-nginx
+   1.click on integrations ---> load balancing ---> edit ---> attach (tg-nginx) ---> update
+
+15.Click on ASG-apache
+   1.click on integrations ---> load balancing ---> edit ---> attach (tg-apache) --> update
+
+16.Click on ASG-tomcat
+   1.click on integrations ---> load balancing ---> edit ---> attach (tg-tomcat) --> update
+
+17.create a load balancer
+           1.name------ALB
+           2.default action-------tg-nginx
+           3.create a target group
+
+18.click on created ALB
+            1.select listener-----> click on listener
+            2.action--------------> edit listener
+            3.add target group-----> tg-apache
+            4.add target group ----> tg-tomcat
+            4.add the weighted policy
+                      1. tg-nginx---------4---------------40%
+                      2.tg-apache---------4 --------------40%
+                      3.tg-tomcat---------2---------------20%
+           5.save the changes
+
+
+19.click on application load balancer copy the dns and paste
+
+YOU SEE:-
+ The traffic is moving on about 40% in nginx while in apache2 40% and on tomcat it should be about 20%
+
+======================================================================================================================================================================

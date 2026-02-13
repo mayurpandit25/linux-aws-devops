@@ -1,0 +1,11 @@
+**Recycle bin:-
+
+Recycle Bin is a data recovery feature that enables you to restore accidentally deleted Amazon EBS snapshots and EBS-backed AMIs. When using Recycle Bin, if your resources are deleted, they are retained in the Recycle Bin for a time period that you specify before being permanently deleted.
+
+  1.go to snapshot
+  2.go to recycle bin
+  3.go to retention rule
+  4.resource type----snapshot/image
+  5.create a rule
+  6.then go to snapshot
+  7.delete snapshot

@@ -1,0 +1,24 @@
+									**SHORT NOTES on AWS**
+
+
+EBS volume
+
+1.ebs volume bahaves like a ram, unformated,external block storage device that can attach to the ec2 instance
+2.it is best suited for the databases that have frequent read and write load
+3.it is nas storage it is little bit slower than instance store
+4.it can store data in the form of block means it can devide data into small evenly block 
+6.it can only maintain the address for the block 
+7.it cant maintain the metadata for the block
+8.when u terminate the instance the data should be deleted but if u stop the isntance the volume should be remain attach 
+9.the volume should not be deleted when u untick on delete on terminatation when u create a instance
+
+
+instance store
+
+1.it is DAS storage 
+2.it is faster than EBS volume
+3.it is physicallly attached to the host-server
+4.when u stop or terminate the instance the volume should be delete but when u terminate the instance the volume should not be deleted
+5.we can't detached and attach the volume to the another instance
+6.it does not rely on the long term of data
+

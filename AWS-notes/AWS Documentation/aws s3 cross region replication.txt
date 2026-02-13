@@ -1,0 +1,7 @@
+**aws s3 cross region replication rule:-
+
+1.create a bucket in mumbai region and one more create in singapore region and give them a public access to both
+2.then create a replication rule and in these rule you can choose the bucket in which bucket you can replicate the object like singaapore bucket
+3.then add the objects in the mumbai region bucket 
+4.then go to singapore region bucket and refresh the objects should be replicated from mumbai region bucket to singapore region bucket.
+

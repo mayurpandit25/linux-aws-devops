@@ -1,0 +1,41 @@
+EFS with AMAZON LINUX ====>>>
+
+
+    1.create a two instances
+          1.EFS-01 / EFS-02
+          2.give the machine amazon 
+          3.select keys-pair
+          4.and give the security group like ssh,NFS-anywhere
+          5.create a instance
+
+    2.click on EFS
+           1.create a file system
+           2.vpc-default and then customized 
+           3.next
+           4.next
+           5.virtul private cloud -default vpc
+           6.there is a sg group default . you can remove it add your sg to the az that you attach to your instance
+           7.next and create 
+
+    3.access EFS-01
+           1.ec2-user
+           2.mkdir efs
+           3.yum install amazon-efs-utils -y
+           4.then go to EFS and attach --mount via DNS
+           5.then copy EFS mount helper and paste on the EFS-01
+           6.ls
+           7.cd efs
+           8.touch file file2 file3
+           9.ls
+
+    4.access EFS-02
+           1.ec2-user
+           2.mkdir efs
+           3.yum install amazon-efs-utils -y
+           4.then go to EFS and attach --mount via DNS
+           5.then copy EFS mount helper and paste on the EFS-01
+           6.ls
+           7.cd efs
+           8.ls
+
+==============================================================================================================================================

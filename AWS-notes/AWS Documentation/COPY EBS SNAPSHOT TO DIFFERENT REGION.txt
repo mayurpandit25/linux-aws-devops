@@ -1,0 +1,28 @@
+Copy EBS snapshots to different regions for cross-region disaster recovery and data migration. This helps protect your data and provides geographical redundancy.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+   1.create a EC2 instance
+        name-------my-instance
+        machine----amazon-linux
+        key--------id_rsa
+        create a instance
+
+   2.click on the volume
+
+   3.create a snapshot
+
+   4.click on the snaphshot
+   5.go to action
+   6.copy the snapshot
+         1.select destination region--ohio
+         2.description--
+         3.encryption---
+         4.copy the snapshot
+
+   7.go to ohio region
+   8.click on EC2
+   9.check the snapshot
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

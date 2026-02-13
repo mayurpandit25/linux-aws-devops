@@ -1,0 +1,25 @@
+MOUNT EFS ON AMAZON-LINUX
+
+==================================================================================================================================================
+
+1.create a instance- EFS-01
+2.create a instance- EFS-02
+
+3.create a efs filesystem
+  1.attch the same sg that are attach to the server
+
+4.On instance-EFS-01
+  1.yum install amazon-efs-utils -y
+  2.mkdir efs
+  3.go to filesystem -> attach -> using efs mount helper -> copy and paste on instance
+  4.cd efs
+  5.touch file{1..10}
+
+5.On instance-EFS-02
+  1.yum install amazon-efs-utils -y
+  2.mkdir efs
+  3.go to filesystem -> attach -> using efs mount helper -> copy and paste on instance
+  4.cd efs
+  5.ls
+
+==================================================================================================================================================

@@ -1,0 +1,20 @@
+PRACTICAL ON THE DYNAMODB:-
+
+Create a table on the dynamodb
+1.create a table
+  name ------------> contacts 
+  parition_key ----> id -----> string
+2.create a table
+
+create a access/secret to connect with dynamodb as well as create a role
+
+Create a instance
+1.yum install docker -y
+2.systemctl start docker
+3.systemctl enable docker
+4.usermod -aG docker ec2-user
+5.docker pull philippaul/node-dynamodb-demo
+
+6.docker run -d -p 80:3000 -rm --name node-dynamo-app -e AWS_REGION=ap-south-1 -e AWS_ACCESS_KEY_ID=(access_key) -e AWS_SECRET_ACCESS_KEY=(secret key) philippaul/node-dynamodb-demo
+
+***********************************************************************************************************************************************************************

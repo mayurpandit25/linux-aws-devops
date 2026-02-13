@@ -1,0 +1,26 @@
+**Lab on nat getway:-
+
+1.create a vpc-----10.0.0.0/18
+
+2.create a subnet
+    public subnet----10.0.0.0/20
+    private subnet---10.0.16.0/20
+
+3.create a internet getway and attach to vpc
+
+4.create a nat getway
+
+5.create a route table
+    public route-----give the public subnet and giving the internet getway
+    private route----give the private subnet and giving the nat getway
+
+6.then go to ec2
+    1.create a private instance by giving them a private subnet
+    2.create a bastion host server by giving them a public subnet
+
+7.then access the bastion host server 
+    1.save the pem key
+    2.give the ssh to access the private instance
+    3.then access the private instance by ssh
+      (ssh -i (pem-key name) (machine name)@(private IP of private instance)
+    4.then ping 8.8.8.8 to check the internet and its working.

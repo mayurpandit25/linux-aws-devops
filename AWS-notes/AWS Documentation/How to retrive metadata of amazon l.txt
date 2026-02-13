@@ -1,0 +1,17 @@
+**How to retrive metadata of amazon linux machine:-
+   
+  1.create a instance
+      -name-
+      -image-amazon machine image 
+      -security group--http,ssh
+
+  2.access the instance in putty
+      -ec2-user
+      -run the command
+        TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \ && curl -H "X-aws-ec2-metadata-token: $TOKEN" -v
+   http://169.254.169.254/latest/meta-data/
+
+  3.to check the data 
+     curl http://169.254.169.254/latest/metadata/public-key -------------to check public key
+     ----------------,,-------------------------/instance-id ------------to check instance id
+     ----------------,,-------------------------/instance-type-----------to check instance type

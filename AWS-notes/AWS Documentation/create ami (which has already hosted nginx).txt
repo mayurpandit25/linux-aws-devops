@@ -1,0 +1,58 @@
+we have to create ami (which has already nginx hosted) without passing userdata.
+
+======================================================================================================================================================================
+
+1.create a instance
+     1.name--------my-instance
+     2.machine-----ubuntu
+     3.type--------t2.micro
+     4.sg----------https/http/ssh
+     5.create a instance
+ 
+2.access these instance
+     1.sudo apt update -y
+     2.sudo apt install nginx -y
+     3.systemctl start nginx.service
+     4.nginx -t
+     5.cd /var/www/html/
+     6.wget https://www.free-css.com/assets/files/free-css-templates/download/page295/guarder.zip
+     7.apt install unzip -y
+     8.unzip guarder.zip
+     9.rm -rf guarder.zip
+    10.mv guarder-html /var/www/html/index.html -----------#(mv guarder-html index.html)
+    11.systemctl restart nginx.service
+    12.copy the public ip
+        (curl ifconfig.me) --------------------------------#to see the public ip
+
+ 3.click on the instance to create a AMI image
+     1.go to action
+     2.security------image-----create AMI image
+
+  
+======================================================================================================================================================================
+
+**if you have amazon machine
+
+1.access the instance
+    1.sudo yum update -y
+    2.sudo yum install nginx -y
+    3.systemctl start nginx
+    4.wget https://www.free-css.com/assets/files/free-css-templates/download/page295/guarder.zip
+    5.unzip guarder.zip
+    6.rm -rf guarder.zip
+    7.mv guarder-html/* /usr/share/nginx/html/
+    8.systemctl restart nginx
+
+======================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+

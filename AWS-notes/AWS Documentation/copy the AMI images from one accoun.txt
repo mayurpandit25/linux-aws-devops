@@ -1,0 +1,23 @@
+**copy the AMI images from one account to another account:-
+
+account-1:-
+    1.create one AMI image from instance and then go to AMI and select the AMI then go to action and click on image modify permission
+         a.the image is private
+         b.account number ---- (2ND account-ID)
+         c.tick on add "create volume" permission
+         d.save
+
+account-2:-
+    1.click on the AMI
+    2.click on the private images instead of owned by me
+    3.the image is seen
+
+In case account-1 can remove the permission of AMI so that we can create a copy of that AMI 
+    1.click on AMI then go to action and select copy AMI
+    2.destination region ---
+    3.name---
+    4.discription---
+    5.encryption---
+    6.copy AMI
+    7.then go to region that you can specify click on AMI and click on owned by me 
+    8.with this image we can launch the instance as well

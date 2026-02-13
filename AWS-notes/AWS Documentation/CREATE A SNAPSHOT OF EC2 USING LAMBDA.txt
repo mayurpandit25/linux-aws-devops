@@ -1,0 +1,77 @@
+CREATE A SNAPSHOT OF EC2 USING LAMBDA
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create two instances in mumbai region and in singapore region
+
+2.create a role
+      1.role----------aws service
+      2.use case------lambda
+      3.policy--------Ec2-full-access
+      4.role-name-----role-for-lambda
+
+3.create a lambda function in lambda
+      1.author from scratch
+      2.function name-----my-function
+      3.runtime-----------python3.7
+      4.role------select existing role---role-for-lambda
+      5.create a function
+
+4.on the function
+      1.paste the code
+
+import boto3
+
+def lambda_handler(event, context):
+    ec2 = boto3.client('ec2')
+    
+    # Get list of regions
+    regions = ec2.describe_regions().get('Regions',[] )
+
+    # Iterate over regions
+    for region in regions:
+        print("Checking region %s " % region['RegionName'])
+        reg=region['RegionName']
+
+        # Connect to region
+        ec2 = boto3.client('ec2', region_name=reg)
+    
+        # Get all in-use volumes in all regions  
+        result = ec2.describe_volumes( Filters=[{'Name': 'status', 'Values': ['in-use']}])
+        
+        for volume in result['Volumes']:
+            print("Backing up %s in %s" % (volume['VolumeId'], volume['AvailabilityZone']))
+        
+            # Create snapshot
+            result = ec2.create_snapshot(VolumeId=volume['VolumeId'],Description='Created by Lambda backup function ebs-snapshots')
+        
+            # Get snapshot resource 
+            ec2resource = boto3.resource('ec2', region_name=reg)
+            snapshot = ec2resource.Snapshot(result['SnapshotId'])
+        
+            volumename = 'N/A'
+        
+            # Find name tag for volume if it exists
+            if 'Tags' in volume:
+                for tags in volume['Tags']:
+                    if tags["Key"] == 'Name':
+                        volumename = tags["Value"]
+        
+            # Add volume name to snapshot for easier identification
+            snapshot.create_tags(Tags=[{'Key': 'Name','Value': volumename}])
+
+      2.deploying the code
+      3.go to configuration and edit
+              1.memory----500MB
+              2.desc.-----config
+              3.timeout------0 to 4m
+              4.save
+      4.test the code
+              1.create a event
+              2.name-----snapshot
+              3.save
+
+5.go to mumbai region click on snapshot and check
+
+6.go to singapore region click on snapshot and check
+

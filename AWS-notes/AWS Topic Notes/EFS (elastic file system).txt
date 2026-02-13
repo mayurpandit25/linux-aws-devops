@@ -1,0 +1,105 @@
+								**EFS (elastic file system)**
+
+=======================================================================================================================================================================
+
+**EFS-(elastic file system):-
+   1.EFS stands for Elastic File System, which is a scalable and fully-managed file storage service offered by Amazon Web Services (AWS).
+   2.It provides a simple and flexible interface for creating and managing file systems, allowing multiple instances to access the same file system simultaneously.
+   3.With EFS, you can easily store and share files across multiple instances, containers, and serverless functions, without worrying about the underlying 
+     infrastructure or capacity planning.
+   4.EFS automatically scales up or down the storage capacity as per your application needs, and also provides high availability and durability of your data.
+   5.EFS supports multiple file access protocols such as NFSv4, which enables you to access your file systems from on-premises or cloud-based instances. Additionally,
+     EFS also supports file locking, encryption at rest, and seamless data migration between file systems, making it a highly versatile and reliable storage solution 
+     for your applications in the AWS cloud.
+
+Short points on the EFS:-
+1.efs is a elastic file system which is scalable and fully manageable service provided by amazon aws that allows the multiple ec2 instance to access the shared data 
+  through the single file system.
+2.it automatically scale up and scale down the storage according to the instances
+3.providing the high availability and durability to the storage
+4.it works with the nfs (network file system) on port 2049
+5.also works with only Linux based distribution
+6.a standard way to shared the files over the network.
+
+EFS ON AMAZON-LINUX:-
+
+**practical:-
+    1.create a two instances
+          1.EFS-01 / EFS-02
+          2.give the machine amazon 
+          3.select keys-pair
+          4.create security group---- efssg ---> ssh, NFS-anywhere
+          5.create a instance
+
+    2.click on EFS
+           1.create a file system
+           2.vpc-default
+           3.regional
+           4.next
+           5.virtul private cloud -default vpc
+           6.security group { efs01/efs02--efssg }
+           7.next and create 
+
+    3.access EFS-01
+           1.ec2-user
+           2.mkdir efs
+           3.yum install amazon-efs-utils -y
+           4.then go to EFS and attach --mount via DNS
+           5.then copy EFS mount helper and paste on the EFS-01
+           6.ls
+           7.cd efs
+           8.touch file file2 file3
+           9.ls
+
+    4.access EFS-02
+           1.ec2-user
+           2.mkdir efs
+           3.yum install amazon-efs-utils -y
+           4.then go to EFS and attach --mount via DNS
+           5.then copy EFS mount helper and paste on the EFS-01
+           6.ls
+           7.cd efs
+           8.ls
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**EFS IN UBUNTU**
+
+1.create a instance
+       1.name--------EFS-01
+       2.machine-----ubuntu
+       3.sg----------ssh,http,https,nfs
+       4.create a instance
+
+2.create a instance
+       1.name--------EFS-02
+       2.machine-----ubuntu
+       3.sg----------ssh,http,https,nfs
+       4.create a instance
+
+3.create a EFS
+       1.name---efs
+       2.customized
+       3.attach our created sg to EFS-01 / EFS-02
+
+4.access the EFS-01
+       1.apt update -y 
+       2.apt install nfs-common
+       3.mkdir -p efs/source
+       4.go to efs---click on attach----click on mount via IP----copy these and paste on server and write at last ---efs/source
+       5.cd efs
+       6.cd source
+       7.touch file{1..10}
+
+5.access the EFS-02
+       1.apt update -y 
+       2.apt install nfs-common
+       3.mkdir -p efs/source
+       4.go to efs---click on attach----click on mount via IP----copy these and paste on server and write at last ---efs/source
+       5.cd efs
+       6.cd source
+       7.ls
+       8.touch bottol
+       9.ls
+
+=======================================================================================================================================================================

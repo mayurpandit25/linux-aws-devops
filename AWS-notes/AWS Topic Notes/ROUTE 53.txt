@@ -1,0 +1,400 @@
+                                                                             **ROUTE-53**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+route 53 is a global service provided by amazon aws which works on the dns that resolves ips to name and name to ips as well as register the new domain, transfer the existing domains and route the traffic for your domain as well as monitor the health of our resources.
+
+You can use Amazon Route53 to register new domains, transfer existing domains, route traffic for your domains to your AWS and external resources and monitor the health of your resources.
+
+**Route 53 Functions**
+1. DNS Management
+2. Traffic Management
+3. Availability Monitoring
+4. Domain Registration
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Route 53 performs three main functions**
+I. Register your domain.
+II. As a DNS, it routes internet traffic to the resources for your domain.
+III. Check the health of your resources.
+ Route 53 sends automated requests over the internet to a resource (can be a web server) to verify that the server is reachable, functional or available.
+ Also you can choose to receive notifications when a resource becomes unavailable and choose to route internet traffic away from unhealthy resources.
+ You can use Route 53 for any combination of these functions: for e.g: you can use Route 53 both to register your domain name and to route internet traffic for the
+  domain.
+ Or you can use Route 53 to route internet traffic for a domain that you register with another domain register.
+ When you register a domain with Route 53 the service automatically makes itself the
+
+DNS service for the domain by doing the following:
+ It creates a hosted zone that has the same name as your domain.
+ It assign a set of four name servers to the hosted zone, unique to the account.
+ When someone uses a browser to access your website, these name servers inform the browser where to find your resources such as a web server of an Amazon S3 bucket.
+ It gets the name servers form the hosted zone and adds them to the domain.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**AWS supports**
+1. Generic top level domains (.com, .in, .net)
+2. Geographic top level domain (.IN, .us, .un, .uk)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Registering a domain with Route 53**
+ You can register a domain with Route 53 if the TLD is included on the supported TLD list.
+ If the TLD is not included you can’t register the domain with Route 53. Using Route 53 as your service: you can use Route 53 as the DNS service for any domain, even
+  if the TLD for the domain is not included on the supported TLD list.
+
+**NOTE: Each Amazon Route 53 account is limited to a maximum of 500 hosted zones and 10,000 resource record sets per hosted zone. You can increase this limit by     
+        requesting to AWS.
+
+**Steps to Configure Route 53**
+ You need to register a domain, this can be Route 53, or another DNS registrar but then you connect your domain name in that registrar to Route 53.
+ Create hosted zone on Route 53, this is done automatically if you registered your domain using Route 53, inside the hosted zone, you need to create record sets.
+
+**Deleting to Route 53**
+ This steps connects everything and make it works.
+ Connect the domain name to the Route 53 hosted zone: this is called delegation.
+ Update your domain registrar with the correct name servers for your Route 53 hosted zone.
+ No other customer hosted zone will share this delegation set with you.
+ Doing this means Route 53 DNS service will be serving DNS traffic for the domain of the hosted zone.
+ If you registered your domain with a different registrar you need to configure the Route 53 name servers list in your registrar DNS database for your domain.
+
+**If you are using another domain provider and you did all the changes**
+ When you migrate from one DNS provider to another for an existing domain, this change can take up to 48 hours to be effective.
+ This is because name server DNS records are typically cached across the DNS system globally on the internet for up to 48 hours (TTL) periods.
+
+**Transferring a domain to Route 53**
+ You can transfer a domain to Route 53 if the TLD is included on the following list:
+ If the TLD is not included, you can’t transfer the domain to Route 53.
+ For most TLD you need to get an authorization code from the current registrar to transfer a domain.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HOSTED ZONE:-
+
+ A Route 53 hosted zone is a collection of records for a specific domain.
+ You create a hosted zone for a domain, and then you create records to tell the domain name system how you want traffic to be routed for that domain.
+ Basically a hosted zone is a container that holds information about the how you want to route traffic for a domain and its subdomains.
+ You can create public (internet) hosted zones, or private (internal DNS) hosted zones.
+ For each public hosted zone that you create Amazon Route 53 automatically creates a name server record and a start of authority (SOA) record. Don’t change these 
+  records.
+ Route 53 automatically creates a name server record with the same name as your hosted zone.
+ It list the four name servers that are authoritative name servers for your hosted zone.
+ Do not add, change, or delete name servers in this record.
+ When you create a hosted zone Amazon Route 53 automatically creates a name server records and a start of authority (SOA) record for the zone.
+ The name server record identifies the four name server that you give to your registrar of your DNS service so that DNS queries are routed to Route 53 name server.
+ By default Route 53 assigns a unique set of four name servers (known collectively as a delegation set.) to each hosted zone that you create.
+        e.g: ns-1337.awsdns-39.com
+             ns-895.awsdns-47.net
+             ns-428.awsdns-53.org
+             ns-1597.awsdns-07.co.uk
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Route 53 as your Authoritative DNS**
+
+ Once you update the Route 53 name server settings with your domain registrar to include the Route 53 name servers, Route 53 will be responsible to respond to DNS
+  queries for the hosted zone.
+ This is true whether you do have a functioning website or not.
+ Route 53 will respond with information about the hosted zone whenever someone types the associated domain name in a web server.
+ You can create more than one hosted zone with the same name and add different records to each hosted zone.
+ Route 53 assigns four name servers to every hosted zone.
+ The name servers are different from each other.
+ When you update your registrar’s name server records be careful to use the Route 53 name servers for the correct hosted zone- the one that contains the records that 
+   you want Route 53 to use when responding to queries for your domain.
+ Route 53 never returns values for records in other hosted zones that have the same name.
+ Route 53 hosted zone default entries: inside the hosted zone by default you have two entries:
+          a. Name server entry: it contains the unique sets of name servers for this hosted zone.
+          b. SOA entry: it contains information about the hosted zone.
+
+**If you are currently using another DNS service and you want to migrate to Amazon Route 53**
+ Start by creating a hosted zone.
+ Route 53 automatically assigns the delegation sets the four name servers to your hosted zone.
+ To ensure that DNS routes queries for your domain to the Route 53 name servers.
+ Update your registrar’s or your own DNS service’s name server records for the domain to replace the current name servers with the names of the four Route 53 name 
+   servers for your hosted zone.
+ The method that you use to update the name server records depends on which registrar or DNS service you are using.
+ Some registrar only allow you to specify name servers using IP addresses they don’t allow you to specify fully qualified domain names.
+ If your registrar requires using IP addresses,, you can get the IP addresses for your name servers using the dig utility (for mac and linux) and nslookup (for  
+  windows).[cmdnslookup].
+
+**Transferring a domain between accounts within AWS**
+ Transferring a domain to a different AWS account: if you registered a domain using one AWS account and you want to transfer the domain to another AWS account you
+   can do so by contacting the AWS support center and requesting the transfer. Migrating a hosted zone to a different AWS account:
+ If you are using Route 53 as the DNS service for the domain, Route 53 doesn’t transfer the hosted zone when you transfer a domain to a different AWS account.
+ If domain registration is associated with one account and the corresponding hosted zone is associated with another account, neither domain registration not DNS  
+  functionality is affected.
+ The only affect is that you will need to sign into the Route 53 console using one account to see the domain and sign-in using the another account to see the hosted 
+   zone
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+RECORDS TYPES:- (its  a way of maping your domain)
+
+1. A record: Address record- maps domain name to IP address. e.g: www.cns.com IN A 5.5.5.5
+2. AAAA record- IPv6 address record: maps domain name to an IPv6 address. e.g: www.cns.com IN AAAA 2002:b786::1
+3. CNAME- maps an alias to a hostname. E.g: web IN CNAME www.cns.com
+4. NS record- name server record used for delegating zone to a name server. E.g: cns.com IN NS nsi.cns.com
+5. SOA record- start of authority record.
+6. MX record- mail exchange: defines where to deliver mail for user@ a domain name.
+7. CAA
+8.PTR
+9.SPF
+e.g: cns.com IN MX 10 mail01.cns.com
+     Name server records defines which name server is an authoritative to a particular zone of domain name and point you to other DNS servers.
+     A/AAAA are called host records, like business cards.
+     CNAME is an alternative record or an alias for another record.
+     Helpful in redirection or if you want to hide details about your actual server from the users.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SOA RECORD:- (start of authority)
+
+ Every single zone has one and only one SOA resource record at the beginning of the zone.
+ It is not an actual record, it includes the following information:
+ Who is the owner (email for the domain)
+ The authoritative server
+ The serial number which is incremental with changes to the zone data.
+ The refreshing time/cycle into and the TTL.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CNAME RECORD:-(map your alias to hostname)
+
+ A CNAME value element is the same format as a domain name.
+ The DNS protocol doesn’t allow you to create a CNAME record for the top node of a DNS namespace, also known as the zone apex. (root domain)
+ For e.g: if you register the DNS name cns.com, the zone apex is cns.com.
+ You cannot create a CNAME record for cns.com.
+ However you can create CNAME records for www.cns.com, supports.cns.com and so on.
+ In addition it you create a CNAME record for a subdomain, you cannot create any other records for that subdomain.
+ For e.g: if you create a CNAME for www.cns.com, you cannot create any other records for which the value of the name field is www.cns.com. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ROUTE-53 ROUTING POLICY:-
+
+1. Simple Routing (default)
+2. Failover Routing
+3. Geo Location Routing
+4. Multi Value Routing
+5. Latency based Routing
+6. Weighted Routing
+7. Geo-Proximity
+
+**Failover Routing** 
+     Failover routing lets you route traffic to a resource when the resource is healthy. If the main resource is not healthy then route traffic to a different 
+      resource.
+     The primary and secondary records can route traffic to anything form an Amazon S3 bucket that is configured as a website to a complex tree of records.  
+     Failover routing policy is applicable for public hosted zone only.
+
+
+**Geo Location Routing:**
+     Geo location routing lets you choose the resources that serves your traffic based on the geographic location of the user’s i.e the location that DNS queries    
+      originate from.
+     For e.g: you may have presence in Europe and Asia. Now you want users in the Asia to be served in the Asia and those in Europe to be served by servers in 
+      Europe.
+
+Benefits:
+    You can localize your content and present some of all of your website in the language of your user’s.
+    You can also use geo location routing to restrict distribution of content to only the locations in which you have distribution rights.
+    You can specify geographic locations by continent, by country or by state in the United States.
+    If you create separate records for overlapping geographic regions, for e.g: one record for north America and one for Canada- priority goes to the smallest 
+     geographic location.
+    Geo location works by mapping IP address to locations. However some IP address are not mapped to geographic location.
+
+
+**Latency Based Routing**
+ If your application is hosted in multiple Amazon EC2 regions, you can improve performance for your users by serving their requests form the Amazon EC2 region that
+  provide the lowest latency.
+ To use latency-based routing, you create latency records for your resources in multiple EC2 regions.
+ When Amazon Route 53 receives a DNS query for your domain of subdomain:
+     It determines which Amazon EC2 region you have created latency record for it.
+     Determine which region gives lowest latency to users.
+     Then select a latency records for that region.
+     For e.g: suppose you have ELB in US-East and in Asia Pacific (Mumbai) region:
+     You can create a latency based record for each load balancer.
+     Here’s what happens when a user in London enters the name of your domain in a browser, DNS routes the request to its data on latency between London and the  
+       Mumbai region and between London and the N.Virginia.
+     Id latency is lower between London and N.Virginia, Route 53 respond to the query with the IP address for the N.Virginia load balancer.
+
+
+**Weighted Based Policy**
+ Weighted routing policy lets you associate multiple resources with a single domain name or subdomain name and choose how much traffic is routed to each resource.
+ This can be useful for a variety of purposes, including load balancing and testing new versions of software.
+ Weights can be assign any number from 1 to 255.
+ Weighted routing policy can be applied when there are multiple resource that perform the same function for e.g: webserver serving the same website.
+ To configure weighted routing, you can create records that have the same name and type for each of your resource.
+ Amazon Route 53 send traffic to a resource based on the weight that you assign to the record as a proportion of the total weight for all records in the group.
+ For e.g: suppose for www.cns.com has three resource record sets with weights of 1 (20%), 1 (20%), and 3 (60%), (sum=5)
+ On average Route 53 selects each of the first two resource record set one-fifth of the time, and returns the third resource record set three-fifth of the time
+
+
+**Geo Proximity Routing Policy**
+ Use when you want to route traffic based on the location of your resources and optionally shift traffic form resources in one location to resources in another.
+ You can also optionally choose to route more traffic of less to a given resource by specifying a value known as “BIAS”, it expands or shrinks the size of the 
+   geographic region from which traffic is routed to a resource.
+
+
+**Multi Value Answer Routing Policy**
+ Use when you want Route 53 to respond to DNS queries with up to eight healthy record selected at random.
+ Multi value routing lets you configure Amazon Route 53 to return multiple values such as IP address for your webservers, in response to DNS queries. You can specify 
+  multiple values for almost any record nut multi value answer routing also lets you check the health of each resource, so Route 53 returns only values for healthy 
+  resources, it’s not a substitute for a load balancer.
+ But the ability to return multiple health checkable IP addresses is a way to use DNS to improve availability and load balancing.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a instance
+    1.name----------my-server
+    2.machine-------amazon-linux
+    3.sg------------https,http,ssh
+    4.userdata-
+       #!/bin/bash
+       sudo yum update -y
+       sudo yum install httpd -y
+       sudo systemctl start httpd.service
+       sudo systemctl enable httpd.service
+       sudo echo "HELLO" > /var/www/html/index.html
+       sudo systemctl restart httpd.service
+
+2.go to route-53
+     1.create a hosted-zone
+     2.copy the name-server and paste on the freenom
+
+3.go to route-53
+     1.create a record
+          1.name------record
+          2.value-----(IP of instance)
+          3.create a record
+
+4.mayur.com --------------------on web
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**ROUTE-53 WITH LOAD BALANCER AND CREATING SSL CERTIFICATE**
+
+1.create a instance
+      1.name----web1
+      2.machine---amazon-linux
+      3.az--------1a
+      4.sg--------http,https,ssh
+      5.create a instance
+
+2.create a instance
+      1.name----web2
+      2.machine---amazon-linux
+      3.az--------1b
+      4.sg--------http,https,ssh
+      5.create a instance
+
+3.create a instance
+      1.name----app1
+      2.machine---amazon-linux
+      3.az--------1a
+      4.sg--------http,https,ssh
+      5.useradata-
+           #!/bin/bash
+           sudo yum update -y
+           sudo yum install httpd -y
+           sudo systemctl start httpd.service
+           sudo systemctl enable httpd.service
+           sudo echo "HELLO FRIENDS" > /var/www/html/index.html
+           sudo systemctl restart httpd.service
+
+4.create a instance
+      1.name----app2
+      2.machine---amazon-linux
+      3.az--------1b
+      4.sg--------http,https,ssh
+      5.useradata-
+           #!/bin/bash
+           sudo yum update -y
+           sudo yum install httpd -y
+           sudo systemctl start httpd.service
+           sudo systemctl enable httpd.service
+           sudo echo "HELLO DOSTO" > /var/www/html/index.html
+           sudo systemctl restart httpd.service
+
+5.create a target group
+     1.type-----instance
+     2.name-----tg
+     3.path-----/
+     4.register---1.app1
+                  2.app2
+     5.create a target group
+
+6.create a load balancer
+     1.name----ALB
+     2.vpc----default
+     3.az-----1a,1b
+     4.sg-----our instance sg
+     5.forward to----tg
+     6.create a load balancer
+
+7.go to route-53
+     1.create a hosted zone
+     2.copy the all name-server and paste on the freenom account 
+
+7.go to freenom
+     1.access the account/sign
+     2.my-account
+     3.paste here
+
+8.go to route-53
+     1.create a record
+          1.name------------my-record
+          2.route traffic---alias
+          3.endpoint--------(region-name --- where the load balancer is)
+          4.policy----------simple routing
+
+9.(mayur.com) --------------on web
+
+10.search ACM (for creating certificates)
+      1.create a certificate
+      2.domain------(mayur.com)
+      3.request
+ 
+      4.view certificate
+      5.create a record in route-53
+
+11.go to load balancer
+     1.add listener
+     2.add port----httpd-443
+     3.add acm--(certificate)
+
+12.go to load balancer
+     1.edit listner-80
+     2.redirect to url------https--(443)
+     3.save
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the difference between the public hosted zone and private hosted zone
+
+Public Hosted Zone:-
+
+Public hosted zones contain records that specify how you want to route traffic on the internet. simple say that route53 can route your traffic on the internet when we create the public hosted zone.
+It should be available all over the internet for domain discovery.
+Although AWS allows you to create a public hosted zone even for a domain that you don’t own, this would not be mapped to root NS servers in the DNS hierarchy, which means this hosted zone does not have any relevance.
+
+Private Hosted Zone:-
+
+Private hosted zones contain records that specify how you want to route traffic in an Amazon Virtual Private Cloud (VPC).
+A private hosted zone is a container that holds information about how you want Amazon Route 53 to respond to DNS queries for a domain and its subdomains within one or more VPCs that you create with the Amazon VPC service3.
+You can only query those zones via Route 53 Resolver in a VPC that has been associated with the hosted zone by using an inbound endpoint connected to the VPCs specified in the private hosted zone3.
+While the name servers are visible on the internet, Route 53 Resolver doesn’t connect to the name server addresses.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is the difference between the Cname and the alias
+
+1.Cname:- cname is a collonical name we basically use the cname for the sublevel domains (myself.mayur.com)
+1.alias:-  alias is generally we use for the root level domain(mayur.com) as well as the sublevel domains(myself.mayur.com)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+what is txt record
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

@@ -1,0 +1,31 @@
+**How to mount s3 bucket on EC2
+
+1.create a s3 bucket
+2.create a ubuntu machine/centos-redhat
+3.create a access key and secret key
+
+ 1.apt-get update
+ 2.sudo apt-get install automake autotools-dev fuse g++ git libcurl4-gnutls-dev libfuse-dev libssl-dev libxml2-dev make pkg-config
+ 3.git clone https://github.com/s3fs-fuse/s3fs-fuse.git
+ 4.cd s3fs-fuse
+ 5../autogen.sh
+ 6../configure --prefix=/usr --with-openssl
+ 7.make
+ 8.sudo make install
+ 9.which s3fs
+10.touch /etc/passwd-s3fs
+11.vim /etc/passwd-s3fs
+    (access key):(secret key)
+12.sudo chmod 640 /etc/passwd-s3fs
+13.mkdir /mys3bucket
+14.s3fs (bucket name) /mys3bucket/ -o passwd_file=/etc/passwd-s3fs
+15.cd /mys3bucket/
+16.touch file{1..10}
+17.check in s3 bucket on console
+
+
+**if you have centos and red hat machine run these first two commands
+   1.yum update all
+   2.sudo yum install automake fuse fuse-devel gcc-c++ git libcurl-devel libxml2-devel make openssl-devel
+   3.then continue with remaining steps
+

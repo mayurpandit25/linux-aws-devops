@@ -1,0 +1,16 @@
+**How to share the snapshot from one account to another account:-
+
+  1.account-1-(mumbai region)
+       1.create a EC2-instance
+       2.create a snapshot of a instance volume
+       3.click on the snapshot 
+       4.go to action
+       5.click on the modify permission
+       6.paste the account no of account-2 and add the permission
+       7.save
+
+  2.account-2-(mumbai region)
+       1.go to mumbai region
+       2.click on EC2
+       3.go to snapshot
+       4.you can see the snapshot

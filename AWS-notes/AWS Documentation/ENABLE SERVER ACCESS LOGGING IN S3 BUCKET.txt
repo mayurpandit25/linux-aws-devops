@@ -1,0 +1,22 @@
+ENABLE SERVER ACCESS LOGGING IN S3 BUCKET
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ { note:- generally access log information can be useful in security and access audits }
+
+1.create a s3 bucket
+    {my-s3-bucket}
+
+2.click on the bucket
+
+3.go to properties
+     1.edit server access logging
+     2.server access logging ----enable
+     3.choose destination--------s3 bucket 
+     4.select log object key format
+
+4.save chages
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+

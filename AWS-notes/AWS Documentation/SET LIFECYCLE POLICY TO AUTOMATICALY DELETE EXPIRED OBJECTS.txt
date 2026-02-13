@@ -1,0 +1,42 @@
+SET LIFECYCYLE POLICY TO AUTOMATICALLY DELETE EXPIRED OBJECTS
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a s3 bucket
+   {my-s3-bucket}
+
+2.go to s3 bucket 
+    1.click on my-s3-bucket
+    2.click on management tab 
+    3.create a lifecycle policy rule
+       1.name-----> lifecycle-rule
+       2.apply all objects in the bucket
+       3.I acknowledge that this rule will apply to all objects in the bucket.
+       4.expiration----Enable the "Permanently delete previous versions" option
+       5.deleted privous version----> 30 days
+       6.clean up delete marker
+       7.create a rule
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**ALSO YOU CREATE A LIFECYCLE RULE FOR OPTIMIZING YOUR COST**
+
+1.create a bucket {my-s3-bucket}
+2.click on my-s3-bucket and upload a file
+3.go to management and click on lifecycle and add rule
+      1.name-lifecycle
+      2.apply all object in bucket
+      3.tag -name-tech 
+      4.current version
+              1.standard IA----30 days
+              2.standard one zone----60 days
+              3.s3 glacier-----180
+      5.privious version
+              1.standard IA------30 days
+              2.one zone --------60 days
+              3.glacier deep ----120 days
+      6.deleted privous version----365 days
+      7.clean up delete marker
+      8.and then save
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

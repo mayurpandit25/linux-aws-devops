@@ -1,0 +1,84 @@
+**Installing tomcat and run the student.war page in UBUNTU and add reverse proxy:-
+
+1.create a instance (ubuntu machine)
+2.access these instance (git/bash)
+3.sudo apt update
+4.sudo apt install openjdk-17-jdk -y
+6.java --version
+7.wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.91/bin/apache-tomcat-8.5.91.tar.gz
+8.tar -xvf apache-tomcat-8.5.91.tar.gz
+9.mv apache-tomcat-8.5.91 tomcat
+10.cd tomcat
+11.cd /bin
+12.(./catalina.sh start)
+13.go to security and add the 8080 rule
+14.(public ip of instance):8080
+
+HOSTING STUDENT.WAR PAGE 
+16.go to s3 bucket and upload a student.war file
+17.cd /tomcat
+18.cd /webapps
+19.wget 
+20.cd ..
+21.cd /tomcat
+22.cd /bin
+23.(./catalina.sh start)
+24.(public ip of instance):8080/student
+
+ADD THE REVERSE PROXY
+1.sudo apt install nginx 
+2.systemctl start nginx
+3.touch /etc/nginx/conf.d/tomcat.conf
+4.vim /etc/nginx/conf.d/tomcat.conf
+
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        proxy_pass http://<private_ip>:8080/student/;
+        
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_connect_timeout 60;
+        proxy_send_timeout 60;
+        proxy_read_timeout 60;
+    }
+}
+
+5.sudo rm -f /etc/nginx/sites-enabled/default
+6.systemctl restart nginx
+7.curl <public_ip>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

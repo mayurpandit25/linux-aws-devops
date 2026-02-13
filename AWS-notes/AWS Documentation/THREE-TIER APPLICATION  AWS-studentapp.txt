@@ -1,0 +1,86 @@
+THREE-TIER APPLICATION DEPLOYMENT AWS -----> StudentApp
+
+Architecture:
+Frontend → Backend → Database (RDS MySQL)
+
+***********************************************************************************************
+
+1.Create A Database
+   DB_name :- student_db
+   username:- admin
+   password:- admin123
+   
+2.Create A Instance (ubuntu)
+   ami:- ubuntu
+   instance_type:- t3.micro
+   security_groups:- 22,80,443,8080,3306
+
+3.Access The Instance
+  1.apt install mysql-client -y
+  2.mysql -u admin -h (database_endpoint) -padmin123
+     1.create database student_db;
+     2.show databases;
+     3.exit
+
+SET UP BACKEND:-
+1.apt install openjdk-17-jdk -y
+2.apt install maven -y
+3.git clone https://github.com/shubhamkalsait/cloudblitz-student-app.git
+4.cd cloudblitz-student-app/backend/src/main/resource/
+5.vim application.properties
+  spring.datasource.url=jdbc:mysql://<RDS_ENDPOINT>:3306/student_db
+  spring.datasource.username=admin
+  spring.datasource.password=admin123
+6.cd backend
+7.mvn clean package
+8.ls target
+9.java -jar student-registration-backend-0.0.1-SNAPSHOT.jar
+
+http://<PUBLIC_IP>:8080/api ----------------> #backend run on these URL
+
+SET UP THE FRONTEND:-
+1.apt install nodejs npm -y
+2.apt install apache2 -y
+3.systemctl start apache2
+4.cd frontend
+5.npm install
+6.vim .env
+  VITE_API_URL="http://<EC2_PUBLIC_IP>:8080/api"
+7.npm run build
+8.cp -rf dist/* /var/www/html/
+9.systemctl restart apache2
+
+http://<EC2_PUBLIC_IP>
+
+**********************************************************************************************************************************************************************
+
+NOTES:-
+	
+1.A frontend (user interface — what users see)
+2.A backend (logic — handles data and requests)
+3.A database (stores data permanently)
+
+JAVA:-
+1.Used for: Building the backend (server-side) of your app.
+2.Why: It handles the logic like login, registration, connecting to the database, etc.
+3.usually works on the 8080
+
+NODE-JS:-
+1.Used for: Running JavaScript code on the server (not browser).
+2.Why here: It’s needed to build the frontend part of the app (React or Vue project).
+3.To execute:-
+  npm install
+  npm run build
+ 
+APACHE2:-
+1.Used for: Serving (hosting) webpages to users.
+2.Why: After you build your frontend, you copy it into /var/www/html/.
+
+simply:-
+1.database ----------> MySQL(RDS)
+2.backend -----------> java
+3.frontend ----------> node.js + apache
+4.server ------------> ubuntu (ec2 instance)
+
+
+**********************************************************************************************************************************************************************

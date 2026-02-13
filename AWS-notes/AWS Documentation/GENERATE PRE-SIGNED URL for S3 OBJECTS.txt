@@ -1,0 +1,20 @@
+**GENERATE PRE-SIGNED URL FOR TEMPORARY ACCESS TO S3 OBJECTS** 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  { NOTE:-A pre-signed URL is a URL that contains authentication information that allows someone without AWS credentials to access the specified S3 object for a 
+          specified duration }
+
+1.create a s3 bucket 
+   {my-s3-bucket}
+
+2.configure aws cli
+  { aws s3 presign s3://my-s3-bucket/file.csv --expires-in 3600 --region ap-south-1 }
+
+  note:-1.change the bucket name
+        2.give the file name{object name}
+        3.also region
+        4.also set the time for these particular url
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

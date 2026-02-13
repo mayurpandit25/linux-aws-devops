@@ -1,0 +1,113 @@
+impelement autoscaling with load balancer with the same ami which we have created earliar scaling policy should be on cpu utilization.
+
+=======================================================================================================================================================================
+
+1.create a launch template
+     1.name------------my-lt
+     2.ami-------------owned by me(nginx-ami)
+     3.type------------t2.micro
+     4.subnet----------not associated
+     5.resource tag----Name--nginx
+     6.create a template
+
+2.create a autoscaling group
+     1.name-----------ASG-nginx
+     2.template-------my-lt
+     3.az-------------1a,1b,1c
+     4.capacity
+           1.desired---2
+           2.minimum---1
+           3.maximum---3
+     5.tags
+     6.create a autoscaling group
+
+3.create a autoscaling policy
+    1.click on ASG-nginx
+    2.click on automatic scaling
+         1.create a dyanamic scaling policy
+              1.policy type------simple scaling
+              2.scaling policy---incremental policy
+              3.take action------add-----1
+              4.wait-------------60seconds
+              5.create a policy
+
+    1.click on ASG-nginx
+    2.click on automatic scaling
+         1.create a dynamic scaling policy
+              1.policy type------simple scaling
+              2.scaling policy---decremental policy
+              3.take action------remove----1
+              4.wait-------------60seconds
+              5.create a policy
+
+4.create a target group
+    1.type-------instance
+    2.name-------tg-nginx
+    3.path-------/
+    4.create a target group
+
+5.add these target in autoscaling group
+    1.click on ASG-nginx
+    2.load balancing-----add-tg-nginx
+ 
+6.create a load balancer
+   1.name--------------ALB
+   2.default action----tg-nginx
+   3.create a load balancer
+
+7.go to cloudwatch and create a alarm
+      1.create a alarm
+      2.select metric
+      3.EC2----autoscaling group----ASG-nginx------CPUutilization
+      4.cpu-utilization------greater/equal
+      5.than-----------------70
+      6.create sns topic
+      7.click on autoscaling action and select autogroup
+      8.and select action------incremental policy
+      9.alarm name-------------increase-alarm
+
+8.go to cloudwatch and create a alarm
+      1.create a alarm
+      2.select metric
+      3.EC2----autoscaling group----ASG-nginx------CPUutilization
+      4.cpu-utilization------lower/equal
+      5.than-----------------20
+      6.create sns topic
+      7.click on autoscaling action and select autogroup
+      8.and select action------incremental policy
+      9.alarm name-------------decrease-alarm
+
+9.then you can add stress on the server to test the server that autoscale up or not when load on server is high
+ 
+10.access the instance-nginx1
+     1.sudo apt update
+     2.sudo apt install -y stress
+     3.stress --version
+     4.sudo stress --cpu 90 --timeout 500 & -----------------#to run in background
+
+11.access the instance-nginx2
+     1.sudo apt update
+     2.sudo apt install -y stress
+     3.stress --version
+     4.sudo stress --cpu 90 --timeout 500 & -----------------#to run in background
+
+12.then check the cpu-utilization of ASG-nginx 
+
+=======================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

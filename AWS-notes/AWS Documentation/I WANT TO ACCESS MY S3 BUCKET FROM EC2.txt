@@ -1,0 +1,18 @@
+I want to access my s3 bucket form ec2 instance which is not associated with nor NAT or IGW 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a s3 bucket 
+   {my-s3-bucket}
+
+2.add objects in the bucket
+
+3.create a role for EC2 that have s3bucketfullaccess
+
+4.attach this role to the instance
+
+5.you can also create access key and secret key to configure
+
+6.aws s3 ls
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

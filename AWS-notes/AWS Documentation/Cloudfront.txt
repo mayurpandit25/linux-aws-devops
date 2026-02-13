@@ -1,0 +1,33 @@
+**Practical**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+   1.create a s3 bucket,add object in that bucket and give them a public access.
+   2.go to the cloudfront and create a distribution.
+        1.origin name=====>select s3 bucket
+        2.name============>automatic
+        3.origin access===>public
+        4.viewer policy===>HTTP/HTTPS
+        5.allowed HTTP====>GET,HEAD
+        6.create a distribution
+  3.then copy the domain name and paste in the new tab
+  4.also copy the file name which we can add in s3 bucket.
+       
+          https://domainame/object name
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    1.create a s3 bucket and add css template in s3 bucket
+    2.then create a static web hosting and give them a public access 
+    3.go to cloudfront 
+        1.create a distribution
+        2.origin name----paste static web hosting url
+        3.name-----------automatic 
+        4.origin access--public 
+        5.viewer policy--http/https
+        6.create a distribution
+    4.then copy the domain name of cloudfront
+ 
+          https://domainame
+
+=======================================================================================================================================================================

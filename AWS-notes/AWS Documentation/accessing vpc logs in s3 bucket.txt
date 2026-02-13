@@ -1,0 +1,63 @@
+**HOW TO ACCESS VPC LOGS IN S3 BUCKET**
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.create a vpc
+     1.my-vpc-----10.0.0.0/16
+
+2.create a subnet
+     1.my-subnet---10.0.0.0/20
+
+3.create a IGW and attach to vpc
+
+4.create a route table
+     1.subnet associates-----my-subnet
+     2.route-----------------0.0.0.0/0---IGW
+
+5.create a instance
+     1.name------my-server
+     2.machine---amazon-linux
+     3.sg--------http,https,ssh
+     4.vpc-------my-vpc
+     5.userdata-
+          #!/bin/bash
+          sudo yum update -y 
+          sudo yum install httpd -y
+          sudo systemctl start httpd.service
+          sudo systemctl enable httpd.service
+          sudo systemctl status httpd.service
+
+6.create a s3 bucket(my-s3-bucket)
+
+7.go to vpc
+     1.click on my-vpc
+     2.click on flow logs
+     3.create flow logs
+           1.name----------------my-flow-logs
+           2.filter--------------all
+           3.interval------------1 minute
+           4.destin.-------------amazon s3 bucket
+           5.s3 bucket arn-------(paste arn of my-s3-bucket)
+           6.log record format---aws default
+           7.log file format-----text
+           8.create a flow log
+
+8.(public ip)-----------------------------------hit on web
+
+9.go to s3 bucket and you can access the logs on vpc, also you can download these logs and check the logs
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
